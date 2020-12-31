@@ -1,5 +1,5 @@
 {{ with ($.Site.GetPage (printf "/%s" "releases")) }}
-  <h2 class="text-center">{{ .Params.releases.title }}</h2>
+  <h2 class="text-center">{{ $.Params.releases.title }}</h2>
 
   <div class="grid">
     {{ range first 4 .Pages }}
@@ -9,7 +9,7 @@
     {{ end }}
   </div>
 
-  {{ with .Params.releases.all }}
+  {{ with $.Params.releases.all }}
     <div class="text-center">
       <a href="{{ .href }}" class="button">{{ .text }}</a>
     </div>
