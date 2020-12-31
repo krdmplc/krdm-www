@@ -13,6 +13,16 @@ releases:
   all:
     href: /en/releases
     text: All releases
+artists:
+  title: Featured artists
+  all:
+    href: /en/artists
+    text: All artists
+about:
+  title: About plc
+  link:
+    href: /en/about
+    text: More about us
 
 ---
 {{< youtube -qliNZNUs8A >}}

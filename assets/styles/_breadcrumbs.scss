@@ -1,0 +1,10 @@
+.breadcrumbs {
+  a {
+    color: $color-black;
+    text-decoration: underline;
+
+    &:hover {
+      color: $color-blue;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+<div class="breadcrumbs">
+  {{ template "breadcrumb" dict "currentPage" .Page "id" .File.UniqueID }}
+</div>
+
+{{ define "breadcrumb" }}
+  {{ if .currentPage.Parent }}
+    {{ template "breadcrumb" dict "currentPage" .currentPage.Parent }}
+  {{ end }}
+
+  {{ if .IsHome }}
+    <a href="/">{{ .Title }}</a>
+  {{ else }}
+    <a href="{{ .currentPage.Permalink }}">{{ .currentPage.Title }}</a>
+  {{ end }}
+{{ end }}

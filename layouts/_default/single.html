@@ -1,9 +1,19 @@
 {{ define "main" }}
-  <main>
-    <div class="container">
-      <h1>{{ .Title }}</h1>
-  
-      {{ .Content | safeHTML }}
+<main>
+  <div class="container">
+    {{ partial "breadcrumbs" . }}
+
+    <div class="grid">
+      <div class="col-12 col-lg-10 offset-lg-1">
+        <h1>{{ .Title }}</h1>
+
+        {{ with .Params.thumbnail }}
+          <div><img src="{{ . }}?nf_resize=fit&w=720" alt=""></div>
+        {{ end }}
+
+        {{ .Content }}
+      </div>
     </div>
-  </main>
+  </div>
+</main>
 {{ end }}
