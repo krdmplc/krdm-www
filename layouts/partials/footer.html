@@ -1,15 +1,16 @@
-{{ $data := index .Site.Data.footer }}
+{{ $d := index .Site.Data.footer }}
+{{ $d = index $d .Site.Language.Lang }}
 
 <footer class="footer">
   <div class="container">
     <div>
-      <h4 class="no-margin">{{ $data.title }}</h4>
-      {{ $data.address }}<br>
-      {{ $data.vat }}
+      <h4 class="no-margin">{{ $d.title }}</h4>
+      {{ $d.address }}<br>
+      {{ $d.vat }}
     </div>
     <div>
-      <a href="mailto:{{ $data.email }}">{{ $data.email }}</a> <br>
-      {{ $data.cookiesLink | safeHTML }}<br>
+      <a href="mailto:{{ $d.email }}">{{ $d.email }}</a> <br>
+      {{ $d.cookiesLink | safeHTML }}<br>
     </div>
     <div>
       {{ partial "social-menu" . }}

@@ -4,6 +4,8 @@ date: 2019-09-19T00:00:00+01:00
 thumbnail: /media/uploads/machinate.png
 url: izdaje/machinate
 artist: "ofnana_pesa"
+showInAdmin: true
+ref: machinate
 ---
 
 Drugi singel DJ-a in producenta ofnana_pesa

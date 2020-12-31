@@ -3,6 +3,8 @@ title: Didge
 date: 2019-10-23T12:36:22.775Z
 url: "ustvarjalci/didge"
 thumbnail: /media/uploads/didge.jpg
+showInAdmin: true
+ref: didge
 releases:
 - Encounters in Endless Grey
 - Denktimes Compilation Vol 4

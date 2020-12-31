@@ -5,54 +5,292 @@ backend:
   branch: master
   squash_merges: true
 
-# display_url:
-logo_url: /media/brand/logo.svg
-media_folder: "static/media/uploads"
+display_url: https://www.krdm.si/
+logo_url: /media/brand/logo.png
+media_folder: "/static/media/uploads"
 public_folder: "/media/uploads"
 # publish_mode: editorial_workflow
 slug:
   encoding: "ascii"
   clean_accents: true
+i18n:
+  structure: multiple_files
+  locales: [sl, en]
 
 collections:
-  - name: "articles"
-    label: "Articles"
-    label_singular: "article"
-    folder: "content/articles"
+  - name: "artists"
+    label: "Artists"
+    label_singular: "artist"
+    folder: "content/artists"
     create: true
+    i18n: true
+    filter: {field: "showInAdmin", value: true}
     slug: "{{slug}}"
-
-    # This is hack to remove index.md from the list. Add tag "article" to all articles except the index, and show only pages with this tag.
-    filter: {field: "tags", value: "article"}
-
-    # Enable this for a prewiew on the right when editing. You will have to create a preview template for it to make sense.
+    path: '{{slug}}/_index'
+    media_folder: "/static/media/uploads"
+    public_folder: "/media/uploads"
+    nested:
+      depth: 10
     editor:
       preview: false
-
-    # more about widgets: https://www.netlifycms.org/docs/widgets/
     fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Thumbnail", name: "thumbnail", widget: "image", allow_multiple: false}
-      - {label: "Content", name: "body", widget: "markdown"}
-      - {label: "Tags", name: "tags", widget: "hidden", default: ["article"]}
+      - {label: "Title", name: "title", widget: "string", i18n: duplicate}
+      - {label: "Date", name: "date", widget: "datetime", i18n: duplicate}
+      - {label: "Thumbnail", name: "thumbnail", widget: "image", i18n: duplicate}
+      - {label: "Content", name: "body", widget: "markdown", i18n: true}
+      - {name: "ref", widget: "hidden"}
+      - {name: "showInAdmin", widget: "hidden", default: true}
+      - {label: "Releases", name: "releases", widget: "list", field: {
+          name: "relation",
+          widget: "relation",
+          collection: "releases",
+          search_fields: ["title"],
+          display_fields: ["title"],
+          value_field: "ref",
+        }}
+
+  - name: "events"
+    label: "Events"
+    label_singular: "event"
+    folder: "content/events"
+    create: true
+    slug: "{{slug}}"
+    path: '{{slug}}/_index'
+    media_folder: "/static/media/uploads"
+    public_folder: "/media/uploads"
+    i18n: true
+    nested:
+      depth: 10
+    editor:
+      preview: false
+    fields:
+      - {label: "Title", name: "title", widget: "string", i18n: duplicate}
+      - {label: "Date", name: "date", widget: "date", i18n: duplicate}
+      - {label: "Start date", name: "startDate", widget: "date", i18n: duplicate}
+      - {label: "End date", name: "endDate", widget: "date", i18n: duplicate}
+      - {label: "Venue", name: "venue", widget: "string", i18n: duplicate}
+      - {label: "Thumbnail", name: "thumbnail", widget: "image", i18n: duplicate}
+      - {label: "Content", name: "body", widget: "markdown", i18n: true}
+      - {name: "ref", widget: "hidden", i18n: duplicate}
+      - {name: "showInAdmin", widget: "hidden", default: true}
+      - {label: "Artists", name: "artists", widget: "list", field: {
+          name: "relation",
+          widget: "relation",
+          collection: "artists",
+          search_fields: ["title"],
+          display_fields: ["title"],
+          value_field: "ref",
+        }}
+
+  - name: "releases"
+    label: "Releases"
+    label_singular: "release"
+    folder: "content/releases"
+    create: true
+    slug: "{{slug}}"
+    path: '{{slug}}/_index'
+    media_folder: "/static/media/uploads"
+    public_folder: "/media/uploads"
+    i18n: true
+    nested:
+      depth: 10
+    editor:
+      preview: false
+    fields:
+      - {label: "Title", name: "title", widget: "string", i18n: true}
+      - {label: "Date", name: "date", widget: "date", i18n: duplicate}
+      - {label: "Thumbnail", name: "thumbnail", widget: "image", i18n: duplicate}
+      - {label: "Content", name: "body", widget: "markdown", i18n: true}
+      - {name: "ref", widget: "hidden", i18n: duplicate}
+      - {name: "showInAdmin", widget: "hidden", default: true}
+      - {label: "Artists", name: "artists", widget: "list", field: {
+          name: "relation",
+          widget: "relation",
+          collection: "artists",
+          search_fields: ["title"],
+          display_fields: ["title"],
+          value_field: "ref",
+        }}
 
   - name: pages
     label: Pages
     editor:
       preview: false
     files:
-      - label: Site settings
-        name: site-settings
-        file: config.toml
-        fields:
-          - label: "Title"
-            name: "title"
-            widget: "string"
-          - label: "Google Analytics ID"
-            name: "googleAnalytics"
-            widget: "string"
-          - label: "Params"
-            name: "params"
-            widget: "object"
-            fields:
-              - {label: "Description", name: "description", widget: "string"}
+    - label: Home SL
+      name: home-sl
+      file: content/_index.sl.md
+      fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - label: Hero
+        name: hero
+        widget: object
+        fields: [
+          {label: "Title", name: "title", widget: "string"},
+          {label: "Description", name: "desc", widget: "text"},
+        ]
+      - label: Events
+        name: events
+        widget: object
+        fields: [
+          {label: "Title", name: "title", widget: "string"},
+          {
+            label: "All link", name: "all", widget: "object",
+            fields: [
+              {label: "Url", name: "href", widget: "string"},
+              {label: "Text", name: "text", widget: "string"},
+            ]
+          },
+        ]
+      - label: Releases
+        name: releases
+        widget: object
+        fields: [
+          {label: "Title", name: "title", widget: "string"},
+          {
+            label: "All link", name: "all", widget: "object",
+            fields: [
+              {label: "Url", name: "href", widget: "string"},
+              {label: "Text", name: "text", widget: "string"},
+            ]
+          },
+        ]
+      - label: Artists
+        name: artists
+        widget: object
+        fields: [
+          {label: "Title", name: "title", widget: "string"},
+          {
+            label: "All link", name: "all", widget: "object",
+            fields: [
+              {label: "Url", name: "href", widget: "string"},
+              {label: "Text", name: "text", widget: "string"},
+            ]
+          },
+        ]
+      - label: About
+        name: about
+        widget: object
+        fields: [
+          {label: "Title", name: "title", widget: "string"},
+          {
+            label: "link", name: "link", widget: "object",
+            fields: [
+              {label: "Url", name: "href", widget: "string"},
+              {label: "Text", name: "text", widget: "string"},
+            ]
+          },
+        ]
+      - {label: "Content", name: "body", widget: "markdown", i18n: true}
+
+  - label: General
+    name: general
+    editor:
+      preview: false
+    files:
+    - label: Footer
+      name: footer
+      file: data/footer.json
+      fields:
+      - {
+          label: "Slovenščina",
+          name: "sl",
+          widget: "object",
+          fields: [
+            { label: "Title", name: "title", widget: "string" },
+            { label: "address", name: "address", widget: "string" },
+            { label: "VAT", name: "vat", widget: "string" },
+            { label: "Email", name: "email", widget: "string" },
+            { label: "EmailCookies link", name: "cookiesLink", widget: "string" },
+          ]
+        }
+      - {
+          label: "English",
+          name: "en",
+          widget: "object",
+          fields: [
+            { label: "Title", name: "title", widget: "string" },
+            { label: "address", name: "address", widget: "string" },
+            { label: "VAT", name: "vat", widget: "string" },
+            { label: "Email", name: "email", widget: "string" },
+            { label: "EmailCookies link", name: "cookiesLink", widget: "string" },
+          ]
+        }
+
+    - label: Cookies
+      name: cookies
+      file: data/cookies.json
+      fields:
+      - {
+          label: "Slovenščina",
+          name: "sl",
+          widget: "object",
+          fields: [
+            {label: "Text", name: "text", widget: "text"},
+            {label: "Button text", name: "confirm", widget: "string"}
+          ]
+        }
+      - {
+          label: "English",
+          name: "en",
+          widget: "object",
+          fields: [
+            {label: "Text", name: "text", widget: "text"},
+            {label: "Button text", name: "confirm", widget: "string"}
+          ]
+        }
+
+    - label: Site settings
+      name: site-settings
+      file: config.toml
+      fields:
+      - {label: "Google Analytics ID", name: "googleAnalytics", widget: "string", required: false}
+      - {
+          label: "Params",
+          name: "params",
+          widget: "object",
+          fields: [
+            {label: "Image", name: "image", widget: "image"},
+          ]
+        }
+      - {
+          label: "Languages",
+          name: "languages",
+          widget: "object",
+          fields: [
+            {
+              label: "Slovenščina",
+              name: "sl",
+              widget: "object",
+              fields: [
+                {label: "Site Title", name: "title", widget: "string"},
+                {label: "Copyright text", name: "copyright", widget: "string"},
+                {
+                  label: "Params",
+                  name: "params",
+                  widget: "object",
+                  fields: [
+                    {label: "Site description", name: "description", widget: "string"},
+                  ]
+                }
+              ]
+            },
+            {
+              label: "English",
+              name: "en",
+              widget: "object",
+              fields: [
+                {label: "Site Title", name: "title", widget: "string"},
+                {label: "Copyright text", name: "copyright", widget: "string"},
+                {
+                  label: "Params",
+                  name: "params",
+                  widget: "object",
+                  fields: [
+                    {label: "Site description", name: "description", widget: "string"},
+                  ]
+                }
+              ]
+            },
+          ]
+        }

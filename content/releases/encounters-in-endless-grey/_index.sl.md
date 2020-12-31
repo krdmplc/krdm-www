@@ -4,6 +4,8 @@ date: 2016-10-07T00:00:00+01:00
 url: "izdaje/encounters-in-endless-grey"
 thumbnail: /media/uploads/encounters-in-endless-grey.jpg
 artist: "Didge"
+showInAdmin: true
+ref: encounters-in-endless-grey
 ---
 
 Prvi album kranjski rock progresivcev Didge.

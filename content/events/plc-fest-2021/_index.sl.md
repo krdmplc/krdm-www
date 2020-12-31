@@ -8,6 +8,8 @@ startDate: 2021-11-16T20:00:00.000Z
 endDate: 2021-11-17T05:00:00.000Z
 venue: "Nekje, Kranj"
 price: "6 €"
+showInAdmin: true
+ref: plcfest-2021
 ---
 
 12 let placa

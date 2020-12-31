@@ -6,6 +6,8 @@ thumbnail: /media/uploads/bd-bash.jpg
 url: "dogodki/bd-bash-armaroth-decage-moshead"
 venue: 'eMCe Plac, Velenje'
 price: 5 €
+showInAdmin: true
+ref: distorzn-4
 ---
 Mineva 5. leto odkar je ideja ob pivu postala uradna zadeva.
 

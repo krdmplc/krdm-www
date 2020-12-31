@@ -3,7 +3,7 @@
   {{ $ogDesc = . }}
 {{ end }}
 
-{{ $ogImage := "/media/brand/og-image.jpg" }}
+{{ $ogImage := .Site.Params.image }}
 {{ with .Params.thumbnail }}
   {{ $ogImage = . }}
 {{ end }}

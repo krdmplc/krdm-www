@@ -3,6 +3,8 @@ title: Armaroth
 date: 2019-10-22T07:20:55.000Z
 url: "ustvarjalci/armaroth"
 thumbnail: /media/uploads/armaroth.jpg
+showInAdmin: true
+ref: armaroth
 releases:
 - False Vision
 - Zenith

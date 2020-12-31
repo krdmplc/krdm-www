@@ -3,6 +3,8 @@ title: Nature
 date: 2019-10-28T12:02:27.675Z
 url: "ustvarjalci/nature"
 thumbnail: /media/uploads/nature.jpg
+showInAdmin: true
+ref: nature
 releases:
 - Denktimes Compilation Vol 4
 ---

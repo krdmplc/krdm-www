@@ -6,6 +6,8 @@ thumbnail: /media/uploads/plesen-19-12-27-cover.png
 url: "dogodki/plesen-rsn-douchean-sss-selgor-b2b-ofnana_pesa"
 venue: 'Trainstation Subart, Kranj'
 price: 8 €
+showInAdmin: true
+ref: plesen-1
 ---
 V časih visoke vlage se rado zgodi, da splesnimo tudi mi. Zato smo začeli prirejati novo serijo dogodkov, obarvanih s temačno, moderno plesno glasbo. Namen serije Plesen je predstavitev najboljših imen podtalne elektronske scene, tako uveljavljenih veteranov kot tudi predstavnikov bolj sveže krvi.
 

@@ -3,6 +3,8 @@ title: Neuromancer
 date: 2019-10-27T13:36:22.775Z
 url: "ustvarjalci/neuromancer"
 thumbnail: /media/uploads/neuromancer.jpg
+showInAdmin: true
+ref: neuromancer
 releases:
 - Denktimes Compilation Vol 4
 ---
