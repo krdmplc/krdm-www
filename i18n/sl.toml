@@ -1,0 +1,30 @@
+
+[cookiesText]
+other = "Ta spletna stran uporablja <a href=\"/piskotki\">piškotke</a> za boljše delovanje."
+
+[understand]
+other = "Razumem"
+
+[upcoming]
+other = "Prihajajoči"
+
+[past]
+other = "Pretekli"
+
+[404title]
+other = "Ups!"
+
+[404content]
+other = "Ta stran ne obstaja. Najbolje, da greste <a href='/'>domov</a>."
+
+[releaseDate]
+other = "Datum izadje"
+
+[releases]
+other = "Izdaje"
+
+[home]
+other = "Domov"
+
+[artist]
+other = "Ustvarjalec"

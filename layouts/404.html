@@ -1,10 +1,11 @@
-{{ define "main" }}
-
-<main>
-  <div class="container">
-    <h1>404</h1>
-    <p>Izgubili ste se. Pojdite nazaj <a href="/">domov</a>.</p>
-  </div>
-</main>
-
+{{ define "main"}}
+  <main>
+    <div class="container text-center">
+      <br>
+      <h1>404</h1>
+      <br>
+      <h2>{{ i18n "404title" }}</h2>
+      <p><b>{{ i18n "404content" | safeHTML }}</b></p>
+    </div>
+  </main>
 {{ end }}

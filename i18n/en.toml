@@ -1,0 +1,29 @@
+[cookiesText]
+other = "This website uses <a href=\"/cookies\">cookies</a> for optimal performance."
+
+[understand]
+other = "I understand"
+
+[upcoming]
+other = "Upcoming"
+
+[past]
+other = "Past"
+
+[404title]
+other = "Oops!"
+
+[404content]
+other = "This page does not exist. Go <a href='/en/'>home</a>?"
+
+[releaseDate]
+other = "Release date"
+
+[releases]
+other = "Releases"
+
+[home]
+other = "Home"
+
+[artist]
+other = "Artist"
