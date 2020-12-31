@@ -1,0 +1,39 @@
+title = "KRDM"
+googleAnalytics = "UA-150915055-1"
+disableFastRender = true
+enableEmoji = true
+enableRobotsTXT = true
+languageCode = "sl-sl"
+defaultContentLanguage = "sl"
+copyright = "KRDM &copy; {year}, All Rights Reserved"
+
+[taxonomies]
+category = "categories"
+tag = "tags"
+artist = "artists"
+event = "events"
+release = "releases"
+genre = "genres"
+
+[params]
+image = "media/uploads/plcfest-2018.jpg"
+
+[languages]
+[languages.sl]
+languageName = "SLO"
+languageCode = "sl"
+weight = 1
+[languages.sl.params]
+description = "Društvo za promocijo neodvisne umetnosti na Gorenjskem"
+
+[languages.en]
+languageName = "ENG"
+languageCode = "en"
+weight = 2
+[languages.en.params]
+description = "Promoting independent artists"
+
+[markup]
+[markup.goldmark]
+[markup.goldmark.renderer]
+unsafe = true
