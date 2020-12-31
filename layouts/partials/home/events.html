@@ -1,0 +1,23 @@
+{{ $events := slice }}
+
+{{ with ($.Site.GetPage (printf "/%s" "events")) }}
+  {{ range .Pages }}
+    {{ $t := (time .Params.startDate) }}
+
+    {{ if $t.After now }}
+      {{ $events = $events | append . }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ if gt (len $events) 0 }}
+  <h2 class="text-center">{{ T "upcomingEvents" }}</h2>
+
+  <div class="grid">
+    {{ range $events }}
+      <div class="col-12 col-sm-6">
+        {{ partial "card" . }}
+      </div>
+    {{ end }}
+  </div>
+{{ end }}
