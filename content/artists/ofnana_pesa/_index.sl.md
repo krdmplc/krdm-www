@@ -2,7 +2,7 @@
 title: Ofnana_pesa
 date: 2019-11-06T10:20:59.576Z
 url: "ustvarjalci/ofnana_pesa"
-thumbnail: /media/ofnana_pesa.jpg
+thumbnail: /media/uploads/ofnana_pesa.jpg
 releases:
 - Denktimes Compilation Vol 4
 - Machinate

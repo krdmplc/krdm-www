@@ -1,7 +1,7 @@
 ---
 title: "Machinate"
 date: 2019-09-19T00:00:00+01:00
-thumbnail: /media/machinate.png
+thumbnail: /media/uploads/machinate.png
 url: izdaje/machinate
 artist: "ofnana_pesa"
 ---

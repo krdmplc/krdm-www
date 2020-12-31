@@ -1,6 +1,6 @@
 ---
 title: Ofnana_pesa
-thumbnail: /media/ofnana_pesa.jpg
+thumbnail: /media/uploads/ofnana_pesa.jpg
 releases:
 - Denktimes Compilation Vol 4
 - Machinate

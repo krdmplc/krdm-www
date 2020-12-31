@@ -1,7 +1,7 @@
 ---
 title: Mutism
 date: 2019-11-06T10:02:20.053Z
-thumbnail: /media/mutism.jpg
+thumbnail: /media/uploads/mutism.jpg
 url: "ustvarjalci/mutism"
 releases:
 - Denktimes Compilation Vol 4

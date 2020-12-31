@@ -2,7 +2,7 @@
 title: 'BD BASH :: Armaroth, Decage, Moshead'
 startDate: 2019-12-14T20:00:00.000Z
 endDate: 2019-12-15T02:00:00.000Z
-thumbnail: /media/bd-bash.jpg
+thumbnail: /media/uploads/bd-bash.jpg
 venue: 'eMCe Plac, Velenje'
 price: 5 €
 ---

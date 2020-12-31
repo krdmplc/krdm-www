@@ -1,7 +1,7 @@
 ---
 title: "Immortale"
 date: 2019-03-31T00:00:00+01:00
-thumbnail: /media/immortale.jpg
+thumbnail: /media/uploads/immortale.jpg
 url: izdaje/machinate
 artist: "ofnana_pesa"
 ---

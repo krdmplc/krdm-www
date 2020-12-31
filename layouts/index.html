@@ -2,6 +2,28 @@
   {{ partial "hero" .Params.hero }}
   <main>
     <div class="container">
+      {{ $taxo := "events" }}
+      {{ with ($.Site.GetPage (printf "/%s" $taxo)) }}
+        <h2 class="text-center">{{ T "upcomingEvents" }}</h2>
+
+        <div class="grid">
+          {{ range last 3 .Pages }}
+            {{ $t := (time .Params.startDate) }}
+            {{ if $t.After now }}
+              <a class="card" href="{{ .Permalink }}">
+                <div class="card__image">
+                  <img src="{{ .Params.Thumbnail }}?nf_resize=fit&w=500" alt="">
+                </div>
+                <div class="card__text">
+                  <h3 class="no-margin">{{ .Title }}</h3>
+                  <div>{{ dateFormat "2. 1. 2006" .Params.startDate }}</div>
+                  <div>{{ .Params.venue }}</div>
+                </div>
+              </a>
+            {{ end }}
+          {{ end }}
+        </div>
+      {{ end }}
     </div>
   </main>
 {{ end }}

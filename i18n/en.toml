@@ -4,6 +4,9 @@ other = "This website uses <a href=\"/cookies\">cookies</a> for optimal performa
 [understand]
 other = "I understand"
 
+[upcomingEvents]
+other = "Upcoming Events"
+
 [upcoming]
 other = "Upcoming"
 

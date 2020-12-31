@@ -2,7 +2,7 @@
 title: Amalgam
 date: 2019-10-22T07:21:43.000Z
 url: "ustvarjalci/amalgam"
-thumbnail: /media/amalgam.jpg
+thumbnail: /media/uploads/amalgam.jpg
 releases:
 - Denktimes Compilation Vol 4
 ---

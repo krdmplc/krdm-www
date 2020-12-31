@@ -2,18 +2,18 @@
 title: 'BD BASH :: Armaroth, Decage, Moshead'
 startDate: 2019-12-14T20:00:00.000Z
 endDate: 2019-12-15T02:00:00.000Z
-thumbnail: /media/bd-bash.jpg
+thumbnail: /media/uploads/bd-bash.jpg
 url: "dogodki/bd-bash-armaroth-decage-moshead"
 venue: 'eMCe Plac, Velenje'
 price: 5 €
 ---
 Mineva 5. leto odkar je ideja ob pivu postala uradna zadeva.
 
-Torej 5 let se s pomočjo kluba eMCe plac, Šaleškega Študentskega kluba, Velehood, MOV in nekaj posameznikov, brez katerih nam nebi uspelo, trudimo organizirati kvaliteten program in ohranjati vzdušje in dolgoletno tradicijo alternativnih koncertov pri nas. 
+Torej 5 let se s pomočjo kluba eMCe plac, Šaleškega Študentskega kluba, Velehood, MOV in nekaj posameznikov, brez katerih nam nebi uspelo, trudimo organizirati kvaliteten program in ohranjati vzdušje in dolgoletno tradicijo alternativnih koncertov pri nas.
 
 
 
-Z velikim apetitom po ropotanju, dretju in headbanganju še na mnoga!!! 
+Z velikim apetitom po ropotanju, dretju in headbanganju še na mnoga!!!
 
 
 
@@ -73,6 +73,6 @@ Dogodek poteka v sklopu Potujoče Železarne, ki je plod sodelovanja Zavoda O, z
 
 
 
-P.S. 
+P.S.
 
 V duhu praznovanja bomo na koncertu podelili 1x letni abonma za vse naše koncerte.

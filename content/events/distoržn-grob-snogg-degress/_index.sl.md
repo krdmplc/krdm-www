@@ -2,7 +2,7 @@
 title: 'Distoržn :: Grob, Snogg, Degress'
 startDate: 2020-01-24T20:00:03.074Z
 endDate: 2020-01-25T01:00:00.000Z
-thumbnail: /media/80900691_583277155829169_5199934085136384_o.jpg
+thumbnail: /media/uploads/80900691_583277155829169_5199934085136384_o.jpg
 venue: 'Traisntation Subart, Kranj'
 price: 6 €
 ---
@@ -24,7 +24,7 @@ https://grobofficial.bandcamp.com/
 Snøgg
 Experimental black, Velenje
 
-Snøgg je eksperimentalna black metal zasedba iz Velenja, ustanovljena leta 2013. Originalna zasedba obsega zgolj dva člana Ulv in Mørke, čeprav se zasedbi večino časa pridružijo gostujoči nastopajoči tako na odrih kot na izdajah. 
+Snøgg je eksperimentalna black metal zasedba iz Velenja, ustanovljena leta 2013. Originalna zasedba obsega zgolj dva člana Ulv in Mørke, čeprav se zasedbi večino časa pridružijo gostujoči nastopajoči tako na odrih kot na izdajah.
 Svojo zvrst imenujejo freeride black metal, ker se ne ne omejujejo v iskanju obširnega zvočnega prostora black metala in drugih ekstremnih ter alternativnih žanrov.
 V šestih letih delovanja je zasedba izdala demo, tri Ep-je ter prvenec ki nosi ime Chhinnamasta izdan junija 2019, ki je bil pozitivno sprejet s strani tako kritikov kot publike, presegajoč prejšnje izdaje.
 Snøgg pa že pripravljajo nov material za prihajajočo ploščo ki naj bi izšla v začetku 2020.

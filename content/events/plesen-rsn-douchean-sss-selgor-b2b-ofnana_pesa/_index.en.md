@@ -2,7 +2,7 @@
 title: 'Plesen :: RSN, Douchean, SSS, Selgor b2b ofnana_pesa'
 startDate: 2019-12-27T21:00:00.000Z
 endDate: 2019-12-28T04:00:00.000Z
-thumbnail: /media/plesen-19-12-27-cover.png
+thumbnail: /media/uploads/plesen-19-12-27-cover.png
 venue: 'Trainstation Subart, Kranj'
 price: 8 €
 ---

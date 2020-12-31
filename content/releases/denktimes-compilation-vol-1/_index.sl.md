@@ -2,7 +2,7 @@
 title: "Denktimes Compilation Vol. 1"
 date: 2016-07-21T00:00:00+01:00
 url: "izdaje/denktimes-compilation-vol-1"
-thumbnail: /media/denktimes-compilation-vol-1.jpg
+thumbnail: /media/uploads/denktimes-compilation-vol-1.jpg
 artist: ""
 ---
 
