@@ -1,18 +1,7 @@
 {{ define "main" }}
+  {{ partial "hero" .Params.hero }}
   <main>
     <div class="container">
-      <br>
-      <h1>{{ .Title }}</h1>
-      <br>
-
-      <div class="grid">
-        <div class="col-12 col-sm-6">
-          {{ .Content }}
-        </div>
-      </div>
-
-      <br>
-
       <div class="grid">
         {{ range .Pages }}
           <article class="col-12 col-sm-6">

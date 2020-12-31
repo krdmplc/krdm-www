@@ -1,0 +1,21 @@
+.social-menu {
+  @include breakpoint('small') {
+    text-align: right;
+  }
+
+  a {
+    display: inline-block;
+    margin-right: 10px;
+    color: $color-white;
+    text-align: center;
+
+    @include breakpoint('small') {
+      margin-right: 0;
+      margin-left: 10px;
+    }
+
+    &:hover {
+      color: $color-mint;
+    }
+  }
+}

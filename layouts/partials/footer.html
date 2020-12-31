@@ -1,7 +1,18 @@
 {{ $data := index .Site.Data.footer }}
 
 <footer class="footer">
-  <div class="container">
-    {{ $data.copyright }}
+  <div class="wrapper">
+    <div>
+      <h4 class="no-margin">{{ $data.title }}</h4>
+      {{ $data.address }}<br>
+      {{ $data.vat }}
+    </div>
+    <div>
+      <a href="mailto:{{ $data.email }}">{{ $data.email }}</a> <br>
+      {{ $data.cookiesLink | safeHTML }}<br>
+    </div>
+    <div>
+      {{ partial "social-menu" . }}
+    </div>
   </div>
 </footer>

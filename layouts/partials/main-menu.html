@@ -1,0 +1,15 @@
+<div class="main-menu">
+  {{ $currentPage := . }}
+
+  <div class="main-menu__button">
+    {{ partial "icon" "menu" }}
+  </div>
+
+  <ul class="main-menu__items">
+    {{ range .Site.Menus.main }}
+      <li {{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} class="active"{{end}}>
+        <a href="{{ .URL }}">{{ .Name }}</a>
+      </li>
+    {{ end }}
+  </ul>
+</div>

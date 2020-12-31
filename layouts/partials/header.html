@@ -1,7 +1,12 @@
-<header>
+<header class="header">
   <div class="container">
-    <a href="/">
-      <img src="/media/brand/logo.svg" alt="{{ .Site.Title }}" width="80" height="9">
-    </a>
+    <div class="logo">
+      <a href="/">
+        <img src="/media/brand/logo.png" alt="KRDM">
+      </a>
+    </div>
+
+    {{ partial "lang-menu" . }}
+    {{ partial "main-menu" . }}
   </div>
 </header>

@@ -1,3 +1,15 @@
 {
-  "copyright": "Copyright 2020 PM, poslovni mediji d.o.o."
+  "sl": {
+    "title": "Društvo KRDM",
+    "address": "Ulica Draga Brezarja 26, 4000 Kranj",
+    "vat": "Davčna številka: 21044716",
+    "email": "info@krdm.si",
+    "cookiesLink": "<a href=\"/piskotki\">Piškotki</a>"
+  },
+  "en": {
+    "title": "Društvo KRDM",
+    "address": "Ulica Draga Brezarja 26, 4000 Kranj",
+    "vat": "VAT: 21044716",
+    "cookiesLink": "<a href=\"/en/cookies\">Cookies</a>"
+  }
 }

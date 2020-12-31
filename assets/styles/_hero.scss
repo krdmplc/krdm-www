@@ -1,0 +1,33 @@
+.hero {
+  width: 100%;
+  min-height: 250px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  background-color: $color-black;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: $color-white;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding: 24px;
+  flex-direction: column;
+
+  @include breakpoint('small') {
+    min-height: 500px;
+  }
+
+  h1,
+  h2 {
+    color: $color-mint;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}

@@ -1,3 +1,25 @@
 .footer {
-  margin: 24px 0;
+  background-color: $color-blue-night;
+  color: white;
+  padding: 24px 0;
+  font-size: 14px;
+
+  a {
+    color: $color-white;
+    text-decoration: underline;
+
+    &:hover {
+      color: $color-mint;
+    }
+  }
+
+  .wrapper {
+    display: grid;
+    grid-gap: 16px;
+
+    @include breakpoint('small') {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+    }
+  }
 }
