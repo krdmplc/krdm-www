@@ -4,7 +4,11 @@
   </div>
   <div class="card__text">
     <h3 class="no-margin">{{ .Title }}</h3>
-    <div>{{ dateFormat "2. 1. 2006" .Params.startDate }}</div>
+    {{ with .Params.startDate }}
+      <div>{{ dateFormat "2. 1. 2006" . }}</div>
+    {{ else }}
+      <div>{{ dateFormat "2. 1. 2006" .Date }}</div>
+    {{ end }}
     <div>{{ .Params.venue }}</div>
   </div>
 </a>
