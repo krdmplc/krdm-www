@@ -11,7 +11,7 @@
 {{ end }}
 
 {{ if gt (len $events) 0 }}
-  <h2 class="text-center">{{ T "upcomingEvents" }}</h2>
+  <h2 class="text-center">{{ .Params.events.title }}</h2>
 
   <div class="grid">
     {{ range $events }}
@@ -20,4 +20,11 @@
       </div>
     {{ end }}
   </div>
+
+  {{ with .Params.events.all }}
+    <br><br>
+    <div class="text-center">
+      <a href="{{ .href }}" class="button">{{ .text }}</a>
+    </div>
+  {{ end }}
 {{ end }}
