@@ -13,5 +13,10 @@ releases:
   all:
     href: /izdaje
     text: Vse izdaje
+about:
+  title: O Placu
+  link:
+    href: /o-nas
+    text: Več o nas
 ---
 {{< youtube -qliNZNUs8A >}}

@@ -4,6 +4,14 @@
     <div class="container">
       {{ partial "home/events" . }}
       {{ partial "home/releases" . }}
+
+      <h2 class="text-center">{{ .Params.about.title }}</h2>
+      {{ .Content }}
+      {{ with .Params.about.link }}
+        <div class="text-center">
+          <a href="{{ .href }}" class="button">{{ .text }}</a>
+        </div>
+      {{ end }}
     </div>
   </main>
 {{ end }}
