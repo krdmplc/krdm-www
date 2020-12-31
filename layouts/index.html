@@ -2,15 +2,6 @@
   {{ partial "hero" .Params.hero }}
   <main>
     <div class="container">
-      <div class="grid">
-        {{ range .Pages }}
-          <article class="col-12 col-sm-6">
-            <h4>{{ .Title }}</h4>
-            <p>{{ .Description }}</p>
-            <a href="{{ .Permalink }}">Več</a>
-          </article>
-        {{ end }}
-      </div>
     </div>
   </main>
 {{ end }}

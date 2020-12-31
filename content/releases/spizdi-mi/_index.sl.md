@@ -1,0 +1,11 @@
+---
+title: "spizdi mi"
+date: 2020-08-07T00:00:00+01:00
+thumbnail: /media/spizdimi.jpg
+artist: "p€dri"
+url: izdaje/spizdi-mi
+---
+
+<https://krdm.bandcamp.com/track/spizdi-mi>
+
+<https://www.youtube.com/watch?v=ssoySbEn0hI>
