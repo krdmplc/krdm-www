@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/75126d26-6924-4999-a194-9e75a3d94f49/deploy-status)](https://app.netlify.com/sites/krdm-www/deploys)
+
 # KRDM
 
 Website for Društvo KRDM
