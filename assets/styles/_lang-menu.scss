@@ -6,14 +6,6 @@
   padding: 24px 12px 12px;
   width: 80px;
   top: 12px;
-  
-  &:hover {
-    background-color: #fff;
-
-    .lang-menu__other-lang {
-      display: block;
-    }
-  }
 
   @include breakpoint('small') {
     top: 20px;
@@ -28,5 +20,13 @@
   &__other-lang {
     position: absolute;
     display: none;
+  }
+
+  &:hover {
+    background-color: #fff;
+
+    .lang-menu__other-lang {
+      display: block;
+    }
   }
 }
