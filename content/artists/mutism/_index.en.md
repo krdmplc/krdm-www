@@ -2,8 +2,7 @@
 title: Mutism
 date: 2019-11-06T10:02:20.053Z
 thumbnail: /media/uploads/mutism.jpg
-releases:
-  - Denktimes Compilation Vol 4
+ref: mutism
 ---
 
 Four cowboys sit around a furnance and eat chocholate pudding. Who will stay soonless after dinner? There is enough meat for everyone. Trash lies everywhere. In the distance, dancing cacti. Dou you dring enugh water?

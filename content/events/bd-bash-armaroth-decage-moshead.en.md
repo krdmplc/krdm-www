@@ -5,6 +5,8 @@ endDate: 2019-12-15T02:00:00.000Z
 thumbnail: /media/uploads/bd-bash.jpg
 venue: 'eMCe Plac, Velenje'
 price: 5 €
+artists:
+- armaroth
 ---
 
 ### ARMAROTH

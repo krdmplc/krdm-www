@@ -16,14 +16,16 @@
 
     {{ $artists := .Params.artists }}
     {{ if $artists }}
-      {{ $taxo := ($.Site.GetPage (printf "/%s" "artists")) }}
-      {{ range $i, $artist := $artists }}
-        {{- range $taxo.Pages -}}
-          {{- if eq $artist .Params.ref -}}
-            {{ if $i }}, {{ end }}{{ .Title }}
+      <div>
+        {{ $taxo := ($.Site.GetPage (printf "/%s" "artists")) }}
+        {{ range $i, $artist := $artists }}
+          {{- range $taxo.Pages -}}
+            {{- if eq $artist .Params.ref -}}
+              {{ if $i }}, {{ end }}{{ .Title }}
+            {{- end -}}
           {{- end -}}
-        {{- end -}}
-      {{ end }}
+        {{ end }}
+      </div>
     {{ end }}
 
     {{ with .Params.releaseDate }}

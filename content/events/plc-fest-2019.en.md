@@ -7,6 +7,14 @@ startDate: 2019-11-16T20:00:00.000Z
 endDate: 2019-11-17T05:00:00.000Z
 venue: "Trainstation Subart, Kranj"
 price: "6 €"
+artists:
+- armaroth
+- neuromancer
+- didge
+- amalgam
+- nature
+- douchean
+- ofnana_pesa
 ---
 
 Celebration ob 10th anniversary of Plc.

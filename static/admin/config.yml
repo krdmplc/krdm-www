@@ -38,6 +38,7 @@ collections:
       - {label: "Date", name: "date", widget: "datetime", i18n: duplicate}
       - {label: "Thumbnail", name: "thumbnail", widget: "image", i18n: duplicate}
       - {label: "Content", name: "body", widget: "markdown", i18n: true}
+      - {name: "weight", widget: "number"}
       - {name: "ref", widget: "hidden"}
       - {name: "showInAdmin", widget: "hidden", default: true}
 

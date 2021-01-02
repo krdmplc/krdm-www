@@ -6,6 +6,10 @@ thumbnail: /media/uploads/plesen-19-12-27-cover.png
 venue: 'Trainstation Subart, Kranj'
 price: 8 €
 showInAdmin: true
+artists:
+- douchean
+- selgor
+- ofnana_pesa
 ---
 V časih visoke vlage se rado zgodi, da splesnimo tudi mi. Zato smo začeli prirejati novo serijo dogodkov, obarvanih s temačno, moderno plesno glasbo. Namen serije Plesen je predstavitev najboljših imen podtalne elektronske scene, tako uveljavljenih veteranov kot tudi predstavnikov bolj sveže krvi.
 
