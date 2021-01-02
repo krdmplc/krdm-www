@@ -3,7 +3,7 @@ title: "O nas"
 date: 2019-10-22T09:37:19+02:00
 draft: false
 url: "o-nas"
-menu: 
+menu:
   main:
     weight: 40
 ---
@@ -22,4 +22,4 @@ Predsednik: Martin Jagodic <br>
 Tajnik: Žiga Čavić <br>
 Blagajnik: Urban Valjavec <br>
 
-<a href="https://docs.google.com/document/d/1gMxNl-qa2aYQjJMzMgzSxH9wZtg4j0g0ysKA_pz9cZ4/edit?usp=sharing" target="_blank">Statut društva KRDM</a>
+<a href="https://docs.google.com/document/d/1gMxNl-qa2aYQjJMzMgzSxH9wZtg4j0g0ysKA_pz9cZ4/edit?usp=sharing">Statut društva KRDM</a>
