@@ -26,6 +26,9 @@ other = "Izdaje"
 [events]
 other = "Dogodki"
 
+[noUpcoming]
+other = "Trenutno ni nobenih prihajajočih dogodkov :("
+
 [home]
 other = "Domov"
 

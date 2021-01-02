@@ -25,6 +25,9 @@ other = "Releases"
 [events]
 other = "Events"
 
+[noUpcoming]
+other = "No upoming events to show :("
+
 [home]
 other = "Home"
 
