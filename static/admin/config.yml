@@ -40,14 +40,6 @@ collections:
       - {label: "Content", name: "body", widget: "markdown", i18n: true}
       - {name: "ref", widget: "hidden"}
       - {name: "showInAdmin", widget: "hidden", default: true}
-      - {label: "Releases", name: "releases", widget: "list", field: {
-          name: "relation",
-          widget: "relation",
-          collection: "releases",
-          search_fields: ["title"],
-          display_fields: ["title"],
-          value_field: "ref",
-        }}
 
   - name: "events"
     label: "Events"

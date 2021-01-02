@@ -9,8 +9,8 @@ defaultContentLanguage = "sl"
 category = "categories"
 tag = "tags"
 artist = "artists"
-event = "events"
-release = "releases"
+# event = "events"
+# release = "releases"
 
 [params]
 image = "media/uploads/plcfest-2018.jpg"

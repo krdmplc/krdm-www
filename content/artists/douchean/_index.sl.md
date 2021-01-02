@@ -3,7 +3,7 @@ title: Douchean
 date: 2019-11-06T10:16:30.358Z
 thumbnail: /media/uploads/douchean.jpg
 url: ustvarjalci/douchean
-ref: douchean/_index
+ref: douchean
 showInAdmin: true
 releases:
   - a-lumberjacks-smile

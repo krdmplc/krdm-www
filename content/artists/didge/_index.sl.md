@@ -3,7 +3,7 @@ title: Didge
 date: 2019-10-23T12:36:22.775Z
 url: ustvarjalci/didge
 thumbnail: /media/uploads/didge.jpg
-ref: didge/_index
+ref: didge
 showInAdmin: true
 releases:
   - encounters-in-endless-grey

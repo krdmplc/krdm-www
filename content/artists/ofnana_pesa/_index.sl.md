@@ -3,7 +3,7 @@ title: Ofnana_pesa
 date: 2019-11-06T10:20:59.576Z
 url: ustvarjalci/ofnana_pesa
 thumbnail: /media/uploads/ofnana_pesa.jpg
-ref: ofnana_pesa/_index
+ref: ofnana_pesa
 showInAdmin: true
 releases:
   - machinate

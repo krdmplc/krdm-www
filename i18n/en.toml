@@ -22,6 +22,9 @@ other = "Release date"
 [releases]
 other = "Releases"
 
+[events]
+other = "Events"
+
 [home]
 other = "Home"
 

@@ -8,6 +8,8 @@ venue: 'eMCe Plac, Velenje'
 price: 5 €
 showInAdmin: true
 ref: distorzn-4
+artists:
+- armaroth
 ---
 Mineva 5. leto odkar je ideja ob pivu postala uradna zadeva.
 

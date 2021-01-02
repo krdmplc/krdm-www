@@ -5,49 +5,56 @@
 
     <div class="grid">
       <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
-        <h1>{{ .Title }} (taxonomy template)</h1>
+        <h1>{{ .Title }} (taxonomy)</h1>
 
         {{ with .Params.thumbnail }}
           <div><img src="{{ . }}?nf_resize=fit&w=720" alt=""></div>
         {{ end }}
 
         {{ .Content }}
-
-        {{ $releases := .Params.releases }}
-        {{ if $releases }}
-          <h2>{{ T "releases" }}</h2>
-          {{ $taxo := ($.Site.GetPage (printf "/%s" "releases")) }}
-          <div class="grid">
-          {{ range $release := $releases }}
-              {{ range $taxo.Pages }}
-                {{ if eq $release .Params.ref }}
-                  <div class="col-12 col-sm-6">
-                    {{ partial "card" . }}
-                  </div>
-                {{ end }}
-              {{ end }}
-            {{ end }}
-          </div>
-        {{ end }}
-
-        {{ $artists := .Params.artists }}
-        {{ if $artists }}
-          <h2>{{ T "artists" }}</h2>
-          {{ $taxo := ($.Site.GetPage (printf "/%s" "artists")) }}
-          <div class="grid">
-            {{ range $artist := $artists }}
-              {{ range $taxo.Pages }}
-                {{ if eq $artist .Params.ref }}
-                  <div class="col-12 col-sm-6">
-                    {{ partial "card" . }}
-                  </div>
-                {{ end }}
-              {{ end }}
-            {{ end }}
-          </div>
-        {{ end }}
       </div>
     </div>
+
+    {{ $releases := slice }}
+    {{ $events := slice }}
+    {{ range .Pages }}
+      {{ if in .Dir "releases" }}
+        {{ $releases = $releases | append . }}
+      {{ end }}
+      {{ if in .Dir "events" }}
+        {{ $events = $events | append . }}
+      {{ end }}
+    {{ end }}
+
+    {{ if gt (len $releases) 0 }}
+      <section>
+        <h2>{{ T "releases" }}</h2>
+        <div class="grid">
+          {{ range $releases }}
+            <div class="col-12 col-sm-6">
+              {{ if in .Dir "releases" }}
+                {{ partial "card" . }}
+              {{ end }}
+            </div>
+          {{ end }}
+        </div>
+      </section>
+    {{ end }}
+
+    {{ if gt (len $events) 0 }}
+      <section>
+        <h2>{{ T "events" }}</h2>
+        <div class="grid">
+          {{ range $events }}
+            <div class="col-12 col-sm-6">
+              {{ if in .Dir "events" }}
+                {{ partial "card" . }}
+              {{ end }}
+            </div>
+          {{ end }}
+        </div>
+      </section>
+    {{ end }}
   </div>
 </main>
 {{ end }}

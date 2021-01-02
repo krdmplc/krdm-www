@@ -23,6 +23,9 @@ other = "Datum izadje"
 [releases]
 other = "Izdaje"
 
+[events]
+other = "Dogodki"
+
 [home]
 other = "Domov"
 

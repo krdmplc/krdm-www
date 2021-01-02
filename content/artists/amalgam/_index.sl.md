@@ -3,7 +3,7 @@ title: Amalgam
 date: 2019-10-22T07:21:43.000Z
 url: ustvarjalci/amalgam
 thumbnail: /media/uploads/amalgam.jpg
-ref: amalgam/_index
+ref: amalgam
 showInAdmin: true
 releases:
   - denktimes-compilation-vol-4

@@ -5,13 +5,32 @@
 
     <div class="grid">
       <div class="col-12 col-lg-10 offset-lg-1">
-        <h1>{{ .Title }}</h1>
+        <h1>{{ .Title }} (single)</h1>
 
         {{ with .Params.thumbnail }}
           <div><img src="{{ . }}?nf_resize=fit&w=720" alt=""></div>
         {{ end }}
 
         {{ .Content }}
+
+        {{ $artists := .Params.artists }}
+        {{ if $artists }}
+          <section>
+            <h2>{{ T "artists" }}</h2>
+            {{ $taxo := ($.Site.GetPage (printf "/%s" "artists")) }}
+            <div class="grid">
+              {{ range $artist := $artists }}
+                {{ range $taxo.Pages }}
+                  {{ if eq $artist .Params.ref }}
+                    <div class="col-12 col-sm-6">
+                      {{ partial "card" . }}
+                    </div>
+                  {{ end }}
+                {{ end }}
+              {{ end }}
+            </div>
+          </section>
+        {{ end }}
       </div>
     </div>
   </div>

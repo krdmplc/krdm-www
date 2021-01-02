@@ -3,12 +3,12 @@ artist: ""
 title: Denktimes Compilation Vol. 4
 date: 2019-11-05T00:00:00+01:00
 thumbnail: /media/uploads/denktimes-compilation-vol-4.jpg
-ref: denktimes-compilation-vol-4/_index
+ref: denktimes-compilation-vol-4
 showInAdmin: true
 artists:
-  - didge/_index
-  - armaroth/_index
-  - ofnana_pesa/_index
+  - didge
+  - armaroth
+  - ofnana_pesa
 url: izdaje/denktimes-compilation-vol-4
 ---
 
