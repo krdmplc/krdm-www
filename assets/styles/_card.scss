@@ -1,0 +1,43 @@
+.card {
+  border: 1px solid $color-mint;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.5;
+
+  &:hover {
+    text-decoration: none;
+
+    .card__text {
+      background-color: $color-blue-night;
+      color: $color-mint;
+    }
+  }
+
+  &__image {
+    padding-top: 62.5%;
+    position: relative;
+
+    img {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  h3 {
+    margin-bottom: 8px;
+  }
+
+  &__text {
+    background-color: $color-mint;
+    padding: 24px;
+    margin-bottom: 0;
+    color: $color-blue-night;
+    position: relative;
+    flex-grow: 1;
+  }
+}

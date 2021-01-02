@@ -35,7 +35,7 @@
           <h2>{{ T "artists" }}</h2>
           {{ $taxo := ($.Site.GetPage (printf "/%s" "artists")) }}
           <div class="grid">
-          {{ range $artist := $artists }}
+            {{ range $artist := $artists }}
               {{ range $taxo.Pages }}
                 {{ if eq $artist .Params.ref }}
                   <div class="col-12 col-sm-6">

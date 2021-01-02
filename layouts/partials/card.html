@@ -2,13 +2,28 @@
   <div class="card__image">
     <img src="{{ .Params.Thumbnail }}?nf_resize=fit&w=500" alt="">
   </div>
+
   <div class="card__text">
-    <h3 class="no-margin">{{ .Title }}</h3>
+    <h3>{{ .Title }}</h3>
+
     {{ with .Params.startDate }}
       <div>{{ dateFormat "2. 1. 2006" . }}</div>
-    {{ else }}
-      <div>{{ dateFormat "2. 1. 2006" .Date }}</div>
     {{ end }}
-    <div>{{ .Params.venue }}</div>
+
+    {{ with .Params.venue }}
+      <div>{{ . }}</div>
+    {{ end }}
+
+    {{ $artists := .Params.artists }}
+    {{ if $artists }}
+      {{ $taxo := ($.Site.GetPage (printf "/%s" "artists")) }}
+      {{ range $i, $artist := $artists }}{{ if $i }}, {{ end }}
+        {{- range $taxo.Pages -}}
+          {{- if eq $artist .Params.ref -}}
+            {{ .Title }}
+          {{- end -}}
+        {{- end -}}
+      {{ end }}
+    {{ end }}
   </div>
 </a>
