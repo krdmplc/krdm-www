@@ -1,6 +1,63 @@
-// import fonts, define headings, paragraphs, lists etc
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab:400,700&display=swap&subset=latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap&subset=greek');
+
+$roboto-slab: 'Roboto Slab', serif;
+$open-sans: 'Open Sans', sans-serif;
+
+.roboto-slab { font-family: $roboto-slab; }
+.open-sans { font-family: $open-sans; }
 
 body {
+  font-family: $open-sans;
   font-size: 16px;
-  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $roboto-slab;
+  margin-bottom: 24px;
+  line-height: 1.25;
+}
+
+p {
+  margin-bottom: 24px;
+}
+
+a {
+  color: $color-blue;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.table-container {
+  overflow-x: scroll;
+
+  @include breakpoint('small') {
+    overflow: initial;
+  }
+
+  table {
+    min-width: 704px;
+  }
+
+  td,
+  th {
+    min-width: 128px;
+    padding: 4px 8px;
+  }
+}
+
+.text-lead {
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.text-center {
+  text-align: center;
 }
