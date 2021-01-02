@@ -15,7 +15,7 @@ $header-height-large: 30px;
 
   &__items {
     position: absolute;
-    background: $color-white;
+    background: $color-black;
     top: 73px;
     right: -100%;
     width: 100vw;
@@ -39,7 +39,6 @@ $header-height-large: 30px;
     }
 
     &.is-open {
-      background: $color-black;
       right: 0;
     }
 

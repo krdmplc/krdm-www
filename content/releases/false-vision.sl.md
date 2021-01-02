@@ -2,7 +2,6 @@
 title: "False Vision"
 date: 2013-06-07T00:00:00+01:00
 releaseDate: 2013-06-07T00:00:00+01:00
-url: "izdaje/false-vision"
 thumbnail: /media/uploads/false-vision.jpg
 showInAdmin: true
 artists:

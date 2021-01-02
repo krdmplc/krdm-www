@@ -2,7 +2,6 @@
 title: Mutism
 date: 2019-11-06T10:02:20.053Z
 thumbnail: /media/uploads/mutism.jpg
-url: ustvarjalci/mutism
 ref: mutism
 showInAdmin: true
 ---

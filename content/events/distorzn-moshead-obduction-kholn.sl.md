@@ -2,7 +2,6 @@
 title: "Distoržn: Moshead, Obduction, Kholn"
 draft: false
 thumbnail: /media/uploads/distorzn-19-10.jpg
-url: "dogodki/distorzn-moshead-obduction-kholn"
 date: 2019-10-22T07:21:43.000Z
 startDate: 2019-10-19T18:00:00.000Z
 endDate: 2019-10-20T00:00:00.000Z

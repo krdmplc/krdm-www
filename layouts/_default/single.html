@@ -5,10 +5,10 @@
 
     <div class="grid">
       <div class="col-12 col-lg-10 offset-lg-1">
-        <h1>{{ .Title }} (single)</h1>
+        <h1>{{ .Title }}</h1>
 
         {{ with .Params.thumbnail }}
-          <div><img src="{{ . }}?nf_resize=fit&w=720" alt=""></div>
+          <p><img src="{{ . }}?nf_resize=fit&w=720" alt=""></p>
         {{ end }}
 
         {{ .Content }}
@@ -16,7 +16,7 @@
         {{ $artists := .Params.artists }}
         {{ if $artists }}
           <section>
-            <h2>{{ T "artists" }}</h2>
+            <h2>{{ T "artist" }}</h2>
             {{ $taxo := ($.Site.GetPage (printf "/%s" "artists")) }}
             <div class="grid">
               {{ range $artist := $artists }}

@@ -3,7 +3,6 @@ title: Selgor
 date: 2019-10-22T07:49:44.000Z
 thumbnail: /media/uploads/selgor.jpg
 showInAdmin: true
-url: ustvarjalci/selgor
 ref: selgor
 ---
 

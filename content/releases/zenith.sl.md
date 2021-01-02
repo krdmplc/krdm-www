@@ -2,7 +2,6 @@
 title: "Zenith"
 date: 2016-12-01T00:00:00+01:00
 releaseDate: 2016-12-01T00:00:00+01:00
-url: "izdaje/zenith"
 thumbnail: /media/uploads/zenith.jpg
 showInAdmin: true
 artists:
