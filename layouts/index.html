@@ -6,13 +6,15 @@
       {{ partial "home/releases" . }}
       {{ partial "home/artists" . }}
 
-      <h2 class="text-center">{{ .Params.about.title }}</h2>
-      {{ .Content }}
-      {{ with .Params.about.link }}
-        <div class="text-center">
-          <a href="{{ .href }}" class="button">{{ .text }}</a>
-        </div>
-      {{ end }}
+      <section>
+        <h2 class="text-center">{{ .Params.about.title }}</h2>
+        {{ .Content }}
+        {{ with .Params.about.link }}
+          <div class="text-center">
+            <a href="{{ .href }}" class="button">{{ .text }}</a>
+          </div>
+        {{ end }}
+      </section>
     </div>
   </main>
 {{ end }}

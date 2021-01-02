@@ -11,19 +11,21 @@
 {{ end }}
 
 {{ if gt (len $events) 0 }}
-  <h2 class="text-center">{{ .Params.events.title }}</h2>
+  <section>
+    <h2 class="text-center">{{ .Params.events.title }}</h2>
 
-  <div class="grid">
-    {{ range $events }}
-      <div class="col-12 col-sm-6">
-        {{ partial "card" . }}
+    <div class="grid">
+      {{ range $events }}
+        <div class="col-12 col-sm-6">
+          {{ partial "card" . }}
+        </div>
+      {{ end }}
+    </div>
+
+    {{ with .Params.events.all }}
+      <div class="text-center">
+        <a href="{{ .href }}" class="button">{{ .text }}</a>
       </div>
     {{ end }}
-  </div>
-
-  {{ with .Params.events.all }}
-    <div class="text-center">
-      <a href="{{ .href }}" class="button">{{ .text }}</a>
-    </div>
-  {{ end }}
+  </section>
 {{ end }}

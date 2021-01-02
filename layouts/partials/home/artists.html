@@ -1,17 +1,19 @@
 {{ with ($.Site.GetPage (printf "/%s" "artists")) }}
-  <h2 class="text-center">{{ $.Params.artists.title }}</h2>
+  <section>
+    <h2 class="text-center">{{ $.Params.artists.title }}</h2>
 
-  <div class="grid">
-    {{ range first 4 .Pages }}
-      <div class="col-12 col-sm-6">
-        {{ partial "card" . }}
+    <div class="grid">
+      {{ range first 4 .Pages }}
+        <div class="col-12 col-sm-6">
+          {{ partial "card" . }}
+        </div>
+      {{ end }}
+    </div>
+
+    {{ with $.Params.artists.all }}
+      <div class="text-center">
+        <a href="{{ .href }}" class="button">{{ .text }}</a>
       </div>
     {{ end }}
-  </div>
-
-  {{ with $.Params.artists.all }}
-    <div class="text-center">
-      <a href="{{ .href }}" class="button">{{ .text }}</a>
-    </div>
-  {{ end }}
+  </section>
 {{ end }}
