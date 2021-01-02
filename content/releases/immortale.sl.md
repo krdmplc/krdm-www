@@ -5,7 +5,7 @@ releaseDate: 2019-03-31T00:00:00+01:00
 thumbnail: /media/uploads/immortale.jpg
 showInAdmin: true
 artists:
-- Ofnana_pesa
+- ofnana_pesa
 ---
 
 Prvi singel DJ-a in producenta ofnana_pesa

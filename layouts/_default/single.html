@@ -16,7 +16,7 @@
         {{ $artists := .Params.artists }}
         {{ if $artists }}
           <section>
-            <h2>{{ T "artist" }}</h2>
+            <h2>{{ T "artists" }}</h2>
             {{ $taxo := ($.Site.GetPage (printf "/%s" "artists")) }}
             <div class="grid">
               {{ range $artist := $artists }}

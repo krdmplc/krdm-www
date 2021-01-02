@@ -21,3 +21,11 @@ section {
     margin: 120px 0;
   }
 }
+
+main {
+  min-height: calc(100vh - 291px);
+
+  @include breakpoint('small') {
+    min-height: calc(100vh - 212px);
+  }
+}
