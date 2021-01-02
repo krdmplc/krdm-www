@@ -1,11 +1,17 @@
 ---
 title: "Denktimes Compilation Vol. 1"
 date: 2016-07-21T00:00:00+01:00
+releaseDate: 2016-07-21T00:00:00+01:00
 url: "izdaje/denktimes-compilation-vol-1"
 thumbnail: /media/uploads/denktimes-compilation-vol-1.jpg
-artist: ""
+artists:
+- armaroth
+- gmb
+- sen
+- amalgam
+- mutism
+- didge
 showInAdmin: true
-ref: denktimes-compilation-vol-1
 ---
 
 Prva kompilacija izvajalcev pod okriljem KRDM. Demoti, surovi posnetki, raritete.

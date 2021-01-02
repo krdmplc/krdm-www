@@ -1,6 +1,7 @@
 ---
 title: "As Above So Below"
 date: 2020-07-31T00:00:00+01:00
+releaseDate: 2020-07-31T00:00:00+01:00
 thumbnail: /media/uploads/as-above-so-below.jpg
 artist: "Ofnana_pesa"
 ---

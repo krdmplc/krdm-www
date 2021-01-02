@@ -2,13 +2,19 @@
 artist: ""
 title: Denktimes Compilation Vol. 4
 date: 2019-11-05T00:00:00+01:00
+releaseDate: 2019-11-05T00:00:00+01:00
 thumbnail: /media/uploads/denktimes-compilation-vol-4.jpg
-ref: denktimes-compilation-vol-4
 showInAdmin: true
 artists:
-  - didge
-  - armaroth
-  - ofnana_pesa
+- amalgam
+- didge
+- mutism
+- armaroth
+- nature
+- gmb
+- neuromancer
+- douchean
+- ofnana_pesa
 url: izdaje/denktimes-compilation-vol-4
 ---
 

@@ -17,13 +17,17 @@
     {{ $artists := .Params.artists }}
     {{ if $artists }}
       {{ $taxo := ($.Site.GetPage (printf "/%s" "artists")) }}
-      {{ range $i, $artist := $artists }}{{ if $i }}, {{ end }}
+      {{ range $i, $artist := $artists }}
         {{- range $taxo.Pages -}}
           {{- if eq $artist .Params.ref -}}
-            {{ .Title }}
+            {{ if $i }}, {{ end }}{{ .Title }}
           {{- end -}}
         {{- end -}}
       {{ end }}
+    {{ end }}
+
+    {{ with .Params.releaseDate }}
+      <div>{{ dateFormat "2. 1. 2006" . }}</div>
     {{ end }}
   </div>
 </a>

@@ -5,9 +5,6 @@ url: ustvarjalci/didge
 thumbnail: /media/uploads/didge.jpg
 ref: didge
 showInAdmin: true
-releases:
-  - encounters-in-endless-grey
-  - denktimes-compilation-vol-4
 ---
 
 Didge je štiričlanska progresivna rock zasedba iz Kranja, ustanovljena leta 2012. Z igranjem na različnih alternativnih dogodkih po Sloveniji si je bend pridobil majhno, a predano skupino poslušalcev v domači regiji.

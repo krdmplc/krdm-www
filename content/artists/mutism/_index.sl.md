@@ -5,8 +5,6 @@ thumbnail: /media/uploads/mutism.jpg
 url: ustvarjalci/mutism
 ref: mutism
 showInAdmin: true
-releases:
-  - denktimes-compilation-vol-4
 ---
 
 Štirje kavboji sedijo okoli termoakumulacijske peči in jejo čokoladni puding. Kdo bo ostal brez žlice po večerji? Mesa več kot dovolj za vse. Smeti ležijo vsepovsod. V daljavi plešejo kaktusi. Pijete dovolj vode?

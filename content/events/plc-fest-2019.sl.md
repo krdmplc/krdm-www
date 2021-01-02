@@ -9,7 +9,6 @@ endDate: 2019-11-17T05:00:00.000Z
 venue: "Trainstation Subart, Kranj"
 price: "6 €"
 showInAdmin: true
-ref: plcfest-2019
 ---
 
 Ob 10. obletnici placa za vaje (in vse ostalo) na planini, predstavljamo naboljši Plc Fest do zdaj!

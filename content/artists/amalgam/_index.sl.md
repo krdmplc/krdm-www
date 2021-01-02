@@ -5,7 +5,5 @@ url: ustvarjalci/amalgam
 thumbnail: /media/uploads/amalgam.jpg
 ref: amalgam
 showInAdmin: true
-releases:
-  - denktimes-compilation-vol-4
 ---
 Kranjska zasedba, ki je člane pokradla vsem lokalnim bendom in sestavila svojevrstn glasbeni amalgam, Zvok, baziran v progresivnih in matematičnih stilih agresivnega izražanja razmetavajo po vseh možnih avenijah shizofrenih melodij in pretepaških ritmov - prava kranscendentalna glasba.

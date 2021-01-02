@@ -63,7 +63,6 @@ collections:
       - {label: "Venue", name: "venue", widget: "string", i18n: duplicate}
       - {label: "Thumbnail", name: "thumbnail", widget: "image", i18n: duplicate}
       - {label: "Content", name: "body", widget: "markdown", i18n: true}
-      - {name: "ref", widget: "hidden", i18n: duplicate}
       - {name: "showInAdmin", widget: "hidden", default: true}
       - {label: "Artists", name: "artists", widget: "list", field: {
           name: "relation",
@@ -90,10 +89,10 @@ collections:
       preview: false
     fields:
       - {label: "Title", name: "title", widget: "string", i18n: true}
-      - {label: "Date", name: "date", widget: "date", i18n: duplicate}
+      - {label: "Publish date", name: "date", widget: "date", i18n: duplicate}
+      - {label: "Release date", name: "releaseDate", widget: "date", i18n: duplicate}
       - {label: "Thumbnail", name: "thumbnail", widget: "image", i18n: duplicate}
       - {label: "Content", name: "body", widget: "markdown", i18n: true}
-      - {name: "ref", widget: "hidden", i18n: duplicate}
       - {name: "showInAdmin", widget: "hidden", default: true}
       - {label: "Artists", name: "artists", widget: "list", field: {
           name: "relation",

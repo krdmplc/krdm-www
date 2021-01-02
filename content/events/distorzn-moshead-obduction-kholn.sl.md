@@ -9,7 +9,6 @@ endDate: 2019-10-20T00:00:00.000Z
 venue: "Traisntation Subart, Kranj"
 price: "6 €"
 showInAdmin: true
-ref: distorzn-2
 ---
 
 Po uspešni prvi sezoni Distoržna, je tu že druga, še boljša! Oktobra bomo v sklopu projekta Potujoča železarna združili 3 mesta: Kranj, Škofjo Loko in Velenje. “Z Loke” bo zapihal brutal thrash veter v manifestaciji Moshead, iz Velenja bo prismrdelo po premogu, saj pridejo trve kvlt blackerji Kholn. Na domači oder bodo pa po dolgem dolgem času stopili Obduction, najstarejši še delujoči bend iz Kranja.
