@@ -29,8 +29,6 @@ collections:
     path: '{{slug}}/_index'
     media_folder: "/static/media/uploads"
     public_folder: "/media/uploads"
-    nested:
-      depth: 10
     editor:
       preview: false
     fields:
@@ -49,11 +47,10 @@ collections:
     create: true
     slug: "{{slug}}"
     path: '{{slug}}/_index'
+    filter: {field: "showInAdmin", value: true}
     media_folder: "/static/media/uploads"
     public_folder: "/media/uploads"
     i18n: true
-    nested:
-      depth: 10
     editor:
       preview: false
     fields:
@@ -82,11 +79,10 @@ collections:
     create: true
     slug: "{{slug}}"
     path: '{{slug}}/_index'
+    filter: {field: "showInAdmin", value: true}
     media_folder: "/static/media/uploads"
     public_folder: "/media/uploads"
     i18n: true
-    nested:
-      depth: 10
     editor:
       preview: false
     fields:

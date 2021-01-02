@@ -42,33 +42,9 @@ You will need to add NETLIFY_TOKEN secret to GitHub repository settings. Follow 
 1. On <https://app.netlify.com/user/applications#personal-access-tokens>, add new access token and copy the generated string.
 2. On your repo's github page, go to settings > secrets > new repository secret. For name put `NETLIFY_TOKEN` and paste the string.
 
-## Add Neltify CMS
+## Inite CMS users
 
-In Netlify app under your site:
-
-1. Under Identity, click Enable identity
-2. then click Settings and usage, go to the bottom and click Enable Git Gateway
-3. Go to Github -> click on profile picture and select settings on the dropdown. Go to Developer settings -> personal access tokens and click Generate new token
-4. under note put `site note - git gateway` and select repo group of credentials. Click Generate token
-5. Copy the token and go pack to Netlify dashboard. Under Git Gateway click Edit settings and paste in your new access token.
-6. open terminal in your project directory and say `netlify link`. Select the mataching site on Netlify. You need Netlify CLI for this
-7. Under identity settings set email tempate paths for all four tempaltes:
-
-```bash
-# Invitation template:
-/emails/invitation.html
-
-# Confirmation template:
-/emails/confirmation.html
-
-# Recovery template:
-/emails/password-recovery.html
-
-# Email change template:
-/emails/email-change.html
-```
-
-8. Now go back to Identity tab and invite users.
+You can invite new users in Netlify app under your site's Identity tab.
 
 ## Enable Netlify Large Media
 
