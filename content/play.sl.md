@@ -3,8 +3,8 @@ title: "Igraj v Kranju"
 date: 2019-11-25T13:42:14+01:00
 draft: false
 thumbnail: ""
-url: "igraj-v-kranju"
-menu: 
+slug: "igraj-v-kranju"
+menu:
   main:
     weight: 60
 ---

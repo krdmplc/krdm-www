@@ -6,7 +6,6 @@ thumbnail: /media/uploads/denktimes-compilation-vol-1.jpg
 artists:
 - armaroth
 - gmb
-- sen
 - amalgam
 - mutism
 - didge

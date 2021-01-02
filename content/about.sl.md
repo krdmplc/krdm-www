@@ -2,7 +2,7 @@
 title: "O nas"
 date: 2019-10-22T09:37:19+02:00
 draft: false
-url: "o-nas"
+slug: "o-nas"
 menu:
   main:
     weight: 40

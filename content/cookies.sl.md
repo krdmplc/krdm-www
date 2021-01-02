@@ -1,7 +1,7 @@
 ---
 title: "Piškotki"
 date: 2019-10-28T20:43:17+01:00
-url: "piskotki"
+slug: "piskotki"
 draft: false
 ---
 

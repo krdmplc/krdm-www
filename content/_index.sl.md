@@ -14,10 +14,10 @@ releases:
     href: /izdaje
     text: Vse izdaje
 artists:
-  title: Izbrani izvajalci
+  title: Izbrani ustvarjalci
   all:
-    href: /izvajalci
-    text: Vsi izvajalci
+    href: /ustvarjalci
+    text: Vsi ustvarjalci
 about:
   title: O Placu
   link:
