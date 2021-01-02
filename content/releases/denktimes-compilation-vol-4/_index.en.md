@@ -1,5 +1,5 @@
 ---
-title: "Denktimes Compilation Vol. 4"
+title: Denktimes Compilation Vol. 4
 date: 2019-11-05T00:00:00+01:00
 thumbnail: /media/uploads/denktimes-compilation-vol-4.jpg
 artist: ""

@@ -27,3 +27,6 @@ other = "Home"
 
 [artist]
 other = "Artist"
+
+[artists]
+other = "Artists"

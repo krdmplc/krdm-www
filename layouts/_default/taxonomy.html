@@ -1,10 +1,10 @@
 {{ define "main" }}
 <main>
-  <div class="wrapper">
+  <div class="container">
     {{ partial "breadcrumbs" . }}
 
     <div class="grid">
-      <div class="col-12 col-lg-10 offset-lg-1">
+      <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
         <h1>{{ .Title }} (taxonomy template)</h1>
 
         {{ with .Params.thumbnail }}
@@ -12,6 +12,40 @@
         {{ end }}
 
         {{ .Content }}
+
+        {{ $releases := .Params.releases }}
+        {{ if $releases }}
+          <h2>{{ T "releases" }}</h2>
+          {{ $taxo := ($.Site.GetPage (printf "/%s" "releases")) }}
+          <div class="grid">
+          {{ range $release := $releases }}
+              {{ range $taxo.Pages }}
+                {{ if eq $release .Params.ref }}
+                  <div class="col-12 col-sm-6">
+                    {{ partial "card" . }}
+                  </div>
+                {{ end }}
+              {{ end }}
+            {{ end }}
+          </div>
+        {{ end }}
+
+        {{ $artists := .Params.artists }}
+        {{ if $artists }}
+          <h2>{{ T "artists" }}</h2>
+          {{ $taxo := ($.Site.GetPage (printf "/%s" "artists")) }}
+          <div class="grid">
+          {{ range $artist := $artists }}
+              {{ range $taxo.Pages }}
+                {{ if eq $artist .Params.ref }}
+                  <div class="col-12 col-sm-6">
+                    {{ partial "card" . }}
+                  </div>
+                {{ end }}
+              {{ end }}
+            {{ end }}
+          </div>
+        {{ end }}
       </div>
     </div>
   </div>
