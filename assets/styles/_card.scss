@@ -6,11 +6,17 @@
 
   &__text {
     background-color: $color-mint;
-    padding: 24px;
+    padding: 24px 20px;
     margin-bottom: 0;
     color: $color-blue-night;
     position: relative;
     flex-grow: 1;
+
+    > div {
+      position: relative;
+      padding-left: 28px;
+      margin-top: 4px;
+    }
   }
 
   &:hover {
@@ -39,5 +45,12 @@
 
   h3 + div {
     margin-top: 8px;
+  }
+
+  .feather {
+    height: 16px;
+    position: absolute;
+    top: 4px;
+    left: 0;
   }
 }
