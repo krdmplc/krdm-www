@@ -38,8 +38,8 @@ collections:
       - {label: "Date", name: "date", widget: "datetime", i18n: duplicate}
       - {label: "Thumbnail", name: "thumbnail", widget: "image", i18n: duplicate}
       - {label: "Content", name: "body", widget: "markdown", i18n: true}
-      - {name: "weight", widget: "number"}
-      - {name: "ref", widget: "hidden"}
+      - {name: "weight", widget: "number", i18n: duplicate}
+      - {name: "ref", widget: "hidden", i18n: duplicate}
       - {name: "showInAdmin", widget: "hidden", default: true}
 
   - name: "events"
@@ -65,10 +65,11 @@ collections:
       - {label: "Thumbnail", name: "thumbnail", widget: "image", i18n: duplicate}
       - {label: "Content", name: "body", widget: "markdown", i18n: true}
       - {name: "showInAdmin", widget: "hidden", default: true}
-      - {label: "Artists", name: "artists", widget: "list", field: {
+      - {label: "Artists", name: "artists", widget: "list", i18n: true, field: {
           name: "relation",
           widget: "relation",
           collection: "artists",
+          i18n: true,
           search_fields: ["title"],
           display_fields: ["title"],
           value_field: "ref",
@@ -95,10 +96,11 @@ collections:
       - {label: "Thumbnail", name: "thumbnail", widget: "image", i18n: duplicate}
       - {label: "Content", name: "body", widget: "markdown", i18n: true}
       - {name: "showInAdmin", widget: "hidden", default: true}
-      - {label: "Artists", name: "artists", widget: "list", field: {
+      - {label: "Artists", name: "artists", widget: "list", i18n: true, field: {
           name: "relation",
           widget: "relation",
           collection: "artists",
+          i18n: true,
           search_fields: ["title"],
           display_fields: ["title"],
           value_field: "ref",
