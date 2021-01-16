@@ -6,9 +6,12 @@ thumbnail: /media/uploads/dread.jpg
 showInAdmin: true
 artists:
   - ofnana_pesa/_index
-ref: dread
+ref: dread/_index
 ---
-<!--StartFragment-->
+<!--StartFragment-->\
+\
+Youtube: https://www.youtube.com/watch?v=e_PX8DNqbdk\
+Bandcamp: https://ofnanapesa.bandcamp.com/track/dread
 
 Format: Digital 
 
