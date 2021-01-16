@@ -9,6 +9,9 @@ artists:
 ref: dread/_index
 ---
 <!--StartFragment-->\
+
+![](/media/uploads/dread.jpg)
+
 \
 Youtube: https://www.youtube.com/watch?v=e_PX8DNqbdk\
 Bandcamp: https://ofnanapesa.bandcamp.com/track/dread
