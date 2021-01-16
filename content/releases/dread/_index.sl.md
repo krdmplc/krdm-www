@@ -8,9 +8,9 @@ artists:
   - ofnana_pesa/_index
 ref: dread/_index
 ---
-<!--StartFragment-->\
+<!--StartFragment-->
 
-![](/media/uploads/dread.jpg)
+![](/media/uploads/dread-bc.jpg)
 
 \
 Youtube: https://www.youtube.com/watch?v=e_PX8DNqbdk\
