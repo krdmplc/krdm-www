@@ -6,8 +6,10 @@ thumbnail: /media/uploads/in_seek_of_essence.jpg
 showInAdmin: true
 artists:
   - ofnana_pesa/_index
-ref: those-in-seek-of-essence
+ref: those-in-seek-of-essence/_index
 ---
+![](/media/uploads/in_seek_of_essence.jpg)
+
 Zvok: ofnana_pesa - Vid Pobegajlo\
 Design: Dana Kodermac\
 \
