@@ -5,7 +5,7 @@ releaseDate: 2020-10-30T15:21:56.780Z
 thumbnail: /media/uploads/dread.jpg
 showInAdmin: true
 artists:
-  - ofnana_pesa/_index
+  - ofnana_pesa
 ref: dread/_index
 ---
 <!--StartFragment-->
@@ -16,11 +16,11 @@ ref: dread/_index
 Youtube: https://www.youtube.com/watch?v=e_PX8DNqbdk\
 Bandcamp: https://ofnanapesa.bandcamp.com/track/dread
 
-Format: Digital 
+Format: Digital
 
 Zvok: ofnana_pesa / Vid Pobegajlo
 
-Glasovi: Lara Sluyter 
+Glasovi: Lara Sluyter
 
 Originalna fotografija: Jaka Rejc
 

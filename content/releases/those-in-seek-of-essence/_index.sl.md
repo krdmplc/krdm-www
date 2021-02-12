@@ -5,7 +5,7 @@ releaseDate: 2021-01-21T11:28:17.376Z
 thumbnail: /media/uploads/in_seek_of_essence.jpg
 showInAdmin: true
 artists:
-  - ofnana_pesa/_index
+  - ofnana_pesa
 ref: those-in-seek-of-essence/_index
 ---
 ![](/media/uploads/in_seek_of_essence.jpg)
