@@ -1,6 +1,6 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/75126d26-6924-4999-a194-9e75a3d94f49/deploy-status)](https://app.netlify.com/sites/krdm-www/deploys)
 
-# KRDM
+# krdm.si
 
 Website for Društvo KRDM
 
@@ -12,6 +12,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 You need Hugo installed on your machine: <https://gohugo.io/getting-started/quick-start/>
 
+This repository is set up to be developed with [Visual Studio Code](https://code.visualstudio.com/) editor. Please install reccommended extensions listed in <.vscode/extensions.json>
+
 If this is your first time running the project, run
 
 `npm install`
@@ -20,7 +22,17 @@ When you have that, just run
 
 `hugo server` or `npm run dev`
 
-and open your local site on `http://localhost:1313/`
+and open your local site on <http://localhost:1313/>
+
+## Development
+
+We use [BEM](http://getbem.com/) naming convention for CSS class names.
+
+We follow standard Javascript style.
+
+### Linters
+
+There are 3 linters set up: [stylelint](https://stylelint.io/) for CSS, [eslint](https://eslint.org/) for JS and [htmlhint](https://htmlhint.com/) for HTML. If quick fixes are possible, VS Code will fix them on save.
 
 ## Deployment
 
@@ -31,41 +43,9 @@ To deploy to production, push to `master` branch
 There is no development URL out of the box. To create this environment, follow these steps:
 
 1. create branch `develop`
-2. Go to Netlify dashboard -> your site -> Settings -> Build & deploy -> Deploy contexts -> Edit settings
+2. Go to Netlify dashboard -> this site -> Settings -> Build & deploy -> Deploy contexts -> Edit settings
 3. Under Branch deploys select Let me add individual branches and add `develop`
-4. push some code to `develop` branch and see it on https://develop--YOUR-SITE-NAME.netlify.app
-
-## Configure Github Actions
-
-You will need to add NETLIFY_TOKEN secret to GitHub repository settings. Follow these steps:
-
-1. On <https://app.netlify.com/user/applications#personal-access-tokens>, add new access token and copy the generated string.
-2. On your repo's github page, go to settings > secrets > new repository secret. For name put `NETLIFY_TOKEN` and paste the string.
-
-## Inite CMS users
-
-You can invite new users in Netlify app under your site's Identity tab.
-
-## Enable Netlify Large Media
-
-```bash
-git lfs install
-git lfs track "static/media/uploads/**"
-
-# commit and push
-
-netlify link
-netlify lm:setup
-
-# commit and push
-```
-
-You should see your uploads under the Large Media tab in Netlify dashboard. It takes some time for netlify to process media. It if doesn't, try
-
-```bash
-git lfs update --force
-git lfs push --all origin master
-```
+4. push some code to `develop` branch and see it on <https://develop--poslo-www.netlify.app>
 
 ## Built With
 
