@@ -6,7 +6,13 @@ weight: 30
 ref: ofnana_pesa
 showInAdmin: true
 ---
-Ofnana_pesa je DJ, producent, basist, kitarist, organizator dogodkov,... Ljubitelj glasbe. Svojo glasbeno pot je začel leta 2011, ko se je pridružil svojemu prvemu metal bandu, od takrat naprej pa je sodeloval pri več skupinah in glasbenih projektih. V zadnjem času večkrat nastopa tudi s hrbtom ob hrbtu z DJjem po imenu Selgor. Kot posledica sodelovanja v zasedbah trše zvrsti, bi njegov techno zvok najlažje opisali z besedami "trdo, hitro in zlobno". V preteklosti si je oder delil z izvajalci kot so Rommek, Shxcxchcxsh, Voidloss, Ankur Seres,... Prav tako pa je organizator dogodkov v kolektivu Tektonika, član ekipe Chagga recs in založbe / društva KRDM. Preko slednjega je izdal EP z naslovom As Above So Below ter single Those in seek of essence, Dread, Machinate in Immortale.
+Ofnana_pesa je DJ, producent, basist, organizator dogodkov,... Ljubitelj glasbe. Svojo glasbeno pot je začel leta 2011, ko se je pridružil svojemu prvemu metal bandu. Ljubezen do elektronske glasbe je odkril nekaj let kasneje, od takrat dalje pa je aktiven na obeh glasbenih scenah.
+
+Njegovo glasbo bi najlažje opisali kot temačno, grozečo in trdo, v diskografiji lastne produkcije pa najdemo tudi manj trde, polomljene beate.
+
+Ofnano_peso smo v preteklosti lahko opazili na dogodkih z artisti kot so Clara Cuve, Vera Grace, Don Woezik, Shxcxchcxsh, Lag, Rommek, Voidloss,,... Njegove release pa najdemo na kanalih kot so Hate Lab, Cartel in Fingr86.
+
+Ofnana_pesa je del Void (Voidnacht) kolektiva, društva KRDM, Ketne ter Keep in Mind festivala v preteklosti pa je bil tudi član založbe in kolektiva Chagga records in Tektonika kolektiva. Več sezon je skrbel za elektronski del programa Trnov festa, do leta 2022 pa je sodeloval tudi z Drops festivalom (Cage stage).
 
 <https://www.facebook.com/ofnana.pesa/>
 
