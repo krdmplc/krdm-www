@@ -12,3 +12,10 @@ As Above So Below EP features 4 evil, dark and eerie tracks. The EP was mastered
 <https://ofnanapesa.bandcamp.com/album/as-above-so-below>
 
 <https://www.youtube.com/watch?v=sBhYqZHRQP0>
+
+Tracklist:
+
+1. As Above So Below
+2. Hollow
+3. Machinate (Remastered)
+4. From Dust To Dust

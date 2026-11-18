@@ -12,3 +12,5 @@ Debitantski album kranjske death metal mašine Armaroth.
 
 <https://armaroth.bandcamp.com/album/zenith> <br>
 <https://www.youtube.com/watch?v=uBONfsezDT8>
+
+5-HT2A (videospot): <https://www.youtube.com/watch?v=ZDdRomCWOo4>

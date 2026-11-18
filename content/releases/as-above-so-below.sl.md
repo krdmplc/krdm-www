@@ -13,3 +13,10 @@ As Above So Below EP zajema 4 zlobne in drzne komade. Cover je prispeval Å½iga Å
 <https://ofnanapesa.bandcamp.com/album/as-above-so-below>
 
 <https://www.youtube.com/watch?v=sBhYqZHRQP0>
+
+Seznam skladb:
+
+1. As Above So Below
+2. Hollow
+3. Machinate (Remastered)
+4. From Dust To Dust

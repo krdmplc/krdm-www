@@ -1,8 +1,10 @@
 ---
 title: "Distoržn :: Armaroth, Guattari, Inferior Minds"
 date: 2021-07-05T09:29:27.155Z
-startDate: 2021-07-17T09:29:27.182Z
-endDate: 2021-07-17T09:29:27.205Z
+startDate: 2021-07-17T19:30:00+02:00
+endDate: 2021-07-17T23:00:00+02:00
+price: 10 €
+thumbnail: /media/uploads/distorzn-21-07-17.jpg
 venue: Trainstation Subart, Kranj
 showInAdmin: true
 artists:

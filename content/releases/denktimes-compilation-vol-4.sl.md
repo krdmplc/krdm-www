@@ -22,3 +22,16 @@ Poslušajte na:
 
 - <https://krdm.bandcamp.com/album/denktimes-compilation-vol-4/> <br>
 - <https://www.youtube.com/playlist?list=PLwEuFd39HtRQaxgKZYNwlYHiO6eiTrCtv>
+
+Seznam skladb:
+
+1. Amalgam – Owl Orphanage
+2. Didge – Shadows We Carry By Our Side
+3. Mutism – False Sense of Security
+4. Armaroth – 5-HT2A
+5. Nature – Purge the Waters
+6. GMB – Cube
+7. Neuromancer – Apollo
+8. Douchean – Dreamer
+9. ofnana_pesa – Immortale
+10. Kje je Frogi s piri

@@ -5,4 +5,11 @@ thumbnail: /media/uploads/nature.jpg
 ref: nature
 showInAdmin: true
 ---
+
 Zasedba je znana skorajda vsakemu pristašu žlahtnega glasbenega kovinarstva pri nas, z nekaj sveže krvi v bandu pa bo navdušujoče zagrmela tudi tokrat. Nastali so na pogorišču Sinbolic, kljub manjšim prekinitvam pa vseeno žanjejo uspehe, deležni pa so tudi pozitivnih kritik. Njihova glasba je v osnovi progresivni death metal, spogledujejo pa se tudi z vplivi drugih žanrov.
+
+Njihove studijske posnetke najdemo na kompilacijah Denktimes – Hospitalized, Earth in Purge the Waters. Po daljšem premoru se »death metal fotri« vračajo na oder na PLC Festu 2026.
+
+<https://www.facebook.com/BandNature/>
+
+<https://www.youtube.com/channel/UCPsFdeblWDWczkVH8XbfsKw>

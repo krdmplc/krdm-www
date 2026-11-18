@@ -6,3 +6,9 @@ ref: amalgam
 ---
 
 A musical amalgamation which stole its members from established Slovenian bands. Their sound is based in progressive and math styles of aggressive expression. True kranscendental music.
+
+In 2017 they released the single Owl Orphanage; the Denktimes compilations also feature their songs Slumber God and Growing Stones.
+
+<https://amalgamplc.bandcamp.com/>
+
+<https://www.facebook.com/amalgamplc/>

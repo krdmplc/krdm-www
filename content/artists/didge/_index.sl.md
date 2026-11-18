@@ -11,4 +11,10 @@ Didge je štiričlanska progresivna rock zasedba iz Kranja, ustanovljena leta 20
 
 Skupino poganja strast do dobre, poslušljive in raznolike glasbe, ki obsega vse od tihih, nežnih vložkov, pa do zemljo stresajočega grmenja, žanrsko neobremenjeno glasbo pa dopolnjujejo s premišljenimi in dodelanimi besedili.
 
-Leta 2016 so Didge izdal svoj prvenec Encounters in Endless Grey, trenutno pa se osredotoča na drugi album, ki so ga napovedali s singlom Vesper.
+Leta 2016 so Didge izdali prvenec Encounters in Endless Grey, leta 2018 pa singel Vesper z videospotom Filipa Košnika. Na kompilacijah Denktimes so se predstavili s skladbami Wide-Eyed Watchers, Industrial Fuckup, Vesper in Shadows We Carry By Our Side. Trenutno je bend na premoru.
+
+<https://didge.bandcamp.com/>
+
+<https://www.youtube.com/@DidgeKranj>
+
+<https://www.facebook.com/didgeplc/>

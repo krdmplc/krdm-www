@@ -6,16 +6,21 @@ weight: 30
 ref: ofnana_pesa
 showInAdmin: true
 ---
-Ofnana_pesa je DJ, producent, basist, organizator dogodkov,... Ljubitelj glasbe. Svojo glasbeno pot je začel leta 2011, ko se je pridružil svojemu prvemu metal bandu. Ljubezen do elektronske glasbe je odkril nekaj let kasneje, od takrat dalje pa je aktiven na obeh glasbenih scenah.
 
-Njegovo glasbo bi najlažje opisali kot temačno, grozečo in trdo, v diskografiji lastne produkcije pa najdemo tudi manj trde, polomljene beate.
+Ofnana_pesa (zadnje čase tudi PESA) je DJ, producent, basist, organizator dogodkov,... Ljubitelj glasbe. Svojo glasbeno pot je začel leta 2011, ko se je pridružil svojemu prvemu metal bandu. Ljubezen do elektronske glasbe je odkril nekaj let kasneje, od takrat dalje pa je aktiven na obeh glasbenih scenah.
 
-Ofnano_peso smo v preteklosti lahko opazili na dogodkih z artisti kot so Clara Cuve, Vera Grace, Don Woezik, Shxcxchcxsh, Lag, Rommek, Voidloss ... Njegove release pa najdemo na kanalih kot so Hate Lab, Cartel in Fingr86.
+Njegovo glasbo bi najlažje opisali kot temačno, grozečo in trdo – od industrijskega in hard techna do filmskih zvočnih pokrajin, polomljenih breakbeatov in drum'n'bassa. Njegove produkcije niso vedno tako trde kot njegovi seti.
 
-Ofnana_pesa je del Void (Voidnacht) kolektiva, društva KRDM, Ketne ter Keep in Mind festivala v preteklosti pa je bil tudi član založbe in kolektiva Chagga records in Tektonika kolektiva. Več sezon je skrbel za elektronski del programa Trnov festa, do leta 2022 pa je sodeloval tudi z Drops festivalom (Cage stage).
+Izdajal je pri založbah KRDM, Void Music, DE/FRAGMENT, Honest Work Recordings, Siblings Dystopian, Kibernet Kriminalität, Exaltation in Ordo Rebellium, njegove komade pa so predstavili priljubljeni techno YouTube kanali, kot so Hate Lab, Techno Cartel in FingR86. Kot Nox Mastering masterira glasbo drugih ustvarjalcev.
 
-<https://www.facebook.com/ofnana.pesa/>
+Ofnano_peso smo lahko opazili na dogodkih z artisti kot so Clara Cuve, Vera Grace, Don Woezik, Shxcxchcxsh, Lag, Rommek, Voidloss ... Je član društva KRDM, ustanovil je kolektiv in založbo The Void (Void Nacht), danes pa stoji za dogodki Carnal in Ketna. V preteklosti je bil član založbe in kolektiva Chagga records, Tektonike in festivala Keep in Mind, več sezon je skrbel za elektronski del programa Trnov festa, do leta 2022 pa je sodeloval tudi z Drops festivalom (Cage stage).
+
+<https://soundcloud.com/ofnana_pesa>
 
 <https://ofnanapesa.bandcamp.com/>
 
+<https://open.spotify.com/artist/6BsgS75qqFRisEimMDEuWz>
+
 <https://www.instagram.com/ofnana_pesa/>
+
+<https://www.facebook.com/ofnana.pesa/>
