@@ -1,21 +1,10 @@
-{{- /* List of all artists (taxonomy page): active ones first, then the archive. */ -}}
+{{- /* List of all artists (taxonomy page). */ -}}
 {{ define "main" }}
   <div class="container">
     {{ partial "breadcrumbs" . }}
     <h1>{{ .Title }}</h1>
     {{ with .Content }}<div class="content">{{ . }}</div>{{ end }}
 
-    {{ partial "card-grid" (dict "pages" (partial "func/artists-by-activity" .Pages) "level" 2 "cols" 4) }}
-
-    {{ $archive := slice }}
-    {{ range .Pages.ByTitle }}
-      {{ if ne (.Params.status | default "active") "active" }}{{ $archive = $archive | append . }}{{ end }}
-    {{ end }}
-    {{ with $archive }}
-      <section aria-labelledby="archive">
-        <div class="section-head"><h2 id="archive">{{ T "archive" }}</h2></div>
-        {{ partial "card-grid" (dict "pages" . "level" 3 "cols" 6 "sizes" "(min-width: 1170px) 16vw, (min-width: 768px) 25vw, 33vw") }}
-      </section>
-    {{ end }}
+    {{ partial "card-grid" (dict "pages" (partial "func/artists-by-activity" (dict "pages" .Pages)) "level" 2 "cols" 4) }}
   </div>
 {{ end }}

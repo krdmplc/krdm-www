@@ -22,6 +22,12 @@
 /en/categories/*   /en/              301!
 /en/tags/*         /en/              301!
 
+# "Igraj v Kranju" (sign up to play) was removed in 2026: KRDM only books acts it invites.
+/igraj-v-kranju/  /dogodki/  301
+/igraj-v-kranju  /dogodki/  301
+/en/play/  /en/events/  301
+/en/play  /en/events/  301
+
 # Language-specific 404 pages (only used when no file matches).
 /en/*  /en/404.html  404
 /*     /404.html     404

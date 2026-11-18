@@ -4,8 +4,7 @@ description: "Društvo KRDM iz Kranja spodbuja neodvisno glasbo in umetnost na G
 hero:
   title: KRDM
   desc: Društvo za promocijo neodvisne glasbe
-  image: /media/uploads/hero-plc-fest-2023.jpg
-  credit: "Foto: Lars Kozamernik in Tevž Smolnikar (Plc Fest 2023)"
+  image: /media/uploads/hero-armaroth-2026.jpg
 events:
   title: Prihajajoči dogodki
   all:
@@ -31,4 +30,4 @@ about:
     href: /o-nas/
     text: Več o nas
 ---
-{{< youtube-lite id="-qliNZNUs8A" title="Plc – kratki dokumentarni film" poster="/media/uploads/plc-fest-2023-armaroth.jpg" >}}
+{{< youtube-lite id="-qliNZNUs8A" title="Plc – kratki dokumentarni film" poster="/media/uploads/nature-2026.jpg" >}}

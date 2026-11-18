@@ -21,10 +21,9 @@ Društvo KRDM je nepridobitno društvo za promocijo neodvisne glasbe in umetnost
 ## Podatki o društvu
 
 Društvo KRDM\
-Ulica Draga Brezarja 26\
+Žitna ulica 1E\
 4000 Kranj\
-Davčna številka: 21044716\
-E-pošta: <info@krdm.si>
+Davčna številka: 21044716
 
 Ustanovljeno novembra 2016 pri UE Kranj.
 

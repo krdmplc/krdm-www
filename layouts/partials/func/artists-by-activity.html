@@ -1,11 +1,15 @@
-{{- /* Active artists for the home page: `featured: true` first, then by their
-  most recent release or event, newest first. Hiatus/inactive artists are left
-  out (they are listed in the archive on the artists page).
-  Input: artist term pages. Returns: slice of pages. */ -}}
+{{- /* Artists ordered for display: `featured: true` first, then by their most
+  recent release or event, newest first.
+  Params: pages (artist term pages), home (bool: home-page roster — leaves out
+  artists that aren't active and those with `hideOnHome: true`).
+  Status is not shown publicly; on the artists page inactive ones simply sort last.
+  Returns: slice of pages. */ -}}
 {{- $featured := slice -}}
+{{- $active := slice -}}
 {{- $rest := slice -}}
-{{- range . -}}
-  {{- if eq (.Params.status | default "active") "active" -}}
+{{- range .pages -}}
+  {{- $isActive := eq (.Params.status | default "active") "active" -}}
+  {{- if or (not $.home) (and $isActive (not .Params.hideOnHome)) -}}
     {{- $latest := 0 -}}
     {{- range .Pages -}}
       {{- $d := .Date -}}
@@ -13,10 +17,13 @@
       {{- if gt $d.Unix $latest }}{{ $latest = $d.Unix }}{{ end -}}
     {{- end -}}
     {{- $item := dict "page" . "latest" $latest -}}
-    {{- if .Params.featured }}{{ $featured = $featured | append $item }}{{ else }}{{ $rest = $rest | append $item }}{{ end -}}
+    {{- if not $isActive }}{{ $rest = $rest | append $item }}
+    {{- else if .Params.featured }}{{ $featured = $featured | append $item }}
+    {{- else }}{{ $active = $active | append $item }}{{ end -}}
   {{- end -}}
 {{- end -}}
 {{- $out := slice -}}
 {{- range sort $featured "latest" "desc" }}{{ $out = $out | append .page }}{{ end -}}
+{{- range sort $active "latest" "desc" }}{{ $out = $out | append .page }}{{ end -}}
 {{- range sort $rest "latest" "desc" }}{{ $out = $out | append .page }}{{ end -}}
 {{- return $out -}}

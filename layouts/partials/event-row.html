@@ -6,15 +6,13 @@
 <li data-event-series="{{ $p.Params.series | default "other" }}">
   <a class="event-row" href="{{ $p.RelPermalink }}">
     <time class="event-row__date" datetime="{{ $d.Format "2006-01-02" }}">
-      <span class="event-row__day">{{ $d.Day }}</span>
-      <span class="event-row__month">{{ time.Format "Jan" $d }}</span>
+      <span class="event-row__day">{{ $d.Format "02. 01." }}</span>
       <span class="event-row__year">{{ $d.Year }}</span>
     </time>
     <div>
-      <h{{ $level }} class="event-row__title">{{ $p.LinkTitle }}</h{{ $level }}>
+      <h{{ $level }} class="event-row__title"><span>{{ $p.LinkTitle }}</span></h{{ $level }}>
       <p class="event-row__meta">
-        {{- with $p.Params.venue }}{{ . }}{{ end }}
-        {{- with $p.Params.price }} · {{ . }}{{ end -}}
+        {{- with $p.Params.venue }}{{ . }}{{ end -}}
       </p>
     </div>
     <div class="event-row__thumb">

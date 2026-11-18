@@ -7,7 +7,9 @@
 {{ T "llmsIntro" }}
 
 - {{ T "website" }}: {{ site.Home.Permalink }}
-- {{ T "email" }}: {{ site.Params.email }}
+{{- with site.GetPage "/contact" }}
+- {{ .Title }}: {{ .Permalink }}
+{{- end }}
 - {{ T "address" }}: {{ with site.Params.address }}{{ .streetAddress }}, {{ .postalCode }} {{ .addressLocality }}, Slovenia{{ end }}
 {{- range site.Params.social }}
 - {{ .label }}: {{ .url }}

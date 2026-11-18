@@ -32,8 +32,9 @@
 <meta name="description" content="{{ $desc }}">
 <link rel="canonical" href="{{ .Permalink }}">
 
-{{- /* Deploy previews and branch deploys must not compete with production. */}}
-{{- if ne (getenv "CONTEXT") "production" }}
+{{- /* Deploy previews and branch deploys must not compete with production;
+  pages can opt out with `noindex: true` (e.g. the contact form's thank-you page). */}}
+{{- if or (ne (getenv "CONTEXT") "production") .Params.noindex }}
 <meta name="robots" content="noindex, nofollow">
 {{- else }}
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">

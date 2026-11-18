@@ -8,11 +8,11 @@
     <p class="eyebrow">{{ T "nextEvent" }}</p>
     <h3 class="event-feature__title"><a href="{{ $p.RelPermalink }}">{{ $p.LinkTitle }}</a></h3>
     <div class="meta-list">
-      {{ partial "meta" (dict "page" $p "item" "meta-list__item" "noArtists" true) }}
+      {{ partial "meta" (dict "page" $p "item" "meta-list__item" "noArtists" true "noPrice" true) }}
     </div>
     {{- with $p.GetTerms "artists" }}
-      <ul class="event-feature__lineup" aria-label="{{ T "artists" }}">
-        {{- range . }}<li><a class="chip" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>{{ end }}
+      <ul class="lineup" aria-label="{{ T "artists" }}">
+        {{- range . }}<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>{{ end }}
       </ul>
     {{- end }}
     <a class="button" href="{{ $p.RelPermalink }}">{{ T "eventDetails" }} {{ partial "icon" "arrow-right" }}</a>

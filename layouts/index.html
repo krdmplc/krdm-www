@@ -45,7 +45,7 @@
     {{- with site.GetPage "/artists" }}
       <section aria-labelledby="artists">
         {{ partial "section-head" (dict "id" "artists" "title" $.Params.artists.title "all" $.Params.artists.all) }}
-        {{ partial "card-grid" (dict "pages" (partial "func/artists-by-activity" .Pages) "level" 3 "cols" 6 "sizes" "(min-width: 1170px) 16vw, (min-width: 768px) 25vw, 33vw") }}
+        {{ partial "card-grid" (dict "pages" (partial "func/artists-by-activity" (dict "pages" .Pages "home" true)) "level" 3 "cols" 6 "sizes" "(min-width: 1170px) 16vw, (min-width: 768px) 25vw, 33vw") }}
       </section>
     {{- end }}
 

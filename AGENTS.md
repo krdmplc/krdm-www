@@ -51,9 +51,14 @@ file exists as `name.sl.md` + `name.en.md`.
   `endDate`, `venue` (`"Venue, Town"`; the part after the comma becomes the
   locality in JSON-LD), `price` (`"8 €"`); releases: `releaseDate`.
 - Events have `series` (`distorzn`, `plc-fest`, `plesen`, `other`) for the filter on
-  the events page. Artists have `status` (`active` default, `hiatus`, `inactive` — the
-  last two are listed under "Arhiv") and optional `featured: true` (pinned first on the
-  home page; otherwise artists are ordered by their latest release/event).
+  the events page. Artists have `status` (`active` default, `hiatus`, `inactive`),
+  `featured: true` (pinned first) and `hideOnHome: true` (no longer with KRDM). The
+  home page shows only active, non-hidden artists, ordered by latest release/event.
+  **Status is not shown publicly** — inactive artists just sort last on the artists page.
+- There is **no public email address** (info@krdm.si is dead): contact goes through
+  the Netlify Forms form on `content/contact.*.md` (`{{</* contact-form */>}}`), whose
+  notifications are configured in the Netlify UI. Prices appear only on event pages,
+  never in listings.
 - `showInAdmin: true` (Slovenian files) and `pageType: page` are filters for Decap's
   listings — keep them on new content.
 - Slovenian URLs come from `[languages.sl.permalinks]` in `hugo.toml` and the `url:` /
@@ -87,8 +92,13 @@ file exists as `name.sl.md` + `name.en.md`.
 - **Template lookup** (Hugo ≥ 0.146): the artist page template must live at
   `layouts/artists/term.html`; in `_default/` it loses to `_default/list.html`.
 - `postcss-cli` looks unused but is required: Hugo's `postCSS` pipe shells out to it.
-- **Fonts** (Open Sans, Roboto Slab) are self-hosted variable WOFF2 files in
-  `static/fonts/` (latin + latin-ext). Don't reintroduce Google Fonts (GDPR).
+- **Look** ("Plc zine", from KRDM's own flyers): paper and ink, flyer green as the only
+  highlight, square corners, hard rules, black-and-white artist photos. Avoid soft
+  "card UI" (rounded corners, translucent panels, gentle shadows/borders).
+- **Fonts** are self-hosted WOFF2 in `static/fonts/` (latin + latin-ext): Open Sans
+  (body), Amatic SC (hand-lettered headings), Special Elite (typewriter small print).
+  Don't reintroduce Google Fonts (GDPR). The logo is the hand-drawn mark in
+  `static/media/brand/krdm-mark-white.png` (inverted by CSS on the light theme).
 - **Icons** are Feather SVGs in `assets/icons/`, inlined with `{{ partial "icon" "name" }}`.
 - **JS** is vanilla ES modules in `assets/scripts/`, bundled in
   `layouts/partials/base/scripts.html` (add new files to the slice there). JavaScript
@@ -131,6 +141,7 @@ The site sets **no cookies** and has no analytics (the old Universal Analytics t
 was dead and was removed), so there is no consent banner. YouTube embeds use
 privacy-enhanced mode (`[privacy.youtube]` in `hugo.toml`). If you add analytics or
 third-party embeds, update `content/cookies.*.md` and reconsider a consent banner.
+The contact form stores submissions with Netlify Forms; the privacy page says so.
 
 ## Housekeeping
 

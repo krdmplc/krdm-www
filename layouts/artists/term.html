@@ -10,7 +10,6 @@
         </div>
       {{ end }}
       <div class="profile__body">
-        {{ with .Params.status }}{{ if ne . "active" }}<p><span class="badge">{{ T (printf "status-%s" .) }}</span></p>{{ end }}{{ end }}
         <h1>{{ .Title }}</h1>
         <div class="content">
           {{ .Content }}

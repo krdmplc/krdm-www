@@ -1,3 +1,5 @@
+// Body in Open Sans; headings in Amatic SC, the hand-drawn poster lettering;
+// small print (dates, venues, labels) in the Special Elite typewriter.
 body {
   font-family: var(--font-body);
   font-size: 16px;
@@ -10,23 +12,34 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-heading);
   margin-top: 0;
   margin-bottom: 24px;
+  font-family: var(--font-body);
+  font-weight: 800;
   line-height: 1.2;
-  letter-spacing: -0.01em;
+}
+
+h1,
+h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
 }
 
 h1 {
-  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  font-size: clamp(3.25rem, 8vw, 6rem);
 }
 
 h2 {
-  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-size: clamp(2.5rem, 5vw, 4rem);
 }
 
 h3 {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
 p {
@@ -35,11 +48,15 @@ p {
 }
 
 a {
-  color: var(--link);
-  text-decoration: none;
+  color: var(--fg);
+  text-decoration: underline;
+  text-decoration-color: var(--highlight);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 3px;
 
   &:hover {
-    text-decoration: underline;
+    background-color: var(--highlight);
+    color: var(--on-highlight);
   }
 }
 
@@ -56,11 +73,11 @@ strong {
   text-align: right;
 }
 
+// Typewriter small print.
 .eyebrow {
   margin-bottom: 8px;
-  color: var(--accent);
-  font-size: 0.8125rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  font-family: var(--font-type);
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }

@@ -8,10 +8,9 @@
   // The off-canvas menu sits off the right edge while closed; clip it so it
   // never widens the page. `clip` (unlike `hidden`) keeps overflow-y visible.
   overflow-x: clip;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--border);
-  background-color: color-mix(in srgb, var(--bg) 88%, transparent);
-  backdrop-filter: blur(10px);
+  padding: 8px 0;
+  border-bottom: 3px solid var(--rule);
+  background-color: var(--bg);
 
   &__inner {
     display: flex;
@@ -23,13 +22,18 @@
     order: -2;
     margin-right: auto;
 
+    &:hover {
+      background: none;
+    }
+
     img {
       display: block;
-      width: 44px;
+      width: auto;
+      height: 48px;
       filter: var(--logo-filter);
 
       @include breakpoints.breakpoint-up("sm") {
-        width: 52px;
+        height: 56px;
       }
     }
   }

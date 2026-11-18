@@ -20,10 +20,9 @@ Društvo KRDM is a non-profit association from Kranj, Slovenia, that supports in
 ## Association details
 
 Društvo KRDM\
-Ulica Draga Brezarja 26\
+Žitna ulica 1E\
 4000 Kranj, Slovenia\
-Tax number: 21044716\
-Email: <info@krdm.si>
+Tax number: 21044716
 
 Established in November 2016 in Kranj, Slovenia.
 

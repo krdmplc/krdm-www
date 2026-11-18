@@ -1,18 +1,27 @@
 @use "grid/breakpoints";
 
+// Always ink, in both themes: the back cover of the zine.
 .footer {
   padding: 40px 0 32px;
-  background-color: var(--footer-bg);
-  color: var(--footer-fg);
+  border-top: 3px solid var(--rule);
+  background-color: var(--color-ink);
+  color: var(--color-paper);
   font-size: 14px;
 
   a {
-    color: var(--footer-fg);
-    text-decoration: underline;
+    color: var(--color-paper);
+    text-decoration-color: var(--color-flyer);
 
     &:hover {
-      color: var(--color-mint);
+      background-color: var(--color-flyer);
+      color: var(--color-ink);
     }
+  }
+
+  &__art {
+    display: block;
+    width: 180px;
+    margin-bottom: 24px;
   }
 
   &__inner {
@@ -26,11 +35,14 @@
 
   &__title {
     margin: 0;
-    color: var(--color-white);
-    font-size: 1rem;
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    line-height: 1;
+    text-transform: uppercase;
   }
 
   address {
+    font-family: var(--font-type);
     font-style: normal;
   }
 
@@ -48,32 +60,29 @@
 // Theme switcher: auto (follow the device) / light / dark.
 .theme-toggle {
   display: inline-flex;
-  gap: 2px;
   margin: 0;
-  padding: 3px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 999px;
+  border: 2px solid var(--color-paper);
 
   button {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 34px;
-    height: 30px;
+    width: 38px;
+    height: 32px;
     padding: 0;
     border: 0;
-    border-radius: 999px;
     background: none;
-    color: var(--footer-fg);
+    color: var(--color-paper);
     cursor: pointer;
 
-    &:hover {
-      color: var(--color-mint);
+    & + button {
+      border-left: 2px solid var(--color-paper);
     }
 
+    &:hover,
     &[aria-pressed="true"] {
-      background-color: var(--color-mint);
-      color: var(--color-blue-night);
+      background-color: var(--color-flyer);
+      color: var(--color-ink);
     }
   }
 

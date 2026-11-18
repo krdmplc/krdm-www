@@ -3,6 +3,7 @@ title: "Mors Atra"
 date: 2026-11-18T00:00:00+01:00
 thumbnail: /media/uploads/mors-atra.jpg
 ref: mors-atra
+hideOnHome: true
 ---
 
 Mors Atra blend brutal technical death metal, deathcore, symphonic and black metal into a fast, melodic and orchestrated beast. Shredding guitars, earth-shattering grooves and ferocious vocals, enough to shake the walls.

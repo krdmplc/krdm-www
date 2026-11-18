@@ -1,14 +1,12 @@
 {
   "sl": {
     "title": "Društvo KRDM",
-    "address": "Ulica Draga Brezarja 26, 4000 Kranj",
-    "vat": "Davčna številka: 21044716",
-    "email": "info@krdm.si"
+    "address": "Žitna ulica 1E, 4000 Kranj",
+    "vat": "Davčna številka: 21044716"
   },
   "en": {
     "title": "Društvo KRDM",
-    "address": "Ulica Draga Brezarja 26, 4000 Kranj, Slovenia",
-    "vat": "Tax number: 21044716",
-    "email": "info@krdm.si"
+    "address": "Žitna ulica 1E, 4000 Kranj, Slovenia",
+    "vat": "Tax number: 21044716"
   }
 }

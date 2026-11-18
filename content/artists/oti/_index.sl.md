@@ -1,7 +1,7 @@
 ---
 title: "Oti"
 date: 2026-11-18T00:00:00+01:00
-thumbnail: /media/uploads/oti.jpg
+thumbnail: /media/uploads/oti-2026.jpg
 ref: oti
 showInAdmin: true
 ---

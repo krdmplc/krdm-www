@@ -32,16 +32,16 @@ section {
   margin: 64px 0;
 
   @include breakpoints.breakpoint-up("md") {
-    margin: 96px 0;
+    margin: 104px 0;
   }
 }
 
 :focus-visible {
-  outline: 3px solid var(--accent);
+  outline: 3px solid var(--highlight);
   outline-offset: 2px;
 }
 
 ::selection {
-  background-color: var(--color-mint);
-  color: var(--color-blue-night);
+  background-color: var(--highlight);
+  color: var(--on-highlight);
 }

@@ -1,9 +1,10 @@
 <header class="header">
   <div class="container header__inner">
     <a class="header__logo" href="{{ site.Home.RelPermalink }}" aria-label="{{ site.Title }} – {{ T "home" }}">
-      {{- with partial "func/image" site.Params.logo }}
-        {{- $logo := .Resize "128x webp" }}
-        <img src="{{ $logo.RelPermalink }}" width="64" height="64" alt="{{ site.Title }}">
+      {{- /* The hand-drawn KRDM mark (white strokes); CSS inverts it on the light theme. */}}
+      {{- with partial "func/image" "/media/brand/krdm-mark-white.png" }}
+        {{- $logo := .Resize "x120 webp q90" }}
+        <img src="{{ $logo.RelPermalink }}" width="{{ div $logo.Width 2 }}" height="60" alt="{{ site.Title }}">
       {{- end }}
     </a>
 

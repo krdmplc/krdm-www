@@ -5,26 +5,24 @@
     "src" ($h.image | default site.Params.heroImage)
     "alt" ""
     "class" "hero__image"
-    "widths" (slice 960 1600 2048)
+    "widths" (slice 960 1600 2400)
     "eager" true
   ) }}
   <div class="container hero__inner">
     <div>
-      <p class="eyebrow hero__eyebrow">{{ T "heroEyebrow" }}</p>
       <h1 class="hero__title">{{ $h.title }}</h1>
-      {{ with $h.desc }}<p class="hero__subtitle">{{ . }}</p>{{ end }}
+      {{ with $h.desc }}<p class="hero__subtitle">{{ . }} · {{ T "heroEyebrow" }}</p>{{ end }}
     </div>
 
     {{- with .next }}
-      <a class="hero-next" href="{{ .RelPermalink }}">
-        <p class="hero-next__label">{{ T "nextEvent" }}</p>
-        <p class="hero-next__title">{{ .LinkTitle }}</p>
-        <p class="hero-next__meta">
-          {{- with .Params.startDate }}{{ time.Format ":date_long" . }}{{ end }}
-          {{- with .Params.venue }} · {{ index (split . ",") 0 }}{{ end }}
-          {{- with .Params.price }} · {{ . }}{{ end -}}
+      <a class="flyer" href="{{ .RelPermalink }}">
+        <p class="flyer__label">{{ T "nextEvent" }}</p>
+        <p class="flyer__title">{{ .LinkTitle }}</p>
+        <p class="flyer__meta">
+          {{- with .Params.startDate }}{{ time.Format "02. 01. 2006" . }}{{ end }}
+          {{- with .Params.venue }} · {{ index (split . ",") 0 }}{{ end -}}
         </p>
-        <span class="hero-next__cta">{{ T "eventDetails" }} {{ partial "icon" "arrow-right" }}</span>
+        <span class="flyer__cta">{{ T "eventDetails" }} {{ partial "icon" "arrow-right" }}</span>
       </a>
     {{- end }}
   </div>

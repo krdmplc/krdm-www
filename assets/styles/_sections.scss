@@ -1,46 +1,40 @@
 @use "grid/breakpoints";
 
-// Section title with an inline "see all" link on the right.
+// Section title in hand lettering over a heavy ink rule, "see all" in typewriter.
 .section-head {
   display: flex;
   flex-wrap: wrap;
   gap: 8px 24px;
   align-items: baseline;
   justify-content: space-between;
-  margin-bottom: 24px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--border);
-
-  @include breakpoints.breakpoint-up("md") {
-    margin-bottom: 32px;
-  }
+  margin-bottom: 28px;
+  border-bottom: 3px solid var(--rule);
 
   h2 {
-    margin: 0;
+    margin: 0 0 -4px;
   }
 }
 
-// Featured (next) event: poster + details side by side.
+// Featured (next) event: poster + details side by side, between two rules.
 .event-feature {
   display: grid;
   gap: 24px;
   align-items: center;
-  padding: 16px;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  background-color: var(--bg-elevated);
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--rule-soft);
 
   @include breakpoints.breakpoint-up("md") {
     grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-    gap: 40px;
-    padding: 24px;
+    gap: 48px;
   }
 
   &__media {
     display: block;
-    overflow: hidden;
-    border-radius: 12px;
-    background-color: var(--media-bg);
+    background-color: var(--color-ink);
+
+    &:hover {
+      background-color: var(--color-ink);
+    }
 
     img {
       display: block;
@@ -50,49 +44,45 @@
 
   &__title {
     margin-bottom: 16px;
-    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-family: var(--font-display);
+    font-size: clamp(2.75rem, 5vw, 4.25rem);
+    font-weight: 700;
+    line-height: 0.95;
 
     a {
-      color: inherit;
+      text-decoration: none;
     }
   }
+}
 
-  &__lineup {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin: 0 0 24px;
-    padding: 0;
-    list-style: none;
+// A poster-style lineup: names in caps separated by slashes.
+.lineup {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 0 28px;
+  padding: 0;
+  list-style: none;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+
+  li + li::before {
+    content: "/";
+    margin: 0 0.45em;
+    color: var(--fg-muted);
+    font-weight: 400;
   }
 }
 
-.chip {
-  display: inline-block;
-  padding: 4px 12px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  color: var(--fg);
-  font-size: 0.875rem;
-  font-weight: 600;
-
-  @at-root a#{&}:hover {
-    text-decoration: none;
-    border-color: var(--accent);
-    color: var(--accent);
-  }
-}
-
-// Compact event rows: date badge, title + details, small poster.
+// Gig listing rows: date, title + venue, small poster.
 .event-list {
   margin: 0;
   padding: 0;
   list-style: none;
-  border-top: 1px solid var(--border);
 }
 
 .event-list--spaced {
-  margin-top: 24px;
+  margin-top: 8px;
 }
 
 .event-list-label {
@@ -101,73 +91,73 @@
 
 .event-row {
   display: grid;
-  grid-template-columns: 64px minmax(0, 1fr);
+  grid-template-columns: 84px minmax(0, 1fr);
   gap: 16px;
   align-items: center;
-  padding: 16px 0;
-  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule-soft);
   color: inherit;
+  text-decoration: none;
 
   @include breakpoints.breakpoint-up("sm") {
-    grid-template-columns: 72px minmax(0, 1fr) 160px;
+    grid-template-columns: 112px minmax(0, 1fr) 150px;
     gap: 24px;
   }
 
   &:hover {
-    text-decoration: none;
+    background: none;
+    color: inherit;
 
-    .event-row__title {
-      color: var(--accent);
+    .event-row__title span {
+      background-color: var(--highlight);
+      color: var(--on-highlight);
     }
   }
 
   &__date {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 8px 4px;
-    border-radius: 12px;
-    background-color: var(--bg-elevated);
-    line-height: 1.1;
-    text-align: center;
+    line-height: 1;
   }
 
   &__day {
-    font-family: var(--font-heading);
-    font-size: 1.75rem;
+    font-family: var(--font-display);
+    font-size: 2.25rem;
     font-weight: 700;
-  }
 
-  &__month {
-    color: var(--accent);
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    @include breakpoints.breakpoint-up("sm") {
+      font-size: 2.75rem;
+    }
   }
 
   &__year {
     color: var(--fg-muted);
-    font-size: 0.75rem;
+    font-family: var(--font-type);
+    font-size: 0.875rem;
   }
 
   &__title {
     margin: 0 0 4px;
-    font-size: 1.125rem;
-    transition: color 0.15s ease;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+
+    span {
+      box-decoration-break: clone;
+    }
   }
 
   &__meta {
     margin: 0;
     color: var(--fg-muted);
+    font-family: var(--font-type);
     font-size: 0.875rem;
   }
 
   &__thumb {
     display: none;
     overflow: hidden;
-    border-radius: 8px;
-    background-color: var(--media-bg);
+    background-color: var(--bg-sunk);
     aspect-ratio: 1.91;
 
     @include breakpoints.breakpoint-up("sm") {
@@ -184,43 +174,44 @@
 }
 
 .year-group {
-  margin: 48px 0 0;
+  margin: 40px 0 0;
 
   &__title {
-    margin-bottom: 8px;
-    color: var(--fg-muted);
-    font-size: 1.25rem;
+    margin-bottom: 0;
+    padding-bottom: 4px;
+    border-bottom: 2px solid var(--rule);
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    line-height: 1;
   }
 }
 
-// Pill buttons that filter a list (events by series).
+// Filter buttons (events by series): plain words, the active one highlighted.
 .filter {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 4px 8px;
   margin: 0 0 8px;
   padding: 0;
   list-style: none;
 
   button {
-    padding: 8px 16px;
-    border: 1px solid var(--border);
-    border-radius: 999px;
+    padding: 4px 10px;
+    border: 2px solid transparent;
     background: none;
     color: var(--fg);
-    font: inherit;
-    font-size: 0.875rem;
-    font-weight: 600;
+    font-family: var(--font-type);
+    font-size: 0.9375rem;
+    text-transform: uppercase;
     cursor: pointer;
 
     &:hover {
-      border-color: var(--accent);
+      border-color: var(--rule);
     }
 
     &[aria-pressed="true"] {
-      border-color: var(--accent-bg);
-      background-color: var(--accent-bg);
-      color: var(--accent-fg);
+      background-color: var(--highlight);
+      color: var(--on-highlight);
     }
   }
 }
@@ -229,7 +220,7 @@
 .about {
   display: grid;
   gap: 32px;
-  align-items: center;
+  align-items: start;
 
   @include breakpoints.breakpoint-up("md") {
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
@@ -237,34 +228,41 @@
   }
 
   &__text {
-    font-size: 1.0625rem;
+    font-size: 1.125rem;
   }
 }
 
 .stats {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
   margin: 0 0 32px;
   padding: 0;
   list-style: none;
+  border-top: 2px solid var(--rule);
 
   li {
-    padding: 16px;
-    border-radius: 12px;
-    background-color: var(--bg-elevated);
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rule-soft);
+
+    &:nth-child(odd) {
+      padding-right: 16px;
+      border-right: 1px solid var(--rule-soft);
+    }
+
+    &:nth-child(even) {
+      padding-left: 16px;
+    }
   }
 
   strong {
     display: block;
-    color: var(--accent);
-    font-family: var(--font-heading);
-    font-size: 2rem;
-    line-height: 1.1;
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    line-height: 1;
   }
 
   span {
-    color: var(--fg-muted);
+    font-family: var(--font-type);
     font-size: 0.875rem;
   }
 }
@@ -279,9 +277,8 @@
   padding: 0;
   overflow: hidden;
   border: 0;
-  border-radius: 16px;
-  background-color: var(--color-black);
-  color: var(--color-white);
+  background-color: var(--color-ink);
+  color: var(--color-paper);
   cursor: pointer;
 
   img {
@@ -290,8 +287,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.75;
-    transition: opacity 0.2s ease;
+    filter: grayscale(1) contrast(1.1) brightness(0.7);
   }
 
   &__play {
@@ -301,16 +297,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 76px;
-    height: 76px;
-    border-radius: 50%;
-    background-color: var(--color-mint);
-    color: var(--color-blue-night);
-    transform: translate(-50%, -50%);
+    width: 84px;
+    height: 84px;
+    background-color: var(--color-flyer);
+    color: var(--color-ink);
+    transform: translate(-50%, -50%) rotate(-3deg);
 
     svg {
-      width: 30px;
-      height: 30px;
+      width: 32px;
+      height: 32px;
       margin-left: 4px;
       fill: currentcolor;
     }
@@ -320,12 +315,12 @@
     position: absolute;
     bottom: 14px;
     left: 18px;
-    font-weight: 700;
-    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+    font-family: var(--font-type);
+    text-transform: uppercase;
   }
 
-  &:hover img {
-    opacity: 0.95;
+  &:hover &__play {
+    transform: translate(-50%, -50%) rotate(0deg);
   }
 
   iframe {
@@ -337,7 +332,7 @@
   }
 }
 
-// Artist page: photo next to the bio.
+// Artist and release pages: image next to the text.
 .profile {
   display: grid;
   gap: 32px;
@@ -350,9 +345,7 @@
   }
 
   &__media {
-    overflow: hidden;
-    border-radius: 16px;
-    background-color: var(--media-bg);
+    background-color: var(--bg-sunk);
 
     @include breakpoints.breakpoint-up("md") {
       position: sticky;
@@ -366,6 +359,45 @@
   }
 
   &__body h1 {
-    margin-bottom: 12px;
+    margin-bottom: 16px;
+  }
+}
+
+// Contact form: plain boxes with ink borders.
+.form {
+  max-width: 640px;
+  margin-top: 32px;
+
+  &__row {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 6px;
+    font-family: var(--font-type);
+    font-size: 0.9375rem;
+    text-transform: uppercase;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--rule);
+    border-radius: 0;
+    background-color: var(--bg);
+    color: var(--fg);
+    font: inherit;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  &__note {
+    color: var(--fg-muted);
+    font-size: 0.875rem;
   }
 }

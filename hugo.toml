@@ -14,11 +14,10 @@ artist = "artists"
 image = "/media/uploads/og-image.jpg"
 heroImage = "/media/uploads/plcfest-2018.jpg"
 logo = "/media/brand/logo.png"
-email = "info@krdm.si"
 foundingDate = "2016-11"
 
 [params.address]
-streetAddress = "Ulica Draga Brezarja 26"
+streetAddress = "Žitna ulica 1E"
 postalCode = "4000"
 addressLocality = "Kranj"
 addressCountry = "SI"

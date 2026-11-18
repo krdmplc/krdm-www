@@ -112,8 +112,9 @@ collections:
         options:
           - {label: Active, value: active}
           - {label: On hiatus, value: hiatus}
-          - {label: Inactive (shown in the archive), value: inactive}
+          - {label: Inactive (not on the home page; not shown publicly), value: inactive}
       - {label: Feature on the home page, name: featured, widget: boolean, default: false, required: false, i18n: duplicate}
+      - {label: Hide from the home page (no longer with KRDM), name: hideOnHome, widget: boolean, default: false, required: false, i18n: duplicate}
       - {name: ref, widget: hidden, i18n: duplicate}
       - *SHOW_IN_ADMIN
 

@@ -4,8 +4,7 @@ description: "Društvo KRDM is a non-profit association from Kranj, Slovenia, pr
 hero:
   title: KRDM
   desc: Promoting independent artists
-  image: /media/uploads/hero-plc-fest-2023.jpg
-  credit: "Photo: Lars Kozamernik & Tevž Smolnikar (Plc Fest 2023)"
+  image: /media/uploads/hero-armaroth-2026.jpg
 events:
   title: Upcoming Events
   all:
@@ -32,4 +31,4 @@ about:
     text: More about us
 
 ---
-{{< youtube-lite id="-qliNZNUs8A" title="Plc – a short documentary" poster="/media/uploads/plc-fest-2023-armaroth.jpg" >}}
+{{< youtube-lite id="-qliNZNUs8A" title="Plc – a short documentary" poster="/media/uploads/nature-2026.jpg" >}}

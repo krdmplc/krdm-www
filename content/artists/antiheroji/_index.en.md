@@ -1,7 +1,7 @@
 ---
 title: "Antiheroji"
 date: 2026-11-18T00:00:00+01:00
-thumbnail: /media/uploads/antiheroji.jpg
+thumbnail: /media/uploads/antiheroji-2026.jpg
 ref: antiheroji
 ---
 
