@@ -5,7 +5,7 @@ releaseDate: 2016-12-01T00:00:00+01:00
 thumbnail: /media/uploads/zenith.jpg
 format: album
 artists:
-- armaroth
+  - armaroth
 ---
 
 Debut album from Armaroth

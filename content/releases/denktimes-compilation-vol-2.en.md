@@ -10,6 +10,8 @@ artists:
   - mutism
   - amalgam
   - nature
+  - sen
+  - noc
 ---
 
 The second compilation of artists under the KRDM umbrella.

@@ -6,7 +6,7 @@ thumbnail: /media/uploads/zenith.jpg
 format: album
 showInAdmin: true
 artists:
-- armaroth
+  - armaroth
 ---
 
 Debitantski album kranjske death metal mašine Armaroth.

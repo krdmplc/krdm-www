@@ -6,7 +6,7 @@ thumbnail: /media/uploads/encounters-in-endless-grey.jpg
 format: album
 showInAdmin: true
 artists:
-- didge
+  - didge
 ---
 
 Prvi album kranjskih rock progresivcev Didge.

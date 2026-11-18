@@ -5,7 +5,7 @@ releaseDate: 2019-09-19T00:00:00+01:00
 thumbnail: /media/uploads/a-lumberjacks-smile.jpg
 format: album
 artists:
-- douchean
+  - douchean
 ---
 
 Debut album by DJ and producer Douchean.

@@ -6,7 +6,7 @@ thumbnail: /media/uploads/false-vision.jpg
 format: album
 showInAdmin: true
 artists:
-- armaroth
+  - armaroth
 ---
 
 EP kranjske death metal mašine Armaroth

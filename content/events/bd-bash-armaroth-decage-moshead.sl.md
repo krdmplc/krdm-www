@@ -8,7 +8,7 @@ price: 5 €
 series: other
 showInAdmin: true
 artists:
-- armaroth
+  - armaroth
 ---
 Mineva 5. leto odkar je ideja ob pivu postala uradna zadeva.
 

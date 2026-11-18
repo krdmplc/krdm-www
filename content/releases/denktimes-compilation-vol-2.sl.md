@@ -10,6 +10,8 @@ artists:
   - mutism
   - amalgam
   - nature
+  - sen
+  - noc
 showInAdmin: true
 ---
 

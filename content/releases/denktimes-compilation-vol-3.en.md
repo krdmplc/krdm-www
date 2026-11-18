@@ -11,6 +11,7 @@ artists:
   - mutism
   - armaroth
   - nesit
+  - noc
 ---
 
 The third compilation of artists under the KRDM umbrella.

@@ -10,13 +10,13 @@ price: "6 €"
 series: plc-fest
 showInAdmin: true
 artists:
-- armaroth
-- neuromancer
-- didge
-- amalgam
-- nature
-- douchean
-- ofnana_pesa
+  - armaroth
+  - neuromancer
+  - didge
+  - amalgam
+  - nature
+  - douchean
+  - ofnana_pesa
 ---
 
 Ob 10. obletnici placa za vaje (in vse ostalo) na planini, predstavljamo najboljši Plc Fest do zdaj!

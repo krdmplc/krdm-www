@@ -7,7 +7,7 @@ venue: 'eMCe Plac, Velenje'
 price: 5 €
 series: other
 artists:
-- armaroth
+  - armaroth
 ---
 
 It's been five years since an idea over a beer became official business.

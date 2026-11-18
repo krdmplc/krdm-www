@@ -11,6 +11,7 @@ artists:
   - mutism
   - armaroth
   - nesit
+  - noc
 showInAdmin: true
 ---
 
