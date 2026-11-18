@@ -1,6 +1,6 @@
 ---
 title: Home
-description: "Društvo KRDM is a non-profit association from Kranj, Slovenia, promoting independent music and art: Distoržn and Plesen concert series, Plc Fest, releases and the Plc rehearsal space."
+description: "Društvo KRDM is a non-profit association from Kranj, Slovenia, promoting independent music and art: the Distoržn concert series, Plc Fest, releases and the Plc rehearsal space."
 hero:
   title: KRDM
   desc: Promoting independent artists

@@ -1,6 +1,6 @@
 ---
 title: Domov
-description: "Društvo KRDM iz Kranja spodbuja neodvisno glasbo in umetnost na Gorenjskem: koncerti Distoržn in Plesen, Plc Fest, izdaje in vadbeni prostor Plc."
+description: "Društvo KRDM iz Kranja spodbuja neodvisno glasbo in umetnost na Gorenjskem: koncerti Distoržn, Plc Fest, izdaje in vadbeni prostor Plc."
 hero:
   title: KRDM
   desc: Društvo za promocijo neodvisne glasbe

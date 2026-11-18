@@ -1,7 +1,8 @@
 @use "grid/breakpoints";
 
-// Mobile: a toggle opens an off-canvas panel. From "md" up the items sit inline
-// in the header and the toggle is hidden.
+// Mobile: the toggle opens a full-screen panel under the header row (page
+// scrolling is locked while it's open, see assets/scripts/main-menu.js).
+// From "md" up the items sit inline in the header and the toggle is hidden.
 .main-menu {
   @include breakpoints.breakpoint-up("md") {
     order: -1;
@@ -9,11 +10,13 @@
   }
 
   &__toggle {
+    position: relative;
+    z-index: 2;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
     margin-right: -10px;
     padding: 0;
     border: 0;
@@ -26,8 +29,8 @@
     }
 
     svg {
-      width: 28px;
-      height: 28px;
+      width: 30px;
+      height: 30px;
     }
 
     .main-menu__icon-close {
@@ -46,49 +49,38 @@
   }
 
   &__items {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    z-index: 1000;
-    width: 100%;
-    max-height: calc(100vh - 100%);
+    position: fixed;
+    inset: 0;
+    z-index: 1;
     margin: 0;
-    padding: 0;
+    padding: 88px 0 32px;
     overflow-y: auto;
     list-style: none;
-    border-bottom: 3px solid var(--rule);
-    border-left: 3px solid var(--rule);
     background: var(--bg);
-    transform: translateX(100%);
     visibility: hidden;
-    transition: transform 0.2s ease, visibility 0.2s;
-
-    @include breakpoints.breakpoint-up("sm") {
-      width: 335px;
-    }
+    opacity: 0;
+    transition: opacity 0.15s ease, visibility 0.15s;
 
     @include breakpoints.breakpoint-up("md") {
       position: static;
       display: flex;
       gap: 4px;
-      width: auto;
-      max-height: none;
+      padding: 0;
       overflow: visible;
-      border: 0;
       background: none;
-      transform: none;
       visibility: visible;
+      opacity: 1;
       transition: none;
     }
 
     &.is-open {
-      transform: none;
       visibility: visible;
+      opacity: 1;
     }
 
     li {
-      border-bottom: 1px solid var(--rule-soft);
-      font-size: 15px;
+      border-top: 1px solid var(--rule-soft);
+      font-size: 1.125rem;
       font-weight: 700;
       line-height: 24px;
       letter-spacing: 0.03em;
@@ -96,12 +88,13 @@
 
       @include breakpoints.breakpoint-up("md") {
         border: 0;
+        font-size: 15px;
       }
     }
 
     a {
       display: block;
-      padding: 16px 24px;
+      padding: 18px var(--container-padding);
       color: var(--fg);
       text-decoration: none;
 
@@ -116,6 +109,19 @@
       }
     }
   }
+}
+
+// Logo and language switch stay above the open panel.
+.header__logo,
+.lang-menu {
+  position: relative;
+  z-index: 2;
+}
+
+// Locks page scrolling behind the open mobile menu. On <body>, not <html>:
+// overflow on <html> stops the viewport from scrolling and breaks the sticky header.
+.has-menu-open body {
+  overflow: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -13,7 +13,7 @@ Društvo KRDM je nepridobitno društvo za promocijo neodvisne glasbe in umetnost
 
 ## Kaj počnemo
 
-- Organiziramo koncertni niz **Distoržn** (metal) in plesne večere **Plesen** (techno), večinoma v Trainstation Subart v Kranju.
+- Organiziramo koncertni niz **Distoržn** (metal), večinoma v Trainstation Subart v Kranju.
 - Pripravljamo **Plc Fest**, na katerem se predstavijo ustvarjalci iz našega vadbenega prostora.
 - Izdajamo glasbo lokalnih [ustvarjalcev](/ustvarjalci/).
 - Skrbimo za **Plc**, vadbeni prostor za bende in ustvarjalce na Planini v Kranju.
@@ -26,9 +26,5 @@ Društvo KRDM\
 Davčna številka: 21044716
 
 Ustanovljeno novembra 2016 pri UE Kranj.
-
-Predsednik: Martin Jagodic\
-Tajnik: Žiga Čavić\
-Blagajnik: Urban Valjavec
 
 [Statut društva KRDM](https://docs.google.com/document/d/1gMxNl-qa2aYQjJMzMgzSxH9wZtg4j0g0ysKA_pz9cZ4/edit?usp=sharing)

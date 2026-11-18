@@ -341,6 +341,10 @@
 // Artist and release pages: image next to the text.
 .profile {
   display: grid;
+
+  // minmax(0, …): without it the single mobile column grows to the image's
+  // intrinsic width and the page scrolls sideways.
+  grid-template-columns: minmax(0, 1fr);
   gap: 32px;
   margin-bottom: 24px;
 

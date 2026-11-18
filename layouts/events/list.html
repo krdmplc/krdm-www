@@ -35,7 +35,7 @@
         {{- /* Series filter; revealed by assets/scripts/list-filter.js. */}}
         <ul class="filter" data-filter hidden aria-label="{{ T "series" }}">
           <li><button type="button" data-value="all" aria-pressed="true">{{ T "filterAll" }}</button></li>
-          {{- range slice "distorzn" "plc-fest" "plesen" "other" }}
+          {{- range slice "distorzn" "plc-fest" "other" }}
             <li><button type="button" data-value="{{ . }}" aria-pressed="false">{{ T (printf "series-%s" .) }}</button></li>
           {{- end }}
         </ul>
