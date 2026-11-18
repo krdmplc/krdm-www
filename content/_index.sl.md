@@ -4,6 +4,8 @@ description: "Društvo KRDM iz Kranja spodbuja neodvisno glasbo in umetnost na G
 hero:
   title: KRDM
   desc: Društvo za promocijo neodvisne glasbe
+  image: /media/uploads/hero-plc-fest-2023.jpg
+  credit: "Foto: Lars Kozamernik in Tevž Smolnikar (Plc Fest 2023)"
 events:
   title: Prihajajoči dogodki
   all:
@@ -21,8 +23,12 @@ artists:
     text: Vsi ustvarjalci
 about:
   title: O Placu
+  text: >-
+    Plc je betonski brlog na Planini v Kranju, kjer od leta 2009 vadijo, snemajo
+    in se zabavajo kranjski bendi in ustvarjalci. Društvo KRDM skrbi zanj,
+    prireja koncerte Distoržn in Plc Fest ter izdaja glasbo svojih članov.
   link:
     href: /o-nas/
     text: Več o nas
 ---
-{{< youtube id="-qliNZNUs8A" loading="lazy" title="KRDM na YouTubu" >}}
+{{< youtube-lite id="-qliNZNUs8A" title="Plc – kratki dokumentarni film" poster="/media/uploads/plc-fest-2023-armaroth.jpg" >}}

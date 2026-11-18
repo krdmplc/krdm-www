@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {{ partial "head/seo" . }}
   <link rel="icon" href="{{ "favicon.png" | relURL }}" type="image/png">
-  <meta name="theme-color" content="#041b53">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0c11" media="(prefers-color-scheme: dark)">
+  {{ partial "base/theme-init" . }}
   <link rel="alternate" type="text/plain" title="llms.txt" href="{{ "llms.txt" | relLangURL }}">
   {{ partial "base/font-preload" . }}
   {{ partial "base/styles" . }}

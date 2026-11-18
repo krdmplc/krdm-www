@@ -1,0 +1,20 @@
+{{- /* The next upcoming event, large. Params: page */ -}}
+{{- $p := .page -}}
+<article class="event-feature">
+  <a class="event-feature__media" href="{{ $p.RelPermalink }}" tabindex="-1" aria-hidden="true">
+    {{- partial "image" (dict "src" ($p.Params.thumbnail | default site.Params.image) "alt" "" "widths" (slice 720 1200) "sizes" "(min-width: 992px) 60vw, 100vw") -}}
+  </a>
+  <div>
+    <p class="eyebrow">{{ T "nextEvent" }}</p>
+    <h3 class="event-feature__title"><a href="{{ $p.RelPermalink }}">{{ $p.LinkTitle }}</a></h3>
+    <div class="meta-list">
+      {{ partial "meta" (dict "page" $p "item" "meta-list__item" "noArtists" true) }}
+    </div>
+    {{- with $p.GetTerms "artists" }}
+      <ul class="event-feature__lineup" aria-label="{{ T "artists" }}">
+        {{- range . }}<li><a class="chip" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>{{ end }}
+      </ul>
+    {{- end }}
+    <a class="button" href="{{ $p.RelPermalink }}">{{ T "eventDetails" }} {{ partial "icon" "arrow-right" }}</a>
+  </div>
+</article>

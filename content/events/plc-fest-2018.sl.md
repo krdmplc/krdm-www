@@ -6,6 +6,7 @@ endDate: 2018-05-06T03:00:00+02:00
 venue: "Trainstation Subart, Kranj"
 price: "5 €"
 thumbnail: /media/uploads/plcfest-2018.jpg
+series: plc-fest
 artists:
   - didge
   - mutism

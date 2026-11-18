@@ -6,6 +6,7 @@ endDate: 2019-06-30T03:00:00+02:00
 venue: "Trainstation Subart, Kranj"
 price: "6 €"
 thumbnail: /media/uploads/subart-armaroth-morywa-ashine-2019-06-29.jpg
+series: other
 artists:
   - armaroth
 ---

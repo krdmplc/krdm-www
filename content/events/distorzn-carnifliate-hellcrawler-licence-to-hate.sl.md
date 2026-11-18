@@ -6,6 +6,7 @@ endDate: 2019-06-09T02:00:00+02:00
 venue: "Trainstation Subart, Kranj"
 price: "6 €"
 thumbnail: /media/uploads/distorzn-2019-06-08.jpg
+series: distorzn
 showInAdmin: true
 ---
 

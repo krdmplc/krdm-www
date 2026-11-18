@@ -1,13 +1,17 @@
 @use "grid/breakpoints";
 
 .header {
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 
   // The off-canvas menu sits off the right edge while closed; clip it so it
   // never widens the page. `clip` (unlike `hidden`) keeps overflow-y visible.
   overflow-x: clip;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--color-blue);
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  background-color: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
 
   &__inner {
     display: flex;
@@ -16,14 +20,16 @@
   }
 
   &__logo {
+    order: -2;
     margin-right: auto;
 
     img {
       display: block;
-      width: 48px;
+      width: 44px;
+      filter: var(--logo-filter);
 
       @include breakpoints.breakpoint-up("sm") {
-        width: 64px;
+        width: 52px;
       }
     }
   }

@@ -4,6 +4,7 @@ date: 2026-11-18T00:00:00+01:00
 thumbnail: /media/uploads/grund.jpg
 slug: grund
 ref: grund
+status: inactive
 ---
 
 GRÜND were a hardcore punk band from Kranj who fired off short, fast and angry songs with a dose of crust and grind from the Plc bunker between 2020 and 2025. In their own words: "Gründ je polom, raj vilco u štrom."

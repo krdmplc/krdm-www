@@ -5,6 +5,7 @@ startDate: 2026-02-27T20:00:00+01:00
 venue: "Trainstation Subart, Kranj"
 price: "10 €"
 thumbnail: /media/uploads/distorzn-2026-02-27.jpg
+series: distorzn
 ---
 
 KRDM presents DISTORŽN – Heavy edition!

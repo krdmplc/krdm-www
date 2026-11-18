@@ -1,0 +1,10 @@
+{{- /* A few numbers counted from the content. Plc (the bunker) has been
+  around since 2009; see the Plc Fest 2019 page (10th anniversary). */ -}}
+{{- $active := 0 -}}
+{{- with site.GetPage "/artists" }}{{ range .Pages }}{{ if eq (.Params.status | default "active") "active" }}{{ $active = add $active 1 }}{{ end }}{{ end }}{{ end -}}
+<ul class="stats" role="list">
+  <li><strong>{{ sub now.Year 2009 }}</strong><span>{{ T "statYears" }}</span></li>
+  <li><strong>{{ $active }}</strong><span>{{ T "statArtists" }}</span></li>
+  <li><strong>{{ with site.GetPage "/events" }}{{ len .Pages }}{{ end }}</strong><span>{{ T "statEvents" }}</span></li>
+  <li><strong>{{ with site.GetPage "/releases" }}{{ len .Pages }}{{ end }}</strong><span>{{ T "statReleases" }}</span></li>
+</ul>

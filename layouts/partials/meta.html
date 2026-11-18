@@ -1,5 +1,6 @@
 {{- /* Date / venue / price / artists for events and releases.
-  Params: page, class (wrapper class), item (item class), linkArtists (bool) */ -}}
+  Params: page, class (wrapper class), item (item class), linkArtists (bool),
+  noArtists (bool: leave out the artists line) */ -}}
 {{- $p := .page -}}
 {{- $item := .item | default "" -}}
 {{- $artists := $p.GetTerms "artists" -}}
@@ -22,7 +23,7 @@
     <span><span class="visually-hidden">{{ T "venue" }}: </span>{{ . }}{{ with $p.Params.price }} · {{ . }}{{ end }}</span>
   </div>
 {{- end }}
-{{- if and $artists (ne $p.Kind "term") }}
+{{- if and $artists (ne $p.Kind "term") (not .noArtists) }}
   <div class="{{ $item }}">
     {{ partial "icon" "music" }}
     <span><span class="visually-hidden">{{ T "artists" }}: </span>

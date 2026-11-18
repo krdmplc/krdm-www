@@ -4,6 +4,8 @@ description: "Društvo KRDM is a non-profit association from Kranj, Slovenia, pr
 hero:
   title: KRDM
   desc: Promoting independent artists
+  image: /media/uploads/hero-plc-fest-2023.jpg
+  credit: "Photo: Lars Kozamernik & Tevž Smolnikar (Plc Fest 2023)"
 events:
   title: Upcoming Events
   all:
@@ -20,10 +22,14 @@ artists:
     href: /en/artists/
     text: All artists
 about:
-  title: About plc
+  title: About Plc
+  text: >-
+    Plc is a concrete bunker in Planina, Kranj, where local bands and artists
+    have rehearsed, recorded and partied since 2009. Društvo KRDM looks after
+    it, puts on the Distoržn concerts and Plc Fest, and releases its members' music.
   link:
     href: /en/about/
     text: More about us
 
 ---
-{{< youtube id="-qliNZNUs8A" loading="lazy" title="KRDM on YouTube" >}}
+{{< youtube-lite id="-qliNZNUs8A" title="Plc – a short documentary" poster="/media/uploads/plc-fest-2023-armaroth.jpg" >}}

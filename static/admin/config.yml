@@ -54,6 +54,7 @@ aliases:
         - {label: Title, name: title, widget: string}
         - {label: Subtitle, name: desc, widget: text}
         - {label: Image, name: image, widget: image, required: false}
+        - {label: Photo credit, name: credit, widget: string, required: false}
     - label: Events
       name: events
       widget: object
@@ -77,8 +78,9 @@ aliases:
       widget: object
       fields:
         - {label: Title, name: title, widget: string}
+        - {label: Text, name: text, widget: text, required: false}
         - {label: Link, name: link, widget: object, fields: *HOME_LINK}
-    - {label: About section content, name: body, widget: markdown}
+    - {label: About section content (video), name: body, widget: markdown}
 
 collections:
   # Artists are Hugo taxonomy terms (content/artists/<ref>/_index.<lang>.md).
@@ -101,6 +103,17 @@ collections:
       - *DESCRIPTION
       - {label: Bio, name: body, widget: markdown, i18n: true}
       - {label: Order (lower comes first), name: weight, widget: number, required: false, i18n: duplicate}
+      - label: Status
+        name: status
+        widget: select
+        default: active
+        required: false
+        i18n: duplicate
+        options:
+          - {label: Active, value: active}
+          - {label: On hiatus, value: hiatus}
+          - {label: Inactive (shown in the archive), value: inactive}
+      - {label: Feature on the home page, name: featured, widget: boolean, default: false, required: false, i18n: duplicate}
       - {name: ref, widget: hidden, i18n: duplicate}
       - *SHOW_IN_ADMIN
 
@@ -122,6 +135,16 @@ collections:
       - {label: End, name: endDate, widget: datetime, required: false, i18n: duplicate}
       - {label: Venue (e.g. "Trainstation Subart, Kranj"), name: venue, widget: string, i18n: duplicate}
       - {label: Price (e.g. "8 €"), name: price, widget: string, required: false, i18n: duplicate}
+      - label: Series
+        name: series
+        widget: select
+        default: other
+        i18n: duplicate
+        options:
+          - {label: Distoržn, value: distorzn}
+          - {label: Plc Fest, value: plc-fest}
+          - {label: Plesen, value: plesen}
+          - {label: Other, value: other}
       - {label: Poster, name: thumbnail, widget: image, required: false, i18n: duplicate}
       - *DESCRIPTION
       - {label: Content, name: body, widget: markdown, i18n: true}

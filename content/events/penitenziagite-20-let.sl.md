@@ -5,6 +5,7 @@ startDate: 2024-04-20T20:00:00+02:00
 venue: "Trainstation Subart, Kranj"
 price: "10 €"
 thumbnail: /media/uploads/penitenziagite-20-let-2024-04-20.jpg
+series: other
 showInAdmin: true
 ---
 

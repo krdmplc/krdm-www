@@ -5,6 +5,7 @@ startDate: 2025-05-10T20:30:00+02:00
 venue: "Trainstation Subart, Kranj"
 price: "10 €"
 thumbnail: /media/uploads/distorzn-2025-05-10.jpg
+series: distorzn
 ---
 
 KRDM presents the next Distoržn:

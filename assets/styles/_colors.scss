@@ -1,9 +1,66 @@
+// Brand palette, then semantic tokens that components use. Components should only
+// reference the semantic tokens (--bg, --fg, --accent, …) so both themes work.
+
+// Theme selection: the device preference (prefers-color-scheme) wins unless the
+// visitor picked a theme with the footer toggle, which sets data-theme on <html>
+// (see layouts/partials/base/theme-init.html and assets/scripts/theme-toggle.js).
+
 :root {
   --color-white: #fff;
   --color-black: #000;
-  --color-grey-light: #f4f4f4;
   --color-mint: #84eec9;
+  --color-mint-dark: #0b7a57;
   --color-blue: #195d79;
   --color-blue-dark: #20436d;
   --color-blue-night: #041b53;
+}
+
+@mixin light {
+  color-scheme: light;
+
+  --bg: #fff;
+  --bg-elevated: #f4f6f8;
+  --fg: #0d111b;
+  --fg-muted: #586174;
+  --border: #e1e5eb;
+  --link: var(--color-blue);
+  --accent: var(--color-mint-dark);
+  --accent-bg: var(--color-blue-night);
+  --accent-fg: var(--color-mint);
+  --media-bg: #e9edf1;
+  --footer-bg: var(--color-blue-night);
+  --footer-fg: #dfe6f3;
+  --logo-filter: none;
+}
+
+@mixin dark {
+  color-scheme: dark;
+
+  --bg: #0a0c11;
+  --bg-elevated: #141822;
+  --fg: #eef1f6;
+  --fg-muted: #9aa3b6;
+  --border: #252b38;
+  --link: var(--color-mint);
+  --accent: var(--color-mint);
+  --accent-bg: var(--color-mint);
+  --accent-fg: #06120d;
+  --media-bg: #12161e;
+  --footer-bg: #05070b;
+  --footer-fg: #c4cbd8;
+  --logo-filter: invert(1);
+}
+
+:root {
+  @include light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    @include dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  @include dark;
 }

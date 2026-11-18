@@ -5,6 +5,7 @@ startDate: 2022-04-09T20:00:00+02:00
 venue: "Trainstation Subart, Kranj"
 price: "8 €"
 thumbnail: /media/uploads/distorzn-2022-04-09.jpg
+series: distorzn
 ---
 
 ## DISTORŽN

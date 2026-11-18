@@ -1,6 +1,13 @@
 @use "grid/breakpoints";
 
+// Mobile: a toggle opens an off-canvas panel. From "md" up the items sit inline
+// in the header and the toggle is hidden.
 .main-menu {
+  @include breakpoints.breakpoint-up("md") {
+    order: -1;
+    margin-right: 8px;
+  }
+
   &__toggle {
     display: flex;
     align-items: center;
@@ -11,8 +18,12 @@
     padding: 0;
     border: 0;
     background: none;
-    color: var(--color-black);
+    color: var(--fg);
     cursor: pointer;
+
+    @include breakpoints.breakpoint-up("md") {
+      display: none;
+    }
 
     svg {
       width: 28px;
@@ -45,7 +56,8 @@
     padding: 0;
     overflow-y: auto;
     list-style: none;
-    background: var(--color-black);
+    border-left: 1px solid var(--border);
+    background: var(--bg-elevated);
     transform: translateX(100%);
     visibility: hidden;
     transition: transform 0.2s ease, visibility 0.2s;
@@ -54,36 +66,57 @@
       width: 335px;
     }
 
+    @include breakpoints.breakpoint-up("md") {
+      position: static;
+      display: flex;
+      gap: 4px;
+      width: auto;
+      max-height: none;
+      overflow: visible;
+      border: 0;
+      background: none;
+      transform: none;
+      visibility: visible;
+      transition: none;
+    }
+
     &.is-open {
       transform: none;
       visibility: visible;
     }
 
     li {
-      font-size: 14px;
+      border-bottom: 1px solid var(--border);
+      font-size: 15px;
+      font-weight: 600;
       line-height: 24px;
-      border-bottom: 1px solid var(--color-white);
 
-      &:last-child {
-        border-bottom: none;
+      @include breakpoints.breakpoint-up("md") {
+        border: 0;
       }
     }
 
     a {
       display: block;
       padding: 16px 24px;
-      color: var(--color-white);
-      transition: background-color 0.1s ease, color 0.1s ease;
+      color: var(--fg);
 
-      @include breakpoints.breakpoint-up("sm") {
-        padding: 24px;
+      @include breakpoints.breakpoint-up("md") {
+        padding: 8px 12px;
+        border-radius: 999px;
       }
 
-      &:hover,
-      &[aria-current] {
+      &:hover {
         text-decoration: none;
-        background: var(--color-white);
-        color: var(--color-black);
+        color: var(--accent);
+      }
+
+      &[aria-current] {
+        color: var(--accent);
+
+        @include breakpoints.breakpoint-up("md") {
+          background-color: var(--bg-elevated);
+        }
       }
     }
   }

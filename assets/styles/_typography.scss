@@ -1,7 +1,7 @@
 body {
   font-family: var(--font-body);
   font-size: 16px;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 h1,
@@ -13,7 +13,20 @@ h6 {
   font-family: var(--font-heading);
   margin-top: 0;
   margin-bottom: 24px;
-  line-height: 1.25;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+h3 {
+  font-size: 1.25rem;
 }
 
 p {
@@ -22,7 +35,7 @@ p {
 }
 
 a {
-  color: var(--color-blue);
+  color: var(--link);
   text-decoration: none;
 
   &:hover {
@@ -41,4 +54,13 @@ strong {
 
 .text-right {
   text-align: right;
+}
+
+.eyebrow {
+  margin-bottom: 8px;
+  color: var(--accent);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }

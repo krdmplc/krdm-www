@@ -1,13 +1,13 @@
 @use "grid/breakpoints";
 
 .footer {
-  padding: 24px 0;
-  background-color: var(--color-blue-night);
-  color: var(--color-white);
+  padding: 40px 0 32px;
+  background-color: var(--footer-bg);
+  color: var(--footer-fg);
   font-size: 14px;
 
   a {
-    color: var(--color-white);
+    color: var(--footer-fg);
     text-decoration: underline;
 
     &:hover {
@@ -17,7 +17,7 @@
 
   &__inner {
     display: grid;
-    gap: 16px;
+    gap: 24px;
 
     @include breakpoints.breakpoint-up("sm") {
       grid-template-columns: 2fr 1fr 1fr;
@@ -26,10 +26,59 @@
 
   &__title {
     margin: 0;
+    color: var(--color-white);
     font-size: 1rem;
   }
 
   address {
     font-style: normal;
+  }
+
+  &__end {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    @include breakpoints.breakpoint-up("sm") {
+      align-items: flex-end;
+    }
+  }
+}
+
+// Theme switcher: auto (follow the device) / light / dark.
+.theme-toggle {
+  display: inline-flex;
+  gap: 2px;
+  margin: 0;
+  padding: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 30px;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: none;
+    color: var(--footer-fg);
+    cursor: pointer;
+
+    &:hover {
+      color: var(--color-mint);
+    }
+
+    &[aria-pressed="true"] {
+      background-color: var(--color-mint);
+      color: var(--color-blue-night);
+    }
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
   }
 }

@@ -4,6 +4,6 @@
     <h1>{{ .Title }}</h1>
     {{ with .Content }}<div class="content">{{ . }}</div>{{ end }}
 
-    {{ partial "card-grid" (dict "pages" .Pages.ByDate.Reverse "level" 2) }}
+    {{ partial "card-grid" (dict "pages" .Pages.ByDate.Reverse "level" 2 "cols" 4) }}
   </div>
 {{ end }}

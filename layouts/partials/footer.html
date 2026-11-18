@@ -14,8 +14,9 @@
       {{ with site.GetPage "/cookies" }}<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a><br>{{ end }}
       © 2016–{{ now.Year }} {{ $d.title }}
     </div>
-    <div>
+    <div class="footer__end">
       {{ partial "social-menu" . }}
+      {{ partial "theme-toggle" . }}
     </div>
   </div>
 </footer>

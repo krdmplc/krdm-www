@@ -5,6 +5,7 @@ endDate: 2019-12-28T06:00:00+01:00
 thumbnail: /media/uploads/plesen-19-12-27-cover.png
 venue: 'Trainstation Subart, Kranj'
 price: 8 €
+series: plesen
 artists:
 - douchean
 - selgor

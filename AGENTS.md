@@ -50,6 +50,10 @@ file exists as `name.sl.md` + `name.en.md`.
   one is generated otherwise), `thumbnail` (`/media/uploads/…`), events: `startDate`,
   `endDate`, `venue` (`"Venue, Town"`; the part after the comma becomes the
   locality in JSON-LD), `price` (`"8 €"`); releases: `releaseDate`.
+- Events have `series` (`distorzn`, `plc-fest`, `plesen`, `other`) for the filter on
+  the events page. Artists have `status` (`active` default, `hiatus`, `inactive` — the
+  last two are listed under "Arhiv") and optional `featured: true` (pinned first on the
+  home page; otherwise artists are ordered by their latest release/event).
 - `showInAdmin: true` (Slovenian files) and `pageType: page` are filters for Decap's
   listings — keep them on new content.
 - Slovenian URLs come from `[languages.sl.permalinks]` in `hugo.toml` and the `url:` /
@@ -70,8 +74,18 @@ file exists as `name.sl.md` + `name.en.md`.
   module system (`@use`), BEM class names, and colour/font tokens from
   `_colors.scss` / `_fonts.scss` (`var(--color-mint)`, …).
 - **PurgeCSS** runs on every build and only sees class names in `layouts/`,
-  `assets/scripts/`, and `class="…"` / `extraClass="…"` in content and data. A class
-  that only exists in a JS string must go in the `safelist` in `postcss.config.js`.
+  `assets/scripts/`, and `class="…"` / `extraClass="…"` in content and data. Write full
+  class names in templates — `card-grid--{{ .cols }}` is invisible to it and the rule
+  gets purged (see `partials/card-grid.html` for the pattern).
+- **Themes**: light and dark, following `prefers-color-scheme`; the footer toggle stores
+  an override in `localStorage` and sets `data-theme` on `<html>`
+  (`partials/base/theme-init.html` applies it before first paint — inline, keep it ES5).
+  Components use only the semantic tokens in `_colors.scss` (`--bg`, `--fg`, `--accent`, …),
+  never raw brand colours, so both themes keep working.
+- **YouTube**: use `{{</* youtube-lite id="…" title="…" poster="/media/uploads/…" */>}}`,
+  which loads nothing from YouTube until play is pressed (the cookies page says so).
+- **Template lookup** (Hugo ≥ 0.146): the artist page template must live at
+  `layouts/artists/term.html`; in `_default/` it loses to `_default/list.html`.
 - `postcss-cli` looks unused but is required: Hugo's `postCSS` pipe shells out to it.
 - **Fonts** (Open Sans, Roboto Slab) are self-hosted variable WOFF2 files in
   `static/fonts/` (latin + latin-ext). Don't reintroduce Google Fonts (GDPR).

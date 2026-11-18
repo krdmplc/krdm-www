@@ -7,6 +7,7 @@ startDate: 2019-10-19T21:00:00+02:00
 endDate: 2019-10-20T02:00:00+02:00
 venue: "Trainstation Subart, Kranj"
 price: "6 €"
+series: distorzn
 ---
 
 After a successful first season of Distoržn, the second one is here – and it's even better! In October, as part of the Potujoča železarna (Travelling Ironworks) project, we're bringing together three towns: Kranj, Škofja Loka and Velenje. A brutal thrash wind will blow in "from Loka" in the form of Moshead, Velenje will bring the smell of coal with trve kvlt black metallers Kholn, and after a long, long time Obduction, the oldest still active band from Kranj, return to their home stage.

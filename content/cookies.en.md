@@ -10,7 +10,11 @@ The krdm.si website **does not use cookies** for analytics, tracking or advertis
 
 ## Embedded videos
 
-Some pages embed videos from YouTube. They load in privacy-enhanced mode (youtube-nocookie.com). When you play a video, YouTube may store data in your browser in line with [Google's privacy policy](https://policies.google.com/privacy).
+Some pages embed videos from YouTube. A video only loads once you press play, in privacy-enhanced mode (youtube-nocookie.com). When you play a video, YouTube may store data in your browser in line with [Google's privacy policy](https://policies.google.com/privacy).
+
+## Colour theme
+
+If you pick the light or dark theme in the page footer, your browser remembers the choice in local storage (localStorage). It is not a cookie, is never sent to the server, and you can clear it at any time by choosing "Automatic".
 
 ## Hosting
 

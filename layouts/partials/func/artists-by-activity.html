@@ -1,0 +1,22 @@
+{{- /* Active artists for the home page: `featured: true` first, then by their
+  most recent release or event, newest first. Hiatus/inactive artists are left
+  out (they are listed in the archive on the artists page).
+  Input: artist term pages. Returns: slice of pages. */ -}}
+{{- $featured := slice -}}
+{{- $rest := slice -}}
+{{- range . -}}
+  {{- if eq (.Params.status | default "active") "active" -}}
+    {{- $latest := 0 -}}
+    {{- range .Pages -}}
+      {{- $d := .Date -}}
+      {{- with .Params.startDate }}{{ $d = time . }}{{ end -}}
+      {{- if gt $d.Unix $latest }}{{ $latest = $d.Unix }}{{ end -}}
+    {{- end -}}
+    {{- $item := dict "page" . "latest" $latest -}}
+    {{- if .Params.featured }}{{ $featured = $featured | append $item }}{{ else }}{{ $rest = $rest | append $item }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+{{- $out := slice -}}
+{{- range sort $featured "latest" "desc" }}{{ $out = $out | append .page }}{{ end -}}
+{{- range sort $rest "latest" "desc" }}{{ $out = $out | append .page }}{{ end -}}
+{{- return $out -}}

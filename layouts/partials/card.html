@@ -1,19 +1,36 @@
-{{- /* Params: page, level (heading level, default 3) */ -}}
+{{- /* A linked tile. Shape and details follow the content type:
+  releases and artists are square, events use their (wide) poster.
+  Params: page, level (heading level, default 3), sizes (img sizes attr) */ -}}
 {{- $p := .page -}}
 {{- $level := .level | default 3 -}}
+{{- $isArtist := eq $p.Kind "term" -}}
+{{- $isEvent := eq $p.Section "events" -}}
+{{- /* Full class names (not built from parts) so PurgeCSS can see them. */ -}}
+{{- $variant := cond $isEvent "card--wide" "card--square" -}}
+{{- $status := $p.Params.status | default "active" -}}
 
-<a class="card" href="{{ $p.RelPermalink }}">
-  <div class="card__image">
+<a class="card {{ $variant }}" href="{{ $p.RelPermalink }}">
+  <div class="card__media">
+    {{- if ne $status "active" }}<span class="card__badge badge">{{ T (printf "status-%s" $status) }}</span>{{ end }}
     {{- partial "image" (dict
       "src" ($p.Params.thumbnail | default site.Params.image)
       "alt" ""
-      "widths" (slice 400 800)
-      "sizes" "(min-width: 768px) 50vw, 100vw"
+      "widths" (slice 360 720)
+      "sizes" (.sizes | default "(min-width: 1170px) 25vw, (min-width: 768px) 33vw, 50vw")
     ) -}}
   </div>
 
   <div class="card__text">
     <h{{ $level }} class="card__title">{{ $p.LinkTitle }}</h{{ $level }}>
-    {{ partial "meta" (dict "page" $p "item" "card__meta") }}
+    {{- if $isEvent }}
+      {{- with $p.Params.startDate }}
+        <p class="card__meta no-margin"><time datetime="{{ time.Format "2006-01-02" . }}">{{ time.Format ":date_medium" . }}</time>{{ with $p.Params.venue }} · {{ index (split . ",") 0 }}{{ end }}</p>
+      {{- end }}
+    {{- else if not $isArtist }}
+      <p class="card__meta no-margin">
+        {{- range $i, $a := $p.GetTerms "artists" }}{{ if $i }}, {{ end }}{{ $a.LinkTitle }}{{ end -}}
+        {{- with $p.Params.releaseDate }}{{ if $p.GetTerms "artists" }} · {{ end }}{{ time.Format "2006" . }}{{ end -}}
+      </p>
+    {{- end }}
   </div>
 </a>

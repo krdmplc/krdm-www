@@ -5,6 +5,7 @@ startDate: 2026-04-11T20:00:00+02:00
 venue: "Trainstation Subart, Kranj"
 price: "12 €"
 thumbnail: /media/uploads/distorzn-2026-04-11.jpg
+series: distorzn
 ---
 
 KRDM presents a Black Metal DISTORŽN!

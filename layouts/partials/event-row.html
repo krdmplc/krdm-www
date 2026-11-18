@@ -1,0 +1,24 @@
+{{- /* One compact event row (date badge, title, details, poster).
+  Params: page, level (heading level, default 3) */ -}}
+{{- $p := .page -}}
+{{- $level := .level | default 3 -}}
+{{- $d := time $p.Params.startDate -}}
+<li data-event-series="{{ $p.Params.series | default "other" }}">
+  <a class="event-row" href="{{ $p.RelPermalink }}">
+    <time class="event-row__date" datetime="{{ $d.Format "2006-01-02" }}">
+      <span class="event-row__day">{{ $d.Day }}</span>
+      <span class="event-row__month">{{ time.Format "Jan" $d }}</span>
+      <span class="event-row__year">{{ $d.Year }}</span>
+    </time>
+    <div>
+      <h{{ $level }} class="event-row__title">{{ $p.LinkTitle }}</h{{ $level }}>
+      <p class="event-row__meta">
+        {{- with $p.Params.venue }}{{ . }}{{ end }}
+        {{- with $p.Params.price }} · {{ . }}{{ end -}}
+      </p>
+    </div>
+    <div class="event-row__thumb">
+      {{- partial "image" (dict "src" ($p.Params.thumbnail | default site.Params.image) "alt" "" "widths" (slice 320) "sizes" "160px") -}}
+    </div>
+  </a>
+</li>

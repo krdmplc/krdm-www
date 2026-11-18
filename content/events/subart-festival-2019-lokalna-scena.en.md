@@ -5,6 +5,7 @@ startDate: 2019-07-06T19:00:00+02:00
 endDate: 2019-07-07T05:00:00+02:00
 venue: "Trainstation Subart, Kranj"
 price: "8 €"
+series: other
 artists:
   - nature
   - didge

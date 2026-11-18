@@ -2,32 +2,55 @@
   <div class="container">
     {{ partial "breadcrumbs" . }}
 
-    <article class="grid">
-      <div class="col-12 col-lg-10 offset-lg-1">
-        <header class="page-header">
-          <h1>{{ .Title }}</h1>
-          {{ with .Description }}<p class="page-header__lead">{{ . }}</p>{{ end }}
-          <div class="meta-list">
-            {{ partial "meta" (dict "page" . "item" "meta-list__item" "linkArtists" true) }}
+    {{- if eq .Section "releases" }}
+      {{- /* Releases: square cover next to the details. */}}
+      <article class="profile">
+        {{ with .Params.thumbnail }}
+          <div class="profile__media">
+            {{ partial "image" (dict "src" . "alt" $.Title "widths" (slice 600 1000) "sizes" "(min-width: 992px) 40vw, 100vw" "eager" true) }}
           </div>
-          {{ with .Params.thumbnail }}
-            <div class="page-header__image">
-              {{ partial "image" (dict "src" . "alt" $.Title "widths" (slice 720 1440) "sizes" "(min-width: 1170px) 1200px, 100vw" "eager" true) }}
-            </div>
-          {{ end }}
-        </header>
-
-        <div class="content">
-          {{ .Content }}
-        </div>
-
-        {{ with .GetTerms "artists" }}
-          <section aria-labelledby="artists">
-            <h2 id="artists">{{ T "artists" }}</h2>
-            {{ partial "card-grid" (dict "pages" . "level" 3) }}
-          </section>
         {{ end }}
-      </div>
-    </article>
+        <div class="profile__body">
+          <header class="page-header">
+            <h1>{{ .Title }}</h1>
+            {{ with .Description }}<p class="page-header__lead">{{ . }}</p>{{ end }}
+            <div class="meta-list">
+              {{ partial "meta" (dict "page" . "item" "meta-list__item" "linkArtists" true) }}
+            </div>
+          </header>
+          <div class="content">
+            {{ .Content }}
+          </div>
+        </div>
+      </article>
+    {{- else }}
+      <article class="grid">
+        <div class="col-12 col-lg-10 offset-lg-1">
+          <header class="page-header">
+            <h1>{{ .Title }}</h1>
+            {{ with .Description }}<p class="page-header__lead">{{ . }}</p>{{ end }}
+            <div class="meta-list">
+              {{ partial "meta" (dict "page" . "item" "meta-list__item" "linkArtists" true) }}
+            </div>
+            {{ with .Params.thumbnail }}
+              <div class="page-header__image">
+                {{ partial "image" (dict "src" . "alt" $.Title "widths" (slice 720 1440) "sizes" "(min-width: 1170px) 1200px, 100vw" "eager" true) }}
+              </div>
+            {{ end }}
+          </header>
+
+          <div class="content">
+            {{ .Content }}
+          </div>
+        </div>
+      </article>
+    {{- end }}
+
+    {{ with .GetTerms "artists" }}
+      <section aria-labelledby="artists">
+        <div class="section-head"><h2 id="artists">{{ T "artists" }}</h2></div>
+        {{ partial "card-grid" (dict "pages" . "level" 3 "cols" 6 "sizes" "(min-width: 1170px) 16vw, (min-width: 768px) 25vw, 33vw") }}
+      </section>
+    {{ end }}
   </div>
 {{ end }}
