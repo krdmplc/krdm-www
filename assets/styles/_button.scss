@@ -1,14 +1,15 @@
 .button {
   display: inline-block;
-  color: $color-mint;
-  background-color: $color-blue-night;
   padding: 12px 24px;
-  // text-transform: uppercase;
+  border: 0;
+  background-color: var(--color-blue-night);
+  color: var(--color-mint);
   font-weight: 700;
+  cursor: pointer;
 
   &:hover {
     text-decoration: none;
-    background-color: $color-mint;
-    color: $color-blue-night;
+    background-color: var(--color-mint);
+    color: var(--color-blue-night);
   }
 }

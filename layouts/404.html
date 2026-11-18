@@ -1,11 +1,9 @@
-{{ define "main"}}
-  <main>
-    <div class="container text-center">
-      <br>
-      <h1>404</h1>
-      <br>
-      <h2>{{ i18n "404title" }}</h2>
-      <p><b>{{ i18n "404content" | safeHTML }}</b></p>
-    </div>
-  </main>
+{{ define "main" }}
+  <div class="container text-center">
+    <h1>{{ T "not-found-title" }}</h1>
+    <p>
+      {{ T "not-found-message" }}
+      <a href="{{ site.Home.RelPermalink }}">{{ T "back-home" }}</a>
+    </p>
+  </div>
 {{ end }}

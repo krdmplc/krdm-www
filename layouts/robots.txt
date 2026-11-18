@@ -1,0 +1,13 @@
+{{- /* Production: everything is crawlable, including by AI/LLM crawlers, so
+  the site can be cited in AI search answers. Previews: nothing is. */ -}}
+User-agent: *
+{{- if eq (getenv "CONTEXT") "production" }}
+Allow: /
+Disallow: /admin/
+{{- else }}
+Disallow: /
+{{- end }}
+
+Sitemap: {{ "sitemap.xml" | absURL }}
+
+# Plain-text site summary for LLMs: {{ "llms.txt" | absURL }}

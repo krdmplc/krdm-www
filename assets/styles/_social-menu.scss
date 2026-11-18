@@ -1,21 +1,31 @@
+@use "grid/breakpoints";
+
 .social-menu {
-  @include breakpoint('small') {
-    text-align: right;
+  display: flex;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include breakpoints.breakpoint-up("sm") {
+    justify-content: flex-end;
   }
 
   a {
-    display: inline-block;
-    margin-right: 10px;
-    color: $color-white;
-    text-align: center;
-
-    @include breakpoint('small') {
-      margin-right: 0;
-      margin-left: 10px;
-    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: var(--color-white);
 
     &:hover {
-      color: $color-mint;
+      color: var(--color-mint);
     }
+  }
+
+  svg {
+    width: 22px;
+    height: 22px;
   }
 }

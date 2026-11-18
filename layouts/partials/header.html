@@ -1,10 +1,11 @@
 <header class="header">
-  <div class="container">
-    <div class="logo">
-      <a href="{{ .Site.Home.RelPermalink }}">
-        <img src="/media/brand/logo.png" alt="KRDM">
-      </a>
-    </div>
+  <div class="container header__inner">
+    <a class="header__logo" href="{{ site.Home.RelPermalink }}" aria-label="{{ site.Title }} – {{ T "home" }}">
+      {{- with partial "func/image" site.Params.logo }}
+        {{- $logo := .Resize "128x webp" }}
+        <img src="{{ $logo.RelPermalink }}" width="64" height="64" alt="{{ site.Title }}">
+      {{- end }}
+    </a>
 
     {{ partial "lang-menu" . }}
     {{ partial "main-menu" . }}

@@ -1,0 +1,13 @@
+{{- /*
+  Resolves a site path such as "/media/uploads/x.jpg" (as stored by Decap CMS)
+  to a Hugo image resource. Works because hugo.toml mounts static/media/* into
+  assets/ as well. Returns nil for remote URLs or files that don't exist.
+*/ -}}
+
+{{- $res := "" -}}
+{{- with . -}}
+  {{- if not (strings.HasPrefix . "http") -}}
+    {{- $res = resources.Get (strings.TrimPrefix "/" .) -}}
+  {{- end -}}
+{{- end -}}
+{{- return $res -}}

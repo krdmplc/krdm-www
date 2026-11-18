@@ -2,65 +2,51 @@
 
 # krdm.si
 
-Website for Društvo KRDM
+Website of Društvo KRDM — <https://www.krdm.si/>. Slovenian at `/`, English at `/en/`.
 
-## Getting Started
+Built with [Hugo](https://gohugo.io/), hosted on [Netlify](https://www.netlify.com),
+edited with [Decap CMS](https://decapcms.org/) at <https://www.krdm.si/admin/>.
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+Working on the code (with or without an AI agent)? Read [AGENTS.md](AGENTS.md) first.
 
-### Netlify Large Media
+## Getting started
 
-For contributions that don’t have access to repository’s Large Media files, you can use `GIT_LFS_SKIP_SMUDGE=1` with your clone command to ignore LFS settings and download the text pointer files only:
+You need [Hugo extended](https://gohugo.io/installation/) (the version in
+[netlify.toml](netlify.toml)) and Node.js 22.13 or newer.
 
 ```sh
-GIT_LFS_SKIP_SMUDGE=1 git clone YOUR_REPOSITORY_URL
+npm install
+npm run dev
 ```
 
-**Windows users**: PowerShell and the Windows command line (cmd.exe) do not support the above syntax. For Windows users, I recommend running the command above using [Git Bash for Windows](https://git-scm.com/).
+Open <http://localhost:1313/>. To use the CMS locally, run `npx decap-server` in a
+second terminal and open <http://localhost:1313/admin/>.
 
-[Netlify docs about this](https://docs.netlify.com/large-media/repository-collaboration/)
-
-### Installing
-
-You need Hugo installed on your machine: <https://gohugo.io/getting-started/quick-start/>
-
-This repository is set up to be developed with [Visual Studio Code](https://code.visualstudio.com/) editor. Please install reccommended extensions listed in <.vscode/extensions.json>
-
-If this is your first time running the project, run
-
-`npm install`
-
-When you have that, just run
-
-`hugo server` or `npm run dev`
-
-and open your local site on <http://localhost:1313/>
+This repository is set up for [Visual Studio Code](https://code.visualstudio.com/);
+install the recommended extensions from [.vscode/extensions.json](.vscode/extensions.json).
 
 ## Development
 
-We use [BEM](http://getbem.com/) naming convention for CSS class names.
-
-We follow standard Javascript style.
-
-### Linters
-
-There are 3 linters set up: [stylelint](https://stylelint.io/) for CSS, [eslint](https://eslint.org/) for JS and [htmlhint](https://htmlhint.com/) for HTML. If quick fixes are possible, VS Code will fix them on save.
+- CSS class names follow [BEM](https://getbem.com/); JavaScript follows the standard style.
+- `npm run lint` runs ESLint and Stylelint (Netlify runs it before every build). A
+  pre-commit hook (Husky + lint-staged) fixes what it can on staged files.
+- Images uploaded through the CMS go to `static/media/uploads/` and are resized to
+  WebP at build time — upload the original, not a pre-shrunk copy.
 
 ## Deployment
 
-To deploy to production, push to `master` branch
+Pushing to `main` deploys to production. Pull requests get a deploy preview, which is
+hidden from search engines.
 
-### Development URL
+## Dependencies
 
-There is no development URL out of the box. To create this environment, follow these steps:
+**Last updated:** November 2026 — Hugo 0.169.0 and current npm dependencies, following
+[hugo-template](https://github.com/poslovnimediji/hugo-template).
 
-1. create branch `develop`
-2. Go to Netlify dashboard -> this site -> Settings -> Build & deploy -> Deploy contexts -> Edit settings
-3. Under Branch deploys select Let me add individual branches and add `develop`
-4. push some code to `develop` branch and see it on <https://develop--poslo-www.netlify.app>
+`npm audit` reports a high-severity ReDoS advisory in `picomatch` (≤ 4.0.7,
+GHSA-fc5q-39xc-vjpf), reached through ESLint, Stylelint, PurgeCSS and postcss-cli. No
+patched version exists yet; it only runs at lint/build time on the repository's own
+glob patterns. Re-check with `npm audit` on the next update.
 
-## Built With
-
-* [Hugo](https://gohugo.io/)
-* [Netlify CMS](https://www.netlifycms.org/)
-* [Netlify](https://www.netlify.com)
+Update by hand: `npm outdated` / `npm audit`, then `npm run lint` and a build. Bump
+`HUGO_VERSION` in `netlify.toml` only after a local build at that exact version.

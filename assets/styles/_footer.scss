@@ -1,25 +1,35 @@
+@use "grid/breakpoints";
+
 .footer {
-  background-color: $color-blue-night;
-  color: white;
   padding: 24px 0;
+  background-color: var(--color-blue-night);
+  color: var(--color-white);
   font-size: 14px;
 
   a {
-    color: $color-white;
+    color: var(--color-white);
     text-decoration: underline;
 
     &:hover {
-      color: $color-mint;
+      color: var(--color-mint);
     }
   }
 
-  .container {
+  &__inner {
     display: grid;
-    grid-gap: 16px;
+    gap: 16px;
 
-    @include breakpoint('small') {
-      display: grid;
+    @include breakpoints.breakpoint-up("sm") {
       grid-template-columns: 2fr 1fr 1fr;
     }
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  address {
+    font-style: normal;
   }
 }

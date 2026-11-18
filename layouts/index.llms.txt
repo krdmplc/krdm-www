@@ -1,0 +1,55 @@
+{{- /* llms.txt (https://llmstxt.org): a plain Markdown map of the site for LLMs
+  and AI search tools. One per language; each links to the other. */ -}}
+# Društvo KRDM ({{ site.Title }})
+
+> {{ site.Params.description }}
+
+{{ T "llmsIntro" }}
+
+- {{ T "website" }}: {{ site.Home.Permalink }}
+- {{ T "email" }}: {{ site.Params.email }}
+- {{ T "address" }}: {{ with site.Params.address }}{{ .streetAddress }}, {{ .postalCode }} {{ .addressLocality }}, Slovenia{{ end }}
+{{- range site.Params.social }}
+- {{ .label }}: {{ .url }}
+{{- end }}
+
+{{- range site.Menus.main }}
+{{- with .Page }}
+{{- if not (in (slice "events" "releases" "artists") .Section) }}
+
+## {{ .Title }}
+
+- [{{ .Title }}]({{ .Permalink }}): {{ partial "func/description" . }}
+{{- end }}
+{{- end }}
+{{- end }}
+
+{{- with site.GetPage "/events" }}
+
+## {{ .Title }}
+{{ range sort .Pages "Params.startdate" "desc" }}
+- [{{ .Title }}]({{ .Permalink }}): {{ time.Format "2006-01-02" .Params.startDate }}{{ with .Params.venue }}, {{ . }}{{ end }}{{ with .GetTerms "artists" }}; {{ T "artists" | lower }}: {{ range $i, $a := . }}{{ if $i }}, {{ end }}{{ $a.Title }}{{ end }}{{ end }}
+{{- end }}
+{{- end }}
+
+{{- with site.GetPage "/releases" }}
+
+## {{ .Title }}
+{{ range .Pages.ByDate.Reverse }}
+- [{{ .Title }}]({{ .Permalink }}): {{ with .GetTerms "artists" }}{{ range $i, $a := . }}{{ if $i }}, {{ end }}{{ $a.Title }}{{ end }}, {{ end }}{{ time.Format "2006-01-02" (.Params.releaseDate | default .Date) }}
+{{- end }}
+{{- end }}
+
+{{- with site.GetPage "/artists" }}
+
+## {{ .Title }}
+{{ range .Pages }}
+- [{{ .Title }}]({{ .Permalink }}): {{ partial "func/description" . }}
+{{- end }}
+{{- end }}
+
+## Optional
+{{ range .Translations }}
+- [{{ .Language.Label }}]({{ .Permalink }}llms.txt): {{ T "llmsOtherLanguage" }}
+{{- end }}
+- [Sitemap]({{ "sitemap.xml" | absURL }})

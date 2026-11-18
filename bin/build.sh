@@ -3,11 +3,13 @@
 if [[ "$CONTEXT" = "production" ]]
 then
   echo ----- PRODUCTION
-  hugo --gc -b $URL
+  sed -i "s|__BRANCH__|${HEAD}|g" static/admin/config.yml
+  sh ./bin/with-dart-sass.sh hugo --gc --minify -b "$URL"
   status=$?
 else
   echo +++++ PREVIEW
-  hugo --gc -b $DEPLOY_PRIME_URL
+  sed -i "s|__BRANCH__|${HEAD}|g" static/admin/config.yml
+  sh ./bin/with-dart-sass.sh hugo --gc -b "$DEPLOY_PRIME_URL"
   status=$?
 fi
 echo -------------------

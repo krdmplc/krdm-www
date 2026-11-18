@@ -1,19 +1,21 @@
-<div class="main-menu">
-  {{ $currentPage := . }}
+{{ $current := . }}
 
-  <div class="main-menu__button">
-    <div class="menu-icon">
-      <span class="menu-icon__bar"></span>
-      <span class="menu-icon__bar"></span>
-      <span class="menu-icon__bar"></span>
-    </div>
-  </div>
+<nav class="main-menu" aria-label="{{ T "mainMenu" }}">
+  <button type="button" class="main-menu__toggle" aria-expanded="false" aria-controls="main-menu-items">
+    <span class="main-menu__icon-open">{{ partial "icon" "menu" }}</span>
+    <span class="main-menu__icon-close">{{ partial "icon" "x" }}</span>
+    <span class="visually-hidden">{{ T "menu" }}</span>
+  </button>
 
-  <ul class="main-menu__items">
-    {{ range .Site.Menus.main }}
-      <li {{if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} class="active"{{end}}>
-        <a href="{{ .URL }}">{{ .Name }}</a>
+  <ul class="main-menu__items" id="main-menu-items">
+    {{- range site.Menus.main }}
+      <li>
+        <a href="{{ .URL }}"
+          {{- if $current.IsMenuCurrent "main" . }} aria-current="page"
+          {{- else if $current.HasMenuCurrent "main" . }} aria-current="true"{{ end }}>
+          {{- .Name -}}
+        </a>
       </li>
-    {{ end }}
+    {{- end }}
   </ul>
-</div>
+</nav>

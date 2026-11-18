@@ -1,0 +1,9 @@
+{{- /* Params: pages, level */ -}}
+{{- $level := .level -}}
+<ul class="grid card-grid" role="list">
+  {{- range .pages }}
+    <li class="col-12 col-sm-6">
+      {{ partial "card" (dict "page" . "level" $level) }}
+    </li>
+  {{- end }}
+</ul>

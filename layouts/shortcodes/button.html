@@ -4,6 +4,7 @@
 
 <a
   {{ with $href }} href="{{ . }}" {{ end }}
+  {{ with $target }} target="{{ . }}" {{ end }}
   class="button {{ with .Get "extraClass" }} {{ . }}{{ end }}">
   {{ .Inner }}
 </a>

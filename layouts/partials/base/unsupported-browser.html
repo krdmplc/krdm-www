@@ -1,0 +1,31 @@
+{{- /*
+  Warns visitors whose browser is too old to render this site correctly.
+
+  It feature-tests CSS Grid, which is what the layout actually depends on
+  (assets/styles/grid/), rather than a proxy like ES6. Every engine that shipped
+  Grid had already shipped custom properties, so one test covers both.
+
+  The script must stay ES5 — it runs on the browsers it is warning about — and it
+  warns rather than hiding the page: stale-browser users should still see content.
+*/ -}}
+
+<div id="unsupported-browser" class="unsupported-browser" role="alert" hidden>
+  <p class="unsupported-browser__message">{{ T "unsupported-browser" }}</p>
+  <button type="button" class="unsupported-browser__dismiss" aria-label="{{ T "dismiss" }}">&times;</button>
+</div>
+
+<script>
+  (function () {
+    var supported = window.CSS && window.CSS.supports && window.CSS.supports('display', 'grid')
+    if (supported) { return }
+
+    var banner = document.getElementById('unsupported-browser')
+    if (!banner) { return }
+    banner.hidden = false
+
+    var dismiss = banner.querySelector('.unsupported-browser__dismiss')
+    if (dismiss) {
+      dismiss.onclick = function () { banner.hidden = true }
+    }
+  })()
+</script>

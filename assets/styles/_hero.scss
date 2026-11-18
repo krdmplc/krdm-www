@@ -1,33 +1,46 @@
-.hero {
-  width: 100%;
-  min-height: 250px;
-  overflow: hidden;
-  margin-bottom: 24px;
-  background-color: $color-black;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  color: $color-white;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  padding: 24px;
-  flex-direction: column;
+@use "grid/breakpoints";
 
-  @include breakpoint('small') {
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 250px;
+  margin-bottom: 24px;
+  padding: 24px;
+  overflow: hidden;
+  background-color: var(--color-black);
+  color: var(--color-mint);
+  text-align: center;
+
+  @include breakpoints.breakpoint-up("sm") {
     min-height: 500px;
   }
 
-  h1,
-  h2 {
-    color: $color-mint;
-  }
-
-  img {
+  &__image {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
+    filter: brightness(0.85);
+  }
+
+  &__title,
+  &__subtitle {
+    position: relative;
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.6);
+  }
+
+  &__title {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+  }
+
+  &__subtitle {
+    margin-bottom: 0;
+    font-family: var(--font-heading);
+    font-size: clamp(1.25rem, 3vw, 2rem);
+    font-weight: 700;
   }
 }

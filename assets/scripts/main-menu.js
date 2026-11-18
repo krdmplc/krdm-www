@@ -1,33 +1,33 @@
+// Toggles the off-canvas main menu. The toggle is a real <button> with
+// aria-expanded/aria-controls, so it works with keyboard and screen readers.
+
 function mainMenu () {
-  const toggleButton = document.querySelector('.main-menu__button')
-  const itemsEl = document.querySelector('.main-menu__items')
-  const menuIcon = document.querySelector('.menu-icon')
+  const toggle = document.querySelector('.main-menu__toggle')
+  const items = toggle && document.getElementById(toggle.getAttribute('aria-controls'))
 
-  const openMenu = () => {
-    itemsEl.classList.add('is-open')
-    toggleButton.dataset.expanded = 'true'
-    menuIcon.classList.add('is-open')
+  if (!toggle || !items) {
+    return
   }
 
-  const closeMenu = () => {
-    itemsEl.classList.remove('is-open')
-    toggleButton.dataset.expanded = 'false'
-    menuIcon.classList.remove('is-open')
+  const setOpen = (open) => {
+    toggle.setAttribute('aria-expanded', String(open))
+    items.classList.toggle('is-open', open)
   }
 
-  toggleButton.addEventListener('click', () => {
-    if (toggleButton.dataset.expanded === 'true') {
-      closeMenu()
-    } else {
-      openMenu()
+  const isOpen = () => toggle.getAttribute('aria-expanded') === 'true'
+
+  toggle.addEventListener('click', () => setOpen(!isOpen()))
+
+  document.addEventListener('click', (event) => {
+    if (isOpen() && !items.contains(event.target) && !toggle.contains(event.target)) {
+      setOpen(false)
     }
   })
 
-  document.addEventListener('click', (event) => {
-    if (!itemsEl.contains(event.target) &&
-      !toggleButton.contains(event.target) &&
-      itemsEl.classList.contains('is-open')) {
-      closeMenu()
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && isOpen()) {
+      setOpen(false)
+      toggle.focus()
     }
   })
 }

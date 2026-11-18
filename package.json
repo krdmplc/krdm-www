@@ -1,41 +1,47 @@
 {
   "name": "krdm-www",
-  "version": "1.1.0",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
   "description": "Website for Društvo KRDM",
-  "main": "index.js",
   "scripts": {
-    "dev": "hugo server",
-    "build": "hugo",
-    "lint": "eslint . && npx stylelint 'assets/styles/*.scss'",
-    "htmlhint": "npx htmlhint 'public/*.html' 'public/**/*.html'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "sh ./bin/with-dart-sass.sh hugo server",
+    "build": "sh ./bin/with-dart-sass.sh hugo",
+    "lint": "eslint . && stylelint \"**/*.scss\"",
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/poslovnimediji/krdm-www.git"
+    "url": "git+https://github.com/martinjagodic/krdm-www.git"
   },
-  "author": "",
+  "author": "Društvo KRDM",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/poslovnimediji/krdm-www/issues"
+    "url": "https://github.com/martinjagodic/krdm-www/issues"
   },
-  "homepage": "https://github.com/poslovnimediji/krdm-www#readme",
+  "homepage": "https://www.krdm.si/",
   "devDependencies": {
-    "@namics/stylelint-bem": "^6.3.1",
-    "eslint": "^7.15.0",
-    "eslint-config-standard": "^16.0.2",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "stylelint": "^13.8.0",
-    "stylelint-config-standard": "^20.0.0",
-    "stylelint-scss": "^3.18.0"
+    "@eslint/js": "^10.0.1",
+    "@fullhuman/postcss-purgecss": "^8.0.0",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "autoprefixer": "^10.6.2",
+    "eslint": "^10.14.0",
+    "globals": "^17.14.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.6.0",
+    "modern-normalize": "^3.0.1",
+    "postcss": "^8.5.32",
+    "postcss-cli": "^12.0.0",
+    "sass-embedded": "^1.107.1",
+    "stylelint": "^17.16.0",
+    "stylelint-config-standard-scss": "^17.0.0"
   },
-  "dependencies": {
-    "@fullhuman/postcss-purgecss": "^3.1.3",
-    "cssnano": "^4.1.10",
-    "lozad": "^1.16.0",
-    "postcss-cli": "^8.3.1",
-    "purgecss": "^3.1.3"
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix"
+    ],
+    "*.{scss,css}": [
+      "stylelint --fix"
+    ]
   }
 }

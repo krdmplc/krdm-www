@@ -1,60 +1,10 @@
+{{- /* List of all artists (taxonomy page). */ -}}
 {{ define "main" }}
-<main>
   <div class="container">
     {{ partial "breadcrumbs" . }}
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}<div class="content">{{ . }}</div>{{ end }}
 
-    <div class="grid">
-      <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
-        <h1>{{ .Title }}</h1>
-
-        {{ with .Params.thumbnail }}
-          <div><img src="{{ . }}?nf_resize=fit&w=720" alt=""></div>
-        {{ end }}
-
-        {{ .Content }}
-      </div>
-    </div>
-
-    {{ $releases := slice }}
-    {{ $events := slice }}
-    {{ range .Pages }}
-      {{ if in .Dir "releases" }}
-        {{ $releases = $releases | append . }}
-      {{ end }}
-      {{ if in .Dir "events" }}
-        {{ $events = $events | append . }}
-      {{ end }}
-    {{ end }}
-
-    {{ if gt (len $releases) 0 }}
-      <section>
-        <h2>{{ T "releases" }}</h2>
-        <div class="grid">
-          {{ range $releases }}
-            <div class="col-12 col-sm-6">
-              {{ if in .Dir "releases" }}
-                {{ partial "card" . }}
-              {{ end }}
-            </div>
-          {{ end }}
-        </div>
-      </section>
-    {{ end }}
-
-    {{ if gt (len $events) 0 }}
-      <section>
-        <h2>{{ T "events" }}</h2>
-        <div class="grid">
-          {{ range $events }}
-            <div class="col-12 col-sm-6">
-              {{ if in .Dir "events" }}
-                {{ partial "card" . }}
-              {{ end }}
-            </div>
-          {{ end }}
-        </div>
-      </section>
-    {{ end }}
+    {{ partial "card-grid" (dict "pages" .Pages "level" 2) }}
   </div>
-</main>
 {{ end }}

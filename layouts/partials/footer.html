@@ -1,16 +1,18 @@
-{{ $d := index .Site.Data.footer }}
-{{ $d = index $d .Site.Language.Lang }}
+{{ $d := index hugo.Data.footer site.Language.Lang }}
 
 <footer class="footer">
-  <div class="container">
+  <div class="container footer__inner">
     <div>
-      <h4 class="no-margin">{{ $d.title }}</h4>
-      {{ $d.address }}<br>
-      {{ $d.vat }}
+      <p class="footer__title"><strong>{{ $d.title }}</strong></p>
+      <address>
+        {{ $d.address }}<br>
+        {{ $d.vat }}
+      </address>
     </div>
     <div>
-      <a href="mailto:{{ $d.email }}">{{ $d.email }}</a> <br>
-      {{ $d.cookiesLink | safeHTML }}<br>
+      <a href="mailto:{{ $d.email }}">{{ $d.email }}</a><br>
+      {{ with site.GetPage "/cookies" }}<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a><br>{{ end }}
+      © 2016–{{ now.Year }} {{ $d.title }}
     </div>
     <div>
       {{ partial "social-menu" . }}

@@ -1,18 +1,9 @@
 {{ define "main" }}
-  <main>
-    <div class="container">
-      {{ partial "breadcrumbs" . }}
-      <h1>{{ .Title }}</h1>
-      {{ .Content }}
+  <div class="container">
+    {{ partial "breadcrumbs" . }}
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}<div class="content">{{ . }}</div>{{ end }}
 
-      <div class="grid">
-        {{ range sort .Pages "Date" "desc" }}
-          <div class="col-12 col-md-6">
-            {{ partial "card" . }}
-          </div>
-        {{ end }}
-      </div>
-      <br><br>
-    </div>
-  </main>
+    {{ partial "card-grid" (dict "pages" .Pages.ByDate.Reverse "level" 2) }}
+  </div>
 {{ end }}

@@ -1,13 +1,13 @@
-{{ $mainMenu := resources.Get "/scripts/main-menu.js" }}
-{{ $cookies := resources.Get "/scripts/cookies.js" }}
-{{ $links := resources.Get "/scripts/external-links.js" }}
-{{ $lazyload := resources.Get "/scripts/lazyload.js" }}
+{{ $bundleItems := slice
+  (resources.Get "scripts/main-menu.js")
+  (resources.Get "scripts/external-links.js")
+}}
 
-{{ $bundleItems := slice $mainMenu $cookies $links $lazyload }}
+{{ $options := dict "sourcemap" (cond hugo.IsProduction "none" "inline") }}
+{{ $bundle := $bundleItems | resources.Concat "scripts/bundle.js" | js.Build $options }}
 
-{{ $bundleJs := $bundleItems | resources.Concat "scripts/bundle.js" | js.Build }}
-<script defer src="{{ $bundleJs.Permalink }}"></script>
+{{ if hugo.IsProduction }}
+  {{- $bundle = $bundle | minify | fingerprint -}}
+{{ end }}
 
-<script>
-  feather.replace()
-</script>
+<script defer src="{{ $bundle.RelPermalink }}"></script>

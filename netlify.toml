@@ -3,7 +3,16 @@
   command = "npm run lint && chmod +x ./bin/build.sh && ./bin/build.sh"
 
 [build.environment]
-  HUGO_VERSION = "0.79.0"
+  HUGO_VERSION = "0.169.0"
   HUGO_ENV = "production"
   HUGO_ENABLEGITINFO = "true"
-  GIT_LFS_ENABLED = "true"
+
+[dev]
+  framework = "hugo"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"

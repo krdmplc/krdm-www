@@ -1,38 +1,31 @@
-[cookiesText]
-other = "This website uses <a href=\"/cookies\">cookies</a> for optimal performance."
+tagline = "Promoting independent music and art in Kranj, Slovenia"
 
-[understand]
-other = "I understand"
+skip-to-content = "Skip to main content"
+dismiss = "Dismiss"
+unsupported-browser = "Your browser is out of date, so this site may not look or work as intended. Please update to a newer version."
+not-found-title = "Oops! Page not found."
+not-found-message = "We couldn't find the page you were looking for."
+back-home = "Go back home"
 
-[upcoming]
-other = "Upcoming"
+home = "Home"
+menu = "Menu"
+mainMenu = "Main menu"
+language = "Language"
+breadcrumbs = "Breadcrumbs"
+email = "Email"
+website = "Website"
+address = "Address"
 
-[past]
-other = "Past"
+upcoming = "Upcoming"
+past = "Past"
+noUpcoming = "No upcoming events at the moment. Follow us on social media for news."
+date = "Date"
+venue = "Venue"
+releaseDate = "Release date"
+releases = "Releases"
+events = "Events"
+artist = "Artist"
+artists = "Artists"
 
-[404title]
-other = "Oops!"
-
-[404content]
-other = "This page does not exist. Go <a href='/en/'>home</a>?"
-
-[releaseDate]
-other = "Release date"
-
-[releases]
-other = "Releases"
-
-[events]
-other = "Events"
-
-[noUpcoming]
-other = "No upoming events to show :("
-
-[home]
-other = "Home"
-
-[artist]
-other = "Artist"
-
-[artists]
-other = "Artists"
+llmsIntro = "Društvo KRDM is a non-profit association from Kranj, Slovenia, founded in November 2016. It promotes independent music and art in the Gorenjska region: it organises the Distoržn concert series (metal), Plesen club nights (techno) and Plc Fest, publishes music by local artists, and runs the Plc rehearsal space in Planina, Kranj."
+llmsOtherLanguage = "the same content in Slovenian"

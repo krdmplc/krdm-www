@@ -1,0 +1,51 @@
+{{- /*
+  Returns a plain-text meta description (~160 chars) for a page.
+
+  Order: front matter `description` → generated from structured data (events,
+  releases) plus the opening of the body → site description. Every page gets a
+  unique, meaningful description, which search engines and LLM-based search use
+  as the snippet.
+*/ -}}
+
+{{- $desc := "" -}}
+
+{{- if .Params.ogTags.description -}}
+  {{- $desc = .Params.ogTags.description -}}
+{{- else if .Description -}}
+  {{- $desc = .Description -}}
+{{- else if .IsHome -}}
+  {{- $desc = site.Params.description -}}
+{{- else -}}
+  {{- $parts := slice -}}
+
+  {{- with .Params.startDate -}}
+    {{- $parts = $parts | append (time.Format ":date_long" .) -}}
+  {{- end -}}
+  {{- with .Params.venue -}}
+    {{- $parts = $parts | append . -}}
+  {{- end -}}
+  {{- with .Params.releaseDate -}}
+    {{- $parts = $parts | append (printf "%s %s" (T "releaseDate") (time.Format ":date_long" .)) -}}
+  {{- end -}}
+  {{- $artists := .GetTerms "artists" -}}
+  {{- if and $artists (ne .Kind "term") -}}
+    {{- $names := slice -}}
+    {{- range $artists }}{{ $names = $names | append .LinkTitle }}{{ end -}}
+    {{- $parts = $parts | append (delimit $names ", ") -}}
+  {{- end -}}
+
+  {{- $summary := .Summary | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace -}}
+  {{- with $parts -}}
+    {{- $desc = printf "%s: %s." $.Title (delimit . " · ") -}}
+    {{- with $summary }}{{ $desc = printf "%s %s" $desc . }}{{ end -}}
+  {{- else -}}
+    {{- $desc = $summary -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $desc = $desc | plainify | htmlUnescape | replaceRE `\s+` " " | strings.TrimSpace -}}
+{{- if not $desc -}}
+  {{- $desc = site.Params.description -}}
+{{- end -}}
+
+{{- return ($desc | truncate 160) -}}

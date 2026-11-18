@@ -1,114 +1,96 @@
-$header-height-small: 20px;
-$header-height-large: 30px;
+@use "grid/breakpoints";
 
 .main-menu {
-  display: flex;
-  align-items: center;
-
-  &__button {
-    background: $color-white;
-    padding: 10px;
+  &__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
     margin-right: -10px;
-    transition: all 0.2s ease;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--color-black);
     cursor: pointer;
+
+    svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .main-menu__icon-close {
+      display: none;
+    }
+
+    &[aria-expanded="true"] {
+      .main-menu__icon-open {
+        display: none;
+      }
+
+      .main-menu__icon-close {
+        display: block;
+      }
+    }
   }
 
   &__items {
     position: absolute;
-    background: $color-black;
-    top: 73px;
-    right: -100%;
-    width: 100vw;
-    height: auto;
-    overflow-y: scroll;
-    list-style: none;
+    top: 100%;
+    right: 0;
+    z-index: 1000;
+    width: 100%;
+    max-height: calc(100vh - 100%);
     margin: 0;
     padding: 0;
-    transition: all 0.2s ease;
-    scrollbar-width: none;
-    z-index: 1000;
+    overflow-y: auto;
+    list-style: none;
+    background: var(--color-black);
+    transform: translateX(100%);
+    visibility: hidden;
+    transition: transform 0.2s ease, visibility 0.2s;
 
-    &::-webkit-scrollbar {
-      display: none;
-    }
-
-    @include breakpoint('small') {
+    @include breakpoints.breakpoint-up("sm") {
       width: 335px;
-      left: auto;
-      top: 89px;
     }
 
     &.is-open {
-      right: 0;
-    }
-
-    a {
-      padding: 16px 24px;
-      display: block;
-      color: $color-white;
-
-      @include breakpoint('small') {
-        padding: 24px;
-      }
+      transform: none;
+      visibility: visible;
     }
 
     li {
-      font-size: 12px;
+      font-size: 14px;
       line-height: 24px;
-      border-bottom: 1px solid $color-white;
-      transition: background-color 0.1s ease, color 0.1s ease;
-
-      @include breakpoint('small') {
-        font-size: 14px;
-      }
+      border-bottom: 1px solid var(--color-white);
 
       &:last-child {
         border-bottom: none;
       }
-
-      &:hover,
-      &.active {
-        background: $color-white;
-
-        a {
-          color: $color-black;
-        }
-      }
     }
 
-    svg {
-      fill: $color-white;
-      max-height: 16px;
-      max-width: 16px;
+    a {
+      display: block;
+      padding: 16px 24px;
+      color: var(--color-white);
+      transition: background-color 0.1s ease, color 0.1s ease;
+
+      @include breakpoints.breakpoint-up("sm") {
+        padding: 24px;
+      }
+
+      &:hover,
+      &[aria-current] {
+        text-decoration: none;
+        background: var(--color-white);
+        color: var(--color-black);
+      }
     }
   }
 }
 
-.menu-icon {
-  &__bar {
-    background-color: $color-black;
-    width: 24px;
-    height: 2px;
-    margin-bottom: 6px;
-    display: block;
-    transition: transform 250ms ease, background 250ms ease;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-
-    .is-open & {
-      &:first-child {
-        transform: translateY(8px) rotate(225deg);
-      }
-
-      &:nth-child(2) {
-        transform: scale(0);
-      }
-
-      &:last-child {
-        transform: translateY(-8px) rotate(315deg);
-      }
-    }
+@media (prefers-reduced-motion: reduce) {
+  .main-menu__items {
+    transition: none;
   }
 }

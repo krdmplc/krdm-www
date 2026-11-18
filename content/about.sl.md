@@ -1,25 +1,35 @@
 ---
+pageType: page
 title: "O nas"
+description: "Društvo KRDM je nepridobitno društvo iz Kranja, ustanovljeno leta 2016, ki spodbuja neodvisno glasbo in umetnost na Gorenjskem."
 date: 2019-10-22T09:37:19+02:00
-draft: false
 slug: "o-nas"
 menu:
   main:
     weight: 40
 ---
 
-Društvo za promocijo neodvisne glasbe.
+Društvo KRDM je nepridobitno društvo za promocijo neodvisne glasbe in umetnosti iz Kranja.
 
-Društvo KRDM <br>
-Ulica Draga Brezarja 26 <br>
-4000 Kranj <br>
-Davčna: 21044716
+## Kaj počnemo
 
+- Organiziramo koncertni niz **Distoržn** (metal) in plesne večere **Plesen** (techno), večinoma v Trainstation Subart v Kranju.
+- Pripravljamo **Plc Fest**, na katerem se predstavijo ustvarjalci iz našega vadbenega prostora.
+- Izdajamo glasbo lokalnih [ustvarjalcev](/ustvarjalci/).
+- Skrbimo za **Plc**, vadbeni prostor za bende in ustvarjalce na Planini v Kranju.
 
-Ustanovljeno novembra 2016 pri UE Kranj
+## Podatki o društvu
 
-Predsednik: Martin Jagodic <br>
-Tajnik: Žiga Čavić <br>
-Blagajnik: Urban Valjavec <br>
+Društvo KRDM\
+Ulica Draga Brezarja 26\
+4000 Kranj\
+Davčna številka: 21044716\
+E-pošta: <info@krdm.si>
 
-<a href="https://docs.google.com/document/d/1gMxNl-qa2aYQjJMzMgzSxH9wZtg4j0g0ysKA_pz9cZ4/edit?usp=sharing">Statut društva KRDM</a>
+Ustanovljeno novembra 2016 pri UE Kranj.
+
+Predsednik: Martin Jagodic\
+Tajnik: Žiga Čavić\
+Blagajnik: Urban Valjavec
+
+[Statut društva KRDM](https://docs.google.com/document/d/1gMxNl-qa2aYQjJMzMgzSxH9wZtg4j0g0ysKA_pz9cZ4/edit?usp=sharing)

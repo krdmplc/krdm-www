@@ -1,0 +1,113 @@
+baseURL = "https://www.krdm.si/"
+title = "KRDM"
+disableFastRender = true
+enableRobotsTXT = true
+defaultContentLanguage = "sl"
+disableKinds = ["rss"]
+timeZone = "Europe/Ljubljana"
+
+[taxonomies]
+artist = "artists"
+
+[params]
+# Default share image (og:image) and home hero background.
+image = "/media/uploads/og-image.jpg"
+heroImage = "/media/uploads/plcfest-2018.jpg"
+logo = "/media/brand/logo.png"
+email = "info@krdm.si"
+foundingDate = "2016-11"
+
+[params.address]
+streetAddress = "Ulica Draga Brezarja 26"
+postalCode = "4000"
+addressLocality = "Kranj"
+addressCountry = "SI"
+
+# Used for the footer icons and for schema.org `sameAs` (helps search engines and
+# LLMs tie the site to the organisation's social profiles).
+[[params.social]]
+name = "facebook"
+label = "Facebook"
+url = "https://www.facebook.com/krdmplc/"
+
+[[params.social]]
+name = "instagram"
+label = "Instagram"
+url = "https://www.instagram.com/krdm_plc/"
+
+[[params.social]]
+name = "youtube"
+label = "YouTube"
+url = "https://www.youtube.com/channel/UCA0Z82OySvFtuXN2_GVPS4A"
+
+[params.breakpoints]
+  xs = 580
+  sm = 768
+  md = 992
+  lg = 1170
+  xl = 1520
+
+[languages]
+[languages.sl]
+label = "Slovenščina"
+locale = "sl-SI"
+weight = 1
+title = "KRDM"
+[languages.sl.params]
+description = "Društvo KRDM iz Kranja spodbuja neodvisno glasbo in umetnost na Gorenjskem: koncerti Distoržn in Plesen, Plc Fest, izdaje in prostor za vaje."
+[languages.sl.permalinks.page]
+events = "/dogodki/:contentbasename/"
+releases = "/izdaje/:contentbasename/"
+[languages.sl.permalinks.term]
+artists = "/ustvarjalci/:slug/"
+
+[languages.en]
+label = "English"
+locale = "en"
+weight = 2
+title = "KRDM"
+[languages.en.params]
+description = "Društvo KRDM is a non-profit association from Kranj, Slovenia, promoting independent music and art: Distoržn and Plesen concert series, Plc Fest, releases and a rehearsal space."
+
+# llms.txt (https://llmstxt.org) — a Markdown site map for LLMs and AI search.
+[outputFormats.llms]
+mediaType = "text/plain"
+baseName = "llms"
+isPlainText = true
+notAlternative = true
+
+[outputs]
+home = ["html", "llms"]
+
+[sitemap]
+changeFreq = "monthly"
+
+# Images are uploaded by Decap CMS to static/media/uploads (so their original URLs
+# keep working), and mounted into assets too so templates can resize them.
+[[module.mounts]]
+source = "assets"
+target = "assets"
+
+[[module.mounts]]
+source = "static/media/uploads"
+target = "assets/media/uploads"
+
+[[module.mounts]]
+source = "static/media/brand"
+target = "assets/media/brand"
+
+[[module.mounts]]
+source = "static"
+target = "static"
+
+[markup]
+[markup.goldmark]
+[markup.goldmark.renderer]
+unsafe = true
+
+[security.funcs]
+getenv = ["^HUGO_", "CONTEXT"]
+
+# Embed YouTube videos from youtube-nocookie.com (see the cookies page).
+[privacy.youtube]
+privacyEnhanced = true

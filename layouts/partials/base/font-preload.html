@@ -1,0 +1,4 @@
+{{- /* Preload the latin subsets of both fonts; the @font-face rules live in
+  assets/styles/_fonts.scss. latin-ext is left to load on demand. */ -}}
+<link rel="preload" href="{{ "fonts/open-sans-latin-wght-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ "fonts/roboto-slab-latin-wght-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>

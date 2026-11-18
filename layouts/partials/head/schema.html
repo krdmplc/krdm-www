@@ -1,0 +1,172 @@
+{{- /*
+  schema.org JSON-LD for search engines and LLM-based search ("GEO").
+
+  Every page carries the Organization and WebSite nodes (stable @ids, so all
+  pages describe the same entity) plus a WebPage and BreadcrumbList. Content
+  pages add their own entity: MusicEvent, MusicAlbum or MusicGroup.
+*/ -}}
+
+{{- $home := site.Home -}}
+{{- $orgID := printf "%s#organization" site.BaseURL -}}
+{{- $siteID := printf "%s#website" $home.Permalink -}}
+{{- $pageID := printf "%s#webpage" .Permalink -}}
+{{- $lang := site.Language.Locale -}}
+{{- $desc := partial "func/description" . -}}
+
+{{- $sameAs := slice -}}
+{{- range site.Params.social }}{{ $sameAs = $sameAs | append .url }}{{ end -}}
+
+{{- $a := site.Params.address -}}
+{{- $address := dict
+  "@type" "PostalAddress"
+  "streetAddress" $a.streetAddress
+  "postalCode" $a.postalCode
+  "addressLocality" $a.addressLocality
+  "addressCountry" $a.addressCountry
+-}}
+
+{{- $org := dict
+  "@type" "NGO"
+  "@id" $orgID
+  "name" "Društvo KRDM"
+  "alternateName" "KRDM"
+  "url" site.BaseURL
+  "logo" (site.Params.logo | absURL)
+  "image" (site.Params.image | absURL)
+  "email" site.Params.email
+  "foundingDate" site.Params.foundingDate
+  "address" $address
+  "areaServed" "Gorenjska, Slovenia"
+  "description" site.Params.description
+  "sameAs" $sameAs
+-}}
+
+{{- $website := dict
+  "@type" "WebSite"
+  "@id" $siteID
+  "url" $home.Permalink
+  "name" site.Title
+  "description" site.Params.description
+  "inLanguage" $lang
+  "publisher" (dict "@id" $orgID)
+-}}
+
+{{- /* Breadcrumbs: home → ancestors → this page. */ -}}
+{{- $crumbs := slice -}}
+{{- $chain := .Ancestors.Reverse | append . -}}
+{{- range $i, $p := $chain -}}
+  {{- $crumbs = $crumbs | append (dict
+    "@type" "ListItem"
+    "position" (add $i 1)
+    "name" (cond $p.IsHome site.Title $p.LinkTitle)
+    "item" $p.Permalink
+  ) -}}
+{{- end -}}
+{{- $breadcrumbs := dict "@type" "BreadcrumbList" "@id" (printf "%s#breadcrumb" .Permalink) "itemListElement" $crumbs -}}
+
+{{- $webpage := dict
+  "@type" (cond (eq .Kind "term") "ProfilePage" (cond (and (not .IsPage) (not .IsHome)) "CollectionPage" "WebPage"))
+  "@id" $pageID
+  "url" .Permalink
+  "name" (cond .IsHome site.Title .Title)
+  "description" $desc
+  "inLanguage" $lang
+  "isPartOf" (dict "@id" $siteID)
+  "about" (dict "@id" $orgID)
+  "breadcrumb" (dict "@id" (printf "%s#breadcrumb" .Permalink))
+-}}
+{{- if not .Lastmod.IsZero -}}
+  {{- $webpage = merge $webpage (dict "dateModified" (.Lastmod.Format "2006-01-02")) -}}
+{{- end -}}
+
+{{- $graph := slice $org $website $webpage $breadcrumbs -}}
+
+{{- /* Image (absolute URL) shared by the content entities below. */ -}}
+{{- $image := "" -}}
+{{- with partial "func/image" .Params.thumbnail -}}
+  {{- $image = .Permalink -}}
+{{- end -}}
+
+{{- /* Performers / authors as MusicGroup references. */ -}}
+{{- $artists := slice -}}
+{{- range .GetTerms "artists" -}}
+  {{- $artists = $artists | append (dict "@type" "MusicGroup" "@id" (printf "%s#artist" .Permalink) "name" .Title "url" .Permalink) -}}
+{{- end -}}
+
+{{- $entity := dict -}}
+
+{{- if and (eq .Section "events") .IsPage -}}
+  {{- $location := dict "@type" "Place" "name" (.Params.venue | default "Kranj") -}}
+  {{- with .Params.venue -}}
+    {{- $parts := split . "," -}}
+    {{- if gt (len $parts) 1 -}}
+      {{- $location = dict
+        "@type" "Place"
+        "name" (strings.TrimSpace (index $parts 0))
+        "address" (dict "@type" "PostalAddress" "addressLocality" (strings.TrimSpace (index $parts 1)) "addressCountry" "SI")
+      -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $entity = dict
+    "@type" "MusicEvent"
+    "@id" (printf "%s#event" .Permalink)
+    "name" .Title
+    "url" .Permalink
+    "description" $desc
+    "inLanguage" $lang
+    "eventStatus" "https://schema.org/EventScheduled"
+    "eventAttendanceMode" "https://schema.org/OfflineEventAttendanceMode"
+    "location" $location
+    "organizer" (dict "@id" $orgID)
+  -}}
+  {{- with .Params.startDate }}{{ $entity = merge $entity (dict "startDate" (time.Format "2006-01-02T15:04:05-07:00" .)) }}{{ end -}}
+  {{- with .Params.endDate }}{{ $entity = merge $entity (dict "endDate" (time.Format "2006-01-02T15:04:05-07:00" .)) }}{{ end -}}
+  {{- with $artists }}{{ $entity = merge $entity (dict "performer" .) }}{{ end -}}
+  {{- with $image }}{{ $entity = merge $entity (dict "image" .) }}{{ end -}}
+  {{- with .Params.price -}}
+    {{- with replaceRE `[^0-9.,]` "" . | replaceRE "," "." -}}
+      {{- $entity = merge $entity (dict "offers" (dict "@type" "Offer" "price" . "priceCurrency" "EUR" "url" $.Permalink)) -}}
+    {{- end -}}
+  {{- end -}}
+
+{{- else if and (eq .Section "releases") .IsPage -}}
+  {{- $entity = dict
+    "@type" "MusicAlbum"
+    "@id" (printf "%s#release" .Permalink)
+    "name" .Title
+    "url" .Permalink
+    "description" $desc
+    "inLanguage" $lang
+    "publisher" (dict "@id" $orgID)
+  -}}
+  {{- with .Params.releaseDate }}{{ $entity = merge $entity (dict "datePublished" (time.Format "2006-01-02" .)) }}{{ end -}}
+  {{- with $artists }}{{ $entity = merge $entity (dict "byArtist" .) }}{{ end -}}
+  {{- with $image }}{{ $entity = merge $entity (dict "image" .) }}{{ end -}}
+
+{{- else if eq .Kind "term" -}}
+  {{- /* Link the artist entity to its profiles elsewhere (Bandcamp, Facebook…). */ -}}
+  {{- $links := slice -}}
+  {{- range findRE `https?://[^\s<>()\[\]"]+` .RawContent -}}
+    {{- $u := strings.TrimRight "/.," . -}}
+    {{- if findRE `(bandcamp\.com|facebook\.com|instagram\.com|youtube\.com|soundcloud\.com)` $u -}}
+      {{- $links = $links | append $u -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $entity = dict
+    "@type" "MusicGroup"
+    "@id" (printf "%s#artist" .Permalink)
+    "name" .Title
+    "url" .Permalink
+    "description" $desc
+    "memberOf" (dict "@id" $orgID)
+  -}}
+  {{- with $links | uniq }}{{ $entity = merge $entity (dict "sameAs" .) }}{{ end -}}
+  {{- with $image }}{{ $entity = merge $entity (dict "image" .) }}{{ end -}}
+{{- end -}}
+
+{{- with $entity -}}
+  {{- $webpage = merge $webpage (dict "mainEntity" (dict "@id" (index . "@id"))) -}}
+  {{- $graph = slice $org $website $webpage $breadcrumbs . -}}
+{{- end -}}
+
+<script type="application/ld+json">{{ dict "@context" "https://schema.org" "@graph" $graph | jsonify | safeJS }}</script>

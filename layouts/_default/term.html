@@ -1,0 +1,37 @@
+{{- /* A single artist (taxonomy term page), with its releases and events. */ -}}
+{{ define "main" }}
+  <div class="container">
+    {{ partial "breadcrumbs" . }}
+
+    <article class="grid">
+      <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+        <header class="page-header">
+          <h1>{{ .Title }}</h1>
+          {{ with .Params.thumbnail }}
+            <div class="page-header__image">
+              {{ partial "image" (dict "src" . "alt" $.Title "widths" (slice 720 1440) "sizes" "(min-width: 992px) 800px, 100vw" "eager" true) }}
+            </div>
+          {{ end }}
+        </header>
+
+        <div class="content">
+          {{ .Content }}
+        </div>
+      </div>
+    </article>
+
+    {{ with where .Pages "Section" "releases" }}
+      <section aria-labelledby="releases">
+        <h2 id="releases">{{ T "releases" }}</h2>
+        {{ partial "card-grid" (dict "pages" .ByDate.Reverse "level" 3) }}
+      </section>
+    {{ end }}
+
+    {{ with where .Pages "Section" "events" }}
+      <section aria-labelledby="events">
+        <h2 id="events">{{ T "events" }}</h2>
+        {{ partial "card-grid" (dict "pages" (sort . "Params.startdate" "desc") "level" 3) }}
+      </section>
+    {{ end }}
+  </div>
+{{ end }}

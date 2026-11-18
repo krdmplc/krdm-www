@@ -1,55 +1,27 @@
-{{ $ogDesc := .Site.Params.description }}
-{{ with .Description }}
-  {{ $ogDesc = . }}
-{{ end }}
-
-{{ $ogImage := .Site.Params.image }}
-{{ with .Params.thumbnail }}
-  {{ $ogImage = . }}
-{{ end }}
-
 <!DOCTYPE html>
-<html lang="{{ .Site.Language.Lang }}">
+<html lang="{{ site.Language.Lang }}">
 <head>
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="icon" href="{{ "favicon.png" | relURL }}" type="image/x-icon">
-
-  <!-- Primary Meta Tags -->
-  <title>{{ .Title }} | {{ .Site.Title }}</title>
-  <meta name="title" content="{{ .Title }} | {{ .Site.Title }}">
-  <meta name="description" content="{{ $ogDesc }}">
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="{{ .Permalink }}">
-  <meta property="og:title" content="{{ .Title }} | {{ .Site.Title }}">
-  <meta property="og:description" content="{{ $ogDesc }}">
-  <meta property="og:image" content="{{ .Site.BaseURL }}{{ $ogImage }}">
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{ partial "head/seo" . }}
+  <link rel="icon" href="{{ "favicon.png" | relURL }}" type="image/png">
+  <meta name="theme-color" content="#041b53">
+  <link rel="alternate" type="text/plain" title="llms.txt" href="{{ "llms.txt" | relLangURL }}">
+  {{ partial "base/font-preload" . }}
   {{ partial "base/styles" . }}
-
-  {{ template "_internal/google_analytics.html" . }}
-
+  {{ partial "head/schema" . }}
 </head>
 
-
 <body>
+  {{ partial "base/unsupported-browser" . }}
+  <a href="#main" class="button skip-to-content">{{ T "skip-to-content" }}</a>
+  {{ partial "header" . }}
 
-  {{ partialCached "unsupported-browser" . }}
-
-  <div class="body-overflow">
-    {{ partial "header" . }}
-
+  <main id="main">
     {{ block "main" . }}{{ end }}
+  </main>
 
-    {{ partial "footer" . }}
-    {{ partial "cookies" . }}
-  </div>
-
+  {{ partial "footer" . }}
   {{ partial "base/scripts" . }}
-
 </body>
 </html>

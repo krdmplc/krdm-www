@@ -1,0 +1,27 @@
+# Netlify redirects — https://docs.netlify.com/routing/redirects/
+# Rules are matched top to bottom; the first match wins.
+
+# Old URLs from the Hugo 0.79 site (pre-2026). Slovenian event and release URLs
+# used to be derived from titles (non-ASCII "ž", "vol.-1") or escaped the
+# Slovenian section paths; they now use the file name. Keep these permanently.
+/dogodki/distor%C5%BEn-grob-snogg-degress/                       /dogodki/distorzn-grob-snogg-degress/                       301!
+/dogodki/distor%C5%BEn-moshead-obduction-kholn/                  /dogodki/distorzn-moshead-obduction-kholn/                  301!
+/dogodki/distor%C5%BEn-the-canyon-observer-blackoutt-guattari/   /dogodki/distorzn-the-canyon-observer-blackoutt-guattari/   301!
+/dogodki/distoržn-grob-snogg-degress/                            /dogodki/distorzn-grob-snogg-degress/                       301!
+/dogodki/distoržn-moshead-obduction-kholn/                       /dogodki/distorzn-moshead-obduction-kholn/                  301!
+/dogodki/distoržn-the-canyon-observer-blackoutt-guattari/        /dogodki/distorzn-the-canyon-observer-blackoutt-guattari/   301!
+/events/distorzn-armaroth-guattari-inferior-minds/               /dogodki/distorzn-armaroth-guattari-inferior-minds/         301!
+/izdaje/denktimes-compilation-vol.-1/                            /izdaje/denktimes-compilation-vol-1/                        301!
+/izdaje/denktimes-compilation-vol.-4/                            /izdaje/denktimes-compilation-vol-4/                        301!
+/releases/dread/                                                 /izdaje/dread/                                              301!
+/releases/those-in-seek-of-essence/                              /izdaje/those-in-seek-of-essence/                           301!
+
+# The empty "categories" and "tags" taxonomies were removed.
+/categories/*      /                 301!
+/tags/*            /                 301!
+/en/categories/*   /en/              301!
+/en/tags/*         /en/              301!
+
+# Language-specific 404 pages (only used when no file matches).
+/en/*  /en/404.html  404
+/*     /404.html     404

@@ -1,22 +1,32 @@
 ---
+pageType: page
 title: "About"
+description: "Društvo KRDM is a non-profit association from Kranj, Slovenia, founded in 2016 to promote independent music and art in the Gorenjska region."
 date: 2019-10-22T09:37:19+02:00
-draft: false
-menu: 
+menu:
   main:
     weight: 40
 ---
 
-Community organisation supporting independent artists.
+Društvo KRDM is a non-profit association from Kranj, Slovenia, that supports independent music and art.
 
-Društvo KRDM <br>
-Ulica Draga Brezarja 26 <br>
-4000 Kranj <br>
-VAT: 21044716
+## What we do
 
+- We organise the **Distoržn** concert series (metal) and **Plesen** club nights (techno), mostly at Trainstation Subart in Kranj.
+- We put on **Plc Fest**, a showcase of the artists who rehearse in our space.
+- We release music by local [artists](/en/artists/).
+- We run **Plc**, a rehearsal space for bands and artists in Planina, Kranj.
 
-Established in November 2016 in Kranj, Slovenia
+## Association details
 
-President: Martin Jagodic <br>
-Secretary: Žiga Čavić <br>
-Treasurer: Urban Valjavec <br>
+Društvo KRDM\
+Ulica Draga Brezarja 26\
+4000 Kranj, Slovenia\
+Tax number: 21044716\
+Email: <info@krdm.si>
+
+Established in November 2016 in Kranj, Slovenia.
+
+President: Martin Jagodic\
+Secretary: Žiga Čavić\
+Treasurer: Urban Valjavec

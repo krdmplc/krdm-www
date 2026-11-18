@@ -1,0 +1,44 @@
+{{- /*
+  Responsive <img>: resizes local images to WebP at the requested widths and
+  emits srcset/sizes plus intrinsic width/height (prevents layout shift).
+  Replaces Netlify Large Media's ?nf_resize transforms, which no longer exist.
+
+  Params (dict):
+    src       string   "/media/uploads/..." path or remote URL (required)
+    alt       string   alt text ("" for decorative images)
+    widths    slice    target widths in px (default 480, 960)
+    sizes     string   sizes attribute (default "100vw")
+    class     string
+    eager     bool     load eagerly with high priority (use for the LCP image)
+*/ -}}
+
+{{- $alt := .alt | default "" -}}
+{{- $loading := cond (.eager | default false) "eager" "lazy" -}}
+{{- $res := partial "func/image" .src -}}
+
+{{- if and $res (in (slice "jpeg" "png" "webp") $res.MediaType.SubType) -}}
+  {{- $widths := slice -}}
+  {{- range (.widths | default (slice 480 960)) -}}
+    {{- $widths = $widths | append (cond (gt . $res.Width) $res.Width .) -}}
+  {{- end -}}
+  {{- $srcset := slice -}}
+  {{- $largest := "" -}}
+  {{- range sort ($widths | uniq) -}}
+    {{- $img := $res.Resize (printf "%dx webp q80" .) -}}
+    {{- $srcset = $srcset | append (printf "%s %dw" $img.RelPermalink $img.Width) -}}
+    {{- $largest = $img -}}
+  {{- end -}}
+  <img
+    src="{{ $largest.RelPermalink }}"
+    srcset="{{ delimit $srcset ", " }}"
+    sizes="{{ .sizes | default "100vw" }}"
+    width="{{ $largest.Width }}"
+    height="{{ $largest.Height }}"
+    alt="{{ $alt }}"
+    {{- with .class }} class="{{ . }}"{{ end }}
+    loading="{{ $loading }}"
+    decoding="async"
+    {{- if .eager }} fetchpriority="high"{{ end }}>
+{{- else if .src -}}
+  <img src="{{ .src }}" alt="{{ $alt }}"{{ with .class }} class="{{ . }}"{{ end }} loading="{{ $loading }}" decoding="async">
+{{- end -}}

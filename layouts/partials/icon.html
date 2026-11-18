@@ -1,0 +1,8 @@
+{{- /*
+  Inlines a Feather icon (assets/icons/*.svg, MIT) at build time. Replaces the
+  feather-icons script that used to load unpinned from unpkg at runtime.
+  Icons are decorative: pair them with visible text or an aria-label.
+*/ -}}
+{{- with resources.Get (printf "icons/%s.svg" .) -}}
+  {{- .Content | replaceRE `\s*class="[^"]*"` ` aria-hidden="true" focusable="false"` | safeHTML -}}
+{{- end -}}

@@ -1,38 +1,33 @@
 {{ define "main" }}
-<main>
   <div class="container">
     {{ partial "breadcrumbs" . }}
 
-    <div class="grid">
+    <article class="grid">
       <div class="col-12 col-lg-10 offset-lg-1">
-        <h1>{{ .Title }}</h1>
-
-        {{ with .Params.thumbnail }}
-          <p><img src="{{ . }}?nf_resize=fit&w=720" alt=""></p>
-        {{ end }}
-
-        {{ .Content }}
-
-        {{ $artists := .Params.artists }}
-        {{ if $artists }}
-          <section>
-            <h2>{{ T "artists" }}</h2>
-            {{ $taxo := ($.Site.GetPage (printf "/%s" "artists")) }}
-            <div class="grid">
-              {{ range $artist := $artists }}
-                {{ range $taxo.Pages }}
-                  {{ if eq $artist .Params.ref }}
-                    <div class="col-12 col-sm-6">
-                      {{ partial "card" . }}
-                    </div>
-                  {{ end }}
-                {{ end }}
-              {{ end }}
+        <header class="page-header">
+          <h1>{{ .Title }}</h1>
+          {{ with .Description }}<p class="page-header__lead">{{ . }}</p>{{ end }}
+          <div class="meta-list">
+            {{ partial "meta" (dict "page" . "item" "meta-list__item" "linkArtists" true) }}
+          </div>
+          {{ with .Params.thumbnail }}
+            <div class="page-header__image">
+              {{ partial "image" (dict "src" . "alt" $.Title "widths" (slice 720 1440) "sizes" "(min-width: 1170px) 1200px, 100vw" "eager" true) }}
             </div>
+          {{ end }}
+        </header>
+
+        <div class="content">
+          {{ .Content }}
+        </div>
+
+        {{ with .GetTerms "artists" }}
+          <section aria-labelledby="artists">
+            <h2 id="artists">{{ T "artists" }}</h2>
+            {{ partial "card-grid" (dict "pages" . "level" 3) }}
           </section>
         {{ end }}
       </div>
-    </div>
+    </article>
   </div>
-</main>
 {{ end }}

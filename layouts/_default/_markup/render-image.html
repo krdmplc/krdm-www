@@ -1,0 +1,7 @@
+{{- /* Markdown images: lazy-load, and resize local ones to WebP. */ -}}
+{{- partial "image" (dict
+  "src" .Destination
+  "alt" .Text
+  "widths" (slice 720 1440)
+  "sizes" "(min-width: 1170px) 1200px, 100vw"
+) -}}

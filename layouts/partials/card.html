@@ -1,35 +1,19 @@
-<a class="card" href="{{ .Permalink }}">
+{{- /* Params: page, level (heading level, default 3) */ -}}
+{{- $p := .page -}}
+{{- $level := .level | default 3 -}}
+
+<a class="card" href="{{ $p.RelPermalink }}">
   <div class="card__image">
-    <img class="lazyload" data-src="{{ .Params.Thumbnail }}?nf_resize=fit&w=500" alt="">
+    {{- partial "image" (dict
+      "src" ($p.Params.thumbnail | default site.Params.image)
+      "alt" ""
+      "widths" (slice 400 800)
+      "sizes" "(min-width: 768px) 50vw, 100vw"
+    ) -}}
   </div>
 
   <div class="card__text">
-    <h3 class="no-margin">{{ .Title }}</h3>
-
-    {{ with .Params.startDate }}
-      <div><i data-feather="calendar"></i> {{ dateFormat "2. 1. 2006" . }}</div>
-    {{ end }}
-
-    {{ with .Params.venue }}
-      <div><i data-feather="map-pin"></i> {{ . }}</div>
-    {{ end }}
-
-    {{ $artists := .Params.artists }}
-    {{ if $artists }}
-      <div><i data-feather="music"></i>
-        {{ $taxo := ($.Site.GetPage (printf "/%s" "artists")) }}
-        {{ range $i, $artist := $artists }}
-          {{- range $taxo.Pages -}}
-            {{- if eq $artist .Params.ref -}}
-              {{ if $i }}, {{ end }}{{ .Title }}
-            {{- end -}}
-          {{- end -}}
-        {{ end }}
-      </div>
-    {{ end }}
-
-    {{ with .Params.releaseDate }}
-      <div><i data-feather="calendar"></i> {{ dateFormat "2. 1. 2006" . }}</div>
-    {{ end }}
+    <h{{ $level }} class="card__title">{{ $p.LinkTitle }}</h{{ $level }}>
+    {{ partial "meta" (dict "page" $p "item" "card__meta") }}
   </div>
 </a>

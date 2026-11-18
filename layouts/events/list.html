@@ -1,59 +1,33 @@
 {{ define "main" }}
-<main>
   <div class="container">
-
     {{ partial "breadcrumbs" . }}
     <h1>{{ .Title }}</h1>
-    {{ .Content }}
+    {{ with .Content }}<div class="content">{{ . }}</div>{{ end }}
 
     {{ $upcoming := slice }}
     {{ $past := slice }}
-
     {{ range .Pages }}
-      {{ $t := (time .Params.startDate) }}
-
-      {{ if $t.After now }}
+      {{ if (time .Params.startDate).After now }}
         {{ $upcoming = $upcoming | append . }}
-      {{ end }}
-
-      {{ if $t.Before now }}
+      {{ else }}
         {{ $past = $past | append . }}
       {{ end }}
     {{ end }}
 
-    <section>
-      <h2>{{ T "upcoming" }}</h2>
-
-      {{ if gt (len $upcoming) 0 }}
-        <div class="grid">
-          {{ range .Pages }}
-            {{ $t := (time .Params.startDate) }}
-            {{ if $t.After now }}
-              <div class="col-12 col-sm-6">
-                {{ partial "card" . }}
-              </div>
-            {{ end }}
-          {{ end }}
-        </div>
+    <section aria-labelledby="upcoming">
+      <h2 id="upcoming">{{ T "upcoming" }}</h2>
+      {{ with $upcoming }}
+        {{ partial "card-grid" (dict "pages" (sort . "Params.startdate") "level" 3) }}
       {{ else }}
         <p>{{ T "noUpcoming" }}</p>
       {{ end }}
     </section>
 
-    <section>
-      <h2>{{ i18n "past" }}</h2>
-
-      <div class="grid">
-        {{ range .Pages }}
-          {{ $t := (time .Params.startDate) }}
-          {{ if $t.Before now }}
-            <div class="col-12 col-sm-6">
-              {{ partial "card" . }}
-            </div>
-          {{ end }}
-        {{ end }}
-      </div>
-    </section>
+    {{ with $past }}
+      <section aria-labelledby="past">
+        <h2 id="past">{{ T "past" }}</h2>
+        {{ partial "card-grid" (dict "pages" (sort . "Params.startdate" "desc") "level" 3) }}
+      </section>
+    {{ end }}
   </div>
-</main>
 {{ end }}

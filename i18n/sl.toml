@@ -1,40 +1,31 @@
+tagline = "Društvo za promocijo neodvisne glasbe in umetnosti v Kranju"
 
-[cookiesText]
-other = "Ta spletna stran uporablja <a href=\"/piskotki\">piškotke</a> za boljše delovanje."
+skip-to-content = "Skoči na vsebino"
+dismiss = "Zapri"
+unsupported-browser = "Vaš brskalnik je zastarel, zato stran morda ne bo prikazana pravilno. Prosimo, posodobite ga."
+not-found-title = "Ups! Te strani ni."
+not-found-message = "Strani, ki jo iščete, ne najdemo."
+back-home = "Nazaj na domačo stran"
 
-[understand]
-other = "Razumem"
+home = "Domov"
+menu = "Meni"
+mainMenu = "Glavni meni"
+language = "Jezik"
+breadcrumbs = "Drobtinice"
+email = "E-pošta"
+website = "Spletna stran"
+address = "Naslov"
 
-[upcoming]
-other = "Prihajajoči"
+upcoming = "Prihajajoči"
+past = "Pretekli"
+noUpcoming = "Trenutno ni napovedanih dogodkov. Spremljajte nas na družbenih omrežjih."
+date = "Datum"
+venue = "Prizorišče"
+releaseDate = "Datum izdaje"
+releases = "Izdaje"
+events = "Dogodki"
+artist = "Ustvarjalec"
+artists = "Ustvarjalci"
 
-[past]
-other = "Pretekli"
-
-[404title]
-other = "Ups!"
-
-[404content]
-other = "Ta stran ne obstaja. Najbolje, da greste <a href='/'>domov</a>."
-
-[releaseDate]
-other = "Datum izadje"
-
-[releases]
-other = "Izdaje"
-
-[events]
-other = "Dogodki"
-
-[noUpcoming]
-other = "Trenutno ni nobenih prihajajočih dogodkov :("
-
-[home]
-other = "Domov"
-
-[artist]
-other = "Ustvarjalec"
-
-[artists]
-other = "Ustvarjalci"
-
+llmsIntro = "Društvo KRDM je nepridobitno društvo iz Kranja (Slovenija), ustanovljeno novembra 2016. Spodbuja neodvisno glasbo in umetnost na Gorenjskem: organizira koncertni niz Distoržn (metal), plesne večere Plesen (techno) in Plc Fest, izdaja glasbo lokalnih ustvarjalcev ter upravlja vadbeni prostor Plc na Planini v Kranju."
+llmsOtherLanguage = "ista vsebina v angleščini"

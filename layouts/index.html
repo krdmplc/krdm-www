@@ -1,25 +1,48 @@
 {{ define "main" }}
   {{ partial "hero" .Params.hero }}
-  <main>
-    <div class="container">
-      {{ partial "home/events" . }}
-      {{ partial "home/releases" . }}
-      {{ partial "home/artists" . }}
 
-      <section>
-        <h2 class="text-center">{{ .Params.about.title }}</h2>
-        <div class="grid">
-          <div class="col-12">
-            {{ .Content }}
-          </div>
+  <div class="container">
+    {{ $upcoming := slice }}
+    {{ with site.GetPage "/events" }}
+      {{ range .Pages }}
+        {{ if (time .Params.startDate).After now }}
+          {{ $upcoming = $upcoming | append . }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+    {{ partial "home/section" (dict
+      "id" "events"
+      "title" .Params.events.title
+      "pages" (sort $upcoming "Params.startdate")
+      "all" .Params.events.all
+    ) }}
 
-          {{ with .Params.about.link }}
-            <div class="col-12 text-center">
-              <a href="{{ .href }}" class="button">{{ .text }}</a>
-            </div>
-          {{ end }}
-        </div>
-      </section>
-    </div>
-  </main>
+    {{ with site.GetPage "/releases" }}
+      {{ partial "home/section" (dict
+        "id" "releases"
+        "title" $.Params.releases.title
+        "pages" (first 4 .Pages.ByDate.Reverse)
+        "all" $.Params.releases.all
+      ) }}
+    {{ end }}
+
+    {{ with site.GetPage "/artists" }}
+      {{ partial "home/section" (dict
+        "id" "artists"
+        "title" $.Params.artists.title
+        "pages" (first 4 .Pages)
+        "all" $.Params.artists.all
+      ) }}
+    {{ end }}
+
+    <section aria-labelledby="about">
+      <h2 class="section-header" id="about">{{ .Params.about.title }}</h2>
+      <div class="content">
+        {{ .Content }}
+      </div>
+      {{ with .Params.about.link }}
+        <p class="section-footer"><a href="{{ .href }}" class="button">{{ .text }}</a></p>
+      {{ end }}
+    </section>
+  </div>
 {{ end }}

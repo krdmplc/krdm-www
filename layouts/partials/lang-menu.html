@@ -1,21 +1,20 @@
-{{ $siteLanguages := site.Languages}}
-{{ $pageLang := .Page.Lang}}
+{{- /* Links to this page in every language; falls back to that language's
+  home page when a translation doesn't exist. */ -}}
+{{ $page := . }}
 
-<ul class="lang-menu">
-  {{- range .Page.AllTranslations }}
-    {{ $translation := . }}
-    {{- range sort $siteLanguages "Weight" "asc" }}
-      {{- if eq $translation.Lang .Lang }}
-        {{ if eq $pageLang .Lang}}
-          <li class="lang-menu__curr-lang">
-            {{ .LanguageName }}&nbsp;&#9662;
-          </li>
-        {{ else }}
-          <li class="lang-menu__other-lang">
-            <a href="{{ $translation.Permalink | relURL }}">{{ .LanguageName }}</a>
-          </li>
-        {{ end }}
-      {{- end }}
+<ul class="lang-menu" aria-label="{{ T "language" }}">
+  {{- range site.Home.AllTranslations }}
+    {{- $lang := .Language.Lang }}
+    {{- $target := . }}
+    {{- range $page.AllTranslations }}
+      {{- if eq .Language.Lang $lang }}{{ $target = . }}{{ end }}
     {{- end }}
+    <li>
+      {{- if eq $lang $page.Language.Lang }}
+        <span aria-current="true" lang="{{ $lang }}" title="{{ .Language.Label }}">{{ upper $lang }}</span>
+      {{- else }}
+        <a href="{{ $target.RelPermalink }}" hreflang="{{ $lang }}" lang="{{ $lang }}" title="{{ .Language.Label }}">{{ upper $lang }}</a>
+      {{- end }}
+    </li>
   {{- end }}
 </ul>

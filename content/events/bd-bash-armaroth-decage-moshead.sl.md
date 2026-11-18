@@ -23,7 +23,7 @@ Z velikim apetitom po ropotanju, dretju in headbanganju še na mnoga!!!
 
 
 
-Armaroth je petglava entiteta, ki prebiva nekje v obskurnem podzemlju Kranja. Od prvih zapisov iz leta 2008, pa do danes, se je bend vzpostavil kot ena najbrutalnejših sil slovenske metal scene. Po demu Burning Execution (2010), ki je prave podvige šele nakazoval, je band leta 2013 izdal EP False Vision, ki je visoko čislan tako med podporniki, kot med recenzisti. Po nekaj kadrovskih menjavah, sta leta 2016 najprej izšla singla Diamox in Deep Of Throats, ki sta napovedala težko pričakovani prvenec ZENITH. Ta je izšel decembra itega leta in bil odlično sprejet kot nekaj svežege in izvirnega na metal sceni.
+Armaroth je petglava entiteta, ki prebiva nekje v obskurnem podzemlju Kranja. Od prvih zapisov iz leta 2008, pa do danes, se je bend vzpostavil kot ena najbrutalnejših sil slovenske metal scene. Po demu Burning Execution (2010), ki je prave podvige šele nakazoval, je band leta 2013 izdal EP False Vision, ki je visoko čislan tako med podporniki, kot med recenzisti. Po nekaj kadrovskih menjavah, sta leta 2016 najprej izšla singla Diamox in Deep Of Throats, ki sta napovedala težko pričakovani prvenec ZENITH. Ta je izšel decembra itega leta in bil odlično sprejet kot nekaj svežega in izvirnega na metal sceni.
 
 
 

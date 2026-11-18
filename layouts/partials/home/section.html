@@ -1,0 +1,10 @@
+{{- /* Params: id, title, pages, all ({href, text}) */ -}}
+{{- with .pages }}
+<section aria-labelledby="{{ $.id }}">
+  <h2 class="section-header" id="{{ $.id }}">{{ $.title }}</h2>
+  {{ partial "card-grid" (dict "pages" . "level" 3) }}
+  {{- with $.all }}
+    <p class="section-footer"><a href="{{ .href }}" class="button">{{ .text }}</a></p>
+  {{- end }}
+</section>
+{{- end }}

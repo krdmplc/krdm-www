@@ -1,19 +1,28 @@
-.header {
-  padding: 12px 0;
-  border-bottom: 1px solid $color-blue;
+@use "grid/breakpoints";
 
-  .container {
+.header {
+  position: relative;
+
+  // The off-canvas menu sits off the right edge while closed; clip it so it
+  // never widens the page. `clip` (unlike `hidden`) keeps overflow-y visible.
+  overflow-x: clip;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--color-blue);
+
+  &__inner {
     display: flex;
-    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
   }
 
-  .logo {
+  &__logo {
     margin-right: auto;
 
     img {
+      display: block;
       width: 48px;
 
-      @include breakpoint('small') {
+      @include breakpoints.breakpoint-up("sm") {
         width: 64px;
       }
     }

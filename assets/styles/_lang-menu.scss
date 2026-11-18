@@ -1,32 +1,20 @@
 .lang-menu {
-  position: relative;
-  list-style: none;
+  display: flex;
+  gap: 8px;
   margin: 0;
   padding: 0;
-  padding: 24px 12px 12px;
-  width: 80px;
-  top: 12px;
+  list-style: none;
+  font-size: 14px;
+  font-weight: 600;
 
-  @include breakpoint('small') {
-    top: 20px;
+  a,
+  span {
+    display: block;
+    padding: 8px 4px;
   }
 
-  &__curr-lang {
-    cursor: pointer;
-    position: absolute;
-    top: 0;
-  }
-
-  &__other-lang {
-    position: absolute;
-    display: none;
-  }
-
-  &:hover {
-    background-color: #fff;
-
-    .lang-menu__other-lang {
-      display: block;
-    }
+  [aria-current] {
+    color: var(--color-black);
+    border-bottom: 2px solid var(--color-mint);
   }
 }

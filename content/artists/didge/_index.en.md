@@ -6,4 +6,4 @@ ref: didge
 weight: 40
 ---
 
-Didge is a four piece progressive rock band active. They gained a loyal following since their iception in 2012. They are driven by a passion for good and diverse music, which spans from soft, quiet parts, to Earth shattering thunder. Their debut LP Encounters in Endless Grey was released in 2016, currenty they are working on its follow up, which was already announced with the single Vesper.
+Didge is a four-piece progressive rock band from Kranj. They gained a loyal following since their inception in 2012. They are driven by a passion for good and diverse music, which spans from soft, quiet parts, to Earth shattering thunder. Their debut LP Encounters in Endless Grey was released in 2016, currently they are working on its follow up, which was already announced with the single Vesper.

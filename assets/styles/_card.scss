@@ -1,56 +1,63 @@
 .card {
-  border: 1px solid $color-mint;
   display: flex;
   flex-direction: column;
   height: 100%;
-
-  &__text {
-    background-color: $color-mint;
-    padding: 24px 20px;
-    margin-bottom: 0;
-    color: $color-blue-night;
-    position: relative;
-    flex-grow: 1;
-
-    > div {
-      position: relative;
-      padding-left: 28px;
-      margin-top: 4px;
-    }
-  }
+  border: 1px solid var(--color-mint);
+  color: inherit;
 
   &:hover {
     text-decoration: none;
 
     .card__text {
-      background-color: $color-blue-night;
-      color: $color-mint;
+      background-color: var(--color-blue-night);
+      color: var(--color-mint);
     }
   }
 
   &__image {
-    padding-top: 62.5%;
     position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background-color: var(--color-black);
 
     img {
-      display: block;
       position: absolute;
-      top: 0;
-      left: 0;
+      inset: 0;
+      display: block;
       width: 100%;
       height: 100%;
       object-fit: contain;
     }
   }
 
-  h3 + div {
-    margin-top: 8px;
+  &__text {
+    flex-grow: 1;
+    padding: 24px 20px;
+    background-color: var(--color-mint);
+    color: var(--color-blue-night);
   }
 
-  .feather {
-    height: 16px;
-    position: absolute;
-    top: 4px;
-    left: 0;
+  &__title {
+    margin: 0 0 8px;
   }
+
+  &__meta {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    margin-top: 4px;
+
+    svg {
+      flex: none;
+      width: 16px;
+      height: 16px;
+      margin-top: 4px;
+    }
+  }
+}
+
+.card-grid {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }

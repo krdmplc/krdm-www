@@ -1,15 +1,8 @@
-<div class="breadcrumbs">
-  {{ template "breadcrumb" dict "currentPage" .Page "id" .File.UniqueID }}
-</div>
-
-{{ define "breadcrumb" }}
-  {{ if .currentPage.Parent }}
-    {{ template "breadcrumb" dict "currentPage" .currentPage.Parent }}
-  {{ end }}
-
-  {{ if .currentPage.IsHome }}
-    <a href="/">{{ .currentPage.Title }}</a>
-  {{ else }}
-    / <a href="{{ .currentPage.Permalink }}">{{ .currentPage.Title }}</a>
-  {{ end }}
-{{ end }}
+<nav class="breadcrumbs" aria-label="{{ T "breadcrumbs" }}">
+  <ol class="breadcrumbs__list">
+    {{- range .Ancestors.Reverse }}
+      <li class="breadcrumbs__item"><a href="{{ .RelPermalink }}">{{ cond .IsHome site.Title .LinkTitle }}</a></li>
+    {{- end }}
+    <li class="breadcrumbs__item"><a href="{{ .RelPermalink }}" aria-current="page">{{ .LinkTitle }}</a></li>
+  </ol>
+</nav>

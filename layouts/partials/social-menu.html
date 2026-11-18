@@ -1,6 +1,10 @@
-<div class="social-menu">
-  <a href="mailto:info@krdm.si"><i data-feather="mail"></i></a>
-  <a href="https://www.facebook.com/krdmplc/"><i data-feather="facebook"></i></a>
-  <a href="https://www.instagram.com/krdm_plc/"><i data-feather="instagram"></i></a>
-  <a href="https://www.youtube.com/channel/UCA0Z82OySvFtuXN2_GVPS4A"><i data-feather="youtube"></i></a>
-</div>
+<ul class="social-menu">
+  <li>
+    <a href="mailto:{{ site.Params.email }}" aria-label="{{ T "email" }}: {{ site.Params.email }}">{{ partial "icon" "mail" }}</a>
+  </li>
+  {{- range site.Params.social }}
+    <li>
+      <a href="{{ .url }}" aria-label="{{ .label }}" rel="me noopener">{{ partial "icon" .name }}</a>
+    </li>
+  {{- end }}
+</ul>

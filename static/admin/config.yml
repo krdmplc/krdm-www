@@ -2,285 +2,202 @@ local_backend: true
 
 backend:
   name: git-gateway
-  branch: master
+  # Replaced with the branch being built by bin/build.sh. Never commit a real
+  # branch name here.
+  branch: __BRANCH__
   squash_merges: true
 
 display_url: https://www.krdm.si/
 logo_url: /media/brand/logo.png
-media_folder: "/static/media/uploads"
-public_folder: "/media/uploads"
+media_folder: static/media/uploads
+public_folder: /media/uploads
 # publish_mode: editorial_workflow
+
 slug:
-  encoding: "ascii"
+  encoding: ascii
   clean_accents: true
+
 i18n:
   structure: multiple_files
   locales: [sl, en]
+  default_locale: sl
+
+aliases:
+  - &DESCRIPTION
+    label: Description (search engines & social media, ~150 characters)
+    name: description
+    widget: text
+    required: false
+    i18n: true
+  - &SHOW_IN_ADMIN {name: showInAdmin, widget: hidden, default: true}
+  - &ARTISTS
+    label: Artists
+    name: artists
+    widget: relation
+    collection: artists
+    multiple: true
+    required: false
+    search_fields: [title]
+    display_fields: [title]
+    value_field: ref
+    i18n: duplicate
+  - &HOME_LINK
+    - {label: Url, name: href, widget: string}
+    - {label: Text, name: text, widget: string}
+  - &HOME_FIELDS
+    - {label: Title, name: title, widget: string}
+    - *DESCRIPTION
+    - label: Hero
+      name: hero
+      widget: object
+      fields:
+        - {label: Title, name: title, widget: string}
+        - {label: Subtitle, name: desc, widget: text}
+        - {label: Image, name: image, widget: image, required: false}
+    - label: Events
+      name: events
+      widget: object
+      fields:
+        - {label: Title, name: title, widget: string}
+        - {label: All link, name: all, widget: object, fields: *HOME_LINK}
+    - label: Releases
+      name: releases
+      widget: object
+      fields:
+        - {label: Title, name: title, widget: string}
+        - {label: All link, name: all, widget: object, fields: *HOME_LINK}
+    - label: Artists
+      name: artists
+      widget: object
+      fields:
+        - {label: Title, name: title, widget: string}
+        - {label: All link, name: all, widget: object, fields: *HOME_LINK}
+    - label: About
+      name: about
+      widget: object
+      fields:
+        - {label: Title, name: title, widget: string}
+        - {label: Link, name: link, widget: object, fields: *HOME_LINK}
+    - {label: About section content, name: body, widget: markdown}
 
 collections:
-  - name: "artists"
-    label: "Artists"
-    label_singular: "artist"
-    folder: "content/artists"
+  # Artists are Hugo taxonomy terms (content/artists/<ref>/_index.<lang>.md).
+  # `ref` is set automatically from the folder name by static/admin/index.js.
+  - name: artists
+    label: Artists
+    label_singular: artist
+    folder: content/artists
     create: true
     i18n: true
-    filter: {field: "showInAdmin", value: true}
+    filter: {field: showInAdmin, value: true}
     slug: "{{slug}}"
-    path: '{{slug}}/_index'
-    media_folder: "/static/media/uploads"
-    public_folder: "/media/uploads"
+    path: "{{slug}}/_index"
     editor:
       preview: false
     fields:
-      - {label: "Title", name: "title", widget: "string", i18n: duplicate}
-      - {label: "Date", name: "date", widget: "datetime", i18n: duplicate}
-      - {label: "Thumbnail", name: "thumbnail", widget: "image", i18n: duplicate}
-      - {label: "Content", name: "body", widget: "markdown", i18n: true}
-      - {name: "weight", widget: "number", i18n: duplicate}
-      - {name: "ref", widget: "hidden", i18n: duplicate}
-      - {name: "showInAdmin", widget: "hidden", default: true}
+      - {label: Name, name: title, widget: string, i18n: duplicate}
+      - {label: Date, name: date, widget: datetime, i18n: duplicate}
+      - {label: Image, name: thumbnail, widget: image, i18n: duplicate}
+      - *DESCRIPTION
+      - {label: Bio, name: body, widget: markdown, i18n: true}
+      - {label: Order (lower comes first), name: weight, widget: number, required: false, i18n: duplicate}
+      - {name: ref, widget: hidden, i18n: duplicate}
+      - *SHOW_IN_ADMIN
 
-  - name: "events"
-    label: "Events"
-    label_singular: "event"
-    folder: "content/events"
+  - name: events
+    label: Events
+    label_singular: event
+    folder: content/events
     create: true
-    slug: "{{slug}}"
-    path: '{{slug}}/_index'
-    filter: {field: "showInAdmin", value: true}
-    media_folder: "/static/media/uploads"
-    public_folder: "/media/uploads"
     i18n: true
+    filter: {field: showInAdmin, value: true}
+    slug: "{{slug}}"
+    sortable_fields: [startDate, title]
     editor:
       preview: false
     fields:
-      - {label: "Title", name: "title", widget: "string", i18n: duplicate}
-      - {label: "Date", name: "date", widget: "date", i18n: duplicate}
-      - {label: "Start date", name: "startDate", widget: "date", i18n: duplicate}
-      - {label: "End date", name: "endDate", widget: "date", i18n: duplicate}
-      - {label: "Venue", name: "venue", widget: "string", i18n: duplicate}
-      - {label: "Thumbnail", name: "thumbnail", widget: "image", i18n: duplicate}
-      - {label: "Content", name: "body", widget: "markdown", i18n: true}
-      - {name: "showInAdmin", widget: "hidden", default: true}
-      - {label: "Artists", name: "artists", widget: "list", i18n: true, field: {
-          name: "relation",
-          widget: "relation",
-          collection: "artists",
-          i18n: true,
-          search_fields: ["title"],
-          display_fields: ["title"],
-          value_field: "ref",
-        }}
+      - {label: Title, name: title, widget: string, i18n: duplicate}
+      - {label: Publish date, name: date, widget: datetime, i18n: duplicate}
+      - {label: Start, name: startDate, widget: datetime, i18n: duplicate}
+      - {label: End, name: endDate, widget: datetime, required: false, i18n: duplicate}
+      - {label: Venue (e.g. "Trainstation Subart, Kranj"), name: venue, widget: string, i18n: duplicate}
+      - {label: Price (e.g. "8 €"), name: price, widget: string, required: false, i18n: duplicate}
+      - {label: Poster, name: thumbnail, widget: image, required: false, i18n: duplicate}
+      - *DESCRIPTION
+      - {label: Content, name: body, widget: markdown, i18n: true}
+      - *ARTISTS
+      - *SHOW_IN_ADMIN
 
-  - name: "releases"
-    label: "Releases"
-    label_singular: "release"
-    folder: "content/releases"
+  - name: releases
+    label: Releases
+    label_singular: release
+    folder: content/releases
     create: true
-    slug: "{{slug}}"
-    path: '{{slug}}/_index'
-    filter: {field: "showInAdmin", value: true}
-    media_folder: "/static/media/uploads"
-    public_folder: "/media/uploads"
     i18n: true
+    filter: {field: showInAdmin, value: true}
+    slug: "{{slug}}"
+    sortable_fields: [releaseDate, title]
     editor:
       preview: false
     fields:
-      - {label: "Title", name: "title", widget: "string", i18n: true}
-      - {label: "Publish date", name: "date", widget: "date", i18n: duplicate}
-      - {label: "Release date", name: "releaseDate", widget: "date", i18n: duplicate}
-      - {label: "Thumbnail", name: "thumbnail", widget: "image", i18n: duplicate}
-      - {label: "Content", name: "body", widget: "markdown", i18n: true}
-      - {name: "showInAdmin", widget: "hidden", default: true}
-      - {label: "Artists", name: "artists", widget: "list", i18n: true, field: {
-          name: "relation",
-          widget: "relation",
-          collection: "artists",
-          i18n: true,
-          search_fields: ["title"],
-          display_fields: ["title"],
-          value_field: "ref",
-        }}
+      - {label: Title, name: title, widget: string, i18n: duplicate}
+      - {label: Publish date, name: date, widget: datetime, i18n: duplicate}
+      - {label: Release date, name: releaseDate, widget: datetime, i18n: duplicate}
+      - {label: Cover, name: thumbnail, widget: image, i18n: duplicate}
+      - *DESCRIPTION
+      - {label: Content, name: body, widget: markdown, i18n: true}
+      - *ARTISTS
+      - *SHOW_IN_ADMIN
 
+  # Standalone pages (about, join, play, cookies). A folder collection rather than
+  # a files collection, because Decap only supports i18n `multiple_files` there.
   - name: pages
     label: Pages
+    label_singular: page
+    folder: content
+    create: false
+    delete: false
+    i18n: true
+    filter: {field: pageType, value: page}
+    editor:
+      preview: false
+    fields:
+      - {label: Title, name: title, widget: string, i18n: true}
+      - *DESCRIPTION
+      - {label: URL slug (Slovenian only; leave empty in English), name: slug, widget: string, required: false, i18n: true}
+      - {label: Content, name: body, widget: markdown, i18n: true}
+      - {name: pageType, widget: hidden, default: page, i18n: duplicate}
+
+  - name: home
+    label: Home page
     editor:
       preview: false
     files:
-    - label: Home SL
-      name: home-sl
-      file: content/_index.sl.md
-      fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - label: Hero
-        name: hero
-        widget: object
-        fields: [
-          {label: "Title", name: "title", widget: "string"},
-          {label: "Description", name: "desc", widget: "text"},
-        ]
-      - label: Events
-        name: events
-        widget: object
-        fields: [
-          {label: "Title", name: "title", widget: "string"},
-          {
-            label: "All link", name: "all", widget: "object",
-            fields: [
-              {label: "Url", name: "href", widget: "string"},
-              {label: "Text", name: "text", widget: "string"},
-            ]
-          },
-        ]
-      - label: Releases
-        name: releases
-        widget: object
-        fields: [
-          {label: "Title", name: "title", widget: "string"},
-          {
-            label: "All link", name: "all", widget: "object",
-            fields: [
-              {label: "Url", name: "href", widget: "string"},
-              {label: "Text", name: "text", widget: "string"},
-            ]
-          },
-        ]
-      - label: Artists
-        name: artists
-        widget: object
-        fields: [
-          {label: "Title", name: "title", widget: "string"},
-          {
-            label: "All link", name: "all", widget: "object",
-            fields: [
-              {label: "Url", name: "href", widget: "string"},
-              {label: "Text", name: "text", widget: "string"},
-            ]
-          },
-        ]
-      - label: About
-        name: about
-        widget: object
-        fields: [
-          {label: "Title", name: "title", widget: "string"},
-          {
-            label: "link", name: "link", widget: "object",
-            fields: [
-              {label: "Url", name: "href", widget: "string"},
-              {label: "Text", name: "text", widget: "string"},
-            ]
-          },
-        ]
-      - {label: "Content", name: "body", widget: "markdown", i18n: true}
+      - {label: Home (Slovenščina), name: home-sl, file: content/_index.sl.md, fields: *HOME_FIELDS}
+      - {label: Home (English), name: home-en, file: content/_index.en.md, fields: *HOME_FIELDS}
 
-  - label: General
-    name: general
+  - name: general
+    label: General
     editor:
       preview: false
     files:
-    - label: Footer
-      name: footer
-      file: data/footer.json
-      fields:
-      - {
-          label: "Slovenščina",
-          name: "sl",
-          widget: "object",
-          fields: [
-            { label: "Title", name: "title", widget: "string" },
-            { label: "address", name: "address", widget: "string" },
-            { label: "VAT", name: "vat", widget: "string" },
-            { label: "Email", name: "email", widget: "string" },
-            { label: "EmailCookies link", name: "cookiesLink", widget: "string" },
-          ]
-        }
-      - {
-          label: "English",
-          name: "en",
-          widget: "object",
-          fields: [
-            { label: "Title", name: "title", widget: "string" },
-            { label: "address", name: "address", widget: "string" },
-            { label: "VAT", name: "vat", widget: "string" },
-            { label: "Email", name: "email", widget: "string" },
-            { label: "EmailCookies link", name: "cookiesLink", widget: "string" },
-          ]
-        }
-
-    - label: Cookies
-      name: cookies
-      file: data/cookies.json
-      fields:
-      - {
-          label: "Slovenščina",
-          name: "sl",
-          widget: "object",
-          fields: [
-            {label: "Text", name: "text", widget: "text"},
-            {label: "Button text", name: "confirm", widget: "string"}
-          ]
-        }
-      - {
-          label: "English",
-          name: "en",
-          widget: "object",
-          fields: [
-            {label: "Text", name: "text", widget: "text"},
-            {label: "Button text", name: "confirm", widget: "string"}
-          ]
-        }
-
-    - label: Site settings
-      name: site-settings
-      file: config.toml
-      fields:
-      - {label: "Google Analytics ID", name: "googleAnalytics", widget: "string", required: false}
-      - {
-          label: "Params",
-          name: "params",
-          widget: "object",
-          fields: [
-            {label: "Image", name: "image", widget: "image"},
-          ]
-        }
-      - {
-          label: "Languages",
-          name: "languages",
-          widget: "object",
-          fields: [
-            {
-              label: "Slovenščina",
-              name: "sl",
-              widget: "object",
-              fields: [
-                {label: "Site Title", name: "title", widget: "string"},
-                {label: "Copyright text", name: "copyright", widget: "string"},
-                {
-                  label: "Params",
-                  name: "params",
-                  widget: "object",
-                  fields: [
-                    {label: "Site description", name: "description", widget: "string"},
-                  ]
-                }
-              ]
-            },
-            {
-              label: "English",
-              name: "en",
-              widget: "object",
-              fields: [
-                {label: "Site Title", name: "title", widget: "string"},
-                {label: "Copyright text", name: "copyright", widget: "string"},
-                {
-                  label: "Params",
-                  name: "params",
-                  widget: "object",
-                  fields: [
-                    {label: "Site description", name: "description", widget: "string"},
-                  ]
-                }
-              ]
-            },
-          ]
-        }
+      - label: Footer
+        name: footer
+        file: data/footer.json
+        fields:
+          - label: Slovenščina
+            name: sl
+            widget: object
+            fields:
+              - {label: Title, name: title, widget: string}
+              - {label: Address, name: address, widget: string}
+              - {label: Tax number, name: vat, widget: string}
+              - {label: Email, name: email, widget: string}
+          - label: English
+            name: en
+            widget: object
+            fields:
+              - {label: Title, name: title, widget: string}
+              - {label: Address, name: address, widget: string}
+              - {label: Tax number, name: vat, widget: string}
+              - {label: Email, name: email, widget: string}

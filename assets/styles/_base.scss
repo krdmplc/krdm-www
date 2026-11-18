@@ -1,31 +1,40 @@
-html,
-body,
-.body-overflow {
+@use "grid/breakpoints";
+
+// Sticky footer without magic numbers: main grows to fill the viewport.
+body {
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
 }
 
-.body-overflow {
-  overflow-x: hidden;
-  position: relative;
-  width: 100%;
+main {
+  flex: 1 0 auto;
+  padding-bottom: 80px;
 }
 
 img {
   max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+ul,
+ol {
+  margin-top: 0;
+  margin-bottom: 24px;
 }
 
 section {
   margin: 80px 0;
 
-  @include breakpoint('medium') {
+  @include breakpoints.breakpoint-up("md") {
     margin: 120px 0;
   }
 }
 
-main {
-  min-height: calc(100vh - 291px);
-
-  @include breakpoint('small') {
-    min-height: calc(100vh - 212px);
-  }
+:focus-visible {
+  outline: 3px solid var(--color-blue);
+  outline-offset: 2px;
 }

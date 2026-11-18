@@ -18,7 +18,7 @@ artists:
 - ofnana_pesa
 ---
 
-Ob 10. obletnici placa za vaje (in vse ostalo) na planini, predstavljamo naboljši Plc Fest do zdaj!
+Ob 10. obletnici placa za vaje (in vse ostalo) na planini, predstavljamo najboljši Plc Fest do zdaj!
 
 Plc Fest je dogodek, na katerem predstavljamo domače ustvarjalce iz betonskega brloga, ki mu pravimo Plc. Predstavimo, kaj so v enem letu naredili, predvsem pa pripravimo prvovrstno zabavo. Letos bo še posebej pestro: najprej kratki dokumentarec o Placu, ki ga je posnel Filip Košnik, nato plejada odličnih bendov, do konca pa nas bosta popeljala techno DJa Douchean in Ofnana_pesa.
 
@@ -26,7 +26,7 @@ Plc Fest je dogodek, na katerem predstavljamo domače ustvarjalce iz betonskega 
 ## Armaroth
 death metal, plc
 
-Armaroth je petglava entiteta, ki prebiva nekje v obskurnem podzemlju Kranja. Od prvih zapisov iz leta 2008, pa do danes, se je bend vzpostavil kot ena najbrutalnejših sil slovenske metal scene. Po demu Burning Execution (2010), ki je prave podvige šele nakazoval, je band leta 2013 izdal EP False Vision, ki je visoko čislan tako med podporniki, kot med recenzisti. Po nekaj kadrovskih menjavah, sta leta 2016 najprej izšla singla Diamox in Deep Of Throats, ki sta napovedala težko pričakovani prvenec ZENITH. Ta je izšel decembra istega leta in bil odlično sprejet kot nekaj svežege in izvirnega na metal sceni. Trenutno je v nastajanju drugi album, medtem pa fantje pridno koncertirajo.
+Armaroth je petglava entiteta, ki prebiva nekje v obskurnem podzemlju Kranja. Od prvih zapisov iz leta 2008, pa do danes, se je bend vzpostavil kot ena najbrutalnejših sil slovenske metal scene. Po demu Burning Execution (2010), ki je prave podvige šele nakazoval, je band leta 2013 izdal EP False Vision, ki je visoko čislan tako med podporniki, kot med recenzisti. Po nekaj kadrovskih menjavah, sta leta 2016 najprej izšla singla Diamox in Deep Of Throats, ki sta napovedala težko pričakovani prvenec ZENITH. Ta je izšel decembra istega leta in bil odlično sprejet kot nekaj svežega in izvirnega na metal sceni. Trenutno je v nastajanju drugi album, medtem pa fantje pridno koncertirajo.
 
 Čeprav Armaroth najraje ustvarja v svojem betonskem brlogu, pa svoj pravi obraz pokaže šele, ko zavzame oder. S svojo naravno karizmo in odrsko prezenco, bend zastruplja in zapeljuje občinstvo. Band je oborožen z izredno glasno in precizno ritem sekcijo, mastnimi in sprevženimi kitarskimi riffi ter psihadeličnimi vložki, na čelu pa rohnijo trije peklenski vokali, ki se jim uklanjajo strahovi sami.
 
@@ -61,7 +61,7 @@ https://www.youtube.com/watch?v=-IQHixp3b9M
 ## Amalgam
 dentist metal, plc
 
-Kranjska zasedba, ki je člane pokradla vsem lokalnim bendom in sestavila svojevrstn glasbeni amalgam, Zvok, baziran v progresivnih in matematičnih stilih agresivnega izražanja razmetavajo po vseh možnih avenijah shizofrenih melodij in pretepaških ritmov - prava kranscendentalna glasba.
+Kranjska zasedba, ki je člane pokradla vsem lokalnim bendom in sestavila svojevrsten glasbeni amalgam. Zvok, baziran v progresivnih in matematičnih stilih agresivnega izražanja razmetavajo po vseh možnih avenijah shizofrenih melodij in pretepaških ritmov - prava kranscendentalna glasba.
 
 https://www.facebook.com/amalgamplc/
 https://amalgamplc.bandcamp.com/
