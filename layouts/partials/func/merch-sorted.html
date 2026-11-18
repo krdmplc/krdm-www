@@ -1,0 +1,8 @@
+{{- /* Orders merch items: available ones first, sold-out ones last, each group
+  newest first. Takes and returns a slice of pages. */ -}}
+{{- $available := where . "Params.available" "ne" false -}}
+{{- $soldOut := where . "Params.available" false -}}
+{{- $out := slice -}}
+{{- range $available.ByDate.Reverse }}{{ $out = $out | append . }}{{ end -}}
+{{- range $soldOut.ByDate.Reverse }}{{ $out = $out | append . }}{{ end -}}
+{{- return $out -}}

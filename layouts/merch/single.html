@@ -1,0 +1,81 @@
+{{- /* A merch item. A catalogue entry, not a product page with a cart: the main
+  action is a contact-form link that pre-fills the item name. `quantity` is for
+  internal stock tracking only and is never rendered. */ -}}
+{{ define "main" }}
+  {{- $soldOut := eq .Params.available false -}}
+  {{- $price := partial "func/price" .Params.price -}}
+  <div class="container">
+    {{ partial "breadcrumbs" . }}
+
+    <article class="profile">
+      <div class="profile__media">
+        {{- with .Params.thumbnail }}
+          {{ partial "image" (dict "src" . "alt" $.Title "widths" (slice 600 1000) "sizes" "(min-width: 992px) 40vw, 100vw" "eager" true) }}
+        {{- end }}
+        {{- with .Params.images }}
+          <ul class="gallery" role="list">
+            {{- range . }}
+              <li><a href="{{ . }}">{{ partial "image" (dict "src" . "alt" $.Title "widths" (slice 240 480) "sizes" "(min-width: 992px) 13vw, 33vw") }}</a></li>
+            {{- end }}
+          </ul>
+        {{- end }}
+      </div>
+      <div class="profile__body">
+        <header class="page-header">
+          <h1>{{ .Title }}</h1>
+          {{ with .Description }}<p class="page-header__lead">{{ . }}</p>{{ end }}
+
+          <p class="price">
+            {{- if $soldOut }}<span class="stamp">{{ T "soldOut" }}</span>
+            {{- else }}{{ with $price }}<span class="visually-hidden">{{ T "price" }}: </span>{{ . }}{{ end }}{{ end -}}
+          </p>
+
+          <div class="meta-list">
+            {{ partial "meta" (dict "page" . "item" "meta-list__item" "linkArtists" true) }}
+            {{- with .Params.category }}
+              <div class="meta-list__item">
+                {{ partial "icon" "tag" }}
+                <span><span class="visually-hidden">{{ T "merchCategory" }}: </span>{{ T (printf "merch-%s" .) }}</span>
+              </div>
+            {{- end }}
+            {{- with .Params.sizes }}
+              <div class="meta-list__item">
+                {{ partial "icon" "maximize-2" }}
+                <span><span class="visually-hidden">{{ T "sizes" }}: </span>{{ delimit . ", " }}</span>
+              </div>
+            {{- end }}
+            {{- with .Params.release }}
+              {{- with site.GetPage (printf "/releases/%s" .) }}
+                <div class="meta-list__item">
+                  {{ partial "icon" "disc" }}
+                  <span><span class="visually-hidden">{{ T "release" }}: </span><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></span>
+                </div>
+              {{- end }}
+            {{- end }}
+          </div>
+        </header>
+
+        <div class="content">
+          {{ .Content }}
+        </div>
+
+        <div class="actions">
+          {{- with site.GetPage "/contact" }}
+            <a class="button" href="{{ .RelPermalink }}?item={{ $.Title | urlquery }}">{{ partial "icon" "mail" }} {{ T (cond $soldOut "merchAskSoldOut" "merchAsk") }}</a>
+          {{- end }}
+          {{- with .Params.link }}
+            <a class="link-arrow" href="{{ . }}">{{ cond (strings.Contains . "bandcamp.com") "Bandcamp" (T "merchLink") }} {{ partial "icon" "external-link" }}</a>
+          {{- end }}
+        </div>
+        <p class="actions__note">{{ T "merchHowTo" }}</p>
+      </div>
+    </article>
+
+    {{ with .GetTerms "artists" }}
+      <section aria-labelledby="artists">
+        <div class="section-head"><h2 id="artists">{{ T "artists" }}</h2></div>
+        {{ partial "card-grid" (dict "pages" . "level" 3 "cols" 6 "sizes" "(min-width: 1170px) 16vw, (min-width: 768px) 25vw, 33vw") }}
+      </section>
+    {{ end }}
+  </div>
+{{ end }}

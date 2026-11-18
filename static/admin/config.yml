@@ -180,6 +180,64 @@ collections:
       - *ARTISTS
       - *SHOW_IN_ADMIN
 
+  # Merch catalogue (not a shop). `price` is a number in euros so a checkout can
+  # use it later; `quantity` is for internal stock tracking and is never shown.
+  - name: merch
+    label: Merch
+    label_singular: merch item
+    folder: content/merch
+    create: true
+    i18n: true
+    filter: {field: showInAdmin, value: true}
+    slug: "{{slug}}"
+    sortable_fields: [date, title, price]
+    summary: "{{title}} · {{price}} €"
+    editor:
+      preview: false
+    fields:
+      - {label: Title, name: title, widget: string, i18n: true}
+      - {label: Date (newer items come first), name: date, widget: datetime, i18n: duplicate}
+      - {label: Photo, name: thumbnail, widget: image, i18n: duplicate}
+      - label: More photos
+        name: images
+        widget: list
+        required: false
+        i18n: duplicate
+        field: {label: Photo, name: image, widget: image}
+      - label: Category
+        name: category
+        widget: select
+        default: apparel
+        i18n: duplicate
+        options:
+          - {label: "Apparel (T-shirts, hoodies)", value: apparel}
+          - {label: "Music (CD, vinyl, cassette)", value: music}
+          - {label: "Other (caps, patches, bags, pins…)", value: other}
+      - {label: Price (EUR), name: price, widget: number, value_type: float, min: 0, step: 0.5, required: false, i18n: duplicate}
+      - label: Sizes
+        name: sizes
+        widget: select
+        multiple: true
+        required: false
+        i18n: duplicate
+        options: [XS, S, M, L, XL, XXL, 3XL]
+      - {label: "Available (untick when sold out; the item stays listed as sold out)", name: available, widget: boolean, default: true, i18n: duplicate}
+      - {label: "Quantity in stock (internal only, never shown on the site)", name: quantity, widget: number, value_type: int, min: 0, required: false, i18n: duplicate}
+      - label: Release (for CDs, records and tapes)
+        name: release
+        widget: relation
+        collection: releases
+        required: false
+        search_fields: [title]
+        display_fields: [title]
+        value_field: "{{slug}}"
+        i18n: duplicate
+      - {label: Link (Bandcamp or another shop), name: link, widget: string, required: false, i18n: duplicate}
+      - *ARTISTS
+      - *DESCRIPTION
+      - {label: Content, name: body, widget: markdown, i18n: true}
+      - *SHOW_IN_ADMIN
+
   # Standalone pages (about, join, play, cookies). A folder collection rather than
   # a files collection, because Decap only supports i18n `multiple_files` there.
   - name: pages

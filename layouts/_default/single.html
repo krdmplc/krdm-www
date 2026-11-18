@@ -46,6 +46,16 @@
       </article>
     {{- end }}
 
+    {{- /* Merch items that point to this release (`release:` in their front matter). */}}
+    {{ if eq .Section "releases" }}
+      {{ with where (where site.RegularPages "Section" "merch") "Params.release" .File.ContentBaseName }}
+        <section aria-labelledby="merch">
+          <div class="section-head"><h2 id="merch">{{ T "merch" }}</h2></div>
+          {{ partial "card-grid" (dict "pages" (partial "func/merch-sorted" .) "level" 3 "cols" 4) }}
+        </section>
+      {{ end }}
+    {{ end }}
+
     {{ with .GetTerms "artists" }}
       <section aria-labelledby="artists">
         <div class="section-head"><h2 id="artists">{{ T "artists" }}</h2></div>

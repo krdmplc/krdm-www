@@ -1,0 +1,11 @@
+{{- /*
+  Formats a price in euros (a number, as in `price: 20`) for the current
+  language: "20 €" in Slovenian, "€20" in English. Whole amounts get no
+  decimals. Returns "" when there is no price.
+*/ -}}
+{{- $out := "" -}}
+{{- with . -}}
+  {{- $n := float . -}}
+  {{- $out = lang.FormatCurrency (cond (eq $n (math.Floor $n)) 0 2) "EUR" $n -}}
+{{- end -}}
+{{- return $out -}}

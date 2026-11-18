@@ -39,12 +39,13 @@ file exists as `name.sl.md` + `name.en.md`.
 |---|---|---|
 | Events | `content/events/<name>.<lang>.md` | `/dogodki/<name>/` · `/en/events/<name>/` |
 | Releases | `content/releases/<name>.<lang>.md` | `/izdaje/<name>/` · `/en/releases/<name>/` |
+| Merch | `content/merch/<name>.<lang>.md` | `/merch/<name>/` · `/en/merch/<name>/` |
 | Artists | `content/artists/<ref>/_index.<lang>.md` | `/ustvarjalci/<slug>/` · `/en/artists/<ref>/` |
 | Pages | `content/{about,join,play,cookies}.<lang>.md` | Slovenian `slug` in front matter |
 | Home | `content/_index.<lang>.md` | `/` · `/en/` |
 
 - **Artists are taxonomy terms**, not a section (`[taxonomies] artist = "artists"`).
-  Events and releases list them in `artists: [ref, …]`; templates resolve them with
+  Events, releases and merch list them in `artists: [ref, …]`; templates resolve them with
   `.GetTerms "artists"`. An artist's `ref` **must equal its folder name**, otherwise
   Hugo creates an empty term page. `static/admin/index.js` keeps them in sync on save.
 - Front matter fields: `title`, `description` (meta description — optional, a good
@@ -58,10 +59,18 @@ file exists as `name.sl.md` + `name.en.md`.
   home page shows only active, non-hidden artists, ordered by latest release/event.
   The artists page splits them into "active" (that same set) and "other"; the
   individual status is not shown publicly.
+- **Merch** is a catalogue, not a shop: item pages link to the contact form with
+  `?item=<name>` (pre-filled by `assets/scripts/contact-prefill.js`) and to `link`
+  (Bandcamp) if set. Fields: `category` (`apparel`, `music`, `other`, the list filter),
+  `price` (a **number** in euros, formatted by `partials/func/price.html`, kept
+  numeric for a future checkout), `sizes`, `available` (`false` = listed as sold
+  out, last), `release` (a release's file name; the release page then lists the
+  item), `images` (extra photos). `quantity` is internal stock tracking and must
+  never be rendered. JSON-LD: `Product` with an `Offer`.
 - There is **no public email address** (info@krdm.si is dead): contact goes through
   the Netlify Forms form on `content/contact.*.md` (`{{</* contact-form */>}}`), whose
-  notifications are configured in the Netlify UI. Prices appear only on event pages,
-  never in listings.
+  notifications are configured in the Netlify UI. Event prices appear only on event pages,
+  never in listings; merch prices do show on cards.
 - `showInAdmin: true` (Slovenian files) and `pageType: page` are filters for Decap's
   listings — keep them on new content.
 - Slovenian URLs come from `[languages.sl.permalinks]` in `hugo.toml` and the `url:` /
@@ -118,7 +127,8 @@ Keep these working when you touch templates:
   Graph/Twitter, and `noindex` on every non-production `CONTEXT`.
 - `layouts/partials/head/schema.html`: JSON-LD `@graph` with `NGO` (organisation) and
   `WebSite` nodes on every page, `WebPage` + `BreadcrumbList`, and per type
-  `MusicEvent`, `MusicAlbum` or `MusicGroup` (with `sameAs` links pulled from the bio).
+  `MusicEvent`, `MusicAlbum`, `Product` (merch) or `MusicGroup` (with `sameAs` links
+  pulled from the bio).
 - `layouts/index.llms.txt` → `/llms.txt` and `/en/llms.txt` (llmstxt.org): a Markdown
   map of the site for LLMs. New sections should be listed there too.
 - `layouts/robots.txt`: allows all crawlers (including AI crawlers) on production,

@@ -5,6 +5,7 @@
 //   .card--square  release covers and artist photos (cropped to fill)
 //   .card--wide    event posters, mostly 1.91:1 Facebook covers (shown whole)
 //   .card--artist  photos in black and white, colour on hover (as on the posters)
+//   .card--product merch photos, shown whole (sold-out items get a .stamp)
 .card {
   display: flex;
   flex-direction: column;
@@ -48,6 +49,19 @@
     img {
       object-fit: contain;
     }
+  }
+
+  // Merch photos (mock-ups with front and back side by side, portrait CD
+  // shots) are shown whole on a square rather than cropped.
+  &--product &__media img {
+    object-fit: contain;
+  }
+
+  &__stamp {
+    position: absolute;
+    z-index: 1;
+    top: 10px;
+    left: 10px;
   }
 
   &--artist &__media img {

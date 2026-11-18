@@ -1,0 +1,21 @@
+{{- /* Merch catalogue: newest first, sold-out items at the end. Not a shop:
+  item pages point to the contact form (and Bandcamp where there is a link). */ -}}
+{{ define "main" }}
+  <div class="container">
+    {{ partial "breadcrumbs" . }}
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}<div class="content">{{ . }}</div>{{ end }}
+
+    {{- /* Category filter; revealed by assets/scripts/list-filter.js. */}}
+    <ul class="filter filter--spaced" data-filter hidden aria-label="{{ T "merchCategory" }}">
+      <li><button type="button" data-value="all" aria-pressed="true">{{ T "filterAll" }}</button></li>
+      {{- range slice "apparel" "music" "other" }}
+        {{- if where $.Pages "Params.category" . }}
+          <li><button type="button" data-value="{{ . }}" aria-pressed="false">{{ T (printf "merch-%s" .) }}</button></li>
+        {{- end }}
+      {{- end }}
+    </ul>
+
+    {{ partial "card-grid" (dict "pages" (partial "func/merch-sorted" .Pages) "level" 2 "cols" 4 "filterKey" "category") }}
+  </div>
+{{ end }}
