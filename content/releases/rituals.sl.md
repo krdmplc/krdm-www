@@ -3,6 +3,7 @@ title: "Rituals"
 date: 2023-02-18T00:00:00+01:00
 releaseDate: 2023-02-18T00:00:00+01:00
 thumbnail: /media/uploads/rituals.jpg
+format: ep
 artists:
   - ofnana_pesa
 showInAdmin: true

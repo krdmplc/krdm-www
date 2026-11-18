@@ -28,6 +28,7 @@
       <p class="card__meta no-margin">
         {{- range $i, $a := $p.GetTerms "artists" }}{{ if $i }}, {{ end }}{{ $a.LinkTitle }}{{ end -}}
         {{- with $p.Params.releaseDate }}{{ if $p.GetTerms "artists" }} · {{ end }}{{ time.Format "2006" . }}{{ end -}}
+        {{- with $p.Params.format }} · {{ T (printf "format-%s" .) }}{{ end -}}
       </p>
     {{- end }}
   </div>

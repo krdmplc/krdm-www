@@ -3,6 +3,7 @@ title: "Immortale"
 date: 2019-03-31T00:00:00+01:00
 releaseDate: 2019-03-31T00:00:00+01:00
 thumbnail: /media/uploads/immortale.jpg
+format: single
 showInAdmin: true
 artists:
 - ofnana_pesa

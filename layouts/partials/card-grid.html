@@ -4,6 +4,6 @@
 {{- $class := index (dict "3" "card-grid--3" "4" "card-grid--4" "6" "card-grid--6") (string (.cols | default 4)) -}}
 <ul class="card-grid {{ $class }}" role="list">
   {{- range .pages }}
-    <li>{{ partial "card" (dict "page" . "level" $ctx.level "sizes" $ctx.sizes) }}</li>
+    <li{{ with .Params.format }} data-filter-value="{{ . }}"{{ end }}>{{ partial "card" (dict "page" . "level" $ctx.level "sizes" $ctx.sizes) }}</li>
   {{- end }}
 </ul>

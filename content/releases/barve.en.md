@@ -3,6 +3,7 @@ title: "Barve"
 date: 2022-01-28T00:00:00+01:00
 releaseDate: 2022-01-28T00:00:00+01:00
 thumbnail: /media/uploads/barve.jpg
+format: single
 artists:
   - oti
 ---

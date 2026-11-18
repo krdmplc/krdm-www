@@ -168,6 +168,15 @@ collections:
       - {label: Publish date, name: date, widget: datetime, i18n: duplicate}
       - {label: Release date, name: releaseDate, widget: datetime, i18n: duplicate}
       - {label: Cover, name: thumbnail, widget: image, i18n: duplicate}
+      - label: Format
+        name: format
+        widget: select
+        default: single
+        i18n: duplicate
+        options:
+          - {label: Album (LP), value: lp}
+          - {label: EP, value: ep}
+          - {label: Single, value: single}
       - *DESCRIPTION
       - {label: Content, name: body, widget: markdown, i18n: true}
       - *ARTISTS

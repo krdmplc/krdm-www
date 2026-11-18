@@ -3,7 +3,7 @@
 {{- $p := .page -}}
 {{- $level := .level | default 3 -}}
 {{- $d := time $p.Params.startDate -}}
-<li data-event-series="{{ $p.Params.series | default "other" }}">
+<li data-filter-value="{{ $p.Params.series | default "other" }}">
   <a class="event-row" href="{{ $p.RelPermalink }}">
     <time class="event-row__date" datetime="{{ $d.Format "2006-01-02" }}">
       <span class="event-row__day">{{ $d.Format "02. 01." }}</span>

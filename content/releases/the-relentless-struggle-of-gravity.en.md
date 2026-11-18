@@ -3,6 +3,7 @@ title: "The Relentless Struggle Of Gravity"
 date: 2022-11-05T00:00:00+01:00
 releaseDate: 2022-11-05T00:00:00+01:00
 thumbnail: /media/uploads/the-relentless-struggle-of-gravity.jpg
+format: lp
 artists:
   - douchean
 ---

@@ -4,7 +4,7 @@ description: "Društvo KRDM is a non-profit association from Kranj, Slovenia, pr
 hero:
   title: KRDM
   desc: Promoting independent artists
-  image: /media/uploads/hero-armaroth-2026.jpg
+  image: /media/uploads/hero-plc-collage.jpg
 events:
   title: Upcoming Events
   all:

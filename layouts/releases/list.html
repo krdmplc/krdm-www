@@ -1,0 +1,17 @@
+{{ define "main" }}
+  <div class="container">
+    {{ partial "breadcrumbs" . }}
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}<div class="content">{{ . }}</div>{{ end }}
+
+    {{- /* Format filter; revealed by assets/scripts/list-filter.js. */}}
+    <ul class="filter filter--spaced" data-filter hidden aria-label="{{ T "format" }}">
+      <li><button type="button" data-value="all" aria-pressed="true">{{ T "filterAll" }}</button></li>
+      {{- range slice "lp" "ep" "single" }}
+        <li><button type="button" data-value="{{ . }}" aria-pressed="false">{{ T (printf "formatPlural-%s" .) }}</button></li>
+      {{- end }}
+    </ul>
+
+    {{ partial "card-grid" (dict "pages" .Pages.ByDate.Reverse "level" 2 "cols" 4) }}
+  </div>
+{{ end }}

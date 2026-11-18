@@ -3,6 +3,7 @@ title: "Denktimes Compilation Vol. 3"
 date: 2018-07-21T00:00:00+02:00
 releaseDate: 2018-07-21T00:00:00+02:00
 thumbnail: /media/uploads/denktimes-compilation-vol-3.jpg
+format: lp
 artists:
   - didge
   - amalgam

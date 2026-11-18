@@ -3,6 +3,7 @@ title: "Poslednje rogoviljenje"
 date: 2021-01-30T00:00:00+01:00
 releaseDate: 2021-01-30T00:00:00+01:00
 thumbnail: /media/uploads/poslednje-rogoviljenje.jpg
+format: ep
 artists:
   - grund
 ---

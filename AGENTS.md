@@ -13,6 +13,7 @@ when updating tooling, but this site deviates where noted below.
 ```bash
 npm ci           # install (Node >= 22.13)
 npm run dev      # hugo server → http://localhost:1313 (CMS: npx decap-server, then /admin/)
+                 # serves from public/ — don't build into or delete public/ while it runs
 npm run build    # hugo → public/
 npm run lint     # eslint + stylelint — the same gate Netlify runs before building
 ```
@@ -95,7 +96,7 @@ file exists as `name.sl.md` + `name.en.md`.
 - **Look** ("Plc zine", from KRDM's own flyers): paper and ink, flyer green as the only
   highlight, square corners, hard rules, black-and-white artist photos. Avoid soft
   "card UI" (rounded corners, translucent panels, gentle shadows/borders).
-- **Fonts** are self-hosted WOFF2 in `static/fonts/` (latin + latin-ext): Open Sans
+- **Fonts** are self-hosted WOFF2 in `static/fonts/` (latin + latin-ext): Courier Prime
   (body), Amatic SC (hand-lettered headings), Special Elite (typewriter small print).
   Don't reintroduce Google Fonts (GDPR). The logo is the hand-drawn mark in
   `static/media/brand/krdm-mark-white.png` (inverted by CSS on the light theme).

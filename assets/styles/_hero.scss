@@ -1,6 +1,6 @@
 @use "grid/breakpoints";
 
-// Home hero: a black-and-white band photo with a vignette, like KRDM's posters,
+// Home hero: a black-and-white contact sheet of KRDM's artists, like their posters,
 // the name in hand lettering, and the next event pinned on as a green flyer.
 // Sits on a photo, so it uses fixed paper/ink colours in both themes.
 .hero {
@@ -24,15 +24,17 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 35%;
-    filter: grayscale(1) contrast(1.15) brightness(0.85);
+    object-position: center 30%;
+    filter: grayscale(1) contrast(1.1) brightness(0.9);
   }
 
   &::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at 50% 40%, transparent 30%, var(--color-ink) 100%);
+    background:
+      linear-gradient(to top, var(--color-ink) 0%, rgba(12, 12, 11, 0.55) 40%, rgba(12, 12, 11, 0.15) 75%),
+      radial-gradient(ellipse at 50% 30%, transparent 55%, rgba(12, 12, 11, 0.6) 100%);
   }
 
   &__inner {
@@ -127,7 +129,7 @@
     align-items: center;
     padding-bottom: 2px;
     border-bottom: 2px solid var(--color-ink);
-    font-weight: 800;
+    font-weight: 700;
     text-transform: uppercase;
 
     svg {

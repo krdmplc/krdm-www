@@ -3,6 +3,7 @@ title: "Samospev"
 date: 2026-11-10T00:00:00+01:00
 releaseDate: 2026-11-10T00:00:00+01:00
 thumbnail: /media/uploads/samospev.jpg
+format: ep
 artists:
   - oti
 showInAdmin: true

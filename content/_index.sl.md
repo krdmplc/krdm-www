@@ -4,7 +4,7 @@ description: "Društvo KRDM iz Kranja spodbuja neodvisno glasbo in umetnost na G
 hero:
   title: KRDM
   desc: Društvo za promocijo neodvisne glasbe
-  image: /media/uploads/hero-armaroth-2026.jpg
+  image: /media/uploads/hero-plc-collage.jpg
 events:
   title: Prihajajoči dogodki
   all:

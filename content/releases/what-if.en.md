@@ -3,6 +3,7 @@ title: "What If"
 date: 2026-07-17T00:00:00+02:00
 releaseDate: 2026-07-17T00:00:00+02:00
 thumbnail: /media/uploads/what-if.jpg
+format: single
 artists:
   - oti
 ---

@@ -18,6 +18,12 @@
     <span><span class="visually-hidden">{{ T "releaseDate" }}: </span><time datetime="{{ time.Format "2006-01-02" . }}">{{ time.Format ":date_long" . }}</time></span>
   </div>
 {{- end }}
+{{- with $p.Params.format }}
+  <div class="{{ $item }}">
+    {{ partial "icon" "disc" }}
+    <span><span class="visually-hidden">{{ T "format" }}: </span>{{ T (printf "format-%s" .) }}</span>
+  </div>
+{{- end }}
 {{- with $p.Params.venue }}
   <div class="{{ $item }}">
     {{ partial "icon" "map-pin" }}
