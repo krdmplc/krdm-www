@@ -1,48 +1,66 @@
 {{ define "main" }}
-  {{ partial "hero" .Params.hero }}
+  {{- $events := slice -}}
+  {{- with site.GetPage "/events" }}{{ $events = .Pages }}{{ end -}}
+  {{- $upcoming := slice -}}
+  {{- $past := slice -}}
+  {{- range $events -}}
+    {{- if (time .Params.startDate).After now }}{{ $upcoming = $upcoming | append . }}{{ else }}{{ $past = $past | append . }}{{ end -}}
+  {{- end -}}
+  {{- $upcoming = sort $upcoming "Params.startdate" -}}
+  {{- $past = sort $past "Params.startdate" "desc" -}}
+
+  {{ partial "hero" (dict "hero" .Params.hero "next" (index $upcoming 0)) }}
 
   <div class="container">
-    {{ $upcoming := slice }}
-    {{ with site.GetPage "/events" }}
-      {{ range .Pages }}
-        {{ if (time .Params.startDate).After now }}
-          {{ $upcoming = $upcoming | append . }}
-        {{ end }}
-      {{ end }}
-    {{ end }}
-    {{ partial "home/section" (dict
-      "id" "events"
-      "title" .Params.events.title
-      "pages" (sort $upcoming "Params.startdate")
-      "all" .Params.events.all
-    ) }}
+    {{- /* Events: the next one large, the rest as rows. With nothing announced,
+      show the most recent ones instead of an empty section. */}}
+    <section aria-labelledby="events">
+      {{- if $upcoming }}
+        {{ partial "section-head" (dict "id" "events" "title" .Params.events.title "all" .Params.events.all) }}
+        {{ partial "event-feature" (dict "page" (index $upcoming 0)) }}
+        {{- with after 1 $upcoming }}
+          <ul class="event-list event-list--spaced" role="list">
+            {{- range . }}{{ partial "event-row" (dict "page" . "level" 3) }}{{ end }}
+          </ul>
+        {{- end }}
+      {{- else }}
+        {{ partial "section-head" (dict "id" "events" "title" (T "recentEvents") "all" .Params.events.all) }}
+        <p>{{ T "noUpcoming" }}</p>
+      {{- end }}
+      {{- with first 3 $past }}
+        {{- if $upcoming }}<h3 class="eyebrow event-list-label">{{ T "recentEvents" }}</h3>{{ end }}
+        <ul class="event-list" role="list">
+          {{- range . }}{{ partial "event-row" (dict "page" . "level" 4) }}{{ end }}
+        </ul>
+      {{- end }}
+    </section>
 
-    {{ with site.GetPage "/releases" }}
-      {{ partial "home/section" (dict
-        "id" "releases"
-        "title" $.Params.releases.title
-        "pages" (first 4 .Pages.ByDate.Reverse)
-        "all" $.Params.releases.all
-      ) }}
-    {{ end }}
+    {{- with site.GetPage "/releases" }}
+      <section aria-labelledby="releases">
+        {{ partial "section-head" (dict "id" "releases" "title" $.Params.releases.title "all" $.Params.releases.all) }}
+        {{ partial "card-grid" (dict "pages" (first 8 .Pages.ByDate.Reverse) "level" 3 "cols" 4) }}
+      </section>
+    {{- end }}
 
-    {{ with site.GetPage "/artists" }}
-      {{ partial "home/section" (dict
-        "id" "artists"
-        "title" $.Params.artists.title
-        "pages" (first 4 .Pages)
-        "all" $.Params.artists.all
-      ) }}
-    {{ end }}
+    {{- with site.GetPage "/artists" }}
+      <section aria-labelledby="artists">
+        {{ partial "section-head" (dict "id" "artists" "title" $.Params.artists.title "all" $.Params.artists.all) }}
+        {{ partial "card-grid" (dict "pages" (partial "func/artists-by-activity" (dict "pages" .Pages "home" true)) "level" 3 "cols" 6 "sizes" "(min-width: 1170px) 16vw, (min-width: 768px) 25vw, 33vw") }}
+      </section>
+    {{- end }}
 
     <section aria-labelledby="about">
-      <h2 class="section-header" id="about">{{ .Params.about.title }}</h2>
-      <div class="content">
-        {{ .Content }}
+      {{ partial "section-head" (dict "id" "about" "title" .Params.about.title) }}
+      <div class="about">
+        <div>
+          {{ with .Params.about.text }}<div class="about__text">{{ . | markdownify }}</div>{{ end }}
+          {{ partial "home/stats" . }}
+          {{ with .Params.about.link }}<a href="{{ .href }}" class="button">{{ .text }} {{ partial "icon" "arrow-right" }}</a>{{ end }}
+        </div>
+        <div>
+          {{ .Content }}
+        </div>
       </div>
-      {{ with .Params.about.link }}
-        <p class="section-footer"><a href="{{ .href }}" class="button">{{ .text }}</a></p>
-      {{ end }}
     </section>
   </div>
 {{ end }}

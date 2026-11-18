@@ -1,6 +1,9 @@
 {{ $bundleItems := slice
   (resources.Get "scripts/main-menu.js")
   (resources.Get "scripts/external-links.js")
+  (resources.Get "scripts/theme-toggle.js")
+  (resources.Get "scripts/video-facade.js")
+  (resources.Get "scripts/list-filter.js")
 }}
 
 {{ $options := dict "sourcemap" (cond hugo.IsProduction "none" "inline") }}

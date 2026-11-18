@@ -4,13 +4,16 @@ date: 2017-02-25T00:00:00+01:00
 startDate: 2017-02-25T19:00:00+01:00
 venue: "Trainstation Subart, Kranj"
 price: "5 €"
-thumbnail: /media/uploads/plc-fest-2017.jpg
+thumbnail: /media/uploads/plc-fest-2017-fb.jpg
+series: plc-fest
 artists:
   - armaroth
   - nature
   - didge
   - amalgam
   - mutism
+  - sen
+  - noc
 ---
 
 The second edition of Plc Fest. At the time it was organised by KUD SubArt and KUD Denktimes, the society the Plc collective founded in 2016.

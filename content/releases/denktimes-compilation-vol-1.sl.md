@@ -3,12 +3,14 @@ title: "Denktimes Compilation Vol. 1"
 date: 2016-07-21T00:00:00+01:00
 releaseDate: 2016-07-21T00:00:00+01:00
 thumbnail: /media/uploads/denktimes-compilation-vol-1.jpg
+format: album
 artists:
-- armaroth
-- gmb
-- amalgam
-- mutism
-- didge
+  - armaroth
+  - gmb
+  - amalgam
+  - mutism
+  - didge
+  - sen
 showInAdmin: true
 ---
 

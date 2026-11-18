@@ -3,6 +3,7 @@ title: "Dolazi Gove iz Zagreba"
 date: 2021-10-12T00:00:00+02:00
 releaseDate: 2021-10-12T00:00:00+02:00
 thumbnail: /media/uploads/dolazi-gove-iz-zagreba.jpg
+format: single
 artists:
   - pedri
 ---

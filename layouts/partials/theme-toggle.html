@@ -1,0 +1,9 @@
+{{- /* Auto / light / dark switcher; wired up by assets/scripts/theme-toggle.js.
+  Buttons are disabled until the script runs, so without JS nothing pretends to work. */ -}}
+<div class="theme-toggle" role="group" aria-label="{{ T "theme" }}">
+  {{- range slice (dict "value" "auto" "icon" "monitor" "label" (T "themeAuto")) (dict "value" "light" "icon" "sun" "label" (T "themeLight")) (dict "value" "dark" "icon" "moon" "label" (T "themeDark")) }}
+    <button type="button" data-theme-value="{{ .value }}" aria-pressed="{{ cond (eq .value "auto") "true" "false" }}" title="{{ .label }}" disabled>
+      {{ partial "icon" .icon }}<span class="visually-hidden">{{ .label }}</span>
+    </button>
+  {{- end }}
+</div>

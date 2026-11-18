@@ -3,12 +3,15 @@ title: "Denktimes Compilation Vol. 2"
 date: 2017-07-21T00:00:00+02:00
 releaseDate: 2017-07-21T00:00:00+02:00
 thumbnail: /media/uploads/denktimes-compilation-vol-2.jpg
+format: album
 artists:
   - didge
   - armaroth
   - mutism
   - amalgam
   - nature
+  - sen
+  - noc
 showInAdmin: true
 ---
 

@@ -1,0 +1,18 @@
+{{- /*
+  Applies a theme the visitor picked with the footer toggle before the first
+  paint, so there is no flash of the wrong theme. Without a stored choice the
+  CSS follows prefers-color-scheme (assets/styles/_colors.scss).
+
+  Inline and ES5 on purpose: it must run synchronously in <head>, and ESLint
+  does not see inline scripts. The choice is kept in localStorage (no cookies).
+*/ -}}
+<script>
+  (function () {
+    try {
+      var theme = window.localStorage.getItem('theme')
+      if (theme === 'light' || theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', theme)
+      }
+    } catch (e) {}
+  })()
+</script>

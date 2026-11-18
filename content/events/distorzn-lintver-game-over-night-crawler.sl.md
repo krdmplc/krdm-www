@@ -6,6 +6,7 @@ endDate: 2023-02-12T00:00:00+01:00
 venue: "Trainstation Subart, Kranj"
 price: "10 €"
 thumbnail: /media/uploads/distorzn-2023-02-11.jpg
+series: distorzn
 showInAdmin: true
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: GMB
 date: 2021-01-02T13:17:28.001Z
-thumbnail: /media/uploads/gmb.jpg
+thumbnail: /media/uploads/gmb-2026.jpg
 ref: gmb
 showInAdmin: true
 ---

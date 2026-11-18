@@ -1,6 +1,12 @@
 {{ $d := index hugo.Data.footer site.Language.Lang }}
 
 <footer class="footer">
+  <div class="container">
+    {{- with partial "func/image" "/media/brand/plc-box-white.png" }}
+      {{- $art := .Resize "360x webp q85" }}
+      <img class="footer__art" src="{{ $art.RelPermalink }}" width="180" height="{{ div $art.Height 2 }}" alt="" loading="lazy">
+    {{- end }}
+  </div>
   <div class="container footer__inner">
     <div>
       <p class="footer__title"><strong>{{ $d.title }}</strong></p>
@@ -10,12 +16,13 @@
       </address>
     </div>
     <div>
-      <a href="mailto:{{ $d.email }}">{{ $d.email }}</a><br>
+      {{ with site.GetPage "/contact" }}<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a><br>{{ end }}
       {{ with site.GetPage "/cookies" }}<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a><br>{{ end }}
       © 2016–{{ now.Year }} {{ $d.title }}
     </div>
-    <div>
+    <div class="footer__end">
       {{ partial "social-menu" . }}
+      {{ partial "theme-toggle" . }}
     </div>
   </div>
 </footer>

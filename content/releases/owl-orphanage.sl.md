@@ -3,6 +3,7 @@ title: "Owl Orphanage"
 date: 2017-02-14T00:00:00+01:00
 releaseDate: 2017-02-14T00:00:00+01:00
 thumbnail: /media/uploads/owl-orphanage.jpg
+format: single
 artists:
   - amalgam
 showInAdmin: true

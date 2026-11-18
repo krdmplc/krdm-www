@@ -1,0 +1,425 @@
+@use "grid/breakpoints";
+
+// Section title in hand lettering over a heavy ink rule, "see all" in typewriter.
+.section-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  border-bottom: 3px solid var(--rule);
+
+  h2 {
+    margin: 0 0 -4px;
+  }
+}
+
+// First section right under a page title: less space than between sections.
+.section-first {
+  margin-top: 48px;
+}
+
+.section-intro {
+  max-width: 60ch;
+  margin-top: -8px;
+  margin-bottom: 28px;
+  color: var(--fg-muted);
+}
+
+// Featured (next) event: poster + details side by side, between two rules.
+.event-feature {
+  display: grid;
+  gap: 24px;
+  align-items: center;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--rule-soft);
+
+  @include breakpoints.breakpoint-up("md") {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: 48px;
+  }
+
+  &__media {
+    display: block;
+    background-color: var(--color-ink);
+
+    &:hover {
+      background-color: var(--color-ink);
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  &__title {
+    margin-bottom: 16px;
+    font-family: var(--font-display);
+    font-size: clamp(2.75rem, 5vw, 4.25rem);
+    font-weight: 700;
+    line-height: 0.95;
+
+    a {
+      text-decoration: none;
+    }
+  }
+}
+
+// A poster-style lineup: names in caps separated by slashes.
+.lineup {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 0 28px;
+  padding: 0;
+  list-style: none;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+
+  li + li::before {
+    content: "/";
+    margin: 0 0.45em;
+    color: var(--fg-muted);
+    font-weight: 400;
+  }
+}
+
+// Gig listing rows: date, title + venue, small poster.
+.event-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.event-list--spaced {
+  margin-top: 8px;
+}
+
+.event-list-label {
+  margin-top: 48px;
+}
+
+.event-row {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule-soft);
+  color: inherit;
+  text-decoration: none;
+
+  @include breakpoints.breakpoint-up("sm") {
+    grid-template-columns: 112px minmax(0, 1fr) 150px;
+    gap: 24px;
+  }
+
+  &:hover {
+    background: none;
+    color: inherit;
+
+    .event-row__title span {
+      background-color: var(--highlight);
+      color: var(--on-highlight);
+    }
+  }
+
+  &__date {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+  }
+
+  &__day {
+    font-family: var(--font-display);
+    font-size: 2.25rem;
+    font-weight: 700;
+
+    @include breakpoints.breakpoint-up("sm") {
+      font-size: 2.75rem;
+    }
+  }
+
+  &__year {
+    color: var(--fg-muted);
+    font-family: var(--font-type);
+    font-size: 0.875rem;
+  }
+
+  &__title {
+    margin: 0 0 4px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+
+    span {
+      box-decoration-break: clone;
+    }
+  }
+
+  &__meta {
+    margin: 0;
+    color: var(--fg-muted);
+    font-family: var(--font-type);
+    font-size: 0.875rem;
+  }
+
+  &__thumb {
+    display: none;
+    overflow: hidden;
+    background-color: var(--bg-sunk);
+    aspect-ratio: 1.91;
+
+    @include breakpoints.breakpoint-up("sm") {
+      display: block;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+.year-group {
+  margin: 40px 0 0;
+
+  &__title {
+    margin-bottom: 0;
+    padding-bottom: 4px;
+    border-bottom: 2px solid var(--rule);
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+}
+
+// Filter buttons (events by series): plain words, the active one highlighted.
+.filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  margin: 0 0 8px;
+  padding: 0;
+  list-style: none;
+
+  &--spaced {
+    margin-bottom: 32px;
+  }
+
+  button {
+    padding: 4px 10px;
+    border: 2px solid transparent;
+    background: none;
+    color: var(--fg);
+    font-family: var(--font-type);
+    font-size: 0.9375rem;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    &:hover {
+      border-color: var(--rule);
+    }
+
+    &[aria-pressed="true"] {
+      background-color: var(--highlight);
+      color: var(--on-highlight);
+    }
+  }
+}
+
+// About Plc: text and numbers next to the video.
+.about {
+  display: grid;
+  gap: 32px;
+  align-items: start;
+
+  @include breakpoints.breakpoint-up("md") {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 56px;
+  }
+
+  &__text {
+    font-size: 1.125rem;
+  }
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0 0 32px;
+  padding: 0;
+  list-style: none;
+  border-top: 2px solid var(--rule);
+
+  li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rule-soft);
+
+    &:nth-child(odd) {
+      padding-right: 16px;
+      border-right: 1px solid var(--rule-soft);
+    }
+
+    &:nth-child(even) {
+      padding-left: 16px;
+    }
+  }
+
+  strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    line-height: 1;
+  }
+
+  span {
+    font-family: var(--font-type);
+    font-size: 0.875rem;
+  }
+}
+
+// Click-to-load YouTube: nothing is requested from YouTube until the visitor
+// presses play (assets/scripts/video-facade.js swaps in the iframe).
+.video-facade {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+  cursor: pointer;
+
+  img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.1) brightness(0.7);
+  }
+
+  &__play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 84px;
+    height: 84px;
+    background-color: var(--color-flyer);
+    color: var(--color-ink);
+    transform: translate(-50%, -50%) rotate(-3deg);
+
+    svg {
+      width: 32px;
+      height: 32px;
+      margin-left: 4px;
+      fill: currentcolor;
+    }
+  }
+
+  &__label {
+    position: absolute;
+    bottom: 14px;
+    left: 18px;
+    font-family: var(--font-type);
+    text-transform: uppercase;
+  }
+
+  &:hover &__play {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+}
+
+// Artist and release pages: image next to the text.
+.profile {
+  display: grid;
+
+  // minmax(0, …): without it the single mobile column grows to the image's
+  // intrinsic width and the page scrolls sideways.
+  grid-template-columns: minmax(0, 1fr);
+  gap: 32px;
+  margin-bottom: 24px;
+
+  @include breakpoints.breakpoint-up("md") {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 56px;
+    align-items: start;
+  }
+
+  &__media {
+    background-color: var(--bg-sunk);
+
+    @include breakpoints.breakpoint-up("md") {
+      position: sticky;
+      top: 100px;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  &__body h1 {
+    margin-bottom: 16px;
+  }
+}
+
+// Contact form: plain boxes with ink borders.
+.form {
+  max-width: 640px;
+  margin-top: 32px;
+
+  &__row {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 6px;
+    font-family: var(--font-type);
+    font-size: 0.9375rem;
+    text-transform: uppercase;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--rule);
+    border-radius: 0;
+    background-color: var(--bg);
+    color: var(--fg);
+    font: inherit;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  &__note {
+    color: var(--fg-muted);
+    font-size: 0.875rem;
+  }
+}

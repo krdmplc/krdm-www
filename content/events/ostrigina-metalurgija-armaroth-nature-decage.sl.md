@@ -6,6 +6,7 @@ endDate: 2019-09-29T03:00:00+02:00
 venue: "Pri Rdeči Ostrigi, Škofja Loka"
 price: "6 €"
 thumbnail: /media/uploads/potujoca-zelezarna-2019-09-28.jpg
+series: other
 artists:
   - armaroth
   - nature

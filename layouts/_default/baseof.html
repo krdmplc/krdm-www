@@ -4,8 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {{ partial "head/seo" . }}
-  <link rel="icon" href="{{ "favicon.png" | relURL }}" type="image/png">
-  <meta name="theme-color" content="#041b53">
+  <link rel="icon" href="{{ "favicon-32.png" | relURL }}" type="image/png" sizes="32x32">
+  <link rel="icon" href="{{ "favicon.png" | relURL }}" type="image/png" sizes="512x512">
+  <link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f2efe6" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0c0c0b" media="(prefers-color-scheme: dark)">
+  {{ partial "base/theme-init" . }}
   <link rel="alternate" type="text/plain" title="llms.txt" href="{{ "llms.txt" | relLangURL }}">
   {{ partial "base/font-preload" . }}
   {{ partial "base/styles" . }}

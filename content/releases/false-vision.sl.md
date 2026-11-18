@@ -3,9 +3,10 @@ title: "False Vision"
 date: 2013-06-07T00:00:00+01:00
 releaseDate: 2013-06-07T00:00:00+01:00
 thumbnail: /media/uploads/false-vision.jpg
+format: album
 showInAdmin: true
 artists:
-- armaroth
+  - armaroth
 ---
 
 EP kranjske death metal mašine Armaroth

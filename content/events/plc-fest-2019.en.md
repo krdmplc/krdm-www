@@ -7,14 +7,15 @@ startDate: 2019-11-16T20:00:00+01:00
 endDate: 2019-11-17T05:00:00+01:00
 venue: "Trainstation Subart, Kranj"
 price: "6 €"
+series: plc-fest
 artists:
-- armaroth
-- neuromancer
-- didge
-- amalgam
-- nature
-- douchean
-- ofnana_pesa
+  - armaroth
+  - neuromancer
+  - didge
+  - amalgam
+  - nature
+  - douchean
+  - ofnana_pesa
 ---
 
 For the 10th anniversary of our rehearsal space (and everything else) in Planina, we present the best Plc Fest yet!

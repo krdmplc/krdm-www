@@ -1,12 +1,30 @@
-{{- /* Params: title, desc, image */ -}}
+{{- /* Home hero. Params: hero (front matter: title, desc, image, credit), next (page or nil) */ -}}
+{{- $h := .hero -}}
 <div class="hero">
   {{ partial "image" (dict
-    "src" (.image | default site.Params.heroImage)
+    "src" ($h.image | default site.Params.heroImage)
     "alt" ""
     "class" "hero__image"
-    "widths" (slice 800 1600)
+    "widths" (slice 960 1600 2400)
     "eager" true
   ) }}
-  <h1 class="hero__title">{{ .title }}</h1>
-  {{ with .desc }}<p class="hero__subtitle">{{ . }}</p>{{ end }}
+  <div class="container hero__inner">
+    <div>
+      <h1 class="hero__title">{{ $h.title }}</h1>
+      {{ with $h.desc }}<p class="hero__subtitle">{{ . }} · {{ T "heroEyebrow" }}</p>{{ end }}
+    </div>
+
+    {{- with .next }}
+      <a class="flyer" href="{{ .RelPermalink }}">
+        <p class="flyer__label">{{ T "nextEvent" }}</p>
+        <p class="flyer__title">{{ .LinkTitle }}</p>
+        <p class="flyer__meta">
+          {{- with .Params.startDate }}{{ time.Format "02. 01. 2006" . }}{{ end }}
+          {{- with .Params.venue }} · {{ index (split . ",") 0 }}{{ end -}}
+        </p>
+        <span class="flyer__cta">{{ T "eventDetails" }} {{ partial "icon" "arrow-right" }}</span>
+      </a>
+    {{- end }}
+  </div>
+  {{ with $h.credit }}<p class="hero__credit">{{ . }}</p>{{ end }}
 </div>

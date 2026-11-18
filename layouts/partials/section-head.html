@@ -1,0 +1,7 @@
+{{- /* Params: id, title, all ({href, text}) */ -}}
+<div class="section-head">
+  <h2 id="{{ .id }}">{{ .title }}</h2>
+  {{- with .all }}
+    <a class="link-arrow" href="{{ .href }}">{{ .text }} {{ partial "icon" "arrow-right" }}</a>
+  {{- end }}
+</div>

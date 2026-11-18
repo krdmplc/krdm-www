@@ -1,0 +1,15 @@
+{{- /*
+  Click-to-load YouTube video. Renders a local poster image and a play button;
+  assets/scripts/video-facade.js swaps in a youtube-nocookie.com iframe on click,
+  so nothing is loaded from YouTube until the visitor asks for it.
+
+  Usage: {{< youtube-lite id="VIDEO_ID" title="…" poster="/media/uploads/…" >}}
+*/ -}}
+{{- $id := .Get "id" -}}
+{{- $title := .Get "title" | default "YouTube" -}}
+<button type="button" class="video-facade" data-video-id="{{ $id }}" data-video-title="{{ $title }}">
+  {{- with .Get "poster" }}{{ partial "image" (dict "src" . "alt" "" "widths" (slice 720 1280) "sizes" "(min-width: 992px) 55vw, 100vw") }}{{ end }}
+  <span class="video-facade__play">{{ partial "icon" "play" }}</span>
+  <span class="video-facade__label">{{ $title }}</span>
+</button>
+<noscript><p><a href="https://www.youtube.com/watch?v={{ $id }}">{{ $title }}</a></p></noscript>

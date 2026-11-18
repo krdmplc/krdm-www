@@ -14,11 +14,10 @@ artist = "artists"
 image = "/media/uploads/og-image.jpg"
 heroImage = "/media/uploads/plcfest-2018.jpg"
 logo = "/media/brand/logo.png"
-email = "info@krdm.si"
 foundingDate = "2016-11"
 
 [params.address]
-streetAddress = "Ulica Draga Brezarja 26"
+streetAddress = "Žitna ulica 1E"
 postalCode = "4000"
 addressLocality = "Kranj"
 addressCountry = "SI"
@@ -54,7 +53,7 @@ locale = "sl-SI"
 weight = 1
 title = "KRDM"
 [languages.sl.params]
-description = "Društvo KRDM iz Kranja spodbuja neodvisno glasbo in umetnost na Gorenjskem: koncerti Distoržn in Plesen, Plc Fest, izdaje in prostor za vaje."
+description = "Društvo KRDM iz Kranja spodbuja neodvisno glasbo in umetnost na Gorenjskem: koncerti Distoržn, Plc Fest, izdaje in prostor za vaje."
 [languages.sl.permalinks.page]
 events = "/dogodki/:contentbasename/"
 releases = "/izdaje/:contentbasename/"
@@ -67,7 +66,7 @@ locale = "en"
 weight = 2
 title = "KRDM"
 [languages.en.params]
-description = "Društvo KRDM is a non-profit association from Kranj, Slovenia, promoting independent music and art: Distoržn and Plesen concert series, Plc Fest, releases and a rehearsal space."
+description = "Društvo KRDM is a non-profit association from Kranj, Slovenia, promoting independent music and art: the Distoržn concert series, Plc Fest, releases and a rehearsal space."
 
 # llms.txt (https://llmstxt.org) — a Markdown site map for LLMs and AI search.
 [outputFormats.llms]

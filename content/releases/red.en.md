@@ -3,6 +3,7 @@ title: "RED"
 date: 2023-10-27T00:00:00+02:00
 releaseDate: 2023-10-27T00:00:00+02:00
 thumbnail: /media/uploads/red.jpg
+format: album
 artists:
   - ofnana_pesa
 ---

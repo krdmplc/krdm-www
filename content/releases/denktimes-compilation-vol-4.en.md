@@ -3,16 +3,17 @@ title: Denktimes Compilation Vol. 4
 date: 2019-11-05T00:00:00+01:00
 releaseDate: 2019-11-05T00:00:00+01:00
 thumbnail: /media/uploads/denktimes-compilation-vol-4.jpg
+format: album
 artists:
-- amalgam
-- didge
-- mutism
-- armaroth
-- nature
-- gmb
-- neuromancer
-- douchean
-- ofnana_pesa
+  - amalgam
+  - didge
+  - mutism
+  - armaroth
+  - nature
+  - gmb
+  - neuromancer
+  - douchean
+  - ofnana_pesa
 ---
 
 In front of you is the fourth edition of Denktimes Compilation by KRDM. This one is special because it celebrates the 10th anniversary of creativity under the KRDM roof. In 10 years we produced tonnes of good music and also paintings, animations, videos, jokes, stories, jobs and friendships. Even though this is just a musical compilation, in its core it includes everything listed.

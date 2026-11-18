@@ -6,6 +6,7 @@ endDate: 2018-11-11T03:00:00+01:00
 venue: "Trainstation Subart, Kranj"
 price: "6 €"
 thumbnail: /media/uploads/distorzn-2018-11-10.jpg
+series: distorzn
 ---
 
 KRDM, together with TrainStation SubArt, presents a new series of metal nights:

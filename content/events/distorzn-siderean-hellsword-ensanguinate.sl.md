@@ -6,6 +6,9 @@ endDate: 2021-08-21T22:00:00+02:00
 venue: "Trainstation Subart, Kranj"
 price: "10 €"
 thumbnail: /media/uploads/distorzn-2021-08-21.jpg
+series: distorzn
+artists:
+  - ensanguinate
 showInAdmin: true
 ---
 

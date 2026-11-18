@@ -5,6 +5,7 @@ endDate: 2019-12-22T02:00:00+01:00
 thumbnail: /media/uploads/distorzn-19-12-21-cover.jpg
 venue: 'Trainstation Subart, Kranj'
 price: 8 €
+series: distorzn
 showInAdmin: true
 ---
 Da decembra ne bo morila samo vesela kapitalistična glasba, smo za vas pripravili stoner/sludge poslastico v obliki še enega Distoržna! Temačno zvočno kuliso bodo ustvarjali vsem dobro poznani The Canyon Observer, postojnski stoneraši Blackoutt in izvirni Guattari iz obale.

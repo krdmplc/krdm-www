@@ -6,6 +6,7 @@ endDate: 2021-07-17T23:00:00+02:00
 price: 10 €
 thumbnail: /media/uploads/distorzn-21-07-17.jpg
 venue: Trainstation Subart, Kranj
+series: distorzn
 showInAdmin: true
 artists:
   - armaroth

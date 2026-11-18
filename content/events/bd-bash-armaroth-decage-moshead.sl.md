@@ -5,9 +5,10 @@ endDate: 2019-12-15T02:00:00.000Z
 thumbnail: /media/uploads/bd-bash.jpg
 venue: 'eMCe Plac, Velenje'
 price: 5 €
+series: other
 showInAdmin: true
 artists:
-- armaroth
+  - armaroth
 ---
 Mineva 5. leto odkar je ideja ob pivu postala uradna zadeva.
 

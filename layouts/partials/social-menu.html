@@ -1,7 +1,9 @@
 <ul class="social-menu">
+  {{- with site.GetPage "/contact" }}
   <li>
-    <a href="mailto:{{ site.Params.email }}" aria-label="{{ T "email" }}: {{ site.Params.email }}">{{ partial "icon" "mail" }}</a>
+    <a href="{{ .RelPermalink }}" aria-label="{{ .Title }}">{{ partial "icon" "mail" }}</a>
   </li>
+  {{- end }}
   {{- range site.Params.social }}
     <li>
       <a href="{{ .url }}" aria-label="{{ .label }}" rel="me noopener">{{ partial "icon" .name }}</a>

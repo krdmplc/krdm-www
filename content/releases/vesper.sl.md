@@ -3,6 +3,7 @@ title: "Vesper"
 date: 2018-03-22T00:00:00+01:00
 releaseDate: 2018-03-22T00:00:00+01:00
 thumbnail: /media/uploads/vesper.jpg
+format: single
 artists:
   - didge
 showInAdmin: true

@@ -5,6 +5,7 @@ startDate: 2022-07-22T18:00:00+02:00
 venue: "Trainstation Subart, Kranj"
 price: "17 € / 20 €"
 thumbnail: /media/uploads/carnium-death-fest-2022.jpg
+series: other
 ---
 
 Eolith Productions presents the first edition of CARNIUM DEATH FEST! Kranj will host American death metal innovators ARTIFICIAL BRAIN, Italian desecrators DEVOID OF THOUGHT and Croatian dissonant thrashers VAKTAL, as well as SIDEREAN, BLACK REAPER and NEFARIOUS VERMIN from Slovenia. The depths of Kranj have never roared so loud.

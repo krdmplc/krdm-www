@@ -5,6 +5,7 @@ endDate: 2020-01-26T02:00:00+01:00
 thumbnail: /media/uploads/80900691_583277155829169_5199934085136384_o.jpg
 venue: 'Trainstation Subart, Kranj'
 price: 6 €
+series: distorzn
 showInAdmin: true
 ---
 Kaj najbolj paše sredi zime? Mrzel black metal, kaj pa! Zato bo januarski Distoržn obarvan črno! Začnemo z mlado zasedbo Degress, ki bo udarno začela s postojnsko verzijo black/thrasha, nato bodo v eksperimatalne vode zašli Snogg, vrhunec pa bo maš posvečena kaosu, ki jo bodo odigrali Grob.

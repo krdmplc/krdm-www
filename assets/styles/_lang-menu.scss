@@ -1,20 +1,30 @@
 .lang-menu {
   display: flex;
-  gap: 8px;
+  gap: 2px;
   margin: 0;
   padding: 0;
   list-style: none;
+  font-family: var(--font-type);
   font-size: 14px;
-  font-weight: 600;
 
   a,
   span {
     display: block;
-    padding: 8px 4px;
+    padding: 4px 6px;
+    border: 2px solid transparent;
+  }
+
+  a {
+    color: var(--fg-muted);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--on-highlight);
+    }
   }
 
   [aria-current] {
-    color: var(--color-black);
-    border-bottom: 2px solid var(--color-mint);
+    border-color: var(--rule);
+    color: var(--fg);
   }
 }

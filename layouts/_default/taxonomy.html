@@ -1,10 +1,30 @@
-{{- /* List of all artists (taxonomy page). */ -}}
+{{- /* List of all artists (taxonomy page), in two sections: active members of the
+  KRDM community (the same set as the home page: status active, not hideOnHome)
+  and everyone else (past members, dormant or disbanded acts). */ -}}
 {{ define "main" }}
+  {{- $active := partial "func/artists-by-activity" (dict "pages" .Pages "home" true) -}}
+  {{- $other := slice -}}
+  {{- range partial "func/artists-by-activity" (dict "pages" .Pages) -}}
+    {{- if not (in $active .) }}{{ $other = $other | append . }}{{ end -}}
+  {{- end -}}
+
   <div class="container">
     {{ partial "breadcrumbs" . }}
     <h1>{{ .Title }}</h1>
     {{ with .Content }}<div class="content">{{ . }}</div>{{ end }}
 
-    {{ partial "card-grid" (dict "pages" .Pages "level" 2) }}
+    <section aria-labelledby="active" class="section-first">
+      <div class="section-head"><h2 id="active">{{ T "artistsActive" }}</h2></div>
+      <p class="section-intro">{{ T "artistsActiveIntro" }}</p>
+      {{ partial "card-grid" (dict "pages" $active "level" 3 "cols" 4) }}
+    </section>
+
+    {{ with $other }}
+      <section aria-labelledby="other">
+        <div class="section-head"><h2 id="other">{{ T "artistsOther" }}</h2></div>
+        <p class="section-intro">{{ T "artistsOtherIntro" }}</p>
+        {{ partial "card-grid" (dict "pages" . "level" 3 "cols" 6 "sizes" "(min-width: 1170px) 16vw, (min-width: 768px) 25vw, 33vw") }}
+      </section>
+    {{ end }}
   </div>
 {{ end }}

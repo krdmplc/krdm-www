@@ -15,9 +15,14 @@
     {{ end }}
 
     <section aria-labelledby="upcoming">
-      <h2 id="upcoming">{{ T "upcoming" }}</h2>
-      {{ with $upcoming }}
-        {{ partial "card-grid" (dict "pages" (sort . "Params.startdate") "level" 3) }}
+      <div class="section-head"><h2 id="upcoming">{{ T "upcoming" }}</h2></div>
+      {{ with sort $upcoming "Params.startdate" }}
+        {{ partial "event-feature" (dict "page" (index . 0)) }}
+        {{ with after 1 . }}
+          <ul class="event-list event-list--spaced" role="list">
+            {{ range . }}{{ partial "event-row" (dict "page" . "level" 3) }}{{ end }}
+          </ul>
+        {{ end }}
       {{ else }}
         <p>{{ T "noUpcoming" }}</p>
       {{ end }}
@@ -25,8 +30,24 @@
 
     {{ with $past }}
       <section aria-labelledby="past">
-        <h2 id="past">{{ T "past" }}</h2>
-        {{ partial "card-grid" (dict "pages" (sort . "Params.startdate" "desc") "level" 3) }}
+        <div class="section-head"><h2 id="past">{{ T "past" }}</h2></div>
+
+        {{- /* Series filter; revealed by assets/scripts/list-filter.js. */}}
+        <ul class="filter" data-filter hidden aria-label="{{ T "series" }}">
+          <li><button type="button" data-value="all" aria-pressed="true">{{ T "filterAll" }}</button></li>
+          {{- range slice "distorzn" "plc-fest" "other" }}
+            <li><button type="button" data-value="{{ . }}" aria-pressed="false">{{ T (printf "series-%s" .) }}</button></li>
+          {{- end }}
+        </ul>
+
+        {{ range (sort . "Params.startdate" "desc").GroupByParamDate "startDate" "2006" }}
+          <div class="year-group" data-filter-group>
+            <h3 class="year-group__title">{{ .Key }}</h3>
+            <ul class="event-list" role="list">
+              {{ range .Pages }}{{ partial "event-row" (dict "page" . "level" 4) }}{{ end }}
+            </ul>
+          </div>
+        {{ end }}
       </section>
     {{ end }}
   </div>

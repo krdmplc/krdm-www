@@ -5,10 +5,12 @@ startDate: 2023-11-18T20:00:00+01:00
 venue: "Trainstation Subart, Kranj"
 price: "10 €"
 thumbnail: /media/uploads/plc-fest-2023.jpg
+series: plc-fest
 artists:
   - armaroth
   - pedri
   - mors-atra
+  - ensanguinate
 showInAdmin: true
 ---
 

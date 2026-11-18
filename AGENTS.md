@@ -13,6 +13,7 @@ when updating tooling, but this site deviates where noted below.
 ```bash
 npm ci           # install (Node >= 22.13)
 npm run dev      # hugo server → http://localhost:1313 (CMS: npx decap-server, then /admin/)
+                 # serves from public/ — don't build into or delete public/ while it runs
 npm run build    # hugo → public/
 npm run lint     # eslint + stylelint — the same gate Netlify runs before building
 ```
@@ -50,6 +51,17 @@ file exists as `name.sl.md` + `name.en.md`.
   one is generated otherwise), `thumbnail` (`/media/uploads/…`), events: `startDate`,
   `endDate`, `venue` (`"Venue, Town"`; the part after the comma becomes the
   locality in JSON-LD), `price` (`"8 €"`); releases: `releaseDate`.
+- Releases have `format` (`album` — LPs and EPs — or `single`) for the filter on the
+  releases page. Events have `series` (`distorzn`, `plc-fest`, `other`) for
+  the filter on the events page. Artists have `status` (`active` default, `hiatus`, `inactive`),
+  `featured: true` (pinned first) and `hideOnHome: true` (no longer with KRDM). The
+  home page shows only active, non-hidden artists, ordered by latest release/event.
+  The artists page splits them into "active" (that same set) and "other"; the
+  individual status is not shown publicly.
+- There is **no public email address** (info@krdm.si is dead): contact goes through
+  the Netlify Forms form on `content/contact.*.md` (`{{</* contact-form */>}}`), whose
+  notifications are configured in the Netlify UI. Prices appear only on event pages,
+  never in listings.
 - `showInAdmin: true` (Slovenian files) and `pageType: page` are filters for Decap's
   listings — keep them on new content.
 - Slovenian URLs come from `[languages.sl.permalinks]` in `hugo.toml` and the `url:` /
@@ -70,11 +82,26 @@ file exists as `name.sl.md` + `name.en.md`.
   module system (`@use`), BEM class names, and colour/font tokens from
   `_colors.scss` / `_fonts.scss` (`var(--color-mint)`, …).
 - **PurgeCSS** runs on every build and only sees class names in `layouts/`,
-  `assets/scripts/`, and `class="…"` / `extraClass="…"` in content and data. A class
-  that only exists in a JS string must go in the `safelist` in `postcss.config.js`.
+  `assets/scripts/`, and `class="…"` / `extraClass="…"` in content and data. Write full
+  class names in templates — `card-grid--{{ .cols }}` is invisible to it and the rule
+  gets purged (see `partials/card-grid.html` for the pattern).
+- **Themes**: light and dark, following `prefers-color-scheme`; the footer toggle stores
+  an override in `localStorage` and sets `data-theme` on `<html>`
+  (`partials/base/theme-init.html` applies it before first paint — inline, keep it ES5).
+  Components use only the semantic tokens in `_colors.scss` (`--bg`, `--fg`, `--accent`, …),
+  never raw brand colours, so both themes keep working.
+- **YouTube**: use `{{</* youtube-lite id="…" title="…" poster="/media/uploads/…" */>}}`,
+  which loads nothing from YouTube until play is pressed (the cookies page says so).
+- **Template lookup** (Hugo ≥ 0.146): the artist page template must live at
+  `layouts/artists/term.html`; in `_default/` it loses to `_default/list.html`.
 - `postcss-cli` looks unused but is required: Hugo's `postCSS` pipe shells out to it.
-- **Fonts** (Open Sans, Roboto Slab) are self-hosted variable WOFF2 files in
-  `static/fonts/` (latin + latin-ext). Don't reintroduce Google Fonts (GDPR).
+- **Look** ("Plc zine", from KRDM's own flyers): paper and ink, flyer green as the only
+  highlight, square corners, hard rules, black-and-white artist photos. Avoid soft
+  "card UI" (rounded corners, translucent panels, gentle shadows/borders).
+- **Fonts** are self-hosted WOFF2 in `static/fonts/` (latin + latin-ext): Courier Prime
+  (body), Amatic SC (hand-lettered headings), Special Elite (typewriter small print).
+  Don't reintroduce Google Fonts (GDPR). The logo is the hand-drawn mark in
+  `static/media/brand/krdm-mark-white.png` (inverted by CSS on the light theme).
 - **Icons** are Feather SVGs in `assets/icons/`, inlined with `{{ partial "icon" "name" }}`.
 - **JS** is vanilla ES modules in `assets/scripts/`, bundled in
   `layouts/partials/base/scripts.html` (add new files to the slice there). JavaScript
@@ -117,6 +144,7 @@ The site sets **no cookies** and has no analytics (the old Universal Analytics t
 was dead and was removed), so there is no consent banner. YouTube embeds use
 privacy-enhanced mode (`[privacy.youtube]` in `hugo.toml`). If you add analytics or
 third-party embeds, update `content/cookies.*.md` and reconsider a consent banner.
+The contact form stores submissions with Netlify Forms; the privacy page says so.
 
 ## Housekeeping
 

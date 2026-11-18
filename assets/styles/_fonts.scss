@@ -1,8 +1,7 @@
 @use "sass:string";
 
-// Self-hosted variable fonts (from @fontsource-variable, SIL OFL — see
-// static/fonts/LICENSE-*). Loading them from Google's CDN was render-blocking and
-// sends visitors' IPs to Google, which is a GDPR problem in the EU.
+// Self-hosted fonts. Loading them from Google's CDN was render-blocking and sends
+// visitors' IPs to Google, which is a GDPR problem in the EU.
 
 // Each family is split into latin and latin-ext; the browser only downloads the
 // latin-ext file when a page actually uses č, š, ž etc. The latin body font is
@@ -10,26 +9,34 @@
 $latin: "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD";
 $latin-ext: "U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF";
 
-// Family name => file name prefix in static/fonts/.
-$families: (
-  "Open Sans": "open-sans",
-  "Roboto Slab": "roboto-slab",
+// Font files: (family, file prefix, weight, style). All single-weight static
+// fonts from @fontsource (SIL OFL / Apache 2.0, see static/fonts/LICENSE-*).
+//   Courier Prime  body text, a typewriter face made for reading
+//   Amatic SC      hand-drawn poster lettering for headings
+//   Special Elite  inky typewriter for dates, venues and other small print
+$faces: (
+  ("Courier Prime", "courier-prime", 400, normal),
+  ("Courier Prime", "courier-prime", 700, normal),
+  ("Courier Prime", "courier-prime", 400, italic),
+  ("Amatic SC", "amatic-sc", 700, normal),
+  ("Special Elite", "special-elite", 400, normal),
 );
 
-@each $family, $file in $families {
+@each $family, $file, $weight, $style in $faces {
   @each $subset, $range in ("latin": $latin, "latin-ext": $latin-ext) {
     @font-face {
       font-family: $family;
-      font-style: normal;
-      font-weight: 100 900;
+      font-style: $style;
+      font-weight: $weight;
       font-display: swap;
-      src: url("/fonts/#{$file}-#{$subset}-wght-normal.woff2") format("woff2-variations");
+      src: url("/fonts/#{$file}-#{$subset}-#{$weight}-#{$style}.woff2") format("woff2");
       unicode-range: string.unquote($range);
     }
   }
 }
 
 :root {
-  --font-body: "Open Sans", system-ui, sans-serif;
-  --font-heading: "Roboto Slab", georgia, serif;
+  --font-body: "Courier Prime", "Courier New", monospace;
+  --font-display: "Amatic SC", "Arial Narrow", sans-serif;
+  --font-type: "Special Elite", "Courier New", monospace;
 }

@@ -5,10 +5,11 @@ endDate: 2019-12-28T06:00:00+01:00
 thumbnail: /media/uploads/plesen-19-12-27-cover.png
 venue: 'Trainstation Subart, Kranj'
 price: 8 €
+series: other
 artists:
-- douchean
-- selgor
-- ofnana_pesa
+  - douchean
+  - selgor
+  - ofnana_pesa
 ---
 
 In times of high humidity, it's easy for us to go mouldy too. That's why we've started a new series of events coloured by dark, modern dance music. Plesen ("mould") sets out to present the best names of the underground electronic scene, both established veterans and fresher blood.

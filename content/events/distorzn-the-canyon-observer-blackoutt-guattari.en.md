@@ -5,6 +5,7 @@ endDate: 2019-12-22T02:00:00+01:00
 thumbnail: /media/uploads/distorzn-19-12-21-cover.jpg
 venue: 'Trainstation Subart, Kranj'
 price: 8 €
+series: distorzn
 ---
 
 So that December isn't killed off by cheerful capitalist music alone, we've prepared a stoner/sludge treat for you in the shape of another Distoržn! The dark soundscape will be built by the well-known The Canyon Observer, stoner heads Blackoutt from Postojna and the original Guattari from the coast.

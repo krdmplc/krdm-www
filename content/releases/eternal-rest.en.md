@@ -3,6 +3,7 @@ title: "Eternal Rest"
 date: 2024-12-21T00:00:00+01:00
 releaseDate: 2024-12-21T00:00:00+01:00
 thumbnail: /media/uploads/eternal-rest.jpg
+format: album
 artists:
   - mors-atra
 ---
