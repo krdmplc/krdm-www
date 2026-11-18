@@ -3,7 +3,7 @@ title: "Encounters in Endless Grey"
 date: 2016-10-07T00:00:00+01:00
 releaseDate: 2016-10-07T00:00:00+01:00
 thumbnail: /media/uploads/encounters-in-endless-grey.jpg
-format: lp
+format: album
 artists:
 - didge
 ---

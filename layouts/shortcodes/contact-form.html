@@ -26,15 +26,6 @@
   </div>
 
   <div class="form__row">
-    <label for="contact-topic">{{ T "formTopic" }}</label>
-    <select id="contact-topic" name="topic">
-      {{- range slice "formTopicGeneral" "formTopicJoin" "formTopicSpace" "formTopicEvents" "formTopicPress" }}
-        <option value="{{ T . }}">{{ T . }}</option>
-      {{- end }}
-    </select>
-  </div>
-
-  <div class="form__row">
     <label for="contact-message">{{ T "formMessage" }}</label>
     <textarea id="contact-message" name="message" rows="7" required></textarea>
   </div>

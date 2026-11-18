@@ -3,7 +3,7 @@ title: "Iz pizde v pizdo"
 date: 2022-11-18T00:00:00+01:00
 releaseDate: 2022-11-18T00:00:00+01:00
 thumbnail: /media/uploads/grund.jpg
-format: lp
+format: album
 artists:
   - grund
 ---

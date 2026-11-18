@@ -3,7 +3,7 @@ title: "Bitter Blossom"
 date: 2026-04-24T00:00:00+02:00
 releaseDate: 2026-04-24T00:00:00+02:00
 thumbnail: /media/uploads/bitter-blossom.jpg
-format: lp
+format: album
 artists:
   - mutism
 ---

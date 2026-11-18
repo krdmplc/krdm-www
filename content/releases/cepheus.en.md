@@ -3,7 +3,7 @@ title: "Cepheus"
 date: 2024-10-21T00:00:00+02:00
 releaseDate: 2024-10-21T00:00:00+02:00
 thumbnail: /media/uploads/cepheus.jpg
-format: ep
+format: album
 artists:
   - ofnana_pesa
 ---

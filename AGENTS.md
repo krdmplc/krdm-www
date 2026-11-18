@@ -51,8 +51,9 @@ file exists as `name.sl.md` + `name.en.md`.
   one is generated otherwise), `thumbnail` (`/media/uploads/…`), events: `startDate`,
   `endDate`, `venue` (`"Venue, Town"`; the part after the comma becomes the
   locality in JSON-LD), `price` (`"8 €"`); releases: `releaseDate`.
-- Events have `series` (`distorzn`, `plc-fest`, `plesen`, `other`) for the filter on
-  the events page. Artists have `status` (`active` default, `hiatus`, `inactive`),
+- Releases have `format` (`album` — LPs and EPs — or `single`) for the filter on the
+  releases page. Events have `series` (`distorzn`, `plc-fest`, `plesen`, `other`) for
+  the filter on the events page. Artists have `status` (`active` default, `hiatus`, `inactive`),
   `featured: true` (pinned first) and `hideOnHome: true` (no longer with KRDM). The
   home page shows only active, non-hidden artists, ordered by latest release/event.
   **Status is not shown publicly** — inactive artists just sort last on the artists page.

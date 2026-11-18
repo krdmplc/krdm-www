@@ -3,7 +3,7 @@ title: "Burning Execution"
 date: 2010-02-06T00:00:00+01:00
 releaseDate: 2010-02-06T00:00:00+01:00
 thumbnail: /media/uploads/burning-execution.jpg
-format: ep
+format: album
 artists:
   - armaroth
 showInAdmin: true

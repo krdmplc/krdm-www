@@ -3,7 +3,7 @@ title: "Pilgrims Exile"
 date: 2022-06-29T00:00:00+02:00
 releaseDate: 2022-06-29T00:00:00+02:00
 thumbnail: /media/uploads/pilgrims-exile.jpg
-format: ep
+format: album
 artists:
   - ofnana_pesa
 ---

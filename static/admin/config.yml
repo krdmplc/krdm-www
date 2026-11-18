@@ -174,8 +174,7 @@ collections:
         default: single
         i18n: duplicate
         options:
-          - {label: Album (LP), value: lp}
-          - {label: EP, value: ep}
+          - {label: Album (LP or EP), value: album}
           - {label: Single, value: single}
       - *DESCRIPTION
       - {label: Content, name: body, widget: markdown, i18n: true}
