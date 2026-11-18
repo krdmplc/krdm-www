@@ -7,6 +7,8 @@ venue: "Trainstation Subart, Kranj"
 price: "10 €"
 thumbnail: /media/uploads/distorzn-2021-08-21.jpg
 series: distorzn
+artists:
+  - ensanguinate
 ---
 
 KRDM in collaboration with TrainStation SubArt presents:

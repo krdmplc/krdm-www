@@ -10,6 +10,7 @@ artists:
   - armaroth
   - pedri
   - mors-atra
+  - ensanguinate
 ---
 
 KRDM presents the next iteration of the Kranj underground's irregular traditional festival: PLC FEST 2023! Plc Fest is a festival of the artists who rehearse in a certain shelter deep under Kranj.

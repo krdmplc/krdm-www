@@ -10,6 +10,7 @@ artists:
   - armaroth
   - pedri
   - mors-atra
+  - ensanguinate
 showInAdmin: true
 ---
 
