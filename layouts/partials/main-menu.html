@@ -17,5 +17,7 @@
         </a>
       </li>
     {{- end }}
+    {{- /* On mobile the language switch lives in the menu; on desktop it's in the header. */}}
+    <li class="main-menu__lang">{{ partial "lang-menu" $current }}</li>
   </ul>
 </nav>

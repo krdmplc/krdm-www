@@ -111,11 +111,42 @@
   }
 }
 
-// Logo and language switch stay above the open panel.
-.header__logo,
-.lang-menu {
+// Logo stays above the open panel.
+.header__logo {
   position: relative;
   z-index: 2;
+}
+
+// Language switch: in the header on desktop, inside the menu panel on mobile.
+.header__lang {
+  display: none;
+
+  @include breakpoints.breakpoint-up("md") {
+    display: block;
+  }
+}
+
+.main-menu__items .main-menu__lang {
+  padding: 20px var(--container-padding);
+  border-top: 1px solid var(--rule-soft);
+
+  @include breakpoints.breakpoint-up("md") {
+    display: none;
+  }
+
+  .lang-menu {
+    font-size: 1rem;
+  }
+
+  .lang-menu li {
+    border: 0;
+  }
+
+  // The panel's link styles don't apply to the language links.
+  a,
+  span {
+    padding: 4px 8px;
+  }
 }
 
 // Locks page scrolling behind the open mobile menu. On <body>, not <html>:
