@@ -15,6 +15,18 @@
   }
 }
 
+// First section right under a page title: less space than between sections.
+.section-first {
+  margin-top: 48px;
+}
+
+.section-intro {
+  max-width: 60ch;
+  margin-top: -8px;
+  margin-bottom: 28px;
+  color: var(--fg-muted);
+}
+
 // Featured (next) event: poster + details side by side, between two rules.
 .event-feature {
   display: grid;

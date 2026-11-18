@@ -56,7 +56,8 @@ file exists as `name.sl.md` + `name.en.md`.
   the filter on the events page. Artists have `status` (`active` default, `hiatus`, `inactive`),
   `featured: true` (pinned first) and `hideOnHome: true` (no longer with KRDM). The
   home page shows only active, non-hidden artists, ordered by latest release/event.
-  **Status is not shown publicly** — inactive artists just sort last on the artists page.
+  The artists page splits them into "active" (that same set) and "other"; the
+  individual status is not shown publicly.
 - There is **no public email address** (info@krdm.si is dead): contact goes through
   the Netlify Forms form on `content/contact.*.md` (`{{</* contact-form */>}}`), whose
   notifications are configured in the Netlify UI. Prices appear only on event pages,

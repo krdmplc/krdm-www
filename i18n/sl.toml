@@ -63,3 +63,8 @@ format-album = "album"
 format-single = "singel"
 formatPlural-album = "Albumi"
 formatPlural-single = "Singli"
+
+artistsActive = "Aktivni"
+artistsActiveIntro = "Ustvarjalci, ki danes delujejo in so del skupnosti KRDM: vadijo v Placu, igrajo na naših dogodkih in izdajajo z nami."
+artistsOther = "Ostali"
+artistsOtherIntro = "Bendi in ustvarjalci, ki so pustili sled v Placu: nekdanji člani, ki danes ustvarjajo drugje, ter zasedbe, ki trenutno mirujejo ali so razpadle."

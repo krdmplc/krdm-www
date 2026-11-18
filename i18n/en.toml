@@ -63,3 +63,8 @@ format-album = "album"
 format-single = "single"
 formatPlural-album = "Albums"
 formatPlural-single = "Singles"
+
+artistsActive = "Active"
+artistsActiveIntro = "Artists who are active today and part of the KRDM community: they rehearse at Plc, play our events and release music with us."
+artistsOther = "Other"
+artistsOtherIntro = "Bands and artists who left their mark on Plc: past members who now make music elsewhere, and acts that are dormant or have split up."
