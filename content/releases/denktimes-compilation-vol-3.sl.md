@@ -12,6 +12,7 @@ artists:
   - armaroth
   - nesit
   - noc
+  - pedri
 showInAdmin: true
 ---
 
@@ -24,7 +25,7 @@ Tretja kompilacija izvajalcev pod okriljem KRDM.
 5. Mutism – Muad'Dib
 6. Noč – The Curse of the Normies
 7. Armaroth – I Worship the Universe
-8. Smeće
+8. p€dri – Smeće
 
 Poslušajte na:
 

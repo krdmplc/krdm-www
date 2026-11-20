@@ -8,6 +8,6 @@ showInAdmin: true
 
 Kolekcija komadov, ki so nastali v našem zaklonišču bolj za šalo kot zares. Hišni plc bend, ki rad poskrbi za after na Plc Festu.
 
-Izdali so komada spizdi mi (2020) in Dolazi Gove iz Zagreba (2021).
+Izdali so komade spizdi mi (2020), Dolazi Gove iz Zagreba (2021) in Smeće (angry version) (2026).
 
 <https://open.spotify.com/artist/7zh7yJZ9TOIMxKxsaegIxv>

@@ -12,6 +12,7 @@ artists:
   - armaroth
   - nesit
   - noc
+  - pedri
 ---
 
 The third compilation of artists under the KRDM umbrella.
@@ -23,7 +24,7 @@ The third compilation of artists under the KRDM umbrella.
 5. Mutism – Muad'Dib
 6. Noč – The Curse of the Normies
 7. Armaroth – I Worship the Universe
-8. Smeće
+8. p€dri – Smeće
 
 Listen on:
 
