@@ -7,6 +7,7 @@ venue: "Golnik"
 series: gigs
 artists:
   - douchean
+  - selgor
 showInAdmin: true
 ---
 

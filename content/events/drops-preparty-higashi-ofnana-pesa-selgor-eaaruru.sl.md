@@ -6,6 +6,7 @@ venue: "Moment Bar, Ljubljana"
 series: gigs
 artists:
   - pesa
+  - selgor
 showInAdmin: true
 ---
 

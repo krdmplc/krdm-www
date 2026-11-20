@@ -6,6 +6,7 @@ venue: "Koncertna dvorana Rog, Ljubljana"
 series: gigs
 artists:
   - pesa
+  - selgor
 showInAdmin: true
 ---
 

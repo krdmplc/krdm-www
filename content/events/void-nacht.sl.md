@@ -6,6 +6,7 @@ venue: "Publika, Ljubljana"
 series: gigs
 artists:
   - pesa
+  - selgor
 showInAdmin: true
 ---
 

@@ -7,6 +7,7 @@ venue: "Udin Boršt, Kranj"
 series: gigs
 artists:
   - douchean
+  - selgor
 showInAdmin: true
 ---
 

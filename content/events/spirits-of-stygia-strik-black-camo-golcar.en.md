@@ -2,7 +2,7 @@
 title: "Spirits of Stygia, Štrik, Black Camo, Golcar"
 date: 2026-11-07
 startDate: 2026-11-07
-venue: "Cankarjeva 6a, Koper"
+venue: "Klub KŠOK, Koper"
 series: gigs
 artists:
   - golcar

@@ -6,6 +6,7 @@ venue: "Klub Gromka, Ljubljana"
 series: gigs
 artists:
   - pesa
+  - selgor
 ---
 
 ## Line-up

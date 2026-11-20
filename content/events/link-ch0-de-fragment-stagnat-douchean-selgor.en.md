@@ -7,6 +7,7 @@ venue: "Channel Zero, Ljubljana"
 series: gigs
 artists:
   - douchean
+  - selgor
 ---
 
 ## Line-up

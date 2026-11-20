@@ -6,6 +6,7 @@ venue: "Paintball Naklo, Tenetiše"
 series: gigs
 artists:
   - douchean
+  - selgor
 ---
 
 ## Line-up

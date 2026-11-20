@@ -6,6 +6,7 @@ venue: "Channel Zero, Ljubljana"
 series: gigs
 artists:
   - pesa
+  - selgor
 ---
 
 ## Line-up

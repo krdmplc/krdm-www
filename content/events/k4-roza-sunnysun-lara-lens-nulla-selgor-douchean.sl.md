@@ -6,6 +6,7 @@ venue: "Klub K4, Ljubljana"
 series: gigs
 artists:
   - douchean
+  - selgor
 showInAdmin: true
 ---
 

@@ -7,6 +7,7 @@ series: gigs
 artists:
   - douchean
   - pesa
+  - selgor
 showInAdmin: true
 ---
 

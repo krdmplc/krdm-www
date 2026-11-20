@@ -7,6 +7,7 @@ venue: "Ljubljana"
 series: gigs
 artists:
   - pesa
+  - selgor
 ---
 
 ## Line-up

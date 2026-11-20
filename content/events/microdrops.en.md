@@ -8,6 +8,7 @@ series: gigs
 artists:
   - douchean
   - pesa
+  - selgor
 ---
 
 ## Line-up
