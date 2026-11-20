@@ -1,5 +1,7 @@
 {{- /* A merch item. A catalogue entry, not a product page with a cart: the main
-  action is a contact-form link that pre-fills the item name. Stock counts
+  actions are an add-to-cart form (assets/scripts/cart.js reveals it; orders go
+  out from the cart page, see shortcodes/cart.html) and a contact-form link that
+  pre-fills the item name, the only action without JS. Stock counts
   (`quantity`, and `stock` per size) are internal and never rendered: a size
   at 0 is only struck through. */ -}}
 {{ define "main" }}
@@ -65,6 +67,31 @@
         </div>
 
         <div class="actions">
+          {{- if not $soldOut }}
+            {{- with site.GetPage "/cart" }}
+              <form class="add-to-cart" data-cart-add="{{ $.File.ContentBaseName }}" data-cart-url="{{ .RelPermalink }}" hidden>
+                {{- with partial "func/merch-sizes" $ }}
+                  <fieldset class="add-to-cart__sizes">
+                    <legend>{{ T "cartSize" }}</legend>
+                    {{- range . }}
+                      <label class="size-option">
+                        <input type="radio" name="size" value="{{ .name }}" required{{ if .soldOut }} disabled{{ end }}>
+                        <span>{{ .name }}{{ if .soldOut }}<span class="visually-hidden"> ({{ T "soldOut" | lower }})</span>{{ end }}</span>
+                      </label>
+                    {{- end }}
+                  </fieldset>
+                {{- end }}
+                <div class="add-to-cart__row">
+                  <label class="add-to-cart__qty">
+                    <span>{{ T "cartQuantity" }}</span>
+                    <input type="number" name="qty" value="1" min="1" max="10" step="1" inputmode="numeric" required>
+                  </label>
+                  <button type="submit" class="button">{{ partial "icon" "shopping-bag" }} {{ T "cartAdd" }}</button>
+                </div>
+                <p class="add-to-cart__status" role="status" data-cart-status data-added="{{ T "cartAdded" }}" data-view="{{ T "cartView" }}"></p>
+              </form>
+            {{- end }}
+          {{- end }}
           {{- with site.GetPage "/contact" }}
             <a class="button" href="{{ .RelPermalink }}?item={{ $.Title | urlquery }}">{{ partial "icon" "mail" }} {{ T (cond $soldOut "merchAskSoldOut" "merchAsk") }}</a>
           {{- end }}

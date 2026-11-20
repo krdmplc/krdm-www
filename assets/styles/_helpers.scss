@@ -2,6 +2,12 @@
   display: none !important;
 }
 
+// The `hidden` attribute wins over component display rules (.filter is flex, …),
+// so things revealed by JS stay hidden without it.
+[hidden] {
+  display: none !important;
+}
+
 .no-margin {
   margin: 0 !important;
 }

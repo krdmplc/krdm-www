@@ -59,9 +59,15 @@ file exists as `name.sl.md` + `name.en.md`.
   home page shows only active, non-hidden artists, ordered by latest release/event.
   The artists page splits them into "active" (that same set) and "other"; the
   individual status is not shown publicly.
-- **Merch** is a catalogue, not a shop: item pages link to the contact form with
-  `?item=<name>` (pre-filled by `assets/scripts/contact-prefill.js`) and to `link`
-  (Bandcamp) if set. The list filters by `category` and by band
+- **Merch** has a cart but no checkout: item pages have an add-to-cart form, the cart
+  (`content/cart.*.md`, `{{</* cart */>}}`, `assets/scripts/cart.js`) lives in
+  localStorage as item + size + quantity, and the order goes out as the Netlify
+  Forms form `order` (readable `items`, `total`, `items-json`), emailed to us like the
+  contact form; `{{</* order-done */>}}` on the thank-you page repeats the order and
+  empties the cart. Titles, prices and stock state come from JSON built into the cart
+  page, never from the browser. Item pages also link to the contact form with
+  `?item=<name>` (pre-filled by `assets/scripts/contact-prefill.js`; the only action
+  without JS) and to `link` (Bandcamp) if set. The list filters by `category` and by band
   (`partials/func/merch-bands.html`: an item's one or two bands, or "KRDM" when it
   lists more or none — the KRDM shirt). Fields: `category` (`apparel`, `music`, `other`),
   `price` (a **number** in euros, formatted by `partials/func/price.html`, kept
@@ -75,7 +81,7 @@ file exists as `name.sl.md` + `name.en.md`.
   and counts as in stock. JSON-LD: `Product` with an `Offer`.
 - There is **no public email address** (info@krdm.si is dead): contact goes through
   the Netlify Forms form on `content/contact.*.md` (`{{</* contact-form */>}}`), whose
-  notifications are configured in the Netlify UI. Event prices appear only on event pages,
+  notifications are configured in the Netlify UI (so are the `order` form's). Event prices appear only on event pages,
   never in listings; merch prices do show on cards.
 - `showInAdmin: true` (Slovenian files) and `pageType: page` are filters for Decap's
   listings — keep them on new content.
@@ -160,7 +166,8 @@ The site sets **no cookies** and has no analytics (the old Universal Analytics t
 was dead and was removed), so there is no consent banner. YouTube embeds use
 privacy-enhanced mode (`[privacy.youtube]` in `hugo.toml`). If you add analytics or
 third-party embeds, update `content/cookies.*.md` and reconsider a consent banner.
-The contact form stores submissions with Netlify Forms; the privacy page says so.
+The contact and order forms store submissions with Netlify Forms, and the cart sits in
+localStorage; the privacy page says so.
 
 ## Housekeeping
 
