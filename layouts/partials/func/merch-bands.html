@@ -1,0 +1,12 @@
+{{- /* Who a merch item belongs to, for its card and the band filter: its one or
+  two bands, or KRDM itself when it lists more (the KRDM shirt names every band
+  on its back) or none. Takes a page, returns a slice of dicts: `key` (the
+  artist ref, or "krdm"), `title`. */ -}}
+{{- $artists := .GetTerms "artists" -}}
+{{- $out := slice -}}
+{{- if and $artists (le (len $artists) 2) -}}
+  {{- range $artists }}{{ $out = $out | append (dict "key" .Data.Term "title" .LinkTitle) }}{{ end -}}
+{{- else -}}
+  {{- $out = $out | append (dict "key" "krdm" "title" site.Title) -}}
+{{- end -}}
+{{- return $out -}}

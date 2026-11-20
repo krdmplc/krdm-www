@@ -28,11 +28,9 @@
         <p class="card__meta no-margin"><time datetime="{{ time.Format "2006-01-02" . }}">{{ time.Format ":date_medium" . }}</time>{{ with $p.Params.venue }} · {{ index (split . ",") 0 }}{{ end }}</p>
       {{- end }}
     {{- else if $isMerch }}
-      {{- /* More than two bands (e.g. the KRDM shirt) is the association's own item. */}}
-      {{- $artists := $p.GetTerms "artists" }}
       <p class="card__meta no-margin">
-        {{- if gt (len $artists) 2 }}{{ site.Title }}{{ else }}{{ range $i, $a := $artists }}{{ if $i }}, {{ end }}{{ $a.LinkTitle }}{{ end }}{{ end -}}
-        {{- if and $artists (or $soldOut $p.Params.price) }} · {{ end -}}
+        {{- range $i, $b := partial "func/merch-bands" $p }}{{ if $i }}, {{ end }}{{ $b.title }}{{ end -}}
+        {{- if or $soldOut $p.Params.price }} · {{ end -}}
         {{- if $soldOut }}{{ T "soldOut" }}{{ else }}{{ partial "func/price" $p.Params.price }}{{ end -}}
       </p>
     {{- else if not $isArtist }}

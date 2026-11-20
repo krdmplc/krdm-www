@@ -6,8 +6,9 @@
     <h1>{{ .Title }}</h1>
     {{ with .Content }}<div class="content">{{ . }}</div>{{ end }}
 
-    {{- /* Category filter; revealed by assets/scripts/list-filter.js. */}}
-    <ul class="filter filter--spaced" data-filter hidden aria-label="{{ T "merchCategory" }}">
+    {{- /* Category and band filters; revealed by assets/scripts/list-filter.js.
+      Bands: KRDM's own items first, then bands A–Z (see func/merch-bands). */}}
+    <ul class="filter" data-filter="category" hidden aria-label="{{ T "merchCategory" }}">
       <li><button type="button" data-value="all" aria-pressed="true">{{ T "filterAll" }}</button></li>
       {{- range slice "apparel" "music" "other" }}
         {{- if where $.Pages "Params.category" . }}
@@ -15,7 +16,20 @@
         {{- end }}
       {{- end }}
     </ul>
+    {{- $bands := dict }}
+    {{- range .Pages }}{{ range partial "func/merch-bands" . }}{{ $bands = merge $bands (dict .key .title) }}{{ end }}{{ end }}
+    <ul class="filter filter--spaced" data-filter="artist" hidden aria-label="{{ T "artists" }}">
+      <li><button type="button" data-value="all" aria-pressed="true">{{ T "filterAll" }}</button></li>
+      {{- with index $bands "krdm" }}
+        <li><button type="button" data-value="krdm" aria-pressed="false">{{ . }}</button></li>
+      {{- end }}
+      {{- range $key, $title := $bands }}
+        {{- if ne $key "krdm" }}
+          <li><button type="button" data-value="{{ $key }}" aria-pressed="false">{{ $title }}</button></li>
+        {{- end }}
+      {{- end }}
+    </ul>
 
-    {{ partial "card-grid" (dict "pages" (partial "func/merch-sorted" .Pages) "level" 2 "cols" 4 "filterKey" "category") }}
+    {{ partial "card-grid" (dict "pages" (partial "func/merch-sorted" .Pages) "level" 2 "cols" 4 "filters" (slice "category" "artist")) }}
   </div>
 {{ end }}

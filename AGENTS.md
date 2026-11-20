@@ -61,7 +61,9 @@ file exists as `name.sl.md` + `name.en.md`.
   individual status is not shown publicly.
 - **Merch** is a catalogue, not a shop: item pages link to the contact form with
   `?item=<name>` (pre-filled by `assets/scripts/contact-prefill.js`) and to `link`
-  (Bandcamp) if set. Fields: `category` (`apparel`, `music`, `other`, the list filter),
+  (Bandcamp) if set. The list filters by `category` and by band
+  (`partials/func/merch-bands.html`: an item's one or two bands, or "KRDM" when it
+  lists more or none — the KRDM shirt). Fields: `category` (`apparel`, `music`, `other`),
   `price` (a **number** in euros, formatted by `partials/func/price.html`, kept
   numeric for a future checkout), `sizes` (a list of `{size, stock}`), `available`
   (`false` = listed as sold out, last), `release` (a release's file name; the
