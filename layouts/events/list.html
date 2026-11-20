@@ -29,25 +29,37 @@
     </section>
 
     {{ with $past }}
-      <section aria-labelledby="past">
+      <section aria-labelledby="past" data-filter-scope>
         <div class="section-head"><h2 id="past">{{ T "past" }}</h2></div>
 
-        {{- /* Series filter; revealed by assets/scripts/list-filter.js. */}}
-        <ul class="filter" data-filter hidden aria-label="{{ T "series" }}">
+        {{- /* Series and band filters and the pager; revealed by
+          assets/scripts/list-filter.js (without JS every past event shows).
+          Bands: every artist with a past event, A–Z. */}}
+        <ul class="filter" data-filter="series" hidden aria-label="{{ T "series" }}">
           <li><button type="button" data-value="all" aria-pressed="true">{{ T "filterAll" }}</button></li>
-          {{- range slice "distorzn" "plc-fest" "other" }}
+          {{- range slice "distorzn" "plc-fest" "gigs" "other" }}
             <li><button type="button" data-value="{{ . }}" aria-pressed="false">{{ T (printf "series-%s" .) }}</button></li>
           {{- end }}
         </ul>
+        {{- $bands := dict }}
+        {{- range . }}{{ range .GetTerms "artists" }}{{ $bands = merge $bands (dict .Data.Term .) }}{{ end }}{{ end }}
+        <ul class="filter filter--spaced" data-filter="artist" hidden aria-label="{{ T "artists" }}">
+          <li><button type="button" data-value="all" aria-pressed="true">{{ T "filterAll" }}</button></li>
+          {{- range sort $bands "LinkTitle" }}
+            <li><button type="button" data-value="{{ .Data.Term }}" aria-pressed="false">{{ .LinkTitle }}</button></li>
+          {{- end }}
+        </ul>
 
-        {{ range (sort . "Params.startdate" "desc").GroupByParamDate "startDate" "2006" }}
-          <div class="year-group" data-filter-group>
-            <h3 class="year-group__title">{{ .Key }}</h3>
-            <ul class="event-list" role="list">
-              {{ range .Pages }}{{ partial "event-row" (dict "page" . "level" 4) }}{{ end }}
-            </ul>
-          </div>
-        {{ end }}
+        <div {{ partial "func/pager-attrs" 30 }}>
+          {{ range (sort . "Params.startdate" "desc").GroupByParamDate "startDate" "2006" }}
+            <div class="year-group" data-filter-group>
+              <h3 class="year-group__title">{{ .Key }}</h3>
+              <ul class="event-list" role="list">
+                {{ range .Pages }}{{ partial "event-row" (dict "page" . "level" 4) }}{{ end }}
+              </ul>
+            </div>
+          {{ end }}
+        </div>
       </section>
     {{ end }}
   </div>

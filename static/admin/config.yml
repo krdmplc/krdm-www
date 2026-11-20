@@ -144,6 +144,7 @@ collections:
         options:
           - {label: Distoržn, value: distorzn}
           - {label: Plc Fest, value: plc-fest}
+          - {label: "Artists' gig (someone else's event)", value: gigs}
           - {label: Other, value: other}
       - {label: Poster, name: thumbnail, widget: image, required: false, i18n: duplicate}
       - *DESCRIPTION

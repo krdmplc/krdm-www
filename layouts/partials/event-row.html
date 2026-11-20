@@ -3,7 +3,8 @@
 {{- $p := .page -}}
 {{- $level := .level | default 3 -}}
 {{- $d := time $p.Params.startDate -}}
-<li data-filter-value="{{ $p.Params.series | default "other" }}">
+{{- $artists := slice }}{{ range $p.GetTerms "artists" }}{{ $artists = $artists | append .Data.Term }}{{ end -}}
+<li data-item data-filter-series="{{ $p.Params.series | default "other" }}" data-filter-artist="{{ delimit $artists " " }}">
   <a class="event-row" href="{{ $p.RelPermalink }}">
     <time class="event-row__date" datetime="{{ $d.Format "2006-01-02" }}">
       <span class="event-row__day">{{ $d.Format "02. 01." }}</span>
@@ -15,8 +16,11 @@
         {{- with $p.Params.venue }}{{ . }}{{ end -}}
       </p>
     </div>
-    <div class="event-row__thumb">
-      {{- partial "image" (dict "src" ($p.Params.thumbnail | default site.Params.image) "alt" "" "widths" (slice 320) "sizes" "160px") -}}
-    </div>
+    {{- /* No placeholder logo: the archive has hundreds of gigs without a poster. */}}
+    {{- with $p.Params.thumbnail }}
+      <div class="event-row__thumb">
+        {{- partial "image" (dict "src" . "alt" "" "widths" (slice 320) "sizes" "160px") -}}
+      </div>
+    {{- end }}
   </a>
 </li>

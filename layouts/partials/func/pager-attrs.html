@@ -1,0 +1,5 @@
+{{- /* Attributes for a paginated list wrapper (see assets/scripts/list-filter.js).
+  Takes the page size; returns safe HTML attributes. */ -}}
+{{- $attrs := printf `data-paginate="%d" data-label-pages="%s" data-label-prev="%s" data-label-next="%s" data-label-page="%s"`
+  . (T "pages") (T "pagePrev") (T "pageNext") (T "pageNumber") -}}
+{{- return safeHTMLAttr $attrs -}}

@@ -6,7 +6,7 @@ endDate: 2026-11-22T02:00:00+01:00
 venue: "ŠMOCL, Laško"
 price: "15 €"
 thumbnail: /media/uploads/lasko-chainsaw-massacre-vol-3.jpg
-series: other
+series: gigs
 artists:
   - armaroth
 ---

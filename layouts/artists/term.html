@@ -34,9 +34,11 @@
     {{ with where .Pages "Section" "events" }}
       <section aria-labelledby="events">
         <div class="section-head"><h2 id="events">{{ T "events" }}</h2></div>
-        <ul class="event-list" role="list">
-          {{ range sort . "Params.startdate" "desc" }}{{ partial "event-row" (dict "page" . "level" 3) }}{{ end }}
-        </ul>
+        <div {{ partial "func/pager-attrs" 20 }}>
+          <ul class="event-list" role="list">
+            {{ range sort . "Params.startdate" "desc" }}{{ partial "event-row" (dict "page" . "level" 3) }}{{ end }}
+          </ul>
+        </div>
       </section>
     {{ end }}
   </div>

@@ -242,6 +242,52 @@
   }
 }
 
+// Pager under long lists (built by assets/scripts/list-filter.js): the same
+// plain typewriter words as the filter, the current page highlighted.
+.pager {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  align-items: center;
+  margin: 24px 0 0;
+  font-family: var(--font-type);
+  font-size: 0.9375rem;
+
+  &__button {
+    min-width: 2.5em;
+    padding: 4px 10px;
+    border: 2px solid var(--rule-soft);
+    background: none;
+    color: var(--fg);
+    font: inherit;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    &:hover:not([aria-current]) {
+      border-color: var(--rule);
+    }
+
+    &[aria-current="page"] {
+      border-color: var(--highlight);
+      background-color: var(--highlight);
+      color: var(--on-highlight);
+      cursor: default;
+    }
+  }
+
+  &__gap {
+    padding: 0 4px;
+    color: var(--fg-muted);
+  }
+}
+
+// Paginated lists scroll back to their top on a page change; keep it clear of
+// the sticky header (about 75px).
+[data-filter-scope],
+[data-paginate] {
+  scroll-margin-top: 100px;
+}
+
 // About Plc: text and numbers next to the video.
 .about {
   display: grid;
