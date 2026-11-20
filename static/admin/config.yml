@@ -228,6 +228,7 @@ collections:
           - {label: In stock, name: stock, widget: number, value_type: int, min: 0, required: false}
       - {label: "Available (untick when sold out; the item stays listed as sold out). Items with sizes also sell out by themselves when every size is at 0.", name: available, widget: boolean, default: true, i18n: duplicate}
       - {label: "Quantity in stock, for items without sizes (internal only, never shown on the site)", name: quantity, widget: number, value_type: int, min: 0, required: false, i18n: duplicate}
+      - {label: "Hidden (not shown anywhere on the site, e.g. sold out for good; untick to show it again)", name: draft, widget: boolean, default: false, required: false, i18n: duplicate}
       - label: Release (for CDs, records and tapes)
         name: release
         widget: relation

@@ -1,18 +1,33 @@
 ---
-# DUMMY: placeholder item for the merch prototype; replace or delete.
 title: "Majica KRDM"
-date: 2026-11-18T00:00:00+01:00
-thumbnail: /media/uploads/merch-placeholder.jpg
+date: 2026-11-20T00:00:00+01:00
+thumbnail: /media/uploads/merch-krdm-shirt.jpg
+images:
+  - /media/uploads/merch-krdm-shirt-2.jpg
 category: apparel
-price: 15
+price: 20
 sizes:
   - size: S
+    stock: 2
   - size: M
+    stock: 2
   - size: L
+    stock: 2
   - size: XL
+    stock: 2
+  - size: XXL
+    stock: 2
 available: true
-quantity: 20
+artists:
+  - armaroth
+  - mutism
+  - gmb
+  - nature
+  - antiheroji
+  - oti
+  - neuromancer
+  - golcar
 showInAdmin: true
 ---
 
-Črna majica z ročno narisanim znakom KRDM spredaj.
+Črna majica z ročno narisanim motivom: spredaj znak KRDM, iz katerega letijo bobni, ojačevalec in rokerske roke, zadaj znak KRDM in seznam bendov društva – Armaroth, Mutism, GMB, Nature, Antiheroji, Oti, Neuromancer in Golcar.

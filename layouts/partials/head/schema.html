@@ -154,8 +154,10 @@
     "inLanguage" $lang
   -}}
   {{- with $image }}{{ $entity = merge $entity (dict "image" .) }}{{ end -}}
+  {{- /* One band: its brand. Several (e.g. the KRDM shirt): the association's. */ -}}
   {{- with .GetTerms "artists" -}}
-    {{- $entity = merge $entity (dict "brand" (dict "@type" "Brand" "name" (index . 0).Title)) -}}
+    {{- $brand := cond (eq (len .) 1) (dict "@type" "Brand" "name" (index . 0).Title) (dict "@id" $orgID) -}}
+    {{- $entity = merge $entity (dict "brand" $brand) -}}
   {{- end -}}
   {{- with .Params.price -}}
     {{- $entity = merge $entity (dict "offers" (dict
