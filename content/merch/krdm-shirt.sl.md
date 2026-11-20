@@ -6,10 +6,10 @@ thumbnail: /media/uploads/merch-placeholder.jpg
 category: apparel
 price: 15
 sizes:
-  - S
-  - M
-  - L
-  - XL
+  - size: S
+  - size: M
+  - size: L
+  - size: XL
 available: true
 quantity: 20
 showInAdmin: true

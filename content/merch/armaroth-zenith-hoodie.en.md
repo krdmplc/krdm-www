@@ -7,13 +7,17 @@ images:
 category: apparel
 price: 40
 sizes:
-  - S
-  - M
-  - L
-  - XL
-  - XXL
+  - size: S
+    stock: 1
+  - size: M
+    stock: 2
+  - size: L
+    stock: 3
+  - size: XL
+    stock: 3
+  - size: XXL
+    stock: 1
 available: true
-quantity: 10
 release: zenith
 artists:
   - armaroth

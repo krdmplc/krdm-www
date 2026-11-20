@@ -6,7 +6,7 @@
 {{- $isArtist := eq $p.Kind "term" -}}
 {{- $isEvent := eq $p.Section "events" -}}
 {{- $isMerch := eq $p.Section "merch" -}}
-{{- $soldOut := and $isMerch (eq $p.Params.available false) -}}
+{{- $soldOut := and $isMerch (partial "func/merch-sold-out" $p) -}}
 {{- /* Full class names (not built from parts) so PurgeCSS can see them. */ -}}
 {{- $variant := cond $isEvent "card--wide" (cond $isArtist "card--square card--artist" (cond $isMerch "card--square card--product" "card--square")) -}}
 

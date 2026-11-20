@@ -5,11 +5,11 @@ thumbnail: /media/uploads/merch-gmb-green-skulls-shirt.jpg
 category: apparel
 price: 20
 sizes:
-  - S
-  - M
-  - L
-  - XL
-  - XXL
+  - size: S
+  - size: M
+  - size: L
+  - size: XL
+  - size: XXL
 available: true
 link: https://gmbkrdm.bandcamp.com/merch/green-skulls-t-shirt
 artists:

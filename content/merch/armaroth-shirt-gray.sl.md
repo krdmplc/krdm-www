@@ -5,13 +5,17 @@ thumbnail: /media/uploads/merch-armaroth-shirt-gray.jpg
 category: apparel
 price: 20
 sizes:
-  - S
-  - M
-  - L
-  - XL
-  - XXL
+  - size: S
+    stock: 2
+  - size: M
+    stock: 4
+  - size: L
+    stock: 7
+  - size: XL
+    stock: 5
+  - size: XXL
+    stock: 2
 available: true
-quantity: 20
 artists:
   - armaroth
 showInAdmin: true

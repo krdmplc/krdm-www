@@ -29,7 +29,7 @@
   {{- end -}}
   {{- if eq .Section "merch" -}}
     {{- with .Params.category }}{{ $parts = $parts | append (T (printf "merch-%s" .)) }}{{ end -}}
-    {{- if eq .Params.available false -}}
+    {{- if partial "func/merch-sold-out" . -}}
       {{- $parts = $parts | append (T "soldOut") -}}
     {{- else -}}
       {{- with partial "func/price" .Params.price }}{{ $parts = $parts | append . }}{{ end -}}

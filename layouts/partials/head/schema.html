@@ -162,7 +162,7 @@
       "@type" "Offer"
       "price" (float .)
       "priceCurrency" "EUR"
-      "availability" (cond (eq $.Params.available false) "https://schema.org/SoldOut" "https://schema.org/InStock")
+      "availability" (cond (partial "func/merch-sold-out" $) "https://schema.org/SoldOut" "https://schema.org/InStock")
       "url" $.Permalink
       "seller" (dict "@id" $orgID)
     )) -}}

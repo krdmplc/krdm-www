@@ -63,10 +63,14 @@ file exists as `name.sl.md` + `name.en.md`.
   `?item=<name>` (pre-filled by `assets/scripts/contact-prefill.js`) and to `link`
   (Bandcamp) if set. Fields: `category` (`apparel`, `music`, `other`, the list filter),
   `price` (a **number** in euros, formatted by `partials/func/price.html`, kept
-  numeric for a future checkout), `sizes`, `available` (`false` = listed as sold
-  out, last), `release` (a release's file name; the release page then lists the
-  item), `images` (extra photos). `quantity` is internal stock tracking and must
-  never be rendered. JSON-LD: `Product` with an `Offer`.
+  numeric for a future checkout), `sizes` (a list of `{size, stock}`), `available`
+  (`false` = listed as sold out, last), `release` (a release's file name; the
+  release page then lists the item), `images` (extra photos). Stock counts —
+  `stock` per size, `quantity` for items without sizes — are internal and must
+  never be rendered: a size with `stock: 0` is only struck through, and an item
+  whose sizes are all at 0 is sold out (`partials/func/merch-sold-out.html`; use
+  it, never `.Params.available` directly). A size without `stock` is untracked
+  and counts as in stock. JSON-LD: `Product` with an `Offer`.
 - There is **no public email address** (info@krdm.si is dead): contact goes through
   the Netlify Forms form on `content/contact.*.md` (`{{</* contact-form */>}}`), whose
   notifications are configured in the Netlify UI. Event prices appear only on event pages,

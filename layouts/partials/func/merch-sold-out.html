@@ -1,0 +1,11 @@
+{{- /* Whether a merch item is sold out: `available: false`, or it has sizes and
+  every one of them is sold out (has a stock count of 0). Untracked sizes keep
+  the item available. Takes a page, returns a bool. */ -}}
+{{- $out := eq .Params.available false -}}
+{{- with partial "func/merch-sizes" . -}}
+  {{- if not $out -}}
+    {{- $out = true -}}
+    {{- range . }}{{ if not .soldOut }}{{ $out = false }}{{ end }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}
