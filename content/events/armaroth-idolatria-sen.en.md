@@ -6,6 +6,7 @@ venue: "Mladinski center, Postojna"
 series: gigs
 artists:
   - armaroth
+  - sen
 ---
 
 ## Line-up

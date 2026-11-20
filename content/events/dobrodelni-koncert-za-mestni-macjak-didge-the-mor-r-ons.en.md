@@ -6,6 +6,7 @@ venue: "Trainstation Subart, Kranj"
 series: gigs
 artists:
   - gmb
+  - didge
 ---
 
 ## Line-up

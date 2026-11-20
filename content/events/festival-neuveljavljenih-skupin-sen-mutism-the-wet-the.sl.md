@@ -6,6 +6,7 @@ venue: "Rock Bar DownTown, Kranj"
 series: gigs
 artists:
   - mutism
+  - sen
 showInAdmin: true
 ---
 

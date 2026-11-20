@@ -15,4 +15,4 @@ artists:
 
 Armaroth played the first concert at Trainstation Squat, the occupied former oil mill at Kolodvorska 8 in Kranj – today's Trainstation Subart.
 
-The date is the day Trainstation Squat started up; the exact date of the concert isn't recorded.
+The concert took place on the very first day, 18 June 2011, when the squat moved into the building on Kolodvorska.

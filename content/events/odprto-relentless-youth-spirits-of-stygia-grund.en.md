@@ -1,0 +1,15 @@
+---
+title: "Odprto :: Relentless Youth, Spirits of Stygia, Gründ"
+date: 2024-09-20
+startDate: 2024-09-20
+venue: "Klub Gromka, Ljubljana"
+series: gigs
+artists:
+  - grund
+---
+
+## Line-up
+
+- Relentless Youth
+- Spirits of Stygia
+- Gründ

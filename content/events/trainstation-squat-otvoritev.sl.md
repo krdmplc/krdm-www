@@ -16,4 +16,4 @@ showInAdmin: true
 
 Armaroth so odigrali prvi koncert v Trainstation Squatu, zasedenih prostorih nekdanje oljarne na Kolodvorski 8 v Kranju – današnjem Trainstation Subartu.
 
-Datum je dan, ko je Trainstation Squat začel delovati; natančen datum koncerta ni zapisan.
+Koncert je bil že prvi dan, ko so 18. junija 2011 vstopili v prostore na Kolodvorski.

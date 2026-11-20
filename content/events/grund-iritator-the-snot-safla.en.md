@@ -1,0 +1,16 @@
+---
+title: "Gründ, Iritator, The Snot, Šafla"
+date: 2022-11-18
+startDate: 2022-11-18
+venue: "Jalla Jalla, Ljubljana"
+series: gigs
+artists:
+  - grund
+---
+
+## Line-up
+
+- Gründ
+- Iritator
+- The Snot
+- Šafla

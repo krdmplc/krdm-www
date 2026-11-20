@@ -20,6 +20,10 @@
 /ustvarjalci/ofnana_pesa/*   /ustvarjalci/pesa/:splat   301!
 /en/artists/ofnana_pesa/*    /en/artists/pesa/:splat    301!
 
+# Vratolom 2022 was split into day 1 (Armaroth) and day 2 (Gründ) in November 2026.
+/dogodki/vratolom-2022-kholn-ashine-dickless-tracy-grund/    /dogodki/vratolom-2022-armaroth-kholn-e-n-d-terminal-disease/    301!
+/en/events/vratolom-2022-kholn-ashine-dickless-tracy-grund/  /en/events/vratolom-2022-armaroth-kholn-e-n-d-terminal-disease/  301!
+
 # The empty "categories" and "tags" taxonomies were removed.
 /categories/*      /                 301!
 /tags/*            /                 301!

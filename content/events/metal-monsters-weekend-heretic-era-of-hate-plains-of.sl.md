@@ -6,6 +6,7 @@ venue: "Klub Kult, Bled"
 series: gigs
 artists:
   - armaroth
+  - plains-of-despair
 showInAdmin: true
 ---
 

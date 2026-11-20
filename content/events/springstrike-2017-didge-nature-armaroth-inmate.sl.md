@@ -7,6 +7,7 @@ series: gigs
 artists:
   - nature
   - armaroth
+  - didge
 showInAdmin: true
 ---
 

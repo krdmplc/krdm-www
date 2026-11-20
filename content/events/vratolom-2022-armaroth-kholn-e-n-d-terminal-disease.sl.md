@@ -1,5 +1,5 @@
 ---
-title: "Vratolom 2022 :: Kholn, Ashine, Dickless Tracy, Gründ, Armaroth"
+title: "Vratolom 2022 :: Armaroth, Kholn, E.N.D., Terminal Disease, Anti Slaughter"
 date: 2022-09-16
 startDate: 2022-09-16
 venue: "Wunder bar, Žlajfer, Velenje"
@@ -11,8 +11,10 @@ showInAdmin: true
 
 ## Nastopajoči
 
-- Kholn
-- Ashine
-- Dickless Tracy
-- Gründ
 - Armaroth
+- Kholn
+- E.N.D.
+- Terminal Disease
+- Anti Slaughter
+
+Prvi dan festivala.

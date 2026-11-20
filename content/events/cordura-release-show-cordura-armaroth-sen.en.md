@@ -6,6 +6,7 @@ venue: "eMCe plac, Velenje"
 series: gigs
 artists:
   - armaroth
+  - sen
 ---
 
 ## Line-up

@@ -1,0 +1,16 @@
+---
+title: "Blasphemy Death Fest #4 :: Mephistophelian, Paragoria, Plains of Despair"
+date: 2013-04-13
+startDate: 2013-04-13
+venue: "MKK, Črnomelj"
+series: gigs
+artists:
+  - plains-of-despair
+showInAdmin: true
+---
+
+## Nastopajoči
+
+- Mephistophelian
+- Paragoria
+- Plains of Despair

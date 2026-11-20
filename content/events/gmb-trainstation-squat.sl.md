@@ -1,5 +1,5 @@
 ---
-title: "GMB @ Trainstation Squat"
+title: "Koncert neuveljavljenih glasbenih skupin :: Bipolar Disorder, GMB, Umbilikal, Blind Game"
 date: 2013-06-08
 startDate: 2013-06-08
 venue: "Trainstation Squat, Kranj"
@@ -11,7 +11,7 @@ showInAdmin: true
 
 ## Nastopajoči
 
+- Bipolar Disorder
 - GMB
-- …
-
-Za ta nastop vemo le iz omembe, zato podrobnosti niso potrjene.
+- Umbilikal
+- Blind Game

@@ -6,6 +6,7 @@ venue: "Back bar, Bled"
 series: gigs
 artists:
   - armaroth
+  - plains-of-despair
 showInAdmin: true
 ---
 
