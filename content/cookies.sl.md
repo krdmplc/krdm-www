@@ -3,7 +3,7 @@ pageType: page
 title: "Piškotki in zasebnost"
 description: "Spletna stran krdm.si ne uporablja piškotkov za analitiko ali oglaševanje in ne zbira osebnih podatkov obiskovalcev."
 date: 2019-10-28T20:43:17+01:00
-lastmod: 2026-11-18
+lastmod: 2026-11-20
 slug: "piskotki"
 ---
 
@@ -16,6 +16,10 @@ Nekatere strani vsebujejo vgrajene videe s storitve YouTube. Video se naloži š
 ## Kontaktni obrazec
 
 Če nam pišete prek [kontaktnega obrazca](/kontakt/), vaše ime, e-poštni naslov in sporočilo shrani storitev Netlify Forms in nam jih posreduje po e-pošti. Uporabimo jih samo za odgovor na vaše sporočilo in jih ne delimo z nikomer. Če želite, da vaše sporočilo izbrišemo, nam to sporočite.
+
+## Košarica in naročila
+
+Košarica za merch se do oddaje naročila hrani v lokalni shrambi vašega brskalnika (localStorage); to ni piškotek in se sama po sebi ne pošilja na strežnik. Ko naročilo pošljete, vaše ime, e-poštni naslov, telefonsko številko (če jo navedete), naslov za pošiljanje (če izberete pošiljanje po pošti), opombo in naročene izdelke shrani storitev Netlify Forms in nam jih posreduje po e-pošti. Uporabimo jih samo za izvedbo naročila in jih ne delimo z nikomer. Če želite, da podatke o naročilu izbrišemo, nam to sporočite.
 
 ## Barvna tema
 

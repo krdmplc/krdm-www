@@ -1,0 +1,332 @@
+@use "grid/breakpoints";
+
+// Merch cart: the add-to-cart form on item pages, the header link, the cart
+// page (layouts/shortcodes/cart.html) and the order thank-you page.
+
+// Header link: bag icon with the item count on a flyer-green tag.
+.header__cart {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  padding: 6px;
+  color: var(--fg);
+  text-decoration: none;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  &:hover {
+    background-color: var(--highlight);
+    color: var(--on-highlight);
+  }
+
+  &-count {
+    min-width: 1.5em;
+    padding: 0 4px;
+    background-color: var(--highlight);
+    color: var(--on-highlight);
+    font-family: var(--font-type);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    text-align: center;
+  }
+}
+
+// Item page.
+.add-to-cart {
+  flex-basis: 100%;
+
+  &__sizes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 0 16px;
+    padding: 0;
+    border: 0;
+
+    legend {
+      margin-bottom: 8px;
+      padding: 0;
+      font-family: var(--font-type);
+      font-size: 0.9375rem;
+      text-transform: uppercase;
+    }
+  }
+
+  &__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 16px;
+    align-items: flex-end;
+  }
+
+  &__qty {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-family: var(--font-type);
+    font-size: 0.9375rem;
+    text-transform: uppercase;
+
+    input {
+      width: 5.5rem;
+      padding: 10px 12px;
+      border: 2px solid var(--rule);
+      border-radius: 0;
+      background-color: var(--bg);
+      color: var(--fg);
+      font: inherit;
+    }
+  }
+
+  &__status {
+    min-height: 1.5em;
+    margin: 12px 0 0;
+    font-family: var(--font-type);
+    font-size: 0.9375rem;
+  }
+
+  // With the cart available, "Ask about it" steps back to an outline button.
+  &:not([hidden]) ~ .button {
+    background-color: transparent;
+    color: var(--fg);
+  }
+}
+
+// A size as a square box; the radio stays in the page for keyboards and
+// screen readers. Sold-out sizes are struck through, as in the size list.
+.size-option {
+  position: relative;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    inset: 0;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  span {
+    display: block;
+    min-width: 3.25rem;
+    padding: 8px 12px;
+    border: 2px solid var(--rule);
+    font-family: var(--font-type);
+    text-align: center;
+  }
+
+  input:checked + span {
+    background-color: var(--highlight);
+    color: var(--on-highlight);
+  }
+
+  input:focus-visible + span {
+    outline: 3px solid var(--highlight);
+    outline-offset: 2px;
+  }
+
+  input:disabled {
+    cursor: default;
+  }
+
+  input:disabled + span {
+    border-color: var(--rule-soft);
+    color: var(--fg-muted);
+    text-decoration: line-through;
+  }
+}
+
+// Cart page.
+.cart {
+  max-width: 880px;
+
+  &__empty {
+    margin-top: 16px;
+  }
+
+  &__lines {
+    margin: 24px 0 0;
+    padding: 0;
+    border-top: 2px solid var(--rule);
+    list-style: none;
+  }
+
+  &__total {
+    display: flex;
+    gap: 16px;
+    justify-content: space-between;
+    align-items: baseline;
+    margin: 0;
+    padding: 12px 0;
+    border-top: 2px solid var(--rule);
+    border-bottom: 2px solid var(--rule);
+    font-family: var(--font-type);
+    text-transform: uppercase;
+
+    strong {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      line-height: 1;
+      text-transform: none;
+    }
+  }
+
+  &__howto {
+    margin-top: 12px;
+    color: var(--fg-muted);
+    font-family: var(--font-type);
+    font-size: 0.875rem;
+  }
+
+  &__form {
+    margin-top: 40px;
+  }
+}
+
+// One line: photo, title + details, quantity, line total, remove. On phones
+// the controls go on a second row under the title.
+.cart-line {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) auto auto;
+  grid-template-areas:
+    "media body body body"
+    "media qty sum remove";
+  gap: 8px 16px;
+  align-items: center;
+  padding: 16px 0;
+
+  & + & {
+    border-top: 1px solid var(--rule-soft);
+  }
+
+  @include breakpoints.breakpoint-up("sm") {
+    grid-template-columns: 80px minmax(0, 1fr) auto 6rem auto;
+    grid-template-areas: "media body qty sum remove";
+  }
+
+  &__media {
+    grid-area: media;
+    align-self: start;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+  }
+
+  &__body {
+    grid-area: body;
+  }
+
+  &__title {
+    font-weight: 700;
+  }
+
+  &__meta {
+    margin: 4px 0 0;
+    color: var(--fg-muted);
+    font-size: 0.9375rem;
+  }
+
+  &__unavailable {
+    margin: 8px 0 0;
+  }
+
+  &__qty {
+    grid-area: qty;
+    justify-self: start;
+    width: 4.5rem;
+    padding: 8px 10px;
+    border: 2px solid var(--rule);
+    border-radius: 0;
+    background-color: var(--bg);
+    color: var(--fg);
+    font: inherit;
+  }
+
+  &__sum {
+    grid-area: sum;
+    margin: 0;
+    font-family: var(--font-type);
+    text-align: right;
+  }
+
+  &__remove {
+    grid-area: remove;
+    display: inline-flex;
+    padding: 6px;
+    border: 2px solid transparent;
+    background: none;
+    color: var(--fg);
+    cursor: pointer;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    &:hover {
+      border-color: var(--rule);
+    }
+  }
+
+  &.is-unavailable &__title {
+    text-decoration: line-through;
+  }
+
+  &.is-unavailable &__qty {
+    visibility: hidden;
+  }
+}
+
+// Order form: delivery choice as a plain list of radios.
+.form__choices {
+  padding: 0;
+  border: 0;
+
+  legend {
+    margin-bottom: 6px;
+    padding: 0;
+    font-family: var(--font-type);
+    font-size: 0.9375rem;
+    text-transform: uppercase;
+  }
+
+  .form & label {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 6px;
+    font-family: inherit;
+    font-size: 1rem;
+    text-transform: none;
+    cursor: pointer;
+  }
+
+  .form & input {
+    width: auto;
+    margin: 0;
+    accent-color: var(--fg);
+  }
+}
+
+// Order thank-you page: the order as sent.
+.order-done {
+  max-width: 880px;
+  margin-top: 32px;
+
+  &__items {
+    margin: 0 0 16px;
+    padding: 16px;
+    border: 2px solid var(--rule);
+    background-color: var(--bg-sunk);
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    white-space: pre-wrap;
+  }
+}

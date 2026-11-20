@@ -3,7 +3,7 @@
 
   Every page carries the Organization and WebSite nodes (stable @ids, so all
   pages describe the same entity) plus a WebPage and BreadcrumbList. Content
-  pages add their own entity: MusicEvent, MusicAlbum or MusicGroup.
+  pages add their own entity: MusicEvent, MusicAlbum, MusicGroup or Product.
 */ -}}
 
 {{- $home := site.Home -}}
@@ -141,6 +141,34 @@
   {{- with .Params.releaseDate }}{{ $entity = merge $entity (dict "datePublished" (time.Format "2006-01-02" .)) }}{{ end -}}
   {{- with $artists }}{{ $entity = merge $entity (dict "byArtist" .) }}{{ end -}}
   {{- with $image }}{{ $entity = merge $entity (dict "image" .) }}{{ end -}}
+
+{{- else if and (eq .Section "merch") .IsPage -}}
+  {{- /* A catalogue item. The Offer carries price and stock so search engines
+    can show them; `url` is the item page, where the contact link is. */ -}}
+  {{- $entity = dict
+    "@type" "Product"
+    "@id" (printf "%s#product" .Permalink)
+    "name" .Title
+    "url" .Permalink
+    "description" $desc
+    "inLanguage" $lang
+  -}}
+  {{- with $image }}{{ $entity = merge $entity (dict "image" .) }}{{ end -}}
+  {{- /* One band: its brand. Several (e.g. the KRDM shirt): the association's. */ -}}
+  {{- with .GetTerms "artists" -}}
+    {{- $brand := cond (eq (len .) 1) (dict "@type" "Brand" "name" (index . 0).Title) (dict "@id" $orgID) -}}
+    {{- $entity = merge $entity (dict "brand" $brand) -}}
+  {{- end -}}
+  {{- with .Params.price -}}
+    {{- $entity = merge $entity (dict "offers" (dict
+      "@type" "Offer"
+      "price" (float .)
+      "priceCurrency" "EUR"
+      "availability" (cond (partial "func/merch-sold-out" $) "https://schema.org/SoldOut" "https://schema.org/InStock")
+      "url" $.Permalink
+      "seller" (dict "@id" $orgID)
+    )) -}}
+  {{- end -}}
 
 {{- else if eq .Kind "term" -}}
   {{- /* Link the artist entity to its profiles elsewhere (Bandcamp, Facebook…). */ -}}

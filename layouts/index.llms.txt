@@ -17,7 +17,7 @@
 
 {{- range site.Menus.main }}
 {{- with .Page }}
-{{- if not (in (slice "events" "releases" "artists") .Section) }}
+{{- if not (in (slice "events" "releases" "artists" "merch") .Section) }}
 
 ## {{ .Title }}
 
@@ -39,6 +39,14 @@
 ## {{ .Title }}
 {{ range .Pages.ByDate.Reverse }}
 - [{{ .Title }}]({{ .Permalink }}): {{ with .GetTerms "artists" }}{{ range $i, $a := . }}{{ if $i }}, {{ end }}{{ $a.Title }}{{ end }}, {{ end }}{{ time.Format "2006-01-02" (.Params.releaseDate | default .Date) }}
+{{- end }}
+{{- end }}
+
+{{- with site.GetPage "/merch" }}
+
+## {{ .Title }}
+{{ range partial "func/merch-sorted" .Pages }}
+- [{{ .Title }}]({{ .Permalink }}): {{ with .GetTerms "artists" }}{{ range $i, $a := . }}{{ if $i }}, {{ end }}{{ $a.Title }}{{ end }}, {{ end }}{{ with .Params.category }}{{ T (printf "merch-%s" .) | lower }}, {{ end }}{{ if partial "func/merch-sold-out" . }}{{ T "soldOut" | lower }}{{ else }}{{ partial "func/price" .Params.price }}{{ end }}
 {{- end }}
 {{- end }}
 

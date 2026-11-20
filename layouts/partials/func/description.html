@@ -2,7 +2,7 @@
   Returns a plain-text meta description (~160 chars) for a page.
 
   Order: front matter `description` → generated from structured data (events,
-  releases) plus the opening of the body → site description. Every page gets a
+  releases, merch) plus the opening of the body → site description. Every page gets a
   unique, meaningful description, which search engines and LLM-based search use
   as the snippet.
 */ -}}
@@ -26,6 +26,14 @@
   {{- end -}}
   {{- with .Params.releaseDate -}}
     {{- $parts = $parts | append (printf "%s %s" (T "releaseDate") (time.Format ":date_long" .)) -}}
+  {{- end -}}
+  {{- if eq .Section "merch" -}}
+    {{- with .Params.category }}{{ $parts = $parts | append (T (printf "merch-%s" .)) }}{{ end -}}
+    {{- if partial "func/merch-sold-out" . -}}
+      {{- $parts = $parts | append (T "soldOut") -}}
+    {{- else -}}
+      {{- with partial "func/price" .Params.price }}{{ $parts = $parts | append . }}{{ end -}}
+    {{- end -}}
   {{- end -}}
   {{- $artists := .GetTerms "artists" -}}
   {{- if and $artists (ne .Kind "term") -}}

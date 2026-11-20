@@ -39,12 +39,13 @@ file exists as `name.sl.md` + `name.en.md`.
 |---|---|---|
 | Events | `content/events/<name>.<lang>.md` | `/dogodki/<name>/` · `/en/events/<name>/` |
 | Releases | `content/releases/<name>.<lang>.md` | `/izdaje/<name>/` · `/en/releases/<name>/` |
+| Merch | `content/merch/<name>.<lang>.md` | `/merch/<name>/` · `/en/merch/<name>/` |
 | Artists | `content/artists/<ref>/_index.<lang>.md` | `/ustvarjalci/<slug>/` · `/en/artists/<ref>/` |
 | Pages | `content/{about,join,play,cookies}.<lang>.md` | Slovenian `slug` in front matter |
 | Home | `content/_index.<lang>.md` | `/` · `/en/` |
 
 - **Artists are taxonomy terms**, not a section (`[taxonomies] artist = "artists"`).
-  Events and releases list them in `artists: [ref, …]`; templates resolve them with
+  Events, releases and merch list them in `artists: [ref, …]`; templates resolve them with
   `.GetTerms "artists"`. An artist's `ref` **must equal its folder name**, otherwise
   Hugo creates an empty term page. `static/admin/index.js` keeps them in sync on save.
 - Front matter fields: `title`, `description` (meta description — optional, a good
@@ -58,10 +59,30 @@ file exists as `name.sl.md` + `name.en.md`.
   home page shows only active, non-hidden artists, ordered by latest release/event.
   The artists page splits them into "active" (that same set) and "other"; the
   individual status is not shown publicly.
+- **Merch** has a cart but no checkout: item pages have an add-to-cart form, the cart
+  (`content/cart.*.md`, `{{</* cart */>}}`, `assets/scripts/cart.js`) lives in
+  localStorage as item + size + quantity, and the order goes out as the Netlify
+  Forms form `order` (readable `items`, `total`, `items-json`), emailed to us like the
+  contact form; `{{</* order-done */>}}` on the thank-you page repeats the order and
+  empties the cart. Titles, prices and stock state come from JSON built into the cart
+  page, never from the browser. Item pages also link to the contact form with
+  `?item=<name>` (pre-filled by `assets/scripts/contact-prefill.js`; the only action
+  without JS) and to `link` (Bandcamp) if set. The list filters by `category` and by band
+  (`partials/func/merch-bands.html`: an item's one or two bands, or "KRDM" when it
+  lists more or none — the KRDM shirt). Fields: `category` (`apparel`, `music`, `other`),
+  `price` (a **number** in euros, formatted by `partials/func/price.html`, kept
+  numeric for a future checkout), `sizes` (a list of `{size, stock}`), `available`
+  (`false` = listed as sold out, last), `release` (a release's file name; the
+  release page then lists the item), `images` (extra photos). Stock counts —
+  `stock` per size, `quantity` for items without sizes — are internal and must
+  never be rendered: a size with `stock: 0` is only struck through, and an item
+  whose sizes are all at 0 is sold out (`partials/func/merch-sold-out.html`; use
+  it, never `.Params.available` directly). A size without `stock` is untracked
+  and counts as in stock. JSON-LD: `Product` with an `Offer`.
 - There is **no public email address** (info@krdm.si is dead): contact goes through
   the Netlify Forms form on `content/contact.*.md` (`{{</* contact-form */>}}`), whose
-  notifications are configured in the Netlify UI. Prices appear only on event pages,
-  never in listings.
+  notifications are configured in the Netlify UI (so are the `order` form's). Event prices appear only on event pages,
+  never in listings; merch prices do show on cards.
 - `showInAdmin: true` (Slovenian files) and `pageType: page` are filters for Decap's
   listings — keep them on new content.
 - Slovenian URLs come from `[languages.sl.permalinks]` in `hugo.toml` and the `url:` /
@@ -118,7 +139,8 @@ Keep these working when you touch templates:
   Graph/Twitter, and `noindex` on every non-production `CONTEXT`.
 - `layouts/partials/head/schema.html`: JSON-LD `@graph` with `NGO` (organisation) and
   `WebSite` nodes on every page, `WebPage` + `BreadcrumbList`, and per type
-  `MusicEvent`, `MusicAlbum` or `MusicGroup` (with `sameAs` links pulled from the bio).
+  `MusicEvent`, `MusicAlbum`, `Product` (merch) or `MusicGroup` (with `sameAs` links
+  pulled from the bio).
 - `layouts/index.llms.txt` → `/llms.txt` and `/en/llms.txt` (llmstxt.org): a Markdown
   map of the site for LLMs. New sections should be listed there too.
 - `layouts/robots.txt`: allows all crawlers (including AI crawlers) on production,
@@ -144,7 +166,8 @@ The site sets **no cookies** and has no analytics (the old Universal Analytics t
 was dead and was removed), so there is no consent banner. YouTube embeds use
 privacy-enhanced mode (`[privacy.youtube]` in `hugo.toml`). If you add analytics or
 third-party embeds, update `content/cookies.*.md` and reconsider a consent banner.
-The contact form stores submissions with Netlify Forms; the privacy page says so.
+The contact and order forms store submissions with Netlify Forms, and the cart sits in
+localStorage; the privacy page says so.
 
 ## Housekeeping
 

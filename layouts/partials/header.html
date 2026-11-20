@@ -9,6 +9,14 @@
     </a>
 
     <div class="header__lang">{{ partial "lang-menu" . }}</div>
+    {{- /* Cart link with the number of items; assets/scripts/cart.js shows it
+      once something is in the cart. */}}
+    {{- with site.GetPage "/cart" }}
+      <a class="header__cart" href="{{ .RelPermalink }}" data-cart-link hidden>
+        {{- partial "icon" "shopping-bag" -}}
+        <span class="visually-hidden">{{ T "cart" }}: </span><span class="header__cart-count" data-cart-count></span>
+      </a>
+    {{- end }}
     {{ partial "main-menu" . }}
   </div>
 </header>

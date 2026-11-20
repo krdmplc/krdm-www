@@ -1,9 +1,21 @@
-{{- /* Params: pages, level, cols (3 | 4 | 6, default 4), sizes */ -}}
+{{- /* Params: pages, level, cols (3 | 4 | 6, default 4), sizes,
+  filterKey (front matter field for list-filter.js, default "format"), or
+  filters (several keys: a front matter field each, or "artist" for the
+  merch band, see func/merch-bands) */ -}}
 {{- $ctx := . -}}
+{{- $filterKey := .filterKey | default "format" -}}
 {{- /* Full class names (not built from parts) so PurgeCSS can see them. */ -}}
 {{- $class := index (dict "3" "card-grid--3" "4" "card-grid--4" "6" "card-grid--6") (string (.cols | default 4)) -}}
 <ul class="card-grid {{ $class }}" role="list">
-  {{- range .pages }}
-    <li{{ with .Params.format }} data-filter-value="{{ . }}"{{ end }}>{{ partial "card" (dict "page" . "level" $ctx.level "sizes" $ctx.sizes) }}</li>
+  {{- range $page := .pages }}
+    <li
+      {{- if $ctx.filters }}
+        {{- range $key := $ctx.filters }}
+          {{- $values := slice }}
+          {{- if eq $key "artist" }}{{ range partial "func/merch-bands" $page }}{{ $values = $values | append .key }}{{ end }}
+          {{- else }}{{ with index $page.Params $key }}{{ $values = $values | append . }}{{ end }}{{ end }}
+          {{- with $values }} data-filter-{{ $key }}="{{ delimit . " " }}"{{ end }}
+        {{- end }}
+      {{- else }}{{ with index .Params $filterKey }} data-filter-value="{{ . }}"{{ end }}{{ end }}>{{ partial "card" (dict "page" . "level" $ctx.level "sizes" $ctx.sizes) }}</li>
   {{- end }}
 </ul>

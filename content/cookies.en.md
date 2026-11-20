@@ -3,7 +3,7 @@ pageType: page
 title: "Cookies and privacy"
 description: "The krdm.si website does not use cookies for analytics or advertising and does not collect personal data from visitors."
 date: 2019-10-28T20:43:17+01:00
-lastmod: 2026-11-18
+lastmod: 2026-11-20
 ---
 
 The krdm.si website **does not use cookies** for analytics, tracking or advertising and does not collect personal data from visitors, so we don't ask for your consent.
@@ -15,6 +15,10 @@ Some pages embed videos from YouTube. A video only loads once you press play, in
 ## Contact form
 
 If you write to us using the [contact form](/en/contact/), your name, email address and message are stored by Netlify Forms and forwarded to us by email. We only use them to reply to you and never share them. Ask us if you'd like your message deleted.
+
+## Cart and orders
+
+The merch cart is kept in your browser's local storage (localStorage) until you send the order; it is not a cookie and is never sent to the server on its own. When you send an order, your name, email address, phone number (if you give it), shipping address (if you choose delivery by post), note and the items you ordered are stored by Netlify Forms and forwarded to us by email. We only use them to handle your order and never share them. Ask us if you'd like your order data deleted.
 
 ## Colour theme
 

@@ -1,0 +1,16 @@
+{{- /* The sizes of a merch item, in the order listed. `sizes` in front matter is
+  a list of `{size, stock}`; `stock` is the internal count for that size and is
+  never rendered. A size without a count is untracked (treated as in stock);
+  a count of 0 marks the size sold out. Plain strings (`- M`) are accepted too.
+  Takes a page, returns a slice of dicts: `name`, `soldOut` (bool). */ -}}
+{{- $out := slice -}}
+{{- range .Params.sizes -}}
+  {{- if reflect.IsMap . -}}
+    {{- $stock := index . "stock" -}}
+    {{- $tracked := ne (string $stock) "" -}}
+    {{- $out = $out | append (dict "name" (index . "size") "soldOut" (and $tracked (le (int $stock) 0))) -}}
+  {{- else -}}
+    {{- $out = $out | append (dict "name" . "soldOut" false) -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}

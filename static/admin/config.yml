@@ -180,6 +180,70 @@ collections:
       - *ARTISTS
       - *SHOW_IN_ADMIN
 
+  # Merch catalogue (not a shop). `price` is a number in euros so a checkout can
+  # use it later. Stock counts (`quantity`, and `stock` per size) are internal and
+  # never shown; a size at 0 is struck through, all sizes at 0 = sold out.
+  - name: merch
+    label: Merch
+    label_singular: merch item
+    folder: content/merch
+    create: true
+    i18n: true
+    filter: {field: showInAdmin, value: true}
+    slug: "{{slug}}"
+    sortable_fields: [date, title, price]
+    summary: "{{title}} · {{price}} €"
+    editor:
+      preview: false
+    fields:
+      - {label: Title, name: title, widget: string, i18n: true}
+      - {label: Date (newer items come first), name: date, widget: datetime, i18n: duplicate}
+      - {label: Photo, name: thumbnail, widget: image, i18n: duplicate}
+      - label: More photos
+        name: images
+        widget: list
+        required: false
+        i18n: duplicate
+        field: {label: Photo, name: image, widget: image}
+      - label: Category
+        name: category
+        widget: select
+        default: apparel
+        i18n: duplicate
+        options:
+          - {label: "Apparel (T-shirts, hoodies)", value: apparel}
+          - {label: "Music (CD, vinyl, cassette)", value: music}
+          - {label: "Other (caps, patches, bags, pins…)", value: other}
+      - {label: Price (EUR), name: price, widget: number, value_type: float, min: 0, step: 0.5, required: false, i18n: duplicate}
+      - label: Sizes
+        label_singular: size
+        name: sizes
+        widget: list
+        required: false
+        i18n: duplicate
+        summary: "{{fields.size}} · {{fields.stock}}"
+        hint: "One row per size, smallest first. Stock is internal: the site never shows the number, but a size at 0 is struck through, and when every size is at 0 the item shows as sold out. Leave stock empty if you don't count that size."
+        fields:
+          - {label: Size, name: size, widget: select, options: [XS, S, M, L, XL, XXL, 3XL]}
+          - {label: In stock, name: stock, widget: number, value_type: int, min: 0, required: false}
+      - {label: "Available (untick when sold out; the item stays listed as sold out). Items with sizes also sell out by themselves when every size is at 0.", name: available, widget: boolean, default: true, i18n: duplicate}
+      - {label: "Quantity in stock, for items without sizes (internal only, never shown on the site)", name: quantity, widget: number, value_type: int, min: 0, required: false, i18n: duplicate}
+      - {label: "Hidden (not shown anywhere on the site, e.g. sold out for good; untick to show it again)", name: draft, widget: boolean, default: false, required: false, i18n: duplicate}
+      - label: Release (for CDs, records and tapes)
+        name: release
+        widget: relation
+        collection: releases
+        required: false
+        search_fields: [title]
+        display_fields: [title]
+        value_field: "{{slug}}"
+        i18n: duplicate
+      - {label: Link (Bandcamp or another shop), name: link, widget: string, required: false, i18n: duplicate}
+      - *ARTISTS
+      - *DESCRIPTION
+      - {label: Content, name: body, widget: markdown, i18n: true}
+      - *SHOW_IN_ADMIN
+
   # Standalone pages (about, join, play, cookies). A folder collection rather than
   # a files collection, because Decap only supports i18n `multiple_files` there.
   - name: pages

@@ -1,0 +1,113 @@
+{{- /* A merch item. A catalogue entry, not a product page with a cart: the main
+  actions are an add-to-cart form (assets/scripts/cart.js reveals it; orders go
+  out from the cart page, see shortcodes/cart.html) and a contact-form link that
+  pre-fills the item name, the only action without JS. Stock counts
+  (`quantity`, and `stock` per size) are internal and never rendered: a size
+  at 0 is only struck through. */ -}}
+{{ define "main" }}
+  {{- $soldOut := partial "func/merch-sold-out" . -}}
+  {{- $price := partial "func/price" .Params.price -}}
+  <div class="container">
+    {{ partial "breadcrumbs" . }}
+
+    <article class="profile">
+      <div class="profile__media">
+        {{- with .Params.thumbnail }}
+          {{ partial "image" (dict "src" . "alt" $.Title "widths" (slice 600 1000) "sizes" "(min-width: 992px) 40vw, 100vw" "eager" true) }}
+        {{- end }}
+        {{- with .Params.images }}
+          <ul class="gallery" role="list">
+            {{- range . }}
+              <li><a href="{{ . }}">{{ partial "image" (dict "src" . "alt" $.Title "widths" (slice 240 480) "sizes" "(min-width: 992px) 13vw, 33vw") }}</a></li>
+            {{- end }}
+          </ul>
+        {{- end }}
+      </div>
+      <div class="profile__body">
+        <header class="page-header">
+          <h1>{{ .Title }}</h1>
+          {{ with .Description }}<p class="page-header__lead">{{ . }}</p>{{ end }}
+
+          <p class="price">
+            {{- if $soldOut }}<span class="stamp">{{ T "soldOut" }}</span>
+            {{- else }}{{ with $price }}<span class="visually-hidden">{{ T "price" }}: </span>{{ . }}{{ end }}{{ end -}}
+          </p>
+
+          <div class="meta-list">
+            {{ partial "meta" (dict "page" . "item" "meta-list__item" "linkArtists" true) }}
+            {{- with .Params.category }}
+              <div class="meta-list__item">
+                {{ partial "icon" "tag" }}
+                <span><span class="visually-hidden">{{ T "merchCategory" }}: </span>{{ T (printf "merch-%s" .) }}</span>
+              </div>
+            {{- end }}
+            {{- with partial "func/merch-sizes" . }}
+              <div class="meta-list__item">
+                {{ partial "icon" "maximize-2" }}
+                <span><span class="visually-hidden">{{ T "sizes" }}: </span>
+                  {{- range $i, $s := . }}{{ if $i }}, {{ end }}
+                    {{- if $s.soldOut }}<s>{{ $s.name }}<span class="visually-hidden"> ({{ T "soldOut" | lower }})</span></s>{{ else }}{{ $s.name }}{{ end }}
+                  {{- end -}}
+                </span>
+              </div>
+            {{- end }}
+            {{- with .Params.release }}
+              {{- with site.GetPage (printf "/releases/%s" .) }}
+                <div class="meta-list__item">
+                  {{ partial "icon" "disc" }}
+                  <span><span class="visually-hidden">{{ T "release" }}: </span><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></span>
+                </div>
+              {{- end }}
+            {{- end }}
+          </div>
+        </header>
+
+        <div class="content">
+          {{ .Content }}
+        </div>
+
+        <div class="actions">
+          {{- if not $soldOut }}
+            {{- with site.GetPage "/cart" }}
+              <form class="add-to-cart" data-cart-add="{{ $.File.ContentBaseName }}" data-cart-url="{{ .RelPermalink }}" hidden>
+                {{- with partial "func/merch-sizes" $ }}
+                  <fieldset class="add-to-cart__sizes">
+                    <legend>{{ T "cartSize" }}</legend>
+                    {{- range . }}
+                      <label class="size-option">
+                        <input type="radio" name="size" value="{{ .name }}" required{{ if .soldOut }} disabled{{ end }}>
+                        <span>{{ .name }}{{ if .soldOut }}<span class="visually-hidden"> ({{ T "soldOut" | lower }})</span>{{ end }}</span>
+                      </label>
+                    {{- end }}
+                  </fieldset>
+                {{- end }}
+                <div class="add-to-cart__row">
+                  <label class="add-to-cart__qty">
+                    <span>{{ T "cartQuantity" }}</span>
+                    <input type="number" name="qty" value="1" min="1" max="10" step="1" inputmode="numeric" required>
+                  </label>
+                  <button type="submit" class="button">{{ partial "icon" "shopping-bag" }} {{ T "cartAdd" }}</button>
+                </div>
+                <p class="add-to-cart__status" role="status" data-cart-status data-added="{{ T "cartAdded" }}" data-view="{{ T "cartView" }}"></p>
+              </form>
+            {{- end }}
+          {{- end }}
+          {{- with site.GetPage "/contact" }}
+            <a class="button" href="{{ .RelPermalink }}?item={{ $.Title | urlquery }}">{{ partial "icon" "mail" }} {{ T (cond $soldOut "merchAskSoldOut" "merchAsk") }}</a>
+          {{- end }}
+          {{- with .Params.link }}
+            <a class="link-arrow" href="{{ . }}">{{ cond (strings.Contains . "bandcamp.com") "Bandcamp" (T "merchLink") }} {{ partial "icon" "external-link" }}</a>
+          {{- end }}
+        </div>
+        <p class="actions__note">{{ T "merchHowTo" }}</p>
+      </div>
+    </article>
+
+    {{ with .GetTerms "artists" }}
+      <section aria-labelledby="artists">
+        <div class="section-head"><h2 id="artists">{{ T "artists" }}</h2></div>
+        {{ partial "card-grid" (dict "pages" . "level" 3 "cols" 6 "sizes" "(min-width: 1170px) 16vw, (min-width: 768px) 25vw, 33vw") }}
+      </section>
+    {{ end }}
+  </div>
+{{ end }}

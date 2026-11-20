@@ -5,11 +5,14 @@
 {{- $level := .level | default 3 -}}
 {{- $isArtist := eq $p.Kind "term" -}}
 {{- $isEvent := eq $p.Section "events" -}}
+{{- $isMerch := eq $p.Section "merch" -}}
+{{- $soldOut := and $isMerch (partial "func/merch-sold-out" $p) -}}
 {{- /* Full class names (not built from parts) so PurgeCSS can see them. */ -}}
-{{- $variant := cond $isEvent "card--wide" (cond $isArtist "card--square card--artist" "card--square") -}}
+{{- $variant := cond $isEvent "card--wide" (cond $isArtist "card--square card--artist" (cond $isMerch "card--square card--product" "card--square")) -}}
 
 <a class="card {{ $variant }}" href="{{ $p.RelPermalink }}">
   <div class="card__media">
+    {{- if $soldOut }}<span class="stamp card__stamp">{{ T "soldOut" }}</span>{{ end }}
     {{- partial "image" (dict
       "src" ($p.Params.thumbnail | default site.Params.image)
       "alt" ""
@@ -24,6 +27,12 @@
       {{- with $p.Params.startDate }}
         <p class="card__meta no-margin"><time datetime="{{ time.Format "2006-01-02" . }}">{{ time.Format ":date_medium" . }}</time>{{ with $p.Params.venue }} · {{ index (split . ",") 0 }}{{ end }}</p>
       {{- end }}
+    {{- else if $isMerch }}
+      <p class="card__meta no-margin">
+        {{- range $i, $b := partial "func/merch-bands" $p }}{{ if $i }}, {{ end }}{{ $b.title }}{{ end -}}
+        {{- if or $soldOut $p.Params.price }} · {{ end -}}
+        {{- if $soldOut }}{{ T "soldOut" }}{{ else }}{{ partial "func/price" $p.Params.price }}{{ end -}}
+      </p>
     {{- else if not $isArtist }}
       <p class="card__meta no-margin">
         {{- range $i, $a := $p.GetTerms "artists" }}{{ if $i }}, {{ end }}{{ $a.LinkTitle }}{{ end -}}

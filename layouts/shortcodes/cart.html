@@ -1,0 +1,118 @@
+{{- /*
+  The cart and the order form. There is no checkout: the order is a Netlify
+  Forms submission ("order", both languages) that Netlify emails to us; set up
+  its notification in the Netlify UI (Forms → Form notifications). We reply to
+  confirm stock, payment and pick-up or shipping.
+
+  The cart itself lives in the visitor's browser (localStorage, see
+  assets/scripts/cart.js) as item + size + quantity. Titles, prices, photos and
+  which sizes are still in stock come from the JSON below, built from the merch
+  section, so a stale cart can't order something at an old price or a sold-out
+  size. Before sending, cart.js writes the order into the hidden `items`
+  (one line per item), `total` and `items-json` fields. `bot-field` is a
+  honeypot. Stock counts are never put in the page.
+
+  Usage: {{< cart >}}
+*/ -}}
+{{- $items := dict -}}
+{{- range where site.RegularPages "Section" "merch" -}}
+  {{- $bands := slice -}}
+  {{- range partial "func/merch-bands" . }}{{ $bands = $bands | append .title }}{{ end -}}
+  {{- $thumb := "" -}}
+  {{- with partial "func/image" .Params.thumbnail }}{{ $thumb = (.Fill "160x160 Center webp q80").RelPermalink }}{{ end -}}
+  {{- $items = merge $items (dict .File.ContentBaseName (dict
+    "title" .Title
+    "url" .RelPermalink
+    "thumb" $thumb
+    "bands" (delimit $bands ", ")
+    "price" .Params.price
+    "soldOut" (partial "func/merch-sold-out" .)
+    "sizes" (partial "func/merch-sizes" .)
+  )) -}}
+{{- end -}}
+{{- $thanks := "" -}}
+{{- with site.GetPage "/order-thanks" }}{{ $thanks = .RelPermalink }}{{ end -}}
+{{- $merch := "" -}}
+{{- with site.GetPage "/merch" }}{{ $merch = .RelPermalink }}{{ end -}}
+
+<noscript><p>{{ T "cartNoScript" | markdownify }}</p></noscript>
+
+<div class="cart" data-cart data-size-label="{{ T "cartSize" }}" data-qty-label="{{ T "cartQuantity" }}" data-remove-label="{{ T "cartRemove" }}" hidden>
+  <script type="application/json" data-cart-data>{{ $items | jsonify | safeJS }}</script>
+
+  <div class="cart__empty" data-cart-empty hidden>
+    <p>{{ T "cartEmpty" }}</p>
+    <a class="button" href="{{ $merch }}">{{ T "cartBrowse" }}</a>
+  </div>
+
+  <div data-cart-filled hidden>
+    <ul class="cart__lines" role="list" data-cart-lines></ul>
+    <p class="cart__total"><span>{{ T "cartTotal" }}</span> <strong data-cart-total></strong></p>
+    <p class="cart__howto">{{ T "cartHowTo" }}</p>
+
+    <form class="form cart__form" name="order" method="POST" action="{{ $thanks }}" data-netlify="true" netlify-honeypot="bot-field" data-cart-form>
+      <input type="hidden" name="form-name" value="order">
+      <p class="visually-hidden" aria-hidden="true">
+        <label>Ne izpolnjuj / Don't fill this in: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+      </p>
+
+      <h2>{{ T "orderDetails" }}</h2>
+
+      <div class="form__row">
+        <label for="order-name">{{ T "formName" }}</label>
+        <input id="order-name" name="name" type="text" autocomplete="name" required>
+      </div>
+
+      <div class="form__row">
+        <label for="order-email">{{ T "formEmail" }}</label>
+        <input id="order-email" name="email" type="email" autocomplete="email" required>
+      </div>
+
+      <div class="form__row">
+        <label for="order-phone">{{ T "orderPhone" }}</label>
+        <input id="order-phone" name="phone" type="tel" autocomplete="tel">
+      </div>
+
+      <fieldset class="form__row form__choices">
+        <legend>{{ T "orderDelivery" }}</legend>
+        <label><input type="radio" name="delivery" value="pickup" checked data-cart-delivery> {{ T "orderPickup" }}</label>
+        <label><input type="radio" name="delivery" value="post" data-cart-delivery> {{ T "orderPost" }}</label>
+      </fieldset>
+
+      <div class="form__row" data-cart-address hidden>
+        <label for="order-address">{{ T "orderAddress" }}</label>
+        <textarea id="order-address" name="address" rows="3" autocomplete="street-address"></textarea>
+      </div>
+
+      <div class="form__row">
+        <label for="order-note">{{ T "orderNote" }}</label>
+        <textarea id="order-note" name="note" rows="3"></textarea>
+      </div>
+
+      {{- /* Filled in by cart.js on submit; last, so the email reads person first. */}}
+      <textarea name="items" hidden readonly data-cart-field="items"></textarea>
+      <input type="hidden" name="total" data-cart-field="total">
+      <input type="hidden" name="items-json" data-cart-field="json">
+      <input type="hidden" name="language" value="{{ site.Language.Lang }}">
+
+      <p class="form__note">{{ T "orderPrivacy" | markdownify }}</p>
+
+      <button type="submit" class="button">{{ partial "icon" "mail" }} {{ T "orderSend" }}</button>
+    </form>
+  </div>
+
+  {{- /* One cart line; cart.js clones and fills it. */}}
+  <template data-cart-line>
+    <li class="cart-line">
+      <a class="cart-line__media" data-line-link tabindex="-1" aria-hidden="true"><img data-line-img alt="" width="80" height="80"></a>
+      <div class="cart-line__body">
+        <a class="cart-line__title" data-line-link data-line-title></a>
+        <p class="cart-line__meta" data-line-meta></p>
+        <p class="cart-line__unavailable" data-line-unavailable hidden><span class="stamp">{{ T "cartUnavailable" }}</span></p>
+      </div>
+      <input class="cart-line__qty" type="number" min="1" max="10" step="1" inputmode="numeric" data-line-qty>
+      <p class="cart-line__sum" data-line-sum></p>
+      <button type="button" class="cart-line__remove" data-line-remove>{{ partial "icon" "x" }}</button>
+    </li>
+  </template>
+</div>

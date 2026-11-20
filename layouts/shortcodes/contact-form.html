@@ -4,6 +4,9 @@
   languages post to the same form name. Notifications are set up in the Netlify
   UI (Forms → Form notifications), not in code. `bot-field` is a honeypot.
 
+  Merch pages link here with ?item=<name>; assets/scripts/contact-prefill.js
+  then starts the message with `data-prefill` and the item name.
+
   Usage: {{< contact-form >}}
 */ -}}
 {{- $thanks := "" -}}
@@ -27,7 +30,7 @@
 
   <div class="form__row">
     <label for="contact-message">{{ T "formMessage" }}</label>
-    <textarea id="contact-message" name="message" rows="7" required></textarea>
+    <textarea id="contact-message" name="message" rows="7" required data-prefill="{{ T "merchInquiry" }}"></textarea>
   </div>
 
   <p class="form__note">{{ T "formPrivacy" | markdownify }}</p>

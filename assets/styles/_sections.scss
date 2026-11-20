@@ -200,7 +200,8 @@
   }
 }
 
-// Filter buttons (events by series): plain words, the active one highlighted.
+// Filter buttons (events by series, merch by category and band): plain words,
+// the active one highlighted.
 .filter {
   display: flex;
   flex-wrap: wrap;
@@ -223,8 +224,15 @@
     text-transform: uppercase;
     cursor: pointer;
 
-    &:hover {
+    &:hover:not(:disabled) {
       border-color: var(--rule);
+    }
+
+    // Would leave nothing to show (combined filters, e.g. merch: KRDM + music).
+    &:disabled {
+      color: var(--fg-muted);
+      text-decoration: line-through;
+      cursor: default;
     }
 
     &[aria-pressed="true"] {
