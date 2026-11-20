@@ -1,0 +1,60 @@
+{{- /* Totals for a set of events and releases (from func/stats-data). The stats
+  page draws its charts in assets/scripts/stats.js, which counts the same way;
+  keep the two in step.
+  Params: events, releases, top (how many venues and towns to rank; 0 for none).
+  Returns: dict events, releases, venues, towns, artists, years (counts; years
+  with an event or a release), first (year of the first event, 0 if none),
+  topVenues, topTowns (slices of dict name, town, count; most first). */ -}}
+{{- $venues := slice -}}
+{{- $towns := slice -}}
+{{- $artists := slice -}}
+{{- $years := slice -}}
+{{- $first := 0 -}}
+{{- range .events -}}
+  {{- with .v }}{{ $venues = $venues | append . }}{{ end -}}
+  {{- $towns = $towns | append .t -}}
+  {{- with .a }}{{ $artists = $artists | append . }}{{ end -}}
+  {{- $years = $years | append .y -}}
+  {{- if or (not $first) (lt .y $first) }}{{ $first = .y }}{{ end -}}
+{{- end -}}
+{{- range .releases -}}
+  {{- with .a }}{{ $artists = $artists | append . }}{{ end -}}
+  {{- $years = $years | append .y -}}
+{{- end -}}
+
+{{- $topVenues := slice -}}
+{{- $topTowns := slice -}}
+{{- with .top -}}
+  {{- $top := . -}}
+  {{- range $venues | uniq -}}
+    {{- $key := . -}}
+    {{- $n := 0 -}}
+    {{- range $venues }}{{ if eq . $key }}{{ $n = add $n 1 }}{{ end }}{{ end -}}
+    {{- $parts := split $key ", " -}}
+    {{- $topVenues = $topVenues | append (dict
+      "name" (delimit (first (sub (len $parts) 1) $parts) ", ")
+      "town" (index $parts (sub (len $parts) 1))
+      "count" $n
+    ) -}}
+  {{- end -}}
+  {{- range $towns | uniq -}}
+    {{- $key := . -}}
+    {{- $n := 0 -}}
+    {{- range $towns }}{{ if eq . $key }}{{ $n = add $n 1 }}{{ end }}{{ end -}}
+    {{- $topTowns = $topTowns | append (dict "name" $key "town" "" "count" $n) -}}
+  {{- end -}}
+  {{- $topVenues = first $top (sort (sort $topVenues "name") "count" "desc") -}}
+  {{- $topTowns = first $top (sort (sort $topTowns "name") "count" "desc") -}}
+{{- end -}}
+
+{{- return dict
+  "events" (len .events)
+  "releases" (len .releases)
+  "venues" (len ($venues | uniq))
+  "towns" (len ($towns | uniq))
+  "artists" (len ($artists | uniq))
+  "years" (len ($years | uniq))
+  "first" $first
+  "topVenues" $topVenues
+  "topTowns" $topTowns
+-}}

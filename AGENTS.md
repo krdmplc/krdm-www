@@ -87,6 +87,13 @@ file exists as `name.sl.md` + `name.en.md`.
   both languages and Netlify keeps one success page per form, so a plain POST could
   land on the other language's thank-you page. Event prices appear only on event pages,
   never in listings; merch prices do show on cards.
+- **Stats** (`content/stats.*.md`, `layout: stats` → `layouts/stats.html`, `/statistika/` ·
+  `/en/stats/`) counts past events and releases. `partials/func/stats-data.html` builds
+  the data (JSON in the page for `assets/scripts/stats.js`, which draws the charts and
+  filters by `?artist=`, `?from=`, `?to=`); `partials/func/stats-summary.html` counts the
+  totals Hugo renders there, on artist pages and in `llms.txt` — keep it and the JS in
+  step. The same venue written two ways is merged in `data/venues.yaml` (aliases only;
+  events stay as written), so add an alias rather than renaming a venue in old events.
 - `showInAdmin: true` (Slovenian files) and `pageType: page` are filters for Decap's
   listings — keep them on new content.
 - Slovenian URLs come from `[languages.sl.permalinks]` in `hugo.toml` and the `url:` /

@@ -1,0 +1,51 @@
+# Venue names for the stats page (/statistika/) and the numbers on artist pages.
+#
+# An event's `venue` is free text ("Venue, Town"), so the same place is sometimes
+# written in more than one way. Each alias maps a `venue` string, exactly as written
+# in the event, to what the stats count instead: one or more "Venue, Town" entries
+# (an event at two clubs counts for both), or just a town when the venue is unknown.
+# The text after the last comma is the town; a `venue` without a comma is a town only.
+# Events themselves are not changed.
+aliases:
+  # Trainstation: Squat and Subart are the same place.
+  - from: "Trainstation Squat, Kranj"
+    to: ["Trainstation Subart, Kranj"]
+  - from: "MKC Pri Rdeči Ostrigi, Škofja Loka"
+    to: ["Pri Rdeči Ostrigi, Škofja Loka"]
+  - from: "eMCe Plac, Velenje"
+    to: ["eMCe plac, Velenje"]
+  # The George Best Bar and Back Packers, Bled.
+  - from: "Back bar, Bled"
+    to: ["Back – George Best Bar, Bled"]
+  - from: "Gustaf, Maribor"
+    to: ["Dvorana Gustaf, Maribor"]
+  - from: "Pekarna, Maribor"
+    to: ["MC Pekarna, Maribor"]
+  - from: "Izbruhov kulturni bazen, Kranj"
+    to: ["Izbruhov bazen, Kranj"]
+  - from: "Mostovna, Nova Gorica"
+    to: ["KC Mostovna, Nova Gorica"]
+  - from: "Mink, Tolmin"
+    to: ["MinK, Tolmin"]
+  - from: "CSK France Prešeren, Ljubljana"
+    to: ["KUD France Prešeren, Ljubljana"]
+  # Stolp Škrlovec and Layerjeva hiša are stages of the same venue.
+  - from: "Stolp Škrlovec, Layerjeva hiša, Kranj"
+    to: ["Stolp Škrlovec, Kranj"]
+  # Plac Boris and the concert hall were both in the Rog squat (demolished 2021).
+  - from: "Plac Boris (Tovarna Rog), Ljubljana"
+    to: ["Tovarna Rog, Ljubljana"]
+  - from: "Koncertna dvorana Rog, Ljubljana"
+    to: ["Tovarna Rog, Ljubljana"]
+  # Tenetiše is a village near Kranj; no venue given.
+  - from: "Tenetiše, Kranj"
+    to: ["Tenetiše"]
+  # Events at more than one venue.
+  - from: "Channel Zero, Menza pri koritu in Orto Bar, Ljubljana"
+    to: ["Channel Zero, Ljubljana", "Menza pri koritu, Ljubljana", "Orto Bar, Ljubljana"]
+  - from: "Gala hala in Channel Zero, Ljubljana"
+    to: ["Gala hala, Ljubljana", "Channel Zero, Ljubljana"]
+  - from: "Metelkova in Orto Bar, Ljubljana"
+    to: ["Metelkova, Ljubljana", "Orto Bar, Ljubljana"]
+  - from: "Platforma MSUM in Klub Tiffany, Ljubljana"
+    to: ["Platforma MSUM, Ljubljana", "Klub Tiffany, Ljubljana"]

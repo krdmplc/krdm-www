@@ -116,3 +116,48 @@ orderPrivacy = "We only use your details for this order. See our [privacy policy
 orderYours = "Your order"
 orderNumber = "Order number"
 orderError = "The order couldn't be sent. Try again in a moment; your cart stays as it is. If it still fails, write to us through the [contact form](/en/contact/)."
+
+statsAll = "All stats"
+statsMore = "More stats"
+statsPeriod = "Period"
+statsFrom = "From"
+statsTo = "To"
+statsByYear = "By year"
+statsTimeline = "Timeline"
+statsTimelineIntro = "Each tick is an event, each square a release. Click a name to show only that artist."
+statsVenues = "Venues"
+statsTowns = "Towns"
+statsWeekdays = "Days of the week"
+statsSeries = "Kinds of events"
+statsFirstGig = "first gig"
+statsEmpty = "Nothing in this period."
+statsNoScript = "The charts and filters need JavaScript; the numbers above cover all years."
+
+# Plural forms: T "statsEvent" 5 → "events".
+[statsEvent]
+one = "event"
+other = "events"
+
+[statsGig]
+one = "gig"
+other = "gigs"
+
+[statsRelease]
+one = "release"
+other = "releases"
+
+[statsVenue]
+one = "venue"
+other = "venues"
+
+[statsTown]
+one = "town"
+other = "towns"
+
+[statsArtist]
+one = "artist"
+other = "artists"
+
+[statsYear]
+one = "active year"
+other = "active years"

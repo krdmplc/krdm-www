@@ -26,6 +26,17 @@
 {{- end }}
 {{- end }}
 
+{{- with site.GetPage "/stats" }}
+{{- $data := partialCached "func/stats-data" . site.Language.Lang }}
+{{- $s := partial "func/stats-summary" (dict "events" $data.events "releases" $data.releases "top" 5) }}
+
+## {{ .Title }}
+
+- [{{ .Title }}]({{ .Permalink }}): {{ partial "func/description" . }}
+- {{ $s.first }}–{{ index $data.years (sub (len $data.years) 1) }}: {{ $s.events }} {{ T "statsEvent" $s.events }}, {{ $s.releases }} {{ T "statsRelease" $s.releases }}, {{ $s.venues }} {{ T "statsVenue" $s.venues }}, {{ $s.towns }} {{ T "statsTown" $s.towns }}
+- {{ T "statsVenues" }}: {{ range $i, $v := $s.topVenues }}{{ if $i }}, {{ end }}{{ .name }} ({{ .town }}): {{ .count }}{{ end }}
+{{- end }}
+
 {{- with site.GetPage "/events" }}
 
 ## {{ .Title }}

@@ -1,0 +1,65 @@
+{{- /* Everything the stats count, built once per language (call it with
+  partialCached "func/stats-data" . site.Language.Lang). Only what has already
+  happened: events that have started and releases that are out, as of the build.
+  Returns: dict
+    events   — slice of dict d (YYYY-MM-DD), y (year), s (series), a (artist refs),
+               v (venues, "Venue, Town"; see func/venue), t (town)
+    releases — slice of dict d, y, f (format), a
+    artists  — slice of dict ref, name, url (artists with an event or a release, A–Z)
+    years    — every year with an event or a release, ascending */ -}}
+{{- $now := now.Unix -}}
+{{- $events := slice -}}
+{{- $releases := slice -}}
+{{- $refs := slice -}}
+{{- $years := slice -}}
+
+{{- range where site.RegularPages "Section" "events" -}}
+  {{- $start := time .Params.startDate -}}
+  {{- if le $start.Unix $now -}}
+    {{- $a := slice -}}
+    {{- range .GetTerms "artists" }}{{ $a = $a | append .Data.Term }}{{ end -}}
+    {{- $place := partial "func/venue" .Params.venue -}}
+    {{- $events = $events | append (dict
+      "d" ($start.Format "2006-01-02")
+      "y" $start.Year
+      "s" (.Params.series | default "other")
+      "a" $a
+      "v" $place.venues
+      "t" $place.town
+    ) -}}
+    {{- $refs = $refs | append $a -}}
+    {{- $years = $years | append $start.Year -}}
+  {{- end -}}
+{{- end -}}
+
+{{- range where site.RegularPages "Section" "releases" -}}
+  {{- $date := time (.Params.releaseDate | default .Date) -}}
+  {{- if le $date.Unix $now -}}
+    {{- $a := slice -}}
+    {{- range .GetTerms "artists" }}{{ $a = $a | append .Data.Term }}{{ end -}}
+    {{- $releases = $releases | append (dict
+      "d" ($date.Format "2006-01-02")
+      "y" $date.Year
+      "f" (.Params.format | default "album")
+      "a" $a
+    ) -}}
+    {{- $refs = $refs | append $a -}}
+    {{- $years = $years | append $date.Year -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $artists := slice -}}
+{{- with site.GetPage "/artists" -}}
+  {{- range sort .Pages "Title" -}}
+    {{- if in $refs .Data.Term -}}
+      {{- $artists = $artists | append (dict "ref" .Data.Term "name" .Title "url" .RelPermalink) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- return dict
+  "events" (sort $events "d")
+  "releases" (sort $releases "d")
+  "artists" $artists
+  "years" (sort (uniq $years))
+-}}

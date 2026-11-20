@@ -1,0 +1,17 @@
+{{- /* An event's `venue` as the stats count it: the aliases in data/venues.yaml
+  applied, split into venues ("Venue, Town" — the text after the last comma is the
+  town) and the town. A `venue` without a comma is a town only.
+  Param: the `venue` string. Returns: dict venues (slice of "Venue, Town"), town. */ -}}
+{{- $raw := trim (. | default "") " " -}}
+{{- $places := slice $raw -}}
+{{- range hugo.Data.venues.aliases -}}
+  {{- if eq .from $raw }}{{ $places = .to }}{{ end -}}
+{{- end -}}
+{{- $venues := slice -}}
+{{- $town := "" -}}
+{{- range $places -}}
+  {{- $parts := split . ", " -}}
+  {{- $town = index $parts (sub (len $parts) 1) -}}
+  {{- if gt (len $parts) 1 }}{{ $venues = $venues | append . }}{{ end -}}
+{{- end -}}
+{{- return dict "venues" $venues "town" $town -}}

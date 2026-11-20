@@ -14,6 +14,25 @@
         <div class="content">
           {{ .Content }}
         </div>
+
+        {{- /* In numbers (counted like the stats page, which this links to,
+          filtered to this artist). */}}
+        {{- $data := partialCached "func/stats-data" . site.Language.Lang }}
+        {{- $ref := .Data.Term }}
+        {{- $own := slice $ref }}
+        {{- $s := partial "func/stats-summary" (dict "events" (where $data.events "a" "intersect" $own) "releases" (where $data.releases "a" "intersect" $own)) }}
+        {{- if or $s.events $s.releases }}
+          <ul class="stat-line" role="list">
+            {{- with $s.events }}<li><strong>{{ . }}</strong> {{ T "statsGig" . }}</li>{{ end }}
+            {{- with $s.venues }}<li><strong>{{ . }}</strong> {{ T "statsVenue" . }}</li>{{ end }}
+            {{- with $s.towns }}<li><strong>{{ . }}</strong> {{ T "statsTown" . }}</li>{{ end }}
+            {{- with $s.releases }}<li><strong>{{ . }}</strong> {{ T "statsRelease" . }}</li>{{ end }}
+            {{- with $s.first }}<li>{{ T "statsFirstGig" }} <strong>{{ . }}</strong></li>{{ end }}
+          </ul>
+          {{- with site.GetPage "/stats" }}
+            <a class="link-arrow" href="{{ .RelPermalink }}?artist={{ $ref }}">{{ T "statsMore" }} {{ partial "icon" "arrow-right" }}</a>
+          {{- end }}
+        {{- end }}
       </div>
     </article>
 

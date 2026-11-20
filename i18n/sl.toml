@@ -116,3 +116,62 @@ orderPrivacy = "Podatke uporabimo samo za izvedbo naročila. Več v [pravilih za
 orderYours = "Tvoje naročilo"
 orderNumber = "Številka naročila"
 orderError = "Naročila ni bilo mogoče poslati. Poskusi znova čez trenutek, košarica ostane, kot je. Če ne gre, nam piši prek [kontaktnega obrazca](/kontakt/)."
+
+statsAll = "Vsa statistika"
+statsMore = "Več statistike"
+statsPeriod = "Obdobje"
+statsFrom = "Od"
+statsTo = "Do"
+statsByYear = "Po letih"
+statsTimeline = "Časovnica"
+statsTimelineIntro = "Vsaka črtica je dogodek, vsak kvadratek izdaja. Klik na ime pokaže samo tega ustvarjalca."
+statsVenues = "Prizorišča"
+statsTowns = "Kraji"
+statsWeekdays = "Dnevi v tednu"
+statsSeries = "Vrste dogodkov"
+statsFirstGig = "prvi nastop"
+statsEmpty = "V tem obdobju ni ničesar."
+statsNoScript = "Grafi in filtri potrebujejo JavaScript; zgoraj so številke za vsa leta."
+
+# Plural forms (Slovenian has four): T "statsEvent" 5 → "dogodkov".
+[statsEvent]
+one = "dogodek"
+two = "dogodka"
+few = "dogodki"
+other = "dogodkov"
+
+[statsGig]
+one = "nastop"
+two = "nastopa"
+few = "nastopi"
+other = "nastopov"
+
+[statsRelease]
+one = "izdaja"
+two = "izdaji"
+few = "izdaje"
+other = "izdaj"
+
+[statsVenue]
+one = "prizorišče"
+two = "prizorišči"
+few = "prizorišča"
+other = "prizorišč"
+
+[statsTown]
+one = "kraj"
+two = "kraja"
+few = "kraji"
+other = "krajev"
+
+[statsArtist]
+one = "ustvarjalec"
+two = "ustvarjalca"
+few = "ustvarjalci"
+other = "ustvarjalcev"
+
+[statsYear]
+one = "aktivno leto"
+two = "aktivni leti"
+few = "aktivna leta"
+other = "aktivnih let"

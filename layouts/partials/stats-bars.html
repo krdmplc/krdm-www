@@ -1,0 +1,11 @@
+{{- /* A ranked list with a bar per row (stats page). assets/scripts/stats.js
+  builds the same markup when the filters change.
+  Param: slice of dict name, town (optional, shown small), count. */ -}}
+{{- $max := 1 -}}
+{{- range . }}{{ if gt .count $max }}{{ $max = .count }}{{ end }}{{ end -}}
+{{- range . }}
+  <li class="bar-list__item" style="--value: {{ div (float .count) $max }}">
+    <span class="bar-list__label">{{ .name }}{{ with .town }} <span class="bar-list__sub">{{ . }}</span>{{ end }}</span>
+    <span class="bar-list__value">{{ .count }}</span>
+  </li>
+{{- end }}

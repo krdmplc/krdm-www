@@ -1,0 +1,108 @@
+{{- /* Stats page (content/stats.*.md, `layout: stats`): totals, events and
+  releases by year, a timeline per artist, venues, towns, weekdays and kinds of
+  events, filtered by artist and period.
+
+  The data comes from func/stats-data (only what has already happened, as of the
+  build). Hugo renders the all-time totals and the venue and town rankings, so
+  they are there without JS and for crawlers; assets/scripts/stats.js draws the
+  rest from the JSON below and redraws everything when the filters change. */ -}}
+{{ define "main" }}
+  {{- $data := partialCached "func/stats-data" . site.Language.Lang -}}
+  {{- $all := partial "func/stats-summary" (dict "events" $data.events "releases" $data.releases "top" 10) -}}
+
+  {{- /* Labels for stats.js: every plural form it may need (Slovenian has four;
+    Intl.PluralRules picks one), series names, and the legend. */ -}}
+  {{- $plural := dict -}}
+  {{- range slice "Event" "Release" "Venue" "Town" "Artist" "Year" -}}
+    {{- $key := printf "stats%s" . -}}
+    {{- $plural = merge $plural (dict (lower .) (dict "one" (T $key 1) "two" (T $key 2) "few" (T $key 3) "other" (T $key 5))) -}}
+  {{- end -}}
+  {{- $series := dict -}}
+  {{- range slice "distorzn" "plc-fest" "gigs" "other" -}}
+    {{- $series = merge $series (dict . (T (printf "series-%s" .))) -}}
+  {{- end -}}
+  {{- $json := dict
+    "events" $data.events
+    "releases" $data.releases
+    "artists" $data.artists
+    "years" $data.years
+    "labels" (dict "plural" $plural "series" $series)
+  -}}
+
+  <div class="container">
+    {{ partial "breadcrumbs" . }}
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}<div class="content section-intro">{{ . }}</div>{{ end }}
+
+    <div class="stats-page" data-stats>
+      <script type="application/json" data-stats-data>{{ $json | jsonify | safeJS }}</script>
+
+      <div class="stats-filters" data-stats-filters hidden>
+        <ul class="filter" aria-label="{{ T "artists" }}" data-stats-artists>
+          <li><button type="button" data-value="all" aria-pressed="true">{{ T "filterAll" }}</button></li>
+          {{- range $data.artists }}
+            <li><button type="button" data-value="{{ .ref }}" aria-pressed="false">{{ .name }}</button></li>
+          {{- end }}
+        </ul>
+        <fieldset class="stats-period">
+          <legend class="stats-period__legend">{{ T "statsPeriod" }}</legend>
+          {{- range $key, $label := dict "from" (T "statsFrom") "to" (T "statsTo") }}
+            <label class="stats-period__field">
+              <span>{{ $label }}</span>
+              <select data-stats-{{ $key }}>
+                {{- range $data.years }}<option value="{{ . }}">{{ . }}</option>{{ end -}}
+              </select>
+            </label>
+          {{- end }}
+        </fieldset>
+      </div>
+
+      <ul class="stats stats--wide" role="list" data-stats-totals>
+        {{- range slice "events" "releases" "venues" "towns" "artists" "years" }}
+          {{- $n := index $all . }}
+          <li data-stat="{{ . }}"><strong>{{ $n }}</strong><span>{{ T (printf "stats%s" (strings.FirstUpper (strings.TrimSuffix "s" .))) $n }}</span></li>
+        {{- end }}
+      </ul>
+
+      <noscript><p class="section-intro">{{ T "statsNoScript" }}</p></noscript>
+      <p class="section-intro" data-stats-empty hidden>{{ T "statsEmpty" }}</p>
+
+      <section aria-labelledby="stats-years" data-stats-js hidden>
+        <div class="section-head"><h2 id="stats-years">{{ T "statsByYear" }}</h2></div>
+        <ul class="chart-legend" role="list">
+          <li class="chart-legend__item chart-legend__item--events">{{ T "events" }}</li>
+          <li class="chart-legend__item chart-legend__item--releases">{{ T "releases" }}</li>
+        </ul>
+        <ol class="year-chart" role="list" data-stats-years></ol>
+      </section>
+
+      <section aria-labelledby="stats-timeline" data-stats-js hidden>
+        <div class="section-head"><h2 id="stats-timeline">{{ T "statsTimeline" }}</h2></div>
+        <p class="section-intro">{{ T "statsTimelineIntro" }}</p>
+        <div class="timeline" data-stats-timeline></div>
+      </section>
+
+      <div class="stats-columns">
+        <section aria-labelledby="stats-venues">
+          <div class="section-head"><h2 id="stats-venues">{{ T "statsVenues" }}</h2></div>
+          <ol class="bar-list" data-stats-venues>{{ partial "stats-bars" $all.topVenues }}</ol>
+        </section>
+
+        <section aria-labelledby="stats-towns">
+          <div class="section-head"><h2 id="stats-towns">{{ T "statsTowns" }}</h2></div>
+          <ol class="bar-list" data-stats-towns>{{ partial "stats-bars" $all.topTowns }}</ol>
+        </section>
+
+        <section aria-labelledby="stats-weekdays" data-stats-js hidden>
+          <div class="section-head"><h2 id="stats-weekdays">{{ T "statsWeekdays" }}</h2></div>
+          <ol class="bar-list" data-stats-weekdays></ol>
+        </section>
+
+        <section aria-labelledby="stats-series" data-stats-js hidden>
+          <div class="section-head"><h2 id="stats-series">{{ T "statsSeries" }}</h2></div>
+          <ol class="bar-list" data-stats-series></ol>
+        </section>
+      </div>
+    </div>
+  </div>
+{{ end }}

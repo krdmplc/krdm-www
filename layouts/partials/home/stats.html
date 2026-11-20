@@ -8,3 +8,6 @@
   <li><strong>{{ with site.GetPage "/events" }}{{ len .Pages }}{{ end }}</strong><span>{{ T "statEvents" }}</span></li>
   <li><strong>{{ with site.GetPage "/releases" }}{{ len .Pages }}{{ end }}</strong><span>{{ T "statReleases" }}</span></li>
 </ul>
+{{- with site.GetPage "/stats" }}
+  <p><a class="link-arrow" href="{{ .RelPermalink }}">{{ T "statsAll" }} {{ partial "icon" "arrow-right" }}</a></p>
+{{- end }}

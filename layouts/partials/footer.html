@@ -17,6 +17,7 @@
     </div>
     <div>
       {{ with site.GetPage "/contact" }}<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a><br>{{ end }}
+      {{ with site.GetPage "/stats" }}<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a><br>{{ end }}
       {{ with site.GetPage "/cookies" }}<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a><br>{{ end }}
       © 2016–{{ now.Year }} {{ $d.title }}
     </div>
