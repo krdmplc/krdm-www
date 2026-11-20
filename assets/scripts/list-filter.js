@@ -1,5 +1,6 @@
 // Filters and paginates list pages (events by series and band, releases by
-// format, merch by category and band; long event lists a page at a time).
+// format and band, merch by category and band; long event lists a page at a
+// time).
 //
 // Filters: each is a list of buttons inside [data-filter="<key>"], each with
 // data-value ("all" shows everything); items carry data-filter-<key>, with

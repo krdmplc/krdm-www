@@ -4,14 +4,23 @@
     <h1>{{ .Title }}</h1>
     {{ with .Content }}<div class="content">{{ . }}</div>{{ end }}
 
-    {{- /* Format filter; revealed by assets/scripts/list-filter.js. */}}
-    <ul class="filter filter--spaced" data-filter hidden aria-label="{{ T "format" }}">
+    {{- /* Format and band filters; revealed by assets/scripts/list-filter.js.
+      Bands: every artist on a release, A–Z (a compilation counts for each). */}}
+    <ul class="filter" data-filter="format" hidden aria-label="{{ T "format" }}">
       <li><button type="button" data-value="all" aria-pressed="true">{{ T "filterAll" }}</button></li>
       {{- range slice "album" "single" }}
         <li><button type="button" data-value="{{ . }}" aria-pressed="false">{{ T (printf "formatPlural-%s" .) }}</button></li>
       {{- end }}
     </ul>
+    {{- $bands := dict }}
+    {{- range .Pages }}{{ range .GetTerms "artists" }}{{ $bands = merge $bands (dict .Data.Term .) }}{{ end }}{{ end }}
+    <ul class="filter filter--spaced" data-filter="artist" hidden aria-label="{{ T "artists" }}">
+      <li><button type="button" data-value="all" aria-pressed="true">{{ T "filterAll" }}</button></li>
+      {{- range sort $bands "LinkTitle" }}
+        <li><button type="button" data-value="{{ .Data.Term }}" aria-pressed="false">{{ .LinkTitle }}</button></li>
+      {{- end }}
+    </ul>
 
-    {{ partial "card-grid" (dict "pages" .Pages.ByDate.Reverse "level" 2 "cols" 4) }}
+    {{ partial "card-grid" (dict "pages" .Pages.ByDate.Reverse "level" 2 "cols" 4 "filters" (slice "format" "artist")) }}
   </div>
 {{ end }}

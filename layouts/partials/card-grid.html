@@ -1,7 +1,7 @@
 {{- /* Params: pages, level, cols (3 | 4 | 6, default 4), sizes,
   filterKey (front matter field for list-filter.js, default "format"), or
-  filters (several keys: a front matter field each, or "artist" for the
-  merch band, see func/merch-bands) */ -}}
+  filters (several keys: a front matter field each, or "artist": every
+  artist of the page, or for merch its band, see func/merch-bands) */ -}}
 {{- $ctx := . -}}
 {{- $filterKey := .filterKey | default "format" -}}
 {{- /* Full class names (not built from parts) so PurgeCSS can see them. */ -}}
@@ -12,7 +12,8 @@
       {{- if $ctx.filters }}
         {{- range $key := $ctx.filters }}
           {{- $values := slice }}
-          {{- if eq $key "artist" }}{{ range partial "func/merch-bands" $page }}{{ $values = $values | append .key }}{{ end }}
+          {{- if and (eq $key "artist") (eq $page.Section "merch") }}{{ range partial "func/merch-bands" $page }}{{ $values = $values | append .key }}{{ end }}
+          {{- else if eq $key "artist" }}{{ range $page.GetTerms "artists" }}{{ $values = $values | append .Data.Term }}{{ end }}
           {{- else }}{{ with index $page.Params $key }}{{ $values = $values | append . }}{{ end }}{{ end }}
           {{- with $values }} data-filter-{{ $key }}="{{ delimit . " " }}"{{ end }}
         {{- end }}
