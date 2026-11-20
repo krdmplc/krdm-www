@@ -8,9 +8,12 @@
   assets/scripts/cart.js) as item + size + quantity. Titles, prices, photos and
   which sizes are still in stock come from the JSON below, built from the merch
   section, so a stale cart can't order something at an old price or a sold-out
-  size. Before sending, cart.js writes the order into the hidden `items`
-  (one line per item), `total` and `items-json` fields. `bot-field` is a
-  honeypot. Stock counts are never put in the page.
+  size. Before sending, cart.js writes the hidden `order-number` (KRDM-YYMM-XXXX),
+  `items` (one line per item) and `total` fields; they come first in the form so
+  the email opens with the order. Netlify emails every field, so nothing goes in
+  the form that we don't want to read. Delivery values are Slovenian in both
+  languages: the email is for us. `bot-field` is a honeypot. Stock counts are
+  never put in the page.
 
   Usage: {{< cart >}}
 */ -}}
@@ -56,6 +59,11 @@
         <label>Ne izpolnjuj / Don't fill this in: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
       </p>
 
+      {{- /* Filled in by cart.js on submit. */}}
+      <input type="hidden" name="order-number" data-cart-field="number">
+      <textarea name="items" hidden readonly data-cart-field="items"></textarea>
+      <input type="hidden" name="total" data-cart-field="total">
+
       <h2>{{ T "orderDetails" }}</h2>
 
       <div class="form__row">
@@ -75,8 +83,8 @@
 
       <fieldset class="form__row form__choices">
         <legend>{{ T "orderDelivery" }}</legend>
-        <label><input type="radio" name="delivery" value="pickup" checked data-cart-delivery> {{ T "orderPickup" }}</label>
-        <label><input type="radio" name="delivery" value="post" data-cart-delivery> {{ T "orderPost" }}</label>
+        <label><input type="radio" name="delivery" value="Osebni prevzem" checked data-cart-delivery> {{ T "orderPickup" }}</label>
+        <label><input type="radio" name="delivery" value="Po pošti" data-cart-delivery="post"> {{ T "orderPost" }}</label>
       </fieldset>
 
       <div class="form__row" data-cart-address hidden>
@@ -89,10 +97,6 @@
         <textarea id="order-note" name="note" rows="3"></textarea>
       </div>
 
-      {{- /* Filled in by cart.js on submit; last, so the email reads person first. */}}
-      <textarea name="items" hidden readonly data-cart-field="items"></textarea>
-      <input type="hidden" name="total" data-cart-field="total">
-      <input type="hidden" name="items-json" data-cart-field="json">
       <input type="hidden" name="language" value="{{ site.Language.Lang }}">
 
       <p class="form__note">{{ T "orderPrivacy" | markdownify }}</p>

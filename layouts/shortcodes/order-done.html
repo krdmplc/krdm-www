@@ -1,5 +1,5 @@
 {{- /*
-  On the order thank-you page: shows what was just ordered (kept by
+  On the order thank-you page: shows the order number and what was just ordered (kept by
   assets/scripts/cart.js in sessionStorage when the form was sent) and empties
   the cart. Netlify only redirects here after a successful submission.
 
@@ -7,6 +7,7 @@
 */ -}}
 <div class="order-done" data-cart-done hidden>
   <h2>{{ T "orderYours" }}</h2>
+  <p class="order-done__number">{{ T "orderNumber" }}: <strong data-cart-done-number></strong></p>
   <pre class="order-done__items" data-cart-done-items></pre>
   <p class="cart__total"><span>{{ T "cartTotal" }}</span> <strong data-cart-done-total></strong></p>
 </div>

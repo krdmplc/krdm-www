@@ -320,6 +320,16 @@
   max-width: 880px;
   margin-top: 32px;
 
+  &__number {
+    font-family: var(--font-type);
+    text-transform: uppercase;
+
+    strong {
+      font-family: var(--font-body);
+      letter-spacing: 0.04em;
+    }
+  }
+
   &__items {
     margin: 0 0 16px;
     padding: 16px;

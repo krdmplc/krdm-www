@@ -42,6 +42,16 @@ function writeCart (cart) {
   updateCartLink(cart)
 }
 
+// KRDM-YYMM-XXXX: short enough to quote in an email, random enough not to clash.
+// 32 symbols (no 0/O, 1/I) divide 256 evenly, so every symbol is equally likely.
+function orderNumber () {
+  const symbols = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
+  const now = new Date()
+  const month = `${String(now.getFullYear()).slice(2)}${String(now.getMonth() + 1).padStart(2, '0')}`
+  const random = Array.from(window.crypto.getRandomValues(new Uint8Array(4)), n => symbols[n % symbols.length]).join('')
+  return `KRDM-${month}-${random}`
+}
+
 function formatPrice (amount, locale) {
   return new Intl.NumberFormat(locale, {
     style: 'currency',
@@ -217,7 +227,7 @@ function cartPage () {
 
   // Delivery by post needs an address.
   function updateDelivery () {
-    const post = form.elements.delivery.value === 'post'
+    const post = form.querySelector('[data-cart-delivery="post"]').checked
     const address = root.querySelector('[data-cart-address]')
     address.hidden = !post
     address.querySelector('textarea').required = post
@@ -250,19 +260,14 @@ function cartPage () {
       return parts.join(' — ')
     }).join('\n')
     const sum = formatPrice(total(), locale)
+    const number = orderNumber()
 
+    field('number').value = number
     field('items').value = text
     field('total').value = sum
-    field('json').value = JSON.stringify(order.map(line => ({
-      id: line.id,
-      title: line.item.title,
-      size: line.size || null,
-      qty: line.qty,
-      price: line.price || null,
-    })))
 
     try {
-      window.sessionStorage.setItem(CART_LAST_ORDER_KEY, JSON.stringify({ items: text, total: sum }))
+      window.sessionStorage.setItem(CART_LAST_ORDER_KEY, JSON.stringify({ number, items: text, total: sum }))
     }
     catch {
       // Not essential: the thank-you page just won't repeat the order.
@@ -307,6 +312,9 @@ function orderDone () {
   if (order && order.items) {
     root.querySelector('[data-cart-done-items]').textContent = order.items
     root.querySelector('[data-cart-done-total]').textContent = order.total
+    const number = root.querySelector('[data-cart-done-number]')
+    number.textContent = order.number || ''
+    number.closest('p').hidden = !order.number
     root.hidden = false
   }
 }

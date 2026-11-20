@@ -62,9 +62,10 @@ file exists as `name.sl.md` + `name.en.md`.
 - **Merch** has a cart but no checkout: item pages have an add-to-cart form, the cart
   (`content/cart.*.md`, `{{</* cart */>}}`, `assets/scripts/cart.js`) lives in
   localStorage as item + size + quantity, and the order goes out as the Netlify
-  Forms form `order` (readable `items`, `total`, `items-json`), emailed to us like the
-  contact form; `{{</* order-done */>}}` on the thank-you page repeats the order and
-  empties the cart. Titles, prices and stock state come from JSON built into the cart
+  Forms form `order` (`order-number` KRDM-YYMM-XXXX, readable `items` and `total`
+  first), emailed to us like the contact form — Netlify emails every field, so keep
+  the form to what we want to read; `{{</* order-done */>}}` on the thank-you page
+  repeats the number and the order and empties the cart. Titles, prices and stock state come from JSON built into the cart
   page, never from the browser. Item pages also link to the contact form with
   `?item=<name>` (pre-filled by `assets/scripts/contact-prefill.js`; the only action
   without JS) and to `link` (Bandcamp) if set. The list filters by `category` and by band
