@@ -430,4 +430,16 @@
     color: var(--fg-muted);
     font-size: 0.875rem;
   }
+
+  // Sending failed (assets/scripts/netlify-form.js): a hard ink box.
+  &__error {
+    margin-bottom: 20px;
+    padding: 12px 16px;
+    border: 2px solid var(--rule);
+    background-color: var(--bg-sunk);
+
+    p {
+      margin: 0;
+    }
+  }
 }

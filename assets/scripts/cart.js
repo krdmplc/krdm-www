@@ -1,3 +1,5 @@
+/* global sendNetlifyForm */
+
 // Merch cart. There is no checkout: the cart lives in this browser
 // (localStorage) as [{ id, size, qty }] and is sent to us as a Netlify Forms
 // order from the cart page (layouts/shortcodes/cart.html), which also holds the
@@ -237,12 +239,18 @@ function cartPage () {
     radio.addEventListener('change', updateDelivery)
   })
 
-  // Write the order into the hidden fields Netlify emails to us.
-  form.addEventListener('submit', (event) => {
+  // Write the order into the hidden fields Netlify emails to us and send it
+  // with fetch (sendNetlifyForm, netlify-form.js), then open this language's
+  // thank-you page ourselves. A failed send keeps the visitor here, cart
+  // intact, with an error message.
+  const error = form.querySelector('[data-form-error]')
+  let sending = false
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault()
     const order = ordered()
 
-    if (!order.length) {
-      event.preventDefault()
+    if (!order.length || sending) {
       return
     }
 
@@ -266,12 +274,28 @@ function cartPage () {
     field('items').value = text
     field('total').value = sum
 
+    sending = true
+    submit.disabled = true
+    error.hidden = true
+
+    try {
+      await sendNetlifyForm(form)
+    }
+    catch {
+      sending = false
+      submit.disabled = false
+      error.hidden = false
+      error.focus()
+      return
+    }
+
     try {
       window.sessionStorage.setItem(CART_LAST_ORDER_KEY, JSON.stringify({ number, items: text, total: sum }))
     }
     catch {
       // Not essential: the thank-you page just won't repeat the order.
     }
+    window.location.assign(form.getAttribute('action'))
   })
 
   root.hidden = false

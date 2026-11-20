@@ -82,7 +82,10 @@ file exists as `name.sl.md` + `name.en.md`.
   and counts as in stock. JSON-LD: `Product` with an `Offer`.
 - There is **no public email address** (info@krdm.si is dead): contact goes through
   the Netlify Forms form on `content/contact.*.md` (`{{</* contact-form */>}}`), whose
-  notifications are configured in the Netlify UI (so are the `order` form's). Event prices appear only on event pages,
+  notifications are configured in the Netlify UI (so are the `order` form's). Both forms
+  are sent with fetch by `assets/scripts/netlify-form.js`: each form name is shared by
+  both languages and Netlify keeps one success page per form, so a plain POST could
+  land on the other language's thank-you page. Event prices appear only on event pages,
   never in listings; merch prices do show on cards.
 - `showInAdmin: true` (Slovenian files) and `pageType: page` are filters for Decap's
   listings — keep them on new content.

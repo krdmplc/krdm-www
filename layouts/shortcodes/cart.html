@@ -1,6 +1,7 @@
 {{- /*
   The cart and the order form. There is no checkout: the order is a Netlify
-  Forms submission ("order", both languages) that Netlify emails to us; set up
+  Forms submission ("order", both languages; cart.js sends it with fetch and then
+  opens this language's thank-you page, see there) that Netlify emails to us; set up
   its notification in the Netlify UI (Forms → Form notifications). We reply to
   confirm stock, payment and pick-up or shipping.
 
@@ -100,6 +101,8 @@
       <input type="hidden" name="language" value="{{ site.Language.Lang }}">
 
       <p class="form__note">{{ T "orderPrivacy" | markdownify }}</p>
+
+      <div class="form__error" role="alert" tabindex="-1" data-form-error hidden>{{ T "orderError" | markdownify }}</div>
 
       <button type="submit" class="button">{{ partial "icon" "mail" }} {{ T "orderSend" }}</button>
     </form>

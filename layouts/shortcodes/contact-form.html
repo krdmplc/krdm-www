@@ -3,6 +3,8 @@
   Netlify finds the form in the built HTML by its `data-netlify` attribute; both
   languages post to the same form name. Notifications are set up in the Netlify
   UI (Forms → Form notifications), not in code. `bot-field` is a honeypot.
+  With JS, assets/scripts/netlify-form.js sends it with fetch ([data-netlify-send])
+  so each language gets its own thank-you page; without JS it posts normally.
 
   Merch pages link here with ?item=<name>; assets/scripts/contact-prefill.js
   then starts the message with `data-prefill` and the item name.
@@ -11,7 +13,7 @@
 */ -}}
 {{- $thanks := "" -}}
 {{- with site.GetPage "/contact-thanks" }}{{ $thanks = .RelPermalink }}{{ end -}}
-<form class="form" name="contact" method="POST" action="{{ $thanks }}" data-netlify="true" netlify-honeypot="bot-field">
+<form class="form" name="contact" method="POST" action="{{ $thanks }}" data-netlify="true" netlify-honeypot="bot-field" data-netlify-send>
   <input type="hidden" name="form-name" value="contact">
   <input type="hidden" name="language" value="{{ site.Language.Lang }}">
   <p class="visually-hidden" aria-hidden="true">
@@ -34,6 +36,8 @@
   </div>
 
   <p class="form__note">{{ T "formPrivacy" | markdownify }}</p>
+
+  <div class="form__error" role="alert" tabindex="-1" data-form-error hidden>{{ T "formError" | markdownify }}</div>
 
   <button type="submit" class="button">{{ T "formSend" }}</button>
 </form>
