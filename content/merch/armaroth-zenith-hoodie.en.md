@@ -1,11 +1,11 @@
 ---
-title: "Zenith hoodie"
-date: 2016-12-01T00:00:00+01:00
-thumbnail: /media/uploads/merch-armaroth-zenith-hoodie.jpg
+title: "Zenith zip hoodie"
+date: 2026-11-20T00:00:00+01:00
+thumbnail: /media/uploads/merch-armaroth-zenith-zip-hoodie.jpg
 images:
-  - /media/uploads/merch-armaroth-zenith-hoodie-2.jpg
+  - /media/uploads/merch-armaroth-zenith-zip-hoodie-2.jpg
 category: apparel
-price: 35
+price: 40
 sizes:
   - S
   - M
@@ -13,13 +13,12 @@ sizes:
   - XL
   - XXL
 available: true
-quantity: 8
+quantity: 10
 release: zenith
-link: https://armaroth.bandcamp.com/merch/zenith-hoodie
 artists:
   - armaroth
 ---
 
-Black hoodie with the artwork from Zenith on the back and the Armaroth logo on the left of the chest.
+Black zip hoodie with the artwork from Zenith on the back and the Armaroth logo on the left of the chest.
 
 Artwork by Peter Kalinski.

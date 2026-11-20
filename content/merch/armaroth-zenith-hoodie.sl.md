@@ -1,11 +1,11 @@
 ---
-title: "Pulover s kapuco Zenith"
-date: 2016-12-01T00:00:00+01:00
-thumbnail: /media/uploads/merch-armaroth-zenith-hoodie.jpg
+title: "Pulover s kapuco in zadrgo Zenith"
+date: 2026-11-20T00:00:00+01:00
+thumbnail: /media/uploads/merch-armaroth-zenith-zip-hoodie.jpg
 images:
-  - /media/uploads/merch-armaroth-zenith-hoodie-2.jpg
+  - /media/uploads/merch-armaroth-zenith-zip-hoodie-2.jpg
 category: apparel
-price: 35
+price: 40
 sizes:
   - S
   - M
@@ -13,14 +13,13 @@ sizes:
   - XL
   - XXL
 available: true
-quantity: 8
+quantity: 10
 release: zenith
-link: https://armaroth.bandcamp.com/merch/zenith-hoodie
 artists:
   - armaroth
 showInAdmin: true
 ---
 
-Črn pulover s kapuco: motiv z albuma Zenith na hrbtu, logotip Armaroth na levi strani prsi.
+Črn pulover s kapuco in zadrgo: motiv z albuma Zenith na hrbtu, logotip Armaroth na levi strani prsi.
 
 Avtor grafike: Peter Kalinski.
