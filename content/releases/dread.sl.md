@@ -6,7 +6,7 @@ thumbnail: /media/uploads/dread.jpg
 format: single
 showInAdmin: true
 artists:
-  - ofnana_pesa
+  - pesa
 ---
 ![Naslovnica Dread](/media/uploads/dread-bc.jpg)
 

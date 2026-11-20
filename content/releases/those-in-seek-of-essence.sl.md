@@ -6,7 +6,7 @@ thumbnail: /media/uploads/in_seek_of_essence.jpg
 format: single
 showInAdmin: true
 artists:
-  - ofnana_pesa
+  - pesa
 ---
 Single, ki ga je ustvaril ofnana_pesa.
 

@@ -16,6 +16,10 @@
 /releases/dread/                                                 /izdaje/dread/                                              301!
 /releases/those-in-seek-of-essence/                              /izdaje/those-in-seek-of-essence/                           301!
 
+# Artist ofnana_pesa was renamed PESA in 2026.
+/ustvarjalci/ofnana_pesa/*   /ustvarjalci/pesa/:splat   301!
+/en/artists/ofnana_pesa/*    /en/artists/pesa/:splat    301!
+
 # The empty "categories" and "tags" taxonomies were removed.
 /categories/*      /                 301!
 /tags/*            /                 301!

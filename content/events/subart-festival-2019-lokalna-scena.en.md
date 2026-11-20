@@ -10,7 +10,7 @@ artists:
   - nature
   - didge
   - neuromancer
-  - ofnana_pesa
+  - pesa
   - douchean
 ---
 

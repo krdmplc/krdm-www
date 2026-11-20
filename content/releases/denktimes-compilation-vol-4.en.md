@@ -13,7 +13,7 @@ artists:
   - gmb
   - neuromancer
   - douchean
-  - ofnana_pesa
+  - pesa
 ---
 
 In front of you is the fourth edition of Denktimes Compilation by KRDM. This one is special because it celebrates the 10th anniversary of creativity under the KRDM roof. In 10 years we produced tonnes of good music and also paintings, animations, videos, jokes, stories, jobs and friendships. Even though this is just a musical compilation, in its core it includes everything listed.

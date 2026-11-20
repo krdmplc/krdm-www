@@ -6,7 +6,7 @@ thumbnail: /media/uploads/immortale.jpg
 format: single
 showInAdmin: true
 artists:
-  - ofnana_pesa
+  - pesa
 ---
 
 Prvi singel DJ-a in producenta ofnana_pesa

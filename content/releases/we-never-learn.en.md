@@ -5,7 +5,7 @@ releaseDate: 2026-03-26T00:00:00+01:00
 thumbnail: /media/uploads/we-never-learn.jpg
 format: single
 artists:
-  - ofnana_pesa
+  - pesa
 ---
 
 The first single ofnana_pesa released under the name PESA, on the French label Exaltation (EXTFD064). Free download.

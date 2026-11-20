@@ -5,7 +5,7 @@ releaseDate: 2023-02-18T00:00:00+01:00
 thumbnail: /media/uploads/rituals.jpg
 format: album
 artists:
-  - ofnana_pesa
+  - pesa
 ---
 
 A five-track industrial techno EP on Void Music (VOID006). Belgian magazine Side-Line rated it 8/10 and called ofnana_pesa "a name to keep in mind".

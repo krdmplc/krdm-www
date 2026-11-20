@@ -16,7 +16,7 @@ artists:
   - amalgam
   - nature
   - douchean
-  - ofnana_pesa
+  - pesa
 ---
 
 Ob 10. obletnici placa za vaje (in vse ostalo) na planini, predstavljamo najboljši Plc Fest do zdaj!

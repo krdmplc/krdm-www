@@ -5,7 +5,7 @@ releaseDate: 2022-06-29T00:00:00+02:00
 thumbnail: /media/uploads/pilgrims-exile.jpg
 format: album
 artists:
-  - ofnana_pesa
+  - pesa
 ---
 
 ofnana_pesa's first solo EP on the Ljubljana label DE/FRAGMENT (DEFRAG002). Instead of hard-edged 4x4 mayhem it offers epic, melancholic melodic lines over heavy broken beats – an immersive, cinematic journey that shows a different side of ofnana_pesa as a producer.

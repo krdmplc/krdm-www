@@ -1,11 +1,11 @@
 ---
-title: Ofnana_pesa
+title: PESA
 thumbnail: /media/uploads/103950808_711865109625799_8047344184785284169_o.jpg
 weight: 30
-ref: ofnana_pesa
+ref: pesa
 ---
 
-Ofnana_pesa (lately also PESA) is a DJ, producer, bassist, event organiser… a lover of music. He started his musical journey in 2011 when he joined his first metal band. He discovered his love for electronic music a few years later and has been active in both scenes ever since.
+PESA (formerly ofnana_pesa) is a DJ, producer, bassist, event organiser… a lover of music. He started his musical journey in 2011 when he joined his first metal band. He discovered his love for electronic music a few years later and has been active in both scenes ever since.
 
 His music is best described as eerie, dark and hard – from industrial and hard techno to cinematic soundscapes, distorted breakbeats and drum'n'bass. His productions aren't always as hard as his sets.
 

@@ -5,7 +5,7 @@ releaseDate: 2024-10-21T00:00:00+02:00
 thumbnail: /media/uploads/cepheus.jpg
 format: album
 artists:
-  - ofnana_pesa
+  - pesa
 ---
 
 A split EP with URKE on the Colombian label Siblings Dystopian (SDEP005), available as a free download.

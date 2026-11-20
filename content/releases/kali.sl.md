@@ -5,7 +5,7 @@ releaseDate: 2022-11-22T00:00:00+01:00
 thumbnail: /media/uploads/kali.jpg
 format: single
 artists:
-  - ofnana_pesa
+  - pesa
 showInAdmin: true
 ---
 

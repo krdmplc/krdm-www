@@ -6,7 +6,7 @@ thumbnail: /media/uploads/machinate.png
 format: single
 showInAdmin: true
 artists:
-  - ofnana_pesa
+  - pesa
 ---
 
 Drugi singel DJ-a in producenta ofnana_pesa

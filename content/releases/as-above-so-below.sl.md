@@ -5,7 +5,7 @@ releaseDate: 2020-07-31T00:00:00+01:00
 thumbnail: /media/uploads/as-above-so-below.jpg
 format: album
 artists:
-  - ofnana_pesa
+  - pesa
 showInAdmin: true
 ---
 

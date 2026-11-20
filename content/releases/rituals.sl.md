@@ -5,7 +5,7 @@ releaseDate: 2023-02-18T00:00:00+01:00
 thumbnail: /media/uploads/rituals.jpg
 format: album
 artists:
-  - ofnana_pesa
+  - pesa
 showInAdmin: true
 ---
 

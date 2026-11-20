@@ -5,7 +5,7 @@ releaseDate: 2021-05-27T00:00:00+02:00
 thumbnail: /media/uploads/ekstaza-smrti.jpg
 format: single
 artists:
-  - ofnana_pesa
+  - pesa
 showInAdmin: true
 ---
 

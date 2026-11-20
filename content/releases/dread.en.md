@@ -5,7 +5,7 @@ releaseDate: 2020-10-30T15:21:56.780Z
 thumbnail: /media/uploads/dread.jpg
 format: single
 artists:
-  - ofnana_pesa
+  - pesa
 ---
 ![Dread cover art](/media/uploads/dread-bc.jpg)
 

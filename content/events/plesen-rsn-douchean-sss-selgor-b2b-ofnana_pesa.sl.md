@@ -10,7 +10,7 @@ showInAdmin: true
 artists:
   - douchean
   - selgor
-  - ofnana_pesa
+  - pesa
 ---
 V časih visoke vlage se rado zgodi, da splesnimo tudi mi. Zato smo začeli prirejati novo serijo dogodkov, obarvanih s temačno, moderno plesno glasbo. Namen serije Plesen je predstavitev najboljših imen podtalne elektronske scene, tako uveljavljenih veteranov kot tudi predstavnikov bolj sveže krvi.
 

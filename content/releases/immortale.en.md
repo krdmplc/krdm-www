@@ -5,7 +5,7 @@ releaseDate: 2019-03-31T00:00:00+01:00
 thumbnail: /media/uploads/immortale.jpg
 format: single
 artists:
-  - ofnana_pesa
+  - pesa
 ---
 
 First single by DJ and producer ofnana_pesa

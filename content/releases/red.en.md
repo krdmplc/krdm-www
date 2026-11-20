@@ -5,7 +5,7 @@ releaseDate: 2023-10-27T00:00:00+02:00
 thumbnail: /media/uploads/red.jpg
 format: album
 artists:
-  - ofnana_pesa
+  - pesa
 ---
 
 An EP on Honest Work Recordings. The high tempos and in-your-face aggression of his industrial techno are transmuted here into a slower, pensive sound full of dramatic intensity: brooding cinematic soundscapes, distorted breakbeats and elements of drum'n'bass, with the menacing vibe of his earlier work intact.

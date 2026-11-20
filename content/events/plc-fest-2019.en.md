@@ -15,7 +15,7 @@ artists:
   - amalgam
   - nature
   - douchean
-  - ofnana_pesa
+  - pesa
 ---
 
 For the 10th anniversary of our rehearsal space (and everything else) in Planina, we present the best Plc Fest yet!

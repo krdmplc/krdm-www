@@ -9,7 +9,7 @@ series: other
 artists:
   - douchean
   - selgor
-  - ofnana_pesa
+  - pesa
 ---
 
 In times of high humidity, it's easy for us to go mouldy too. That's why we've started a new series of events coloured by dark, modern dance music. Plesen ("mould") sets out to present the best names of the underground electronic scene, both established veterans and fresher blood.
