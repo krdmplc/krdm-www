@@ -4,6 +4,7 @@ date: 2024-04-27
 startDate: 2024-04-27
 venue: "Bratislava"
 series: gigs
+draft: true
 artists:
   - selgor
 ---
