@@ -4,7 +4,7 @@ Guidance for AI coding agents (and humans) working on **krdm.si**, the bilingual
 website of Društvo KRDM, a non-profit music association from Kranj, Slovenia.
 
 Stack: **Hugo** (static site) → **Netlify** (build/host, `main` = production) →
-**Decap CMS** at `/admin/` (Netlify Identity + git-gateway). Seeded from
+**Decap CMS** at `/admin/` (Decap Turbo: sign-in, roles, GitHub proxy). Seeded from
 [hugo-template](https://github.com/poslovnimediji/hugo-template); compare with it
 when updating tooling, but this site deviates where noted below.
 
@@ -172,9 +172,16 @@ name there**. Only `HUGO_*` and `CONTEXT` env vars are readable from templates.
 `HUGO_VERSION` in `netlify.toml` is the only pinned version; bump it only after a
 local build at that exact version. Node is not pinned (Netlify's image supplies it).
 
-Decap CMS and the Netlify Identity widget load unpinned from CDNs in
-`static/admin/index.html`; an `/admin/` breakage with no matching commit is usually
-an upstream release.
+Decap CMS loads from a CDN in `static/admin/index.html` (`^3.17.0`, so any newer
+3.x); an `/admin/` breakage with no matching commit is usually an upstream release.
+
+**CMS sign-in is Decap Turbo** (`backend: turbo-github` with the site's
+`turbo_site_id`), not Netlify Identity. Editors, their roles (per-collection access)
+and the GitHub App connection are managed on the site's page at
+https://turbo.decapcms.org/sites/25133a11-73f6-45c9-bfff-fe114aec023d. The repo
+comes from the Turbo site; `config.yml` only names the branch. The site's admin
+URLs in Turbo must cover `/admin/` on production and on deploy previews, or sign-in
+is refused there.
 
 ## Privacy
 

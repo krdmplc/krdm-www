@@ -1,7 +1,10 @@
 local_backend: true
 
 backend:
-  name: git-gateway
+  # Decap Turbo: sign-in, editor roles and the GitHub proxy. The repo comes
+  # from the Turbo site, not from here.
+  name: turbo-github
+  turbo_site_id: 25133a11-73f6-45c9-bfff-fe114aec023d
   # Replaced with the branch being built by bin/build.sh. Never commit a real
   # branch name here.
   branch: __BRANCH__
