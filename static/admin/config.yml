@@ -150,6 +150,7 @@ collections:
       - *DESCRIPTION
       - {label: Content, name: body, widget: markdown, i18n: true}
       - *ARTISTS
+      - {label: "Hidden (not shown anywhere on the site or in the stats, e.g. a gig by a band from before or after its time with KRDM; untick to show it again)", name: draft, widget: boolean, default: false, required: false, i18n: duplicate}
       - *SHOW_IN_ADMIN
 
   - name: releases

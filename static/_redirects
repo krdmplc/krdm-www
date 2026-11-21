@@ -36,6 +36,10 @@
 /en/play/  /en/events/  301
 /en/play  /en/events/  301
 
+# Removed: PESA was billed but played Prague that night instead.
+/dogodki/koban-festival/  /dogodki/  301
+/en/events/koban-festival/  /en/events/  301
+
 # Language-specific 404 pages (only used when no file matches).
 /en/*  /en/404.html  404
 /*     /404.html     404
