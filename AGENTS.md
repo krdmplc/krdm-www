@@ -94,6 +94,11 @@ file exists as `name.sl.md` + `name.en.md`.
   totals Hugo renders there, on artist pages and in `llms.txt` — keep it and the JS in
   step. The same venue written two ways is merged in `data/venues.yaml` (aliases only;
   events stay as written), so add an alias rather than renaming a venue in old events.
+  The maps place towns from `data/towns.yaml` (lat/lon, and `country` abroad):
+  Slovenian ones on `assets/maps/slovenia.svg`, foreign ones on `assets/maps/europe.svg`
+  (each drawn for that file's `maps` bounds; farther towns are listed under it). An
+  event in a town that isn't listed makes the build warn — add the town. Venues abroad
+  use the local town name (`Wien`, `Praha`), as the venue is shared by both languages.
 - `showInAdmin: true` (Slovenian files) and `pageType: page` are filters for Decap's
   listings — keep them on new content.
 - Slovenian URLs come from `[languages.sl.permalinks]` in `hugo.toml` and the `url:` /

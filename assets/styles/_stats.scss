@@ -54,14 +54,17 @@ $timeline-name-wide: 9rem;
   }
 }
 
-// Totals: the home page's numbers, in a row of six on wide screens.
+// Totals: the home page's numbers, in one row on wide screens.
 .stats--wide {
   @include breakpoints.breakpoint-up("sm") {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  // One row, however many totals show (one is hidden when an artist is picked).
   @include breakpoints.breakpoint-up("lg") {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-template-columns: none;
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
   }
 
   li:nth-child(n) {
@@ -347,5 +350,121 @@ $timeline-name-wide: 9rem;
     font-family: var(--font-display);
     font-size: 2rem;
     line-height: 1;
+  }
+}
+
+// Map of the towns (assets/maps/slovenia.svg under dots placed by stats.js). Dot
+// sizes follow the map's width (container query units).
+.stats-map {
+  position: relative;
+  max-width: 960px;
+  aspect-ratio: 1000 / 679;
+  overflow: clip;
+  container-type: inline-size;
+
+  &__land {
+    position: absolute;
+    inset: 0;
+
+    svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    path {
+      fill: var(--bg-sunk);
+      stroke: var(--rule);
+      stroke-linejoin: round;
+      stroke-width: 2px;
+      vector-effect: non-scaling-stroke;
+    }
+  }
+
+  &__layer {
+    position: absolute;
+    inset: 0;
+  }
+
+  &__dot,
+  &__label {
+    --size: calc(6px + var(--value) * 5cqi);
+
+    position: absolute;
+  }
+
+  &__dot {
+    width: var(--size);
+    height: var(--size);
+    border: 2px solid var(--bg);
+    border-radius: 50%;
+    background-color: var(--fg);
+    transform: translate(-50%, -50%);
+  }
+
+  // Home: flyer green with an ink ring (smaller towns nearby still sit on top).
+  &__dot--home {
+    --size: calc(12px + var(--value) * 5cqi);
+
+    border: 3px solid var(--rule);
+    background-color: var(--highlight);
+    box-shadow: 0 0 0 2px var(--bg);
+  }
+
+  &__label {
+    z-index: 2;
+    margin-left: calc(var(--size) / 2 + 4px);
+    padding: 0 4px;
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-type);
+    font-size: 0.75rem;
+    line-height: 1.5;
+    white-space: nowrap;
+    transform: translateY(-50%);
+
+    &--left {
+      margin-left: calc(var(--size) / -2 - 4px);
+      transform: translate(-100%, -50%);
+    }
+
+    &--home {
+      --size: calc(12px + var(--value) * 5cqi);
+
+      z-index: 3;
+      outline: 2px solid var(--rule);
+      background-color: var(--highlight);
+      color: var(--on-highlight);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+  }
+}
+
+// Gigs abroad: Central Europe, the neighbouring countries in paper and Slovenia
+// (the SVG's last path) in flyer green.
+.stats-map--europe {
+  aspect-ratio: 1000 / 898;
+
+  .stats-map__land path:last-child {
+    fill: var(--highlight);
+  }
+}
+
+.stats-map__note {
+  margin: 12px 0 0;
+  color: var(--fg-muted);
+  font-family: var(--font-type);
+  font-size: 0.875rem;
+}
+
+.stats-abroad {
+  display: grid;
+  gap: 32px;
+  align-items: start;
+
+  @include breakpoints.breakpoint-up("md") {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    gap: 56px;
   }
 }

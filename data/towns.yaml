@@ -1,0 +1,82 @@
+# Where the towns from event venues ("Venue, Town") are, for the maps on the stats
+# page (/statistika/). A town that isn't listed here is left off the maps, and the
+# build warns about it: add it with its latitude and longitude (e.g. from
+# openstreetmap.org — the town centre, not the municipality's) and, outside
+# Slovenia, its country (ISO code; SI if left out). Town names are written as the
+# events write them (the local name: Wien, Praha).
+#
+# `maps` are the areas the two maps show: Slovenian towns go on `slovenia`, towns
+# abroad on `europe` (with Slovenia filled in); a town outside both is listed under
+# the maps. assets/maps/<name>.svg was drawn for exactly these bounds
+# (equirectangular, Natural Earth via world-atlas 2.0.2), so they can't change
+# without redrawing it.
+maps:
+  slovenia: {west: 13.3, east: 16.7, south: 45.35, north: 46.95}
+  europe: {west: 5.5, east: 21, south: 42.8, north: 52.2}
+
+towns:
+  - {name: Beltinci, lat: 46.6069, lon: 16.2351}
+  - {name: Bled, lat: 46.3684, lon: 14.1101}
+  - {name: Brežice, lat: 45.9039, lon: 15.5931}
+  - {name: Celje, lat: 46.2294, lon: 15.2617}
+  - {name: Črnomelj, lat: 45.5701, lon: 15.1923}
+  - {name: Idrija, lat: 46.0027, lon: 14.0302}
+  - {name: Golnik, lat: 46.3273, lon: 14.3331}
+  - {name: Goriška Brda, lat: 45.9974, lon: 13.5274}
+  - {name: Izola, lat: 45.5399, lon: 13.6594}
+  - {name: Jesenice, lat: 46.4324, lon: 14.0624}
+  - {name: Kamnik, lat: 46.2257, lon: 14.6119}
+  - {name: Komen, lat: 45.8153, lon: 13.7486}
+  - {name: Koper, lat: 45.5480, lon: 13.7305}
+  - {name: Kranj, lat: 46.2433, lon: 14.3549}
+  - {name: Krško, lat: 45.9576, lon: 15.4947}
+  - {name: Laško, lat: 46.1538, lon: 15.2355}
+  - {name: Lesce, lat: 46.3618, lon: 14.1544}
+  - {name: Ljubljana, lat: 46.0500, lon: 14.5069}
+  - {name: Maribor, lat: 46.5576, lon: 15.6456}
+  - {name: Medvode, lat: 46.1411, lon: 14.4114}
+  - {name: Murska Sobota, lat: 46.6625, lon: 16.1655}
+  - {name: Naklo, lat: 46.2728, lon: 14.3151}
+  - {name: Nova Gorica, lat: 45.9582, lon: 13.6475}
+  - {name: Novo mesto, lat: 45.8040, lon: 15.1697}
+  - {name: Opatje selo, lat: 45.8520, lon: 13.5829}
+  - {name: Postojna, lat: 45.7753, lon: 14.2140}
+  - {name: Ptuj, lat: 46.4198, lon: 15.8717}
+  - {name: Ravne na Koroškem, lat: 46.5447, lon: 14.9623}
+  - {name: Škofja Loka, lat: 46.1653, lon: 14.3067}
+  - {name: Slovenj Gradec, lat: 46.5091, lon: 15.0791}
+  - {name: Slovenska Bistrica, lat: 46.3919, lon: 15.5728}
+  - {name: Smrjene, lat: 45.9361, lon: 14.5907}
+  - {name: Srednja Bistrica, lat: 46.5516, lon: 16.2773}
+  - {name: Tenetiše, lat: 46.2965, lon: 14.3473}
+  - {name: Tolmin, lat: 46.1829, lon: 13.7333}
+  - {name: Trzin, lat: 46.1329, lon: 14.5625}
+  - {name: Turnišče, lat: 46.6249, lon: 16.3165}
+  - {name: Velenje, lat: 46.3593, lon: 15.1150}
+  - {name: Vodice, lat: 46.1892, lon: 14.4947}
+  - {name: Vrhnika, lat: 45.9663, lon: 14.2981}
+  - {name: Zagorje ob Savi, lat: 46.1342, lon: 14.9953}
+
+  # Abroad.
+  - {name: Augsburg, lat: 48.3690, lon: 10.8980, country: DE}
+  - {name: Bjelovar, lat: 45.8986, lon: 16.8423, country: HR}
+  - {name: Bogotá, lat: 4.6534, lon: -74.0836, country: CO}
+  - {name: Bratislava, lat: 48.1435, lon: 17.1083, country: SK}
+  - {name: Codroipo, lat: 45.9546, lon: 12.9964, country: IT}
+  - {name: Duga Resa, lat: 45.4469, lon: 15.4969, country: HR}
+  - {name: Frýdek-Místek, lat: 49.6856, lon: 18.3483, country: CZ}
+  - {name: Graz, lat: 47.0709, lon: 15.4383, country: AT}
+  - {name: Kutná Hora, lat: 49.9487, lon: 15.2681, country: CZ}
+  - {name: Mladá Boleslav, lat: 50.4114, lon: 14.9032, country: CZ}
+  - {name: Modena, lat: 44.6471, lon: 10.9252, country: IT}
+  - {name: Novi Sad, lat: 45.2551, lon: 19.8452, country: RS}
+  - {name: Oberhausen, lat: 51.4696, lon: 6.8514, country: DE}
+  - {name: Praha, lat: 50.0875, lon: 14.4213, country: CZ}
+  - {name: Pula, lat: 44.8702, lon: 13.8455, country: HR}
+  - {name: Resia, lat: 46.3735, lon: 13.3040, country: IT}
+  - {name: Salzburg, lat: 47.7981, lon: 13.0465, country: AT}
+  - {name: Sarajevo, lat: 43.8571, lon: 18.4126, country: BA}
+  - {name: Sombor, lat: 45.7727, lon: 19.1147, country: RS}
+  - {name: Tuzla, lat: 44.5384, lon: 18.6671, country: BA}
+  - {name: Wien, lat: 48.2084, lon: 16.3725, country: AT}
+  - {name: Zagreb, lat: 45.8131, lon: 15.9773, country: HR}

@@ -13,7 +13,7 @@
   {{- /* Labels for stats.js: every plural form it may need (Slovenian has four;
     Intl.PluralRules picks one), series names, and the legend. */ -}}
   {{- $plural := dict -}}
-  {{- range slice "Event" "Release" "Venue" "Town" "Artist" "Year" -}}
+  {{- range slice "Event" "Release" "Venue" "Town" "Country" "Artist" "Year" -}}
     {{- $key := printf "stats%s" . -}}
     {{- $plural = merge $plural (dict (lower .) (dict "one" (T $key 1) "two" (T $key 2) "few" (T $key 3) "other" (T $key 5))) -}}
   {{- end -}}
@@ -26,7 +26,9 @@
     "releases" $data.releases
     "artists" $data.artists
     "years" $data.years
-    "labels" (dict "plural" $plural "series" $series)
+    "towns" $data.towns
+    "home" $data.home
+    "labels" (dict "plural" $plural "series" $series "home" (T "statsHome") "offMap" (T "statsOffMap"))
   -}}
 
   <div class="container">
@@ -57,10 +59,13 @@
         </fieldset>
       </div>
 
+      {{- /* Each total and the i18n key of its label (plural forms). */}}
+      {{- $tiles := dict "events" "Event" "releases" "Release" "venues" "Venue" "towns" "Town" "countries" "Country" "artists" "Artist" "years" "Year" }}
       <ul class="stats stats--wide" role="list" data-stats-totals>
-        {{- range slice "events" "releases" "venues" "towns" "artists" "years" }}
+        {{- range slice "events" "releases" "venues" "towns" "countries" "artists" "years" }}
           {{- $n := index $all . }}
-          <li data-stat="{{ . }}"><strong>{{ $n }}</strong><span>{{ T (printf "stats%s" (strings.FirstUpper (strings.TrimSuffix "s" .))) $n }}</span></li>
+          {{- $word := index $tiles . }}
+          <li data-stat="{{ . }}" data-word="{{ lower $word }}"><strong>{{ $n }}</strong><span>{{ T (printf "stats%s" $word) $n }}</span></li>
         {{- end }}
       </ul>
 
@@ -80,6 +85,37 @@
         <div class="section-head"><h2 id="stats-timeline">{{ T "statsTimeline" }}</h2></div>
         <p class="section-intro">{{ T "statsTimelineIntro" }}</p>
         <div class="timeline" data-stats-timeline></div>
+      </section>
+
+      <section aria-labelledby="stats-map" data-stats-js hidden>
+        <div class="section-head"><h2 id="stats-map">{{ T "statsMap" }}</h2></div>
+        <p class="section-intro">{{ T "statsMapIntro" }}</p>
+        <div class="stats-map" role="img" data-stats-map="slovenia" data-labels="14">
+          <div class="stats-map__land">
+            {{- with resources.Get "maps/slovenia.svg" }}{{ replaceRE `(?s)<!--.*?-->\s*` "" .Content | safeHTML }}{{ end -}}
+          </div>
+          <div class="stats-map__layer" data-stats-map-layer></div>
+        </div>
+      </section>
+
+      {{- /* Shown by stats.js only when the picked artist and period have gigs abroad. */}}
+      <section aria-labelledby="stats-abroad" data-stats-js data-stats-abroad hidden>
+        <div class="section-head"><h2 id="stats-abroad">{{ T "statsAbroad" }}</h2></div>
+        <div class="stats-abroad">
+          <div>
+            <div class="stats-map stats-map--europe" role="img" data-stats-map="europe">
+              <div class="stats-map__land">
+                {{- with resources.Get "maps/europe.svg" }}{{ replaceRE `(?s)<!--.*?-->\s*` "" .Content | safeHTML }}{{ end -}}
+              </div>
+              <div class="stats-map__layer" data-stats-map-layer></div>
+            </div>
+            <p class="stats-map__note" data-stats-offmap hidden></p>
+          </div>
+          <div>
+            <h3 class="eyebrow">{{ T "statsCountries" }}</h3>
+            <ol class="bar-list" data-stats-countries></ol>
+          </div>
+        </div>
       </section>
 
       <div class="stats-columns">

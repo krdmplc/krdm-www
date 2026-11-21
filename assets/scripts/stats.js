@@ -8,6 +8,12 @@
 // layouts/partials/func/stats-summary.html counts the same way as this file, so
 // keep the two in step.
 //
+// Two maps place a dot per town (positions from data/towns.yaml), sized by its
+// number of events: Slovenia, with our home town marked, and Europe for gigs
+// abroad (shown only when there are any, with a list of countries and a note for
+// towns off the map). Names that would overlap are left out, and placed again when
+// a map changes size.
+//
 // The filters go into the query string (?artist=armaroth&from=2013&to=2019), so a
 // view can be linked to, e.g. from an artist page.
 
@@ -141,6 +147,7 @@ function stats () {
       releases: releases.length,
       venues: new Set(events.flatMap(e => e.v)).size,
       towns: new Set(events.map(e => e.t).filter(Boolean)).size,
+      countries: new Set(events.map(e => e.c)).size,
       artists: new Set([...events, ...releases].flatMap(item => item.a)).size,
       years: new Set([...events, ...releases].map(item => item.y)).size,
     }
@@ -148,7 +155,7 @@ function stats () {
       const key = tile.dataset.stat
       const n = values[key]
       tile.querySelector('strong').textContent = n
-      tile.querySelector('span').textContent = word(key.replace(/s$/, ''), n)
+      tile.querySelector('span').textContent = word(tile.dataset.word, n)
       // One artist picked: "1 artist" says nothing.
       tile.hidden = key === 'artists' && state.artist !== 'all'
     })
@@ -293,6 +300,92 @@ function stats () {
     }))
   }
 
+  const maps = Object.fromEntries([...root.querySelectorAll('[data-stats-map]')].map(box => [
+    box.dataset.statsMap,
+    { name: box.dataset.statsMap, box, layer: box.querySelector('[data-stats-map-layer]') },
+  ]))
+  const regionNames = new Intl.DisplayNames([lang], { type: 'region' })
+  const country = code => regionNames.of(code) || code
+
+  // Names go to the busiest towns (home first), at most a map's data-labels of
+  // them. Show as many as fit, in that order, flipping a name to the left of its
+  // dot when it would run off the map. A map that isn't shown has no size; it's
+  // placed when it gets one.
+  function placeLabels (map) {
+    const bounds = map.box.getBoundingClientRect()
+    if (!bounds.width) {
+      return
+    }
+    const taken = []
+    map.layer.querySelectorAll('.stats-map__label').forEach((label) => {
+      label.hidden = false
+      label.classList.remove('stats-map__label--left')
+      let box = label.getBoundingClientRect()
+      if (box.right > bounds.right) {
+        label.classList.add('stats-map__label--left')
+        box = label.getBoundingClientRect()
+      }
+      const clash = box.left < bounds.left || taken.some(other =>
+        box.left < other.right && box.right > other.left && box.top < other.bottom && box.bottom > other.top)
+      label.hidden = clash
+      if (!clash) {
+        taken.push(box)
+      }
+    })
+  }
+
+  function renderMap (map, events) {
+    const counts = new Map(ranked(events.map(e => e.t), collator.compare))
+    const towns = data.towns
+      .filter(town => town.map === map.name)
+      .map(town => ({ ...town, n: counts.get(town.name) || 0, home: town.name === data.home }))
+      .filter(town => town.n || town.home)
+      // Biggest first, so smaller dots sit on top of them.
+      .sort((a, b) => b.n - a.n)
+    const max = Math.max(1, ...towns.map(town => town.n))
+    const place = (node, town) => {
+      node.style.left = `${town.x}%`
+      node.style.top = `${town.y}%`
+      node.style.setProperty('--value', Math.sqrt(town.n / max))
+      return node
+    }
+
+    const dots = towns.map((town) => {
+      const dot = place(el('span', town.home ? 'stats-map__dot stats-map__dot--home' : 'stats-map__dot'), town)
+      dot.title = `${town.name}: ${town.n} ${word('event', town.n)}`
+      return dot
+    })
+    const labels = [...towns]
+      .sort((a, b) => b.home - a.home || b.n - a.n)
+      .slice(0, Number(map.box.dataset.labels) || Infinity)
+      .map(town => town.home
+        ? place(el('span', 'stats-map__label stats-map__label--home', `${town.name} · ${data.labels.home}`), town)
+        : place(el('span', 'stats-map__label', town.name), town))
+
+    map.layer.replaceChildren(...dots, ...labels)
+    const shown = towns.filter(town => town.n)
+    const busiest = shown.slice(0, 5).map(town => `${town.name} ${town.n}`).join(', ')
+    map.box.setAttribute('aria-label', `${shown.length} ${word('town', shown.length)}${busiest ? `: ${busiest}` : ''}`)
+    placeLabels(map)
+  }
+
+  // Gigs abroad: the Europe map, the countries, and towns too far for the map.
+  function renderAbroad (events) {
+    const abroad = events.filter(e => e.c !== 'SI')
+    part('abroad').hidden = !abroad.length
+    renderMap(maps.europe, abroad)
+    renderBars('countries', ranked(abroad.map(e => e.c), collator.compare).map(([code, n]) => [country(code), n]))
+
+    const far = data.towns.filter(town => !town.map)
+    const counts = ranked(abroad.filter(e => far.some(town => town.name === e.t)).map(e => e.t), collator.compare)
+    const note = part('offmap')
+    note.hidden = !counts.length
+    note.textContent = `${data.labels.offMap}: ${counts.map(([name, n]) => {
+      const town = far.find(t => t.name === name)
+      return `${name} (${country(town.c)}) ${n}`
+    }).join(', ')}`
+  }
+
   const weekdayNames = Array.from({ length: 7 }, (_, i) => {
     // 1 January 2024 was a Monday.
     const name = new Intl.DateTimeFormat(lang, { weekday: 'long', timeZone: 'UTC' }).format(Date.UTC(2024, 0, 1 + i))
@@ -312,6 +405,8 @@ function stats () {
     renderTotals(events, releases)
     renderYears(events, releases, axis)
     renderTimeline(periodEvents, periodReleases, axis)
+    renderMap(maps.slovenia, events)
+    renderAbroad(events)
 
     renderBars('venues', ranked(events.flatMap(e => e.v), collator.compare).slice(0, TOP).map(([venue, count]) => {
       const at = venue.lastIndexOf(', ')
@@ -353,6 +448,9 @@ function stats () {
     section.hidden = false
   })
   render()
+  Object.values(maps).forEach((map) => {
+    new ResizeObserver(() => placeLabels(map)).observe(map.box)
+  })
 }
 
 stats()

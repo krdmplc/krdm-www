@@ -3,10 +3,14 @@
   happened: events that have started and releases that are out, as of the build.
   Returns: dict
     events   — slice of dict d (YYYY-MM-DD), y (year), s (series), a (artist refs),
-               v (venues, "Venue, Town"; see func/venue), t (town)
+               v (venues, "Venue, Town"; see func/venue), t (town), c (country)
     releases — slice of dict d, y, f (format), a
     artists  — slice of dict ref, name, url (artists with an event or a release, A–Z)
-    years    — every year with an event or a release, ascending */ -}}
+    years    — every year with an event or a release, ascending
+    towns    — slice of dict name, c (country), map ("slovenia", "europe" or ""
+               if on neither), x, y (percent of that map's width and height; see
+               data/towns.yaml): every town with an event
+    home     — our town (params.address.addressLocality), marked on the map */ -}}
 {{- $now := now.Unix -}}
 {{- $events := slice -}}
 {{- $releases := slice -}}
@@ -26,6 +30,7 @@
       "a" $a
       "v" $place.venues
       "t" $place.town
+      "c" $place.country
     ) -}}
     {{- $refs = $refs | append $a -}}
     {{- $years = $years | append $start.Year -}}
@@ -57,9 +62,41 @@
   {{- end -}}
 {{- end -}}
 
+{{- /* Map positions (data/towns.yaml) of every town with an event: Slovenian towns
+  on the Slovenia map, others on the Europe map if they fall inside it. */ -}}
+{{- $used := slice -}}
+{{- range $events }}{{ with .t }}{{ $used = $used | append . }}{{ end }}{{ end -}}
+{{- $used = uniq $used -}}
+{{- $maps := hugo.Data.towns.maps -}}
+{{- $towns := slice -}}
+{{- $placed := slice -}}
+{{- range hugo.Data.towns.towns -}}
+  {{- if in $used .name -}}
+    {{- $country := .country | default "SI" -}}
+    {{- $map := cond (eq $country "SI") "slovenia" "europe" -}}
+    {{- $b := index $maps $map -}}
+    {{- $x := mul 100 (div (sub .lon $b.west) (sub $b.east $b.west)) -}}
+    {{- $y := mul 100 (div (sub $b.north .lat) (sub $b.north $b.south)) -}}
+    {{- if or (lt $x 0) (gt $x 100) (lt $y 0) (gt $y 100) }}{{ $map = "" }}{{ end -}}
+    {{- $towns = $towns | append (dict
+      "name" .name
+      "c" $country
+      "map" $map
+      "x" (div (math.Round (mul $x 100)) 100)
+      "y" (div (math.Round (mul $y 100)) 100)
+    ) -}}
+    {{- $placed = $placed | append .name -}}
+  {{- end -}}
+{{- end -}}
+{{- range $used -}}
+  {{- if not (in $placed .) }}{{ warnf "stats map: no coordinates for %q; add it to data/towns.yaml" . }}{{ end -}}
+{{- end -}}
+
 {{- return dict
   "events" (sort $events "d")
   "releases" (sort $releases "d")
   "artists" $artists
   "years" (sort (uniq $years))
+  "towns" $towns
+  "home" site.Params.address.addressLocality
 -}}

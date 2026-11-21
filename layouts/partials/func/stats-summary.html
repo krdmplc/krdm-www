@@ -2,17 +2,19 @@
   page draws its charts in assets/scripts/stats.js, which counts the same way;
   keep the two in step.
   Params: events, releases, top (how many venues and towns to rank; 0 for none).
-  Returns: dict events, releases, venues, towns, artists, years (counts; years
-  with an event or a release), first (year of the first event, 0 if none),
-  topVenues, topTowns (slices of dict name, town, count; most first). */ -}}
+  Returns: dict events, releases, venues, towns, countries, artists, years
+  (counts; years with an event or a release), first (year of the first event,
+  0 if none), topVenues, topTowns (slices of dict name, town, count; most first). */ -}}
 {{- $venues := slice -}}
 {{- $towns := slice -}}
+{{- $countries := slice -}}
 {{- $artists := slice -}}
 {{- $years := slice -}}
 {{- $first := 0 -}}
 {{- range .events -}}
   {{- with .v }}{{ $venues = $venues | append . }}{{ end -}}
   {{- $towns = $towns | append .t -}}
+  {{- $countries = $countries | append .c -}}
   {{- with .a }}{{ $artists = $artists | append . }}{{ end -}}
   {{- $years = $years | append .y -}}
   {{- if or (not $first) (lt .y $first) }}{{ $first = .y }}{{ end -}}
@@ -52,6 +54,7 @@
   "releases" (len .releases)
   "venues" (len ($venues | uniq))
   "towns" (len ($towns | uniq))
+  "countries" (len ($countries | uniq))
   "artists" (len ($artists | uniq))
   "years" (len ($years | uniq))
   "first" $first
