@@ -189,7 +189,8 @@ and the GitHub App connection are managed on the site's page at
 https://turbo.decapcms.org/sites/25133a11-73f6-45c9-bfff-fe114aec023d. The repo
 comes from the Turbo site; `config.yml` only names the branch. The site's admin
 URLs in Turbo must cover `/admin/` on production and on deploy previews, or sign-in
-is refused there.
+is refused there. Planned: "Login with Plc" (plc.krdm.si accounts via Turbo SAML
+SSO) — see `docs/cms-plc-sso-plan.md`.
 
 ## Privacy
 
