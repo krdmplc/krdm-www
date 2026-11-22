@@ -1,0 +1,12 @@
+{{- /* The page that holds a merch item's `sizes` (with their stock) and `images`:
+  its default-language (Slovenian) translation, or the page itself when there is
+  none. Those lists exist once per item, because stock is one count, and Decap
+  CMS can't copy a list to the other language (list widgets only take
+  `i18n: true`), so the CMS keeps them in the Slovenian file only.
+  Takes a page, returns a page. */ -}}
+{{- $out := . -}}
+{{- $lang := hugo.Sites.Default.Language.Lang -}}
+{{- range .AllTranslations -}}
+  {{- if eq .Language.Lang $lang }}{{ $out = . }}{{ end -}}
+{{- end -}}
+{{- return $out -}}

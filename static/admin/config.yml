@@ -208,7 +208,8 @@ collections:
         name: images
         widget: list
         required: false
-        i18n: duplicate
+        # No i18n: lists can't be duplicated, so this is kept in the Slovenian
+        # file only and both languages read it from there (func/merch-source).
         field: {label: Photo, name: image, widget: image}
       - label: Category
         name: category
@@ -225,7 +226,7 @@ collections:
         name: sizes
         widget: list
         required: false
-        i18n: duplicate
+        # Slovenian file only, like images: one stock count for both languages.
         summary: "{{fields.size}} · {{fields.stock}}"
         hint: "One row per size, smallest first. Stock is internal: the site never shows the number, but a size at 0 is struck through, and when every size is at 0 the item shows as sold out. Leave stock empty if you don't count that size."
         fields:

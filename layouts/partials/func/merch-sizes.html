@@ -2,9 +2,10 @@
   a list of `{size, stock}`; `stock` is the internal count for that size and is
   never rendered. A size without a count is untracked (treated as in stock);
   a count of 0 marks the size sold out. Plain strings (`- M`) are accepted too.
+  The list is read from the Slovenian file (func/merch-source) on every language.
   Takes a page, returns a slice of dicts: `name`, `soldOut` (bool). */ -}}
 {{- $out := slice -}}
-{{- range .Params.sizes -}}
+{{- range (partial "func/merch-source" .).Params.sizes -}}
   {{- if reflect.IsMap . -}}
     {{- $stock := index . "stock" -}}
     {{- $tracked := ne (string $stock) "" -}}

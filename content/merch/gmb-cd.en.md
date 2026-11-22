@@ -2,10 +2,6 @@
 title: "GMB (CD digipak)"
 date: 2026-06-10T00:00:00+02:00
 thumbnail: /media/uploads/merch-gmb-cd.jpg
-images:
-  - /media/uploads/merch-gmb-cd-2.jpg
-  - /media/uploads/merch-gmb-cd-3.jpg
-  - /media/uploads/merch-gmb-cd-4.jpg
 category: music
 price: 15
 available: true

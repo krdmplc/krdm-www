@@ -74,7 +74,11 @@ file exists as `name.sl.md` + `name.en.md`.
   `price` (a **number** in euros, formatted by `partials/func/price.html`, kept
   numeric for a future checkout), `sizes` (a list of `{size, stock}`), `available`
   (`false` = listed as sold out, last), `release` (a release's file name; the
-  release page then lists the item), `images` (extra photos). Stock counts —
+  release page then lists the item), `images` (extra photos). `sizes` and `images`
+  live **only in the Slovenian file**: Decap can't copy a list to the other language
+  (list widgets take only `i18n: true`; `i18n: duplicate` on one fails config
+  validation and the whole CMS won't load), so both languages read them through
+  `partials/func/merch-source.html`. Stock counts —
   `stock` per size, `quantity` for items without sizes — are internal and must
   never be rendered: a size with `stock: 0` is only struck through, and an item
   whose sizes are all at 0 is sold out (`partials/func/merch-sold-out.html`; use
@@ -172,8 +176,9 @@ name there**. Only `HUGO_*` and `CONTEXT` env vars are readable from templates.
 `HUGO_VERSION` in `netlify.toml` is the only pinned version; bump it only after a
 local build at that exact version. Node is not pinned (Netlify's image supplies it).
 
-Decap CMS loads from a CDN in `static/admin/index.html` (`^3.17.0`, so any newer
-3.x); an `/admin/` breakage with no matching commit is usually an upstream release.
+Decap CMS loads unpinned from a CDN in `static/admin/index.html` (`^3.0.0`, i.e. the
+latest 3.x; the Turbo backend needs 3.17.0 or newer); an `/admin/` breakage with no
+matching commit is usually an upstream release.
 
 **CMS sign-in is Decap Turbo** (`backend: turbo-github` with the site's
 `turbo_site_id`), not Netlify Identity. Editors, their roles (per-collection access)
