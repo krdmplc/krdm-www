@@ -1,0 +1,28 @@
+name: Daily rebuild
+
+# Events move from "upcoming" to "past" only when the site is rebuilt (the
+# templates compare startDate with the build time), so rebuild every morning.
+# For now this pings a Netlify build hook; when hosting moves to Bunny, this
+# becomes the build-and-upload workflow and keeps the same schedule.
+
+on:
+  schedule:
+    - cron: '17 3 * * *' # 04:17 CET / 05:17 CEST; off the hour, when GitHub's queue is busiest
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Trigger a Netlify production build
+        env:
+          HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "::error::The NETLIFY_BUILD_HOOK repository secret is not set"
+            exit 1
+          fi
+          curl --fail --silent --show-error -X POST -d '{}' "$HOOK?trigger_title=Daily+rebuild"

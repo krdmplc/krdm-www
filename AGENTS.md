@@ -173,6 +173,9 @@ Keep these working when you touch templates:
 $URL`, previews with `-b $DEPLOY_PRIME_URL`. Both `sed` the branch into
 `static/admin/config.yml`'s `__BRANCH__` placeholder — **never commit a real branch
 name there**. Only `HUGO_*` and `CONTEXT` env vars are readable from templates.
+`.github/workflows/daily-rebuild.yml` triggers a production build every morning
+through a Netlify build hook (repo secret `NETLIFY_BUILD_HOOK`), because events move
+from upcoming to past only when the site is rebuilt.
 `HUGO_VERSION` in `netlify.toml` is the only pinned version; bump it only after a
 local build at that exact version. Node is not pinned (Netlify's image supplies it).
 
