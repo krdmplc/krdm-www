@@ -1,4 +1,7 @@
-{{- /* Preload the latin subsets of the body and display fonts; the @font-face
-  rules live in assets/styles/_fonts.scss. latin-ext loads on demand. */ -}}
-<link rel="preload" href="{{ "fonts/courier-prime-latin-400-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="{{ "fonts/amatic-sc-latin-700-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+{{- /* Preload the faces every page shows above the fold (body text, headings, the
+  typewriter small print in the header and hero), so they arrive with the CSS
+  instead of after it. Bold and italic body text load on demand. The @font-face
+  rules live in assets/styles/_fonts.scss. */ -}}
+<link rel="preload" href="{{ "fonts/courier-prime-400-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ "fonts/amatic-sc-700-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ "fonts/special-elite-400-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>

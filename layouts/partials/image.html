@@ -10,10 +10,12 @@
     sizes     string   sizes attribute (default "100vw")
     class     string
     eager     bool     load eagerly with high priority (use for the LCP image)
+    quality   int      WebP quality (default 80); lower for photos under an overlay
 */ -}}
 
 {{- $alt := .alt | default "" -}}
 {{- $loading := cond (.eager | default false) "eager" "lazy" -}}
+{{- $quality := .quality | default 80 -}}
 {{- $res := partial "func/image" .src -}}
 
 {{- if and $res (in (slice "jpeg" "png" "webp") $res.MediaType.SubType) -}}
@@ -24,7 +26,7 @@
   {{- $srcset := slice -}}
   {{- $largest := "" -}}
   {{- range sort ($widths | uniq) -}}
-    {{- $img := $res.Resize (printf "%dx webp q80" .) -}}
+    {{- $img := $res.Resize (printf "%dx webp q%d" . $quality) -}}
     {{- $srcset = $srcset | append (printf "%s %dw" $img.RelPermalink $img.Width) -}}
     {{- $largest = $img -}}
   {{- end -}}
