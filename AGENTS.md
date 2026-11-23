@@ -30,6 +30,33 @@ Never call `hugo` bare in scripts: everything goes through `bin/with-dart-sass.s
 which puts the Dart Sass binary from `sass-embedded` on `PATH`. A machine with its
 own Dart Sass hides that breakage.
 
+## Git workflow (required)
+
+Several people and their agents work on this repo, and `main` deploys to
+production (Netlify, and the Cloudflare Worker). Nobody pushes to `main`
+directly; every change goes through a pull request. GitHub enforces this with a
+ruleset on `main`.
+
+1. Start each change from an up-to-date `main`: `git switch main && git pull`,
+   then `git switch -c <type>/<topic>` (`fix/cart-total`, `feat/merch-filter`).
+   One branch per change.
+2. Never commit on `main`, push to `main`, force-push, or rewrite a branch
+   someone else pushed. Never merge your own PR. If you find you've made changes
+   on `main`, `git switch -c <branch>` before committing; the changes come with you.
+3. Before pushing, run `npm run lint` and `npm run build` (zero `WARN` lines).
+   Don't push a branch that fails them.
+4. Push the branch and open a PR: `gh pr create --base main`. Title says what
+   changes; the body says why, how you checked it, and the preview URLs: the
+   Netlify deploy preview and `https://<branch>-krdm-www.krdm.workers.dev`
+   (slashes in the branch name become dashes).
+5. Keep PRs small and on one topic. Don't reformat or "tidy" files you didn't
+   need to touch, and never commit a real branch name in `static/admin/config.yml`.
+6. If something seems to need a change on `main`, production settings, or
+   secrets, stop and ask in the PR. Don't work around it.
+
+Content edited in the CMS is committed to `main` directly by Decap Turbo; that
+is expected and allowed by the ruleset.
+
 ## Content model
 
 Two languages: **`sl` (default, served at `/`)** and **`en` (`/en/`)**. Every content
@@ -229,4 +256,4 @@ localStorage; the privacy page says so.
 - Don't commit `public/`, `resources/`, `node_modules/` or `.hugo_build.lock`.
 - User-facing strings in templates go in `i18n/sl.toml` **and** `i18n/en.toml`.
 - Content is written by volunteers in Slovenian first; keep their voice when editing.
-- Don't commit or push unless asked.
+- Commit and push only to your own branch; the PR is the hand-off.
