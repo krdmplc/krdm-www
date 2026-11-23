@@ -13,9 +13,14 @@
 #
 # Prepending rather than appending is deliberate: builds then use the pinned
 # version from the lockfile even on machines with their own Dart Sass installed.
+#
+# On Linux npm may install both the glibc and the musl build; the musl one sorts
+# first and can't run on glibc (GitHub's Ubuntu runners), so use the first binary
+# that actually runs.
 
 for dir in ./node_modules/sass-embedded-*/dart-sass; do
   [ -x "$dir/sass" ] || continue
+  "$dir/sass" --version >/dev/null 2>&1 || continue
   PATH="$(cd "$dir" && pwd):$PATH"
   export PATH
   break
