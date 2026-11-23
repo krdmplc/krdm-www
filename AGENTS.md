@@ -166,8 +166,10 @@ file exists as `name.sl.md` + `name.en.md`.
 - **Look** ("Plc zine", from KRDM's own flyers): paper and ink, flyer green as the only
   highlight, square corners, hard rules, black-and-white artist photos. Avoid soft
   "card UI" (rounded corners, translucent panels, gentle shadows/borders).
-- **Fonts** are self-hosted WOFF2 in `static/fonts/` (latin + latin-ext): Courier Prime
-  (body), Amatic SC (hand-lettered headings), Special Elite (typewriter small print).
+- **Fonts** are self-hosted WOFF2 in `static/fonts/`, one file per face (Latin and
+  Latin Extended together, so č/š/ž don't arrive late): Courier Prime (body), Amatic SC
+  (hand-lettered headings), Special Elite (typewriter small print). They are cached for
+  a year (`static/_headers`), so a changed font needs a new file name.
   Don't reintroduce Google Fonts (GDPR). The logo is the hand-drawn mark in
   `static/media/brand/krdm-mark-white.png` (inverted by CSS on the light theme).
 - **Icons** are Feather SVGs in `assets/icons/`, inlined with `{{ partial "icon" "name" }}`.
@@ -205,7 +207,9 @@ through a Netlify build hook (repo secret `NETLIFY_BUILD_HOOK`), because events 
 from upcoming to past only when the site is rebuilt.
 `HUGO_VERSION` in `netlify.toml` is the only pinned version; bump it only after a
 local build at that exact version. Node is not pinned (Netlify's image supplies it).
-Response headers live in `static/_headers` (read by Netlify and Cloudflare alike).
+Response headers live in `static/_headers` (read by Netlify and Cloudflare alike),
+including browser caching: a year for the fingerprinted CSS/JS and the fonts, a day
+for `/media/`, the host default (revalidate) for pages.
 
 **Moving to Cloudflare Workers (in progress, 2026-11).** The site is also deployed,
 as a static-assets-only Worker `krdm-www` in the shared "KRDM" Cloudflare account
