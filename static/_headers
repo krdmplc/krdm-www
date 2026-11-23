@@ -1,0 +1,6 @@
+# Response headers for every page. Read by Netlify and by Cloudflare Workers static
+# assets alike (same syntax), so they live here rather than in netlify.toml.
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN

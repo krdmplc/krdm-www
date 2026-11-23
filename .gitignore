@@ -8,3 +8,4 @@ design
 .netlify
 .env
 .hugo_build.lock
+.wrangler

@@ -3,6 +3,7 @@
   command = "npm run lint && chmod +x ./bin/build.sh && ./bin/build.sh"
 
 [build.environment]
+  # Keep equal to HUGO_VERSION in .github/workflows/deploy.yml (Cloudflare builds).
   HUGO_VERSION = "0.169.0"
   HUGO_ENV = "production"
   HUGO_ENABLEGITINFO = "true"
@@ -10,9 +11,4 @@
 [dev]
   framework = "hugo"
 
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    X-Frame-Options = "SAMEORIGIN"
+# Response headers are in static/_headers, which Cloudflare reads too.

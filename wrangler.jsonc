@@ -1,0 +1,19 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // The website as a static-assets-only Worker in the "KRDM" Cloudflare account,
+  // deployed by .github/workflows/deploy.yml. Netlify still serves www.krdm.si until
+  // krdm.si's DNS moves to Cloudflare; this runs at https://krdm-www.krdm.workers.dev.
+  "name": "krdm-www",
+  "account_id": "2264e0f180a5de9805616b23d0d3b6d0",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    // Hugo's output, after bin/workers-redirects.sh has adapted _redirects.
+    "directory": "./public",
+    "html_handling": "auto-trailing-slash",
+    // Serves the nearest 404.html: /en/… gets /en/404.html, the rest /404.html.
+    "not_found_handling": "404-page"
+  },
+  "workers_dev": true,
+  // Branches deploy as preview versions at https://<branch>-krdm-www.krdm.workers.dev.
+  "preview_urls": true
+}

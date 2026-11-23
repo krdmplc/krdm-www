@@ -178,6 +178,25 @@ through a Netlify build hook (repo secret `NETLIFY_BUILD_HOOK`), because events 
 from upcoming to past only when the site is rebuilt.
 `HUGO_VERSION` in `netlify.toml` is the only pinned version; bump it only after a
 local build at that exact version. Node is not pinned (Netlify's image supplies it).
+Response headers live in `static/_headers` (read by Netlify and Cloudflare alike).
+
+**Moving to Cloudflare Workers (in progress, 2026-11).** The site is also deployed,
+as a static-assets-only Worker `krdm-www` in the shared "KRDM" Cloudflare account
+(`wrangler.jsonc`), by `.github/workflows/deploy.yml`: main to
+https://krdm-www.krdm.workers.dev, other branches to
+`https://<branch>-krdm-www.krdm.workers.dev`. Until krdm.si's DNS moves to
+Cloudflare, Netlify stays production and every Workers build is a preview (noindex).
+`bin/workers-redirects.sh` adapts the Netlify `_redirects` after the build (`301!` →
+`301`, drops the `404` rules; `404-page` handling serves `/en/404.html` instead) —
+keep new redirects in plain `from to 301` form. Before the cutover: the contact and
+order forms need a replacement for Netlify Forms (they don't work on Workers), the
+Turbo admin URLs need the workers.dev addresses, then main switches to
+`CONTEXT=production`, `daily-rebuild.yml` dispatches the deploy workflow, and Netlify
+is retired. Until then every push to main deploys on both platforms, so keep changes
+working on both. The repo lives in the `krdmplc` GitHub org (since 2026-11-23), whose
+Netlify and Decap Turbo GitHub Apps are installed there. The workflow needs the repo
+secret `CLOUDFLARE_API_TOKEN` (an account-owned token, Workers Scripts: Edit on the
+KRDM account).
 
 Decap CMS loads unpinned from a CDN in `static/admin/index.html` (`^3.0.0`, i.e. the
 latest 3.x; the Turbo backend needs 3.17.0 or newer); an `/admin/` breakage with no
