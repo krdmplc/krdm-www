@@ -1,0 +1,12 @@
+{{- /*
+  Cloudflare Web Analytics: cookieless, stores nothing in the browser (see the cookies
+  page). Loaded only on production builds, so previews, Netlify deploy previews and the
+  Workers test copy are never counted. The beacon is the manual JS snippet, which works
+  wherever the site is hosted; once krdm.si is proxied by Cloudflare, keep the zone's
+  automatic injection off, or every page view is counted twice.
+*/ -}}
+{{- with site.Params.cloudflareAnalyticsToken }}
+  {{- if eq (getenv "CONTEXT") "production" }}
+  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{{ dict "token" . | jsonify }}'></script>
+  {{- end }}
+{{- end }}

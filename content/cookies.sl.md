@@ -3,11 +3,15 @@ pageType: page
 title: "Piškotki in zasebnost"
 description: "Spletna stran krdm.si ne uporablja piškotkov za analitiko ali oglaševanje in ne zbira osebnih podatkov obiskovalcev."
 date: 2019-10-28T20:43:17+01:00
-lastmod: 2026-11-20
+lastmod: 2026-11-23
 slug: "piskotki"
 ---
 
 Spletna stran krdm.si **ne uporablja piškotkov** za analitiko, sledenje ali oglaševanje in ne zbira osebnih podatkov obiskovalcev, zato vas ne sprašujemo za privolitev.
+
+## Statistika obiskov
+
+Koliko ljudi obišče stran in katere strani berejo, štejemo z orodjem Cloudflare Web Analytics. Ne uporablja piškotkov, v vaš brskalnik ne shranjuje ničesar in vas ne prepoznava med obiski. Cloudflare ob ogledu strani prejme naslov strani, stran, s katere ste prišli, podatke o brskalniku in napravi ter vaš IP-naslov, iz katerega določi le državo; IP-naslova ne shranjuje. Vidimo samo skupne številke, ne posameznih obiskovalcev.
 
 ## Vgrajeni videi
 

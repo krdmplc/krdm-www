@@ -213,8 +213,12 @@ SSO) — see `docs/cms-plc-sso-plan.md`.
 
 ## Privacy
 
-The site sets **no cookies** and has no analytics (the old Universal Analytics tag
-was dead and was removed), so there is no consent banner. YouTube embeds use
+The site sets **no cookies**, so there is no consent banner. Visits are counted by
+**Cloudflare Web Analytics** (cookieless, nothing stored in the browser):
+`partials/head/analytics.html` adds the beacon on production builds only, when
+`cloudflareAnalyticsToken` in `hugo.toml` is set — on Netlify now, on Workers after the
+cutover. Keep Cloudflare's automatic injection off for the zone, or visits count twice.
+The cookies page describes it. YouTube embeds use
 privacy-enhanced mode (`[privacy.youtube]` in `hugo.toml`). If you add analytics or
 third-party embeds, update `content/cookies.*.md` and reconsider a consent banner.
 The contact and order forms store submissions with Netlify Forms, and the cart sits in

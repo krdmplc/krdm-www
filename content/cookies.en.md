@@ -3,10 +3,14 @@ pageType: page
 title: "Cookies and privacy"
 description: "The krdm.si website does not use cookies for analytics or advertising and does not collect personal data from visitors."
 date: 2019-10-28T20:43:17+01:00
-lastmod: 2026-11-20
+lastmod: 2026-11-23
 ---
 
 The krdm.si website **does not use cookies** for analytics, tracking or advertising and does not collect personal data from visitors, so we don't ask for your consent.
+
+## Visitor statistics
+
+We count how many people visit the site and which pages they read with Cloudflare Web Analytics. It uses no cookies, stores nothing in your browser and does not recognise you between visits. With each page view Cloudflare receives the page address, the page you came from, details of your browser and device, and your IP address, which it uses only to work out the country and does not store. We only see totals, never individual visitors.
 
 ## Embedded videos
 

@@ -15,6 +15,9 @@ image = "/media/uploads/og-image.jpg"
 heroImage = "/media/uploads/plcfest-2018.jpg"
 logo = "/media/brand/logo.png"
 foundingDate = "2016-11"
+# Cloudflare Web Analytics site token (KRDM account → Analytics & Logs → Web Analytics).
+# Public by design: it is in every page. Empty = no analytics. Production builds only.
+cloudflareAnalyticsToken = "cc0dfb88a6114b07bdadd6eb2a13f6fd"
 
 [params.address]
 streetAddress = "Žitna ulica 1E"
