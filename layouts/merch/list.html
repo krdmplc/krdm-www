@@ -41,6 +41,6 @@
       </ul>
     </div>
 
-    {{ partial "card-grid" (dict "pages" (partial "func/merch-sorted" .Pages) "level" 2 "cols" 4 "filters" (slice "category" "artist") "sort" true) }}
+    {{ partial "card-grid" (dict "pages" (partial "func/merch-sorted" .Pages) "level" 2 "cols" 4 "filters" (slice "category" "artist") "sort" true "eager" 4) }}
   </div>
 {{ end }}

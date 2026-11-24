@@ -16,7 +16,7 @@
     <section aria-labelledby="active" class="section-first">
       <div class="section-head"><h2 id="active">{{ T "artistsActive" }}</h2></div>
       <p class="section-intro">{{ T "artistsActiveIntro" }}</p>
-      {{ partial "card-grid" (dict "pages" $active "level" 3 "cols" 4) }}
+      {{ partial "card-grid" (dict "pages" $active "level" 3 "cols" 4 "eager" 4) }}
     </section>
 
     {{ with $other }}

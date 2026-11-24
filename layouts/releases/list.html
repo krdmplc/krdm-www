@@ -21,6 +21,6 @@
       {{- end }}
     </ul>
 
-    {{ partial "card-grid" (dict "pages" .Pages.ByDate.Reverse "level" 2 "cols" 4 "filters" (slice "format" "artist")) }}
+    {{ partial "card-grid" (dict "pages" .Pages.ByDate.Reverse "level" 2 "cols" 4 "filters" (slice "format" "artist") "eager" 4) }}
   </div>
 {{ end }}
