@@ -1,5 +1,5 @@
 ---
-title: "Bitter Blossom (CD, digipak)"
+title: "Bitter Blossom (CD digipak)"
 date: 2026-11-24T00:00:00+01:00
 weight: 55
 thumbnail: /media/uploads/merch-mutism-bitter-blossom-cd.jpg
