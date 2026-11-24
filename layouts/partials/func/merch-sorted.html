@@ -1,9 +1,12 @@
-{{- /* Orders merch items: available ones first, sold-out ones last (see
-  func/merch-sold-out), each group newest first. Takes and returns a slice of
-  pages. */ -}}
+{{- /* Orders merch items by popularity: available ones first, sold-out ones
+  last (see func/merch-sold-out). Within each group, items with a `weight`
+  come first, lowest first (how good the item looks, set by hand in the CMS),
+  then the ones without a weight, newest first (Hugo's ByWeight). Takes and
+  returns a slice of pages. The merch list re-sorts the same cards in the
+  browser (assets/scripts/list-sort.js); keep the two in step. */ -}}
 {{- $available := slice -}}
 {{- $soldOut := slice -}}
-{{- range .ByDate.Reverse -}}
+{{- range .ByWeight -}}
   {{- if partial "func/merch-sold-out" . }}{{ $soldOut = $soldOut | append . }}{{ else }}{{ $available = $available | append . }}{{ end -}}
 {{- end -}}
 {{- $out := $available -}}

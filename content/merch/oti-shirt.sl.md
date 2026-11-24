@@ -1,6 +1,7 @@
 ---
 title: "Majica Oti"
 date: 2026-11-24T00:00:00+01:00
+weight: 50
 thumbnail: /media/uploads/merch-oti-shirt.jpg
 category: apparel
 price: 20

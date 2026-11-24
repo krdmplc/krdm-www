@@ -1,6 +1,7 @@
 ---
 title: "Bitter Blossom T-shirt"
 date: 2026-11-24T00:00:00+01:00
+weight: 20
 thumbnail: /media/uploads/merch-mutism-bitter-blossom-shirt.jpg
 category: apparel
 price: 20

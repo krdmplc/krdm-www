@@ -1,6 +1,7 @@
 ---
 title: "Majica Bitter Blossom"
 date: 2026-11-24T00:00:00+01:00
+weight: 20
 thumbnail: /media/uploads/merch-mutism-bitter-blossom-shirt.jpg
 images:
   - /media/uploads/merch-mutism-bitter-blossom-shirt-2.jpg

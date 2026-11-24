@@ -97,7 +97,11 @@ file exists as `name.sl.md` + `name.en.md`.
   `?item=<name>` (pre-filled by `assets/scripts/contact-prefill.js`; the only action
   without JS) and to `link` (Bandcamp) if set. The list filters by `category` and by band
   (`partials/func/merch-bands.html`: an item's one or two bands, or "KRDM" when it
-  lists more or none — the KRDM shirt). Fields: `category` (`apparel`, `music`, `other`),
+  lists more or none — the KRDM shirt). Items are listed by popularity —
+  `weight`, ranked by hand by how good the item looks, in steps of 10; unranked
+  items follow, newest first; sold out always last (`partials/func/merch-sorted.html`)
+  — and the list can be re-sorted A–Z, by price or by `date` (recently added) in
+  the browser (`assets/scripts/list-sort.js`). Fields: `category` (`apparel`, `music`, `other`),
   `price` (a **number** in euros, formatted by `partials/func/price.html`, kept
   numeric for a future checkout), `sizes` (a list of `{size, stock}`), `available`
   (`false` = listed as sold out, last), `release` (a release's file name; the

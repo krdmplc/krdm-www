@@ -1,14 +1,20 @@
 {{- /* Params: pages, level, cols (3 | 4 | 6, default 4), sizes,
   filterKey (front matter field for list-filter.js, default "format"), or
   filters (several keys: a front matter field each, or "artist": every
-  artist of the page, or for merch its band, see func/merch-bands) */ -}}
+  artist of the page, or for merch its band, see func/merch-bands), sort (true:
+  the data assets/scripts/list-sort.js sorts merch by) */ -}}
 {{- $ctx := . -}}
 {{- $filterKey := .filterKey | default "format" -}}
 {{- /* Full class names (not built from parts) so PurgeCSS can see them. */ -}}
 {{- $class := index (dict "3" "card-grid--3" "4" "card-grid--4" "6" "card-grid--6") (string (.cols | default 4)) -}}
-<ul class="card-grid {{ $class }}" role="list">
+<ul class="card-grid {{ $class }}" role="list"{{ if .sort }} data-sort-list{{ end }}>
   {{- range $page := .pages }}
     <li
+      {{- if $ctx.sort }}
+ data-sort-title="{{ $page.LinkTitle }}" data-sort-date="{{ $page.Date.Format "2006-01-02T15:04:05" }}"
+        {{- with $page.Params.price }} data-sort-price="{{ . }}"{{ end }}
+        {{- if partial "func/merch-sold-out" $page }} data-sort-last{{ end }}
+      {{- end }}
       {{- if $ctx.filters }}
         {{- range $key := $ctx.filters }}
           {{- $values := slice }}

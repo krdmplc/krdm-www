@@ -2,6 +2,7 @@
 draft: true
 title: "Majica Mainframe Terror"
 date: 2026-11-24T00:00:00+01:00
+weight: 70
 thumbnail: /media/uploads/merch-neuromancer-mainframe-terror-shirt.jpg
 images:
   - /media/uploads/merch-neuromancer-mainframe-terror-shirt-2.jpg

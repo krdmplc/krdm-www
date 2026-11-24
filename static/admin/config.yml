@@ -196,13 +196,14 @@ collections:
     i18n: true
     filter: {field: showInAdmin, value: true}
     slug: "{{slug}}"
-    sortable_fields: [date, title, price]
+    sortable_fields: [weight, date, title, price]
     summary: "{{title}} · {{price}} €"
     editor:
       preview: false
     fields:
       - {label: Title, name: title, widget: string, i18n: true}
-      - {label: Date (newer items come first), name: date, widget: datetime, i18n: duplicate}
+      - {label: "Date (when it was added; the \"recently added\" order uses it)", name: date, widget: datetime, i18n: duplicate}
+      - {label: "Popularity (lower comes first; we rank by how good the item looks, in steps of 10 so an item fits in between. Leave empty to list it after the ranked items, newest first)", name: weight, widget: number, value_type: int, min: 1, required: false, i18n: duplicate}
       - {label: Photo, name: thumbnail, widget: image, i18n: duplicate}
       - label: More photos
         name: images
