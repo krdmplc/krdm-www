@@ -1,5 +1,4 @@
 ---
-draft: true
 title: "Hardwired (MiniDisc)"
 date: 2023-09-15T00:00:03+02:00
 weight: 180

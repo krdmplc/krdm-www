@@ -1,5 +1,4 @@
 ---
-draft: true
 title: "Hardwired (vinyl LP)"
 date: 2023-09-15T00:00:02+02:00
 weight: 160

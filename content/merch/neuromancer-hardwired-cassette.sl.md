@@ -1,5 +1,4 @@
 ---
-draft: true
 title: "Hardwired (kaseta)"
 date: 2023-09-15T00:00:01+02:00
 weight: 170
