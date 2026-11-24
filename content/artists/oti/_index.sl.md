@@ -6,9 +6,9 @@ ref: oti
 showInAdmin: true
 ---
 
-Oti je izgubljeni fant, ki je dom našel v glasbi – indie rock projekt kantavtorja, kitarista in akademskega skladatelja Otmarja Taberja. Svojemu žanru sam pravi maksimalistična zabavna glasba: v studiu to pomeni godala, čembalo, theremin in komade, ki se ne ustavijo pri treh minutah, v živo pa se skladbe slečejo v intimnejšo preobleko – v triu z Luko Dobnikarjem na basu in Alešem Kozeljem za bobni ali pa kar solo.
+Oti je izgubljeni fant, ki je dom našel v glasbi. Je indie rock projekt kantavtorja, kitarista in akademskega skladatelja Otmarja Taberja. Svojemu žanru pravi maksimalistična zabavna glasba – v studiu to pomeni bogate aranžmaje in komade, ki se ne ustavijo pri treh minutah, v živo pa nastopa v intimnejši preobleki, bodisi s triom bodisi solo.
 
-Po singlih Barve (2022), So You Say (2023) in What If (2026) je novembra 2026 v samozaložbi izšel EP Samospev – štiri skladbe, ki jih je Oti posnel z godalnim triom in producentom Grego Kalinskim, in do zdaj najbolj celovit izraz njegove vizije. Plošča je krst doživela 14. novembra 2026 v Gala hali, 27. novembra pa ga čaka še PLC Fest v Trainstationu.
+Po singlih Barve (2022), So You Say (2023) in What If (2026) je novembra 2026 v samozaložbi izšel EP Samospev, do zdaj najbolj celovit izraz njegove umetniške vizije. Kratkometražni prvenec je krst doživel 14. novembra 2026 v Gala hali, 27. novembra pa ga čaka še nastop na PLC Festu v Trainstationu.
 
 <https://otitab.bandcamp.com/>
 
