@@ -55,9 +55,9 @@
   <div data-cart-filled hidden>
     <ul class="cart__lines" role="list" data-cart-lines></ul>
     <p class="cart__total"><span>{{ T "cartTotal" }}</span> <strong data-cart-total></strong></p>
-    <p class="cart__minimum" data-cart-minimum data-text="{{ T "cartMinimum" }}" role="status" hidden></p>
+    <p class="cart__nudge" data-cart-nudge data-minimum="{{ T "cartMinimum" }}" data-shipping="{{ T "cartToFreeShipping" }}" data-free="{{ T "cartShippingFree" }}" role="status" hidden></p>
     <p class="cart__howto">
-      <span data-cart-shipping data-text="{{ T "cartShipping" }}" data-text-free="{{ T "cartShippingFree" }}"></span>
+      <span data-cart-shipping data-text="{{ T "cartShipping" }}"></span>
       {{ T "cartHowTo" }}
     </p>
 

@@ -111,6 +111,7 @@ cartNoScript = "The cart needs JavaScript. You can also write to us through the 
 cartHowTo = "There's no payment on the site: you send us the order, and we reply by email to confirm stock and sort out payment and pick-up or shipping."
 cartMinimum = "The minimum order is {min}: add {rest} more."
 cartShipping = "Postage is not included, but it's free on orders of {free} or more."
+cartToFreeShipping = "Just {rest} more for free postage."
 cartShippingFree = "Postage is free."
 orderDetails = "Your details"
 orderPhone = "Phone (optional)"

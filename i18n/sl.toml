@@ -111,6 +111,7 @@ cartNoScript = "Košarica deluje samo z JavaScriptom. Lahko pa nam pišeš prek 
 cartHowTo = "Plačila na strani ni: naročilo nam pošlješ, mi pa ti po e-pošti potrdimo zalogo in se dogovorimo za plačilo ter prevzem ali pošiljanje."
 cartMinimum = "Najmanjše naročilo je {min}: dodaj še za {rest}."
 cartShipping = "Poštnina ni vključena, pri naročilu od {free} naprej pa je brezplačna."
+cartToFreeShipping = "Še {rest} do brezplačne poštnine."
 cartShippingFree = "Poštnina je brezplačna."
 orderDetails = "Tvoji podatki"
 orderPhone = "Telefon (neobvezno)"

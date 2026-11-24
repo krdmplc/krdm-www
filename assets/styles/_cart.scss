@@ -173,8 +173,8 @@
     }
   }
 
-  // Below the minimum order: what's still missing; the send button is off.
-  &__minimum {
+  // Under the total: what's missing to the minimum order or to free postage.
+  &__nudge {
     margin: 12px 0 0;
     font-family: var(--font-type);
     font-weight: 700;

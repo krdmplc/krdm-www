@@ -123,7 +123,7 @@ function cartPage () {
   const field = name => form.querySelector(`[data-cart-field="${name}"]`)
   const minOrder = Number(labels.minOrder) || 0
   const freeShipping = Number(labels.freeShipping) || 0
-  const minimumOut = root.querySelector('[data-cart-minimum]')
+  const nudgeOut = root.querySelector('[data-cart-nudge]')
   const shippingOut = root.querySelector('[data-cart-shipping]')
   let lines = []
 
@@ -158,20 +158,29 @@ function cartPage () {
   const freePostage = () => freeShipping > 0 && total() >= freeShipping
   const fill = (text, values) => text.replace(/\{(\w+)\}/g, (match, key) => (key in values ? values[key] : match))
 
-  // Total, the minimum-order note (and the send button), and the postage note.
+  // The line under the total nudges towards a bigger order: below the minimum,
+  // what's missing to reach it (the send button is off); then, what's missing
+  // to free postage; from there on, that postage is free. The small print
+  // states the postage rule until it's met.
+  function nudge (sum) {
+    const text = nudgeOut.dataset
+    if (belowMinimum()) {
+      return fill(text.minimum, { min: formatPrice(minOrder, locale), rest: formatPrice(minOrder - sum, locale) })
+    }
+    if (!freeShipping) {
+      return ''
+    }
+    return freePostage() ? text.free : fill(text.shipping, { rest: formatPrice(freeShipping - sum, locale) })
+  }
+
   function updateTotal () {
     const sum = total()
 
     totalOut.textContent = formatPrice(sum, locale)
-    minimumOut.hidden = !ordered().length || !belowMinimum()
-    minimumOut.textContent = fill(minimumOut.dataset.text, {
-      min: formatPrice(minOrder, locale),
-      rest: formatPrice(minOrder - sum, locale),
-    })
-    shippingOut.hidden = !freeShipping
-    shippingOut.textContent = freePostage()
-      ? shippingOut.dataset.textFree
-      : fill(shippingOut.dataset.text, { free: formatPrice(freeShipping, locale) })
+    nudgeOut.textContent = ordered().length ? nudge(sum) : ''
+    nudgeOut.hidden = !nudgeOut.textContent
+    shippingOut.hidden = !freeShipping || freePostage()
+    shippingOut.textContent = fill(shippingOut.dataset.text, { free: formatPrice(freeShipping, locale) })
     submit.disabled = ordered().length === 0 || belowMinimum()
   }
 
