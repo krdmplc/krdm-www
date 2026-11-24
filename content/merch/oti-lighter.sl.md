@@ -6,6 +6,7 @@ thumbnail: /media/uploads/merch-oti-lighter.jpg
 category: other
 price: 2
 available: true
+quantity: 20
 artists:
   - oti
 showInAdmin: true
