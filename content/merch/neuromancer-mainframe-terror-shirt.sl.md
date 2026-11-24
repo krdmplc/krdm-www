@@ -7,6 +7,15 @@ images:
   - /media/uploads/merch-neuromancer-mainframe-terror-shirt-2.jpg
 category: apparel
 price: 20
+sizes:
+  - size: S
+    stock: 5
+  - size: M
+    stock: 5
+  - size: L
+    stock: 5
+  - size: XL
+    stock: 5
 available: true
 release: mainframe-terror
 artists:
