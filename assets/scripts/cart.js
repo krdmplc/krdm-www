@@ -121,6 +121,10 @@ function cartPage () {
   const submit = form.querySelector('button[type="submit"]')
   const totalOut = root.querySelector('[data-cart-total]')
   const field = name => form.querySelector(`[data-cart-field="${name}"]`)
+  const minOrder = Number(labels.minOrder) || 0
+  const freeShipping = Number(labels.freeShipping) || 0
+  const nudgeOut = root.querySelector('[data-cart-nudge]')
+  const shippingOut = root.querySelector('[data-cart-shipping]')
   let lines = []
 
   // An item that is gone (hidden or deleted) drops out; one that is sold out,
@@ -150,9 +154,34 @@ function cartPage () {
   const total = () => ordered().reduce((sum, line) => sum + line.price * line.qty, 0)
   const describe = line => (line.size ? `${line.item.title} (${line.size})` : line.item.title)
 
+  const belowMinimum = () => total() < minOrder
+  const freePostage = () => freeShipping > 0 && total() >= freeShipping
+  const fill = (text, values) => text.replace(/\{(\w+)\}/g, (match, key) => (key in values ? values[key] : match))
+
+  // The line under the total nudges towards a bigger order: below the minimum,
+  // what's missing to reach it (the send button is off); then, what's missing
+  // to free postage; from there on, that postage is free. The small print
+  // states the postage rule until it's met.
+  function nudge (sum) {
+    const text = nudgeOut.dataset
+    if (belowMinimum()) {
+      return fill(text.minimum, { min: formatPrice(minOrder, locale), rest: formatPrice(minOrder - sum, locale) })
+    }
+    if (!freeShipping) {
+      return ''
+    }
+    return freePostage() ? text.free : fill(text.shipping, { rest: formatPrice(freeShipping - sum, locale) })
+  }
+
   function updateTotal () {
-    totalOut.textContent = formatPrice(total(), locale)
-    submit.disabled = ordered().length === 0
+    const sum = total()
+
+    totalOut.textContent = formatPrice(sum, locale)
+    nudgeOut.textContent = ordered().length ? nudge(sum) : ''
+    nudgeOut.hidden = !nudgeOut.textContent
+    shippingOut.hidden = !freeShipping || freePostage()
+    shippingOut.textContent = fill(shippingOut.dataset.text, { free: formatPrice(freeShipping, locale) })
+    submit.disabled = ordered().length === 0 || belowMinimum()
   }
 
   function renderLine (line) {
@@ -250,7 +279,7 @@ function cartPage () {
     event.preventDefault()
     const order = ordered()
 
-    if (!order.length || sending) {
+    if (!order.length || belowMinimum() || sending) {
       return
     }
 
@@ -270,9 +299,12 @@ function cartPage () {
     const sum = formatPrice(total(), locale)
     const number = orderNumber()
 
+    const post = form.querySelector('[data-cart-delivery="post"]').checked
+
     field('number').value = number
     field('items').value = text
-    field('total').value = sum
+    // The email is for us, so the note is in Slovenian in both languages.
+    field('total').value = post && freePostage() ? `${sum} (brezplačna poštnina)` : sum
 
     sending = true
     submit.disabled = true

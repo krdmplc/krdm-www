@@ -1,6 +1,8 @@
 {{- /* A linked tile. Shape and details follow the content type:
   releases and artists are square, events use their (wide) poster.
-  Params: page, level (heading level, default 3), sizes (img sizes attr) */ -}}
+  Params: page, level (heading level, default 3), sizes (img sizes attr; the
+  default is the card's width in card-grid's 2/3/4 columns: the container is
+  90vw up to 1440px, with 16px or 24px gaps), eager (load the image first) */ -}}
 {{- $p := .page -}}
 {{- $level := .level | default 3 -}}
 {{- $isArtist := eq $p.Kind "term" -}}
@@ -16,8 +18,10 @@
     {{- partial "image" (dict
       "src" ($p.Params.thumbnail | default site.Params.image)
       "alt" ""
-      "widths" (slice 360 720)
-      "sizes" (.sizes | default "(min-width: 1170px) 25vw, (min-width: 768px) 33vw, 50vw")
+      "widths" (slice 360 540 720)
+      "quality" 75
+      "sizes" (.sizes | default "(min-width: 1600px) 342px, (min-width: 1170px) calc(22.5vw - 18px), (min-width: 768px) calc(30vw - 16px), calc(45vw - 8px)")
+      "eager" .eager
     ) -}}
   </div>
 

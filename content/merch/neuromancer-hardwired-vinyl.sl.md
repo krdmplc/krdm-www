@@ -1,7 +1,7 @@
 ---
-draft: true
 title: "Hardwired (vinil)"
 date: 2023-09-15T00:00:02+02:00
+weight: 160
 thumbnail: /media/uploads/hardwired.jpg
 category: music
 available: false

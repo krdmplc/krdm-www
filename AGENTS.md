@@ -92,12 +92,19 @@ file exists as `name.sl.md` + `name.en.md`.
   Forms form `order` (`order-number` KRDM-YYMM-XXXX, readable `items` and `total`
   first), emailed to us like the contact form — Netlify emails every field, so keep
   the form to what we want to read; `{{</* order-done */>}}` on the thank-you page
-  repeats the number and the order and empties the cart. Titles, prices and stock state come from JSON built into the cart
+  repeats the number and the order and empties the cart. The minimum order and the
+  free-postage threshold are `[params.merch]` in `hugo.toml` (the cart shows them and
+  won't send below the minimum; the merch page intro states them in words, so
+  change both). Titles, prices and stock state come from JSON built into the cart
   page, never from the browser. Item pages also link to the contact form with
   `?item=<name>` (pre-filled by `assets/scripts/contact-prefill.js`; the only action
   without JS) and to `link` (Bandcamp) if set. The list filters by `category` and by band
   (`partials/func/merch-bands.html`: an item's one or two bands, or "KRDM" when it
-  lists more or none — the KRDM shirt). Fields: `category` (`apparel`, `music`, `other`),
+  lists more or none — the KRDM shirt). Items are listed by popularity —
+  `weight`, ranked by hand by how good the item looks, in steps of 10; unranked
+  items follow, newest first; sold out always last (`partials/func/merch-sorted.html`)
+  — and the list can be re-sorted A–Z, by price or by `date` (recently added) in
+  the browser (`assets/scripts/list-sort.js`). Fields: `category` (`apparel`, `music`, `other`),
   `price` (a **number** in euros, formatted by `partials/func/price.html`, kept
   numeric for a future checkout), `sizes` (a list of `{size, stock}`), `available`
   (`false` = listed as sold out, last), `release` (a release's file name; the
@@ -108,9 +115,12 @@ file exists as `name.sl.md` + `name.en.md`.
   `partials/func/merch-source.html`. Stock counts —
   `stock` per size, `quantity` for items without sizes — are internal and must
   never be rendered: a size with `stock: 0` is only struck through, and an item
-  whose sizes are all at 0 is sold out (`partials/func/merch-sold-out.html`; use
-  it, never `.Params.available` directly). A size without `stock` is untracked
-  and counts as in stock. JSON-LD: `Product` with an `Offer`.
+  whose sizes are all at 0, or one without sizes at `quantity: 0`, is sold out
+  (`partials/func/merch-sold-out.html`; use it, never `.Params.available`
+  directly). A size without `stock`, or an item without `quantity`, is untracked
+  and counts as in stock. Sold-out items and sizes can't be added to the cart,
+  and a cart line that sold out since stays listed but is left out of the order
+  and the total. JSON-LD: `Product` with an `Offer`.
 - There is **no public email address** (info@krdm.si is dead): contact goes through
   the Netlify Forms form on `content/contact.*.md` (`{{</* contact-form */>}}`), whose
   notifications are configured in the Netlify UI (so are the `order` form's). Both forms

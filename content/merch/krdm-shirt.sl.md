@@ -1,6 +1,7 @@
 ---
 title: "Majica KRDM"
 date: 2026-11-20T00:00:00+01:00
+weight: 80
 thumbnail: /media/uploads/merch-krdm-shirt.jpg
 images:
   - /media/uploads/merch-krdm-shirt-2.jpg

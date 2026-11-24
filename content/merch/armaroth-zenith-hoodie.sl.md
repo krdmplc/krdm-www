@@ -1,6 +1,7 @@
 ---
 title: "Pulover s kapuco in zadrgo Zenith"
 date: 2026-11-20T00:00:00+01:00
+weight: 10
 thumbnail: /media/uploads/merch-armaroth-zenith-zip-hoodie.jpg
 images:
   - /media/uploads/merch-armaroth-zenith-zip-hoodie-2.jpg

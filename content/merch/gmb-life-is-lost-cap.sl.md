@@ -1,6 +1,7 @@
 ---
 title: "Kapa Life is Lost"
 date: 2026-06-07T00:00:00+02:00
+weight: 40
 thumbnail: /media/uploads/merch-gmb-life-is-lost-hat.jpg
 images:
   - /media/uploads/merch-gmb-life-is-lost-hat-2.jpg
@@ -8,6 +9,7 @@ images:
 category: other
 price: 20
 available: true
+quantity: 2
 link: https://gmbkrdm.bandcamp.com/merch/gmb-hat-life-is-lost
 artists:
   - gmb

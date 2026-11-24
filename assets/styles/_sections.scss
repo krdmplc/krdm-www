@@ -242,6 +242,35 @@
   }
 }
 
+// Sort order above the merch list (assets/scripts/list-sort.js): a small
+// typewriter label, then the same buttons as the filters.
+.sort {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  align-items: baseline;
+  margin: 16px 0 32px;
+
+  &[hidden] {
+    display: none;
+  }
+
+  &__label {
+    color: var(--fg-muted);
+    font-family: var(--font-type);
+    font-size: 0.9375rem;
+    text-transform: uppercase;
+
+    &::after {
+      content: ":";
+    }
+  }
+
+  .filter {
+    margin: 0;
+  }
+}
+
 // Pager under long lists (built by assets/scripts/list-filter.js): the same
 // plain typewriter words as the filter, the current page highlighted.
 .pager {

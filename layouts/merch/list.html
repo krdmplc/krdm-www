@@ -1,5 +1,5 @@
-{{- /* Merch catalogue: newest first, sold-out items at the end. Not a shop:
-  item pages point to the contact form (and Bandcamp where there is a link). */ -}}
+{{- /* Merch catalogue: by popularity (weight), sold-out items at the end, and
+  sortable by name, price or date in the browser. */ -}}
 {{ define "main" }}
   <div class="container">
     {{ partial "breadcrumbs" . }}
@@ -18,7 +18,7 @@
     </ul>
     {{- $bands := dict }}
     {{- range .Pages }}{{ range partial "func/merch-bands" . }}{{ $bands = merge $bands (dict .key .title) }}{{ end }}{{ end }}
-    <ul class="filter filter--spaced" data-filter="artist" hidden aria-label="{{ T "artists" }}">
+    <ul class="filter" data-filter="artist" hidden aria-label="{{ T "artists" }}">
       <li><button type="button" data-value="all" aria-pressed="true">{{ T "filterAll" }}</button></li>
       {{- with index $bands "krdm" }}
         <li><button type="button" data-value="krdm" aria-pressed="false">{{ . }}</button></li>
@@ -30,6 +30,17 @@
       {{- end }}
     </ul>
 
-    {{ partial "card-grid" (dict "pages" (partial "func/merch-sorted" .Pages) "level" 2 "cols" 4 "filters" (slice "category" "artist")) }}
+    {{- /* Sort order; revealed and applied by assets/scripts/list-sort.js. The
+      cards come in popularity order (func/merch-sorted). */}}
+    <div class="sort" data-sort hidden>
+      <span class="sort__label" id="sort-label">{{ T "sortBy" }}</span>
+      <ul class="filter" aria-labelledby="sort-label">
+        {{- range slice "popular" "title" "price" "date" }}
+          <li><button type="button" data-value="{{ . }}" aria-pressed="{{ cond (eq . "popular") "true" "false" }}">{{ T (printf "sort-%s" .) }}</button></li>
+        {{- end }}
+      </ul>
+    </div>
+
+    {{ partial "card-grid" (dict "pages" (partial "func/merch-sorted" .Pages) "level" 2 "cols" 4 "filters" (slice "category" "artist") "sort" true "eager" 4) }}
   </div>
 {{ end }}
