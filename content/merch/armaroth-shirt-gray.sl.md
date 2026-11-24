@@ -1,7 +1,7 @@
 ---
 title: "Majica Armaroth (siva)"
 date: 2026-11-20T00:00:00+01:00
-weight: 30
+weight: 65
 thumbnail: /media/uploads/merch-armaroth-shirt-gray.jpg
 category: apparel
 price: 20
