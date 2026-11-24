@@ -7,4 +7,4 @@ menu:
     weight: 35
 ---
 
-T-shirts, caps, records and other stuff from the bands of Plc. Put what you want in the cart and send us the order: there's no online payment, we reply by email to confirm and arrange payment and pick-up or shipping. You can also get merch at our gigs and at Plc, or [write to us](/en/contact/) with questions.
+T-shirts, caps, records and other stuff from the bands of Plc. Put what you want in the cart and send us the order: there's no online payment, we reply by email to confirm and arrange payment and pick-up or shipping. The minimum order is €20, and postage is free on orders of €100 or more. You can also get merch at our gigs and at Plc, or [write to us](/en/contact/) with questions.

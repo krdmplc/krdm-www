@@ -41,7 +41,10 @@
 
 <noscript><p>{{ T "cartNoScript" | markdownify }}</p></noscript>
 
-<div class="cart" data-cart data-size-label="{{ T "cartSize" }}" data-qty-label="{{ T "cartQuantity" }}" data-remove-label="{{ T "cartRemove" }}" hidden>
+{{- /* Minimum order and free postage: site.Params.merch (hugo.toml). cart.js
+  shows the notes under the total and keeps the form from being sent below the
+  minimum. */}}
+<div class="cart" data-cart data-size-label="{{ T "cartSize" }}" data-qty-label="{{ T "cartQuantity" }}" data-remove-label="{{ T "cartRemove" }}" data-min-order="{{ site.Params.merch.minOrder | default 0 }}" data-free-shipping="{{ site.Params.merch.freeShipping | default 0 }}" hidden>
   <script type="application/json" data-cart-data>{{ $items | jsonify | safeJS }}</script>
 
   <div class="cart__empty" data-cart-empty hidden>
@@ -52,7 +55,11 @@
   <div data-cart-filled hidden>
     <ul class="cart__lines" role="list" data-cart-lines></ul>
     <p class="cart__total"><span>{{ T "cartTotal" }}</span> <strong data-cart-total></strong></p>
-    <p class="cart__howto">{{ T "cartHowTo" }}</p>
+    <p class="cart__minimum" data-cart-minimum data-text="{{ T "cartMinimum" }}" role="status" hidden></p>
+    <p class="cart__howto">
+      <span data-cart-shipping data-text="{{ T "cartShipping" }}" data-text-free="{{ T "cartShippingFree" }}"></span>
+      {{ T "cartHowTo" }}
+    </p>
 
     <form class="form cart__form" name="order" method="POST" action="{{ $thanks }}" data-netlify="true" netlify-honeypot="bot-field" data-cart-form>
       <input type="hidden" name="form-name" value="order">

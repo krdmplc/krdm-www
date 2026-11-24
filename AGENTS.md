@@ -92,7 +92,10 @@ file exists as `name.sl.md` + `name.en.md`.
   Forms form `order` (`order-number` KRDM-YYMM-XXXX, readable `items` and `total`
   first), emailed to us like the contact form — Netlify emails every field, so keep
   the form to what we want to read; `{{</* order-done */>}}` on the thank-you page
-  repeats the number and the order and empties the cart. Titles, prices and stock state come from JSON built into the cart
+  repeats the number and the order and empties the cart. The minimum order and the
+  free-postage threshold are `[params.merch]` in `hugo.toml` (the cart shows them and
+  won't send below the minimum; the merch page intro states them in words, so
+  change both). Titles, prices and stock state come from JSON built into the cart
   page, never from the browser. Item pages also link to the contact form with
   `?item=<name>` (pre-filled by `assets/scripts/contact-prefill.js`; the only action
   without JS) and to `link` (Bandcamp) if set. The list filters by `category` and by band

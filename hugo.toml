@@ -19,6 +19,12 @@ foundingDate = "2016-11"
 # Public by design: it is in every page. Empty = no analytics. Production builds only.
 cloudflareAnalyticsToken = "cc0dfb88a6114b07bdadd6eb2a13f6fd"
 
+# Merch orders (the cart, layouts/shortcodes/cart.html), in euros: the cart
+# can't be sent below minOrder, and postage is free from freeShipping up.
+[params.merch]
+minOrder = 20
+freeShipping = 100
+
 [params.address]
 streetAddress = "Žitna ulica 1E"
 postalCode = "4000"

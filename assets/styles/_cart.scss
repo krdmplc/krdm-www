@@ -173,6 +173,13 @@
     }
   }
 
+  // Below the minimum order: what's still missing; the send button is off.
+  &__minimum {
+    margin: 12px 0 0;
+    font-family: var(--font-type);
+    font-weight: 700;
+  }
+
   &__howto {
     margin-top: 12px;
     color: var(--fg-muted);

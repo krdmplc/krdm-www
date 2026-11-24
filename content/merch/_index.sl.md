@@ -8,4 +8,4 @@ menu:
     weight: 35
 ---
 
-Majice, kape, plošče in ostala navlaka bendov iz Placa. Kar ti je všeč, daj v košarico in nam pošlji naročilo: spletnega plačila ni, odgovorimo ti po e-pošti in se dogovorimo za plačilo ter prevzem ali pošiljanje. Merch dobiš tudi na naših koncertih in v Placu, za vprašanja pa nam [piši](/kontakt/).
+Majice, kape, plošče in ostala navlaka bendov iz Placa. Kar ti je všeč, daj v košarico in nam pošlji naročilo: spletnega plačila ni, odgovorimo ti po e-pošti in se dogovorimo za plačilo ter prevzem ali pošiljanje. Najmanjše naročilo je 20 €, pri naročilu od 100 € naprej pa je poštnina brezplačna. Merch dobiš tudi na naših koncertih in v Placu, za vprašanja pa nam [piši](/kontakt/).
