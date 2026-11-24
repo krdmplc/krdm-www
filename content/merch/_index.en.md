@@ -2,6 +2,9 @@
 title: Merch
 date: 2026-11-18T00:00:00+01:00
 description: "T-shirts, caps, hoodies and records from the bands of Plc and Društvo KRDM in Kranj, Slovenia. Order through the cart, or get them at our gigs."
+# Share image (link previews): photos of three items, 1200×630.
+ogTags:
+  image: /media/uploads/og-merch.jpg
 menu:
   main:
     weight: 35

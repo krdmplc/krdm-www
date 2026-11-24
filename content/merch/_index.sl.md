@@ -3,6 +3,9 @@ title: Merch
 date: 2026-11-18T00:00:00+01:00
 url: "merch"
 description: "Majice, kape, pulover in plošče bendov iz Placa in društva KRDM iz Kranja. Naroči jih prek košarice ali kupi na koncertih."
+# Share image (link previews): photos of three items, 1200×630.
+ogTags:
+  image: /media/uploads/og-merch.jpg
 menu:
   main:
     weight: 35
