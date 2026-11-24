@@ -25,7 +25,7 @@ The debut album by Kranj's Mutism, which, as Urban Valjavec put it at the launch
 - Spotify: <https://open.spotify.com/artist/23InycFQTt57RcjxJr7oJL>
 - Sleep Tight (visualizer): <https://www.youtube.com/watch?v=qXMuGayDnnM>
 
-Format: digital
+Format: digital, CD (digipak)
 
 Music by Mutism, Sara Majcen and Grega Kalinski\
 Vocals: Sara Majcen\

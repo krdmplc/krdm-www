@@ -26,7 +26,7 @@ Prvenec kranjskih Mutism, ki so ga, kot je na predstavitvi povedal Urban Valjave
 - Spotify: <https://open.spotify.com/artist/23InycFQTt57RcjxJr7oJL>
 - Sleep Tight (vizualizacija): <https://www.youtube.com/watch?v=qXMuGayDnnM>
 
-Format: digitalno
+Format: digitalno, CD (digipak)
 
 Glasba: Mutism, Sara Majcen in Grega Kalinski\
 Vokal: Sara Majcen\
