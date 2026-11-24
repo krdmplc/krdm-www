@@ -1,11 +1,16 @@
-{{- /* Whether a merch item is sold out: `available: false`, or it has sizes and
-  every one of them is sold out (has a stock count of 0). Untracked sizes keep
-  the item available. Takes a page, returns a bool. */ -}}
+{{- /* Whether a merch item is sold out: `available: false`; or it has sizes and
+  every one of them is sold out (has a stock count of 0); or it has no sizes
+  and a `quantity` of 0. Untracked sizes, or no `quantity`, keep the item
+  available. Counts are read from the Slovenian file (func/merch-source), like
+  sizes. Takes a page, returns a bool. */ -}}
 {{- $out := eq .Params.available false -}}
-{{- with partial "func/merch-sizes" . -}}
-  {{- if not $out -}}
+{{- if not $out -}}
+  {{- with partial "func/merch-sizes" . -}}
     {{- $out = true -}}
     {{- range . }}{{ if not .soldOut }}{{ $out = false }}{{ end }}{{ end -}}
+  {{- else -}}
+    {{- $quantity := (partial "func/merch-source" .).Params.quantity -}}
+    {{- $out = and (ne (string $quantity) "") (le (int $quantity) 0) -}}
   {{- end -}}
 {{- end -}}
 {{- return $out -}}

@@ -115,9 +115,12 @@ file exists as `name.sl.md` + `name.en.md`.
   `partials/func/merch-source.html`. Stock counts —
   `stock` per size, `quantity` for items without sizes — are internal and must
   never be rendered: a size with `stock: 0` is only struck through, and an item
-  whose sizes are all at 0 is sold out (`partials/func/merch-sold-out.html`; use
-  it, never `.Params.available` directly). A size without `stock` is untracked
-  and counts as in stock. JSON-LD: `Product` with an `Offer`.
+  whose sizes are all at 0, or one without sizes at `quantity: 0`, is sold out
+  (`partials/func/merch-sold-out.html`; use it, never `.Params.available`
+  directly). A size without `stock`, or an item without `quantity`, is untracked
+  and counts as in stock. Sold-out items and sizes can't be added to the cart,
+  and a cart line that sold out since stays listed but is left out of the order
+  and the total. JSON-LD: `Product` with an `Offer`.
 - There is **no public email address** (info@krdm.si is dead): contact goes through
   the Netlify Forms form on `content/contact.*.md` (`{{</* contact-form */>}}`), whose
   notifications are configured in the Netlify UI (so are the `order` form's). Both forms
