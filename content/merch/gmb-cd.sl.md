@@ -9,7 +9,7 @@ images:
   - /media/uploads/merch-gmb-cd-4.jpg
   - /media/uploads/merch-gmb-cd-render.jpg
 category: music
-price: 15
+price: 10
 available: true
 quantity: 67
 release: gmb
