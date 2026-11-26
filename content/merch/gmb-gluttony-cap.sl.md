@@ -6,7 +6,6 @@ category: other
 price: 20
 available: true
 quantity: 9
-draft: true
 artists:
   - gmb
 showInAdmin: true

@@ -5,7 +5,6 @@ thumbnail: /media/uploads/merch-gmb-skull-head-shirt-black.jpg
 category: apparel
 price: 20
 available: true
-draft: true
 artists:
   - gmb
 ---

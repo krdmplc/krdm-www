@@ -14,7 +14,6 @@ sizes:
   - size: XL
     stock: 4
 available: true
-draft: true
 artists:
   - gmb
 showInAdmin: true
