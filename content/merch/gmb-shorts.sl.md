@@ -1,6 +1,7 @@
 ---
-title: "Hlače GMB"
+title: "Kratke hlače GMB"
 date: 2026-11-26T00:00:00+01:00
+thumbnail: /media/uploads/merch-gmb-shorts.jpg
 category: apparel
 sizes:
   - size: S
@@ -19,3 +20,5 @@ artists:
   - gmb
 showInAdmin: true
 ---
+
+Črne kratke hlače z vrvico: spredaj na hlačnici lobanja GMB, zadaj na žepu prekrižane kosti KRDM.

@@ -7,6 +7,7 @@ images:
   - /media/uploads/merch-gmb-cd-2.jpg
   - /media/uploads/merch-gmb-cd-3.jpg
   - /media/uploads/merch-gmb-cd-4.jpg
+  - /media/uploads/merch-gmb-cd-render.jpg
 category: music
 price: 15
 available: true

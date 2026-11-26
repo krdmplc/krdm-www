@@ -2,7 +2,7 @@
 title: "Dogs of Hell T-shirt"
 date: 2026-06-08T00:00:00+02:00
 weight: 110
-thumbnail: /media/uploads/merch-gmb-dogs-of-hell-shirt.jpg
+thumbnail: /media/uploads/merch-gmb-dogs-of-hell-shirt-2026.jpg
 category: apparel
 price: 20
 available: true
