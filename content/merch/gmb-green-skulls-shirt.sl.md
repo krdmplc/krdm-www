@@ -14,8 +14,6 @@ sizes:
     stock: 2
   - size: XL
     stock: 2
-  - size: XXL
-    stock: 2
 available: true
 link: https://gmbkrdm.bandcamp.com/merch/green-skulls-t-shirt
 artists:

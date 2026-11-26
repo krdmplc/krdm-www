@@ -9,12 +9,10 @@ sizes:
   - size: S
     stock: 2
   - size: M
-    stock: 2
+    stock: 1
   - size: L
-    stock: 2
+    stock: 5
   - size: XL
-    stock: 2
-  - size: XXL
     stock: 2
 available: true
 link: https://gmbkrdm.bandcamp.com/merch/dogs-of-hell-gmb-t-shirt

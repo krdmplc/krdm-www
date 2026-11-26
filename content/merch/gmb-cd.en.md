@@ -6,7 +6,7 @@ thumbnail: /media/uploads/merch-gmb-cd.jpg
 category: music
 price: 15
 available: true
-quantity: 80
+quantity: 67
 release: gmb
 link: https://gmbkrdm.bandcamp.com/album/gmb
 artists:

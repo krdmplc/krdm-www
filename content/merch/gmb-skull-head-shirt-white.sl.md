@@ -7,15 +7,13 @@ category: apparel
 price: 20
 sizes:
   - size: S
-    stock: 2
+    stock: 1
   - size: M
-    stock: 2
+    stock: 4
   - size: L
-    stock: 2
+    stock: 3
   - size: XL
-    stock: 2
-  - size: XXL
-    stock: 2
+    stock: 3
 available: true
 link: https://gmbkrdm.bandcamp.com/merch/gmb-skull-head-t-shirt-white
 artists:
