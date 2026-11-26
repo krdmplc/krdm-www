@@ -6,7 +6,7 @@ thumbnail: /media/uploads/merch-gmb-life-is-lost-hat.jpg
 category: other
 price: 20
 available: true
-quantity: 2
+quantity: 7
 link: https://gmbkrdm.bandcamp.com/merch/gmb-hat-life-is-lost
 artists:
   - gmb
