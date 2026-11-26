@@ -1,8 +1,11 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   // The website as a static-assets-only Worker in the "KRDM" Cloudflare account,
-  // deployed by .github/workflows/deploy.yml. Netlify still serves www.krdm.si until
-  // krdm.si's DNS moves to Cloudflare; this runs at https://krdm-www.krdm.workers.dev.
+  // deployed by .github/workflows/deploy.yml: main is production (www.krdm.si), and
+  // also answers at https://krdm-www.krdm.workers.dev. The custom domains www.krdm.si
+  // and krdm.si (redirected to www by a zone rule) are attached in the dashboard/API,
+  // not here: the CI token has no zone permissions, and a "routes" entry here would
+  // make `wrangler deploy` try to manage them.
   "name": "krdm-www",
   "account_id": "2264e0f180a5de9805616b23d0d3b6d0",
   "compatibility_date": "2026-11-01",

@@ -3,7 +3,8 @@
 Guidance for AI coding agents (and humans) working on **krdm.si**, the bilingual
 website of Društvo KRDM, a non-profit music association from Kranj, Slovenia.
 
-Stack: **Hugo** (static site) → **Netlify** (build/host, `main` = production) →
+Stack: **Hugo** (static site) → **Cloudflare Workers** (static assets, built by
+GitHub Actions, `main` = production; Netlify still builds too, as the rollback) →
 **Decap CMS** at `/admin/` (Decap Turbo: sign-in, roles, GitHub proxy). Seeded from
 [hugo-template](https://github.com/poslovnimediji/hugo-template); compare with it
 when updating tooling, but this site deviates where noted below.
@@ -15,7 +16,7 @@ npm ci           # install (Node >= 22.13)
 npm run dev      # hugo server → http://localhost:1313 (CMS: npx decap-server, then /admin/)
                  # serves from public/ — don't build into or delete public/ while it runs
 npm run build    # hugo → public/
-npm run lint     # eslint + stylelint — the same gate Netlify runs before building
+npm run lint     # eslint + stylelint — the same gate CI runs before building
 ```
 
 There is no test suite. **`npm run lint` plus a clean build is the verification
@@ -208,36 +209,38 @@ Keep these working when you touch templates:
 
 ## Deployment
 
-`bin/build.sh` branches on Netlify's `CONTEXT`: production builds with `--minify -b
-$URL`, previews with `-b $DEPLOY_PRIME_URL`. Both `sed` the branch into
-`static/admin/config.yml`'s `__BRANCH__` placeholder — **never commit a real branch
-name there**. Only `HUGO_*` and `CONTEXT` env vars are readable from templates.
-`.github/workflows/daily-rebuild.yml` triggers a production build every morning
-through a Netlify build hook (repo secret `NETLIFY_BUILD_HOOK`), because events move
-from upcoming to past only when the site is rebuilt.
-`HUGO_VERSION` in `netlify.toml` is the only pinned version; bump it only after a
-local build at that exact version. Node is not pinned (Netlify's image supplies it).
-Response headers live in `static/_headers` (read by Netlify and Cloudflare alike),
-including browser caching: a year for the fingerprinted CSS/JS and the fonts, a day
-for `/media/`, the host default (revalidate) for pages.
+`bin/build.sh` branches on `CONTEXT` (Netlify's variable, which the deploy workflow
+sets too): production builds with `--minify -b $URL`, previews with `-b
+$DEPLOY_PRIME_URL`. Both `sed` the branch into `static/admin/config.yml`'s
+`__BRANCH__` placeholder — **never commit a real branch name there**. Only `HUGO_*`
+and `CONTEXT` env vars are readable from templates.
 
-**Moving to Cloudflare Workers (in progress, 2026-11).** The site is also deployed,
-as a static-assets-only Worker `krdm-www` in the shared "KRDM" Cloudflare account
-(`wrangler.jsonc`), by `.github/workflows/deploy.yml`: main to
-https://krdm-www.krdm.workers.dev, other branches to
-`https://<branch>-krdm-www.krdm.workers.dev`. Until krdm.si's DNS moves to
-Cloudflare, Netlify stays production and every Workers build is a preview (noindex).
-`bin/workers-redirects.sh` adapts the Netlify `_redirects` after the build (`301!` →
-`301`, drops the `404` rules; `404-page` handling serves `/en/404.html` instead) —
-keep new redirects in plain `from to 301` form. Before the cutover: the contact and
-order forms need a replacement for Netlify Forms (they don't work on Workers), the
-Turbo admin URLs need the workers.dev addresses, then main switches to
-`CONTEXT=production`, `daily-rebuild.yml` dispatches the deploy workflow, and Netlify
-is retired. Until then every push to main deploys on both platforms, so keep changes
-working on both. The repo lives in the `krdmplc` GitHub org (since 2026-11-23), whose
-Netlify and Decap Turbo GitHub Apps are installed there. The workflow needs the repo
-secret `CLOUDFLARE_API_TOKEN` (an account-owned token, Workers Scripts: Edit on the
-KRDM account).
+**Production is the static-assets-only Worker `krdm-www`** in the shared "KRDM"
+Cloudflare account (`wrangler.jsonc`), deployed by `.github/workflows/deploy.yml`:
+main builds with `CONTEXT=production URL=https://www.krdm.si/` and is served at
+www.krdm.si (Workers Custom Domain; krdm.si is another custom domain, redirected to
+www by a zone redirect rule) and at https://krdm-www.krdm.workers.dev. Other branches
+are previews (noindex) at `https://<branch>-krdm-www.krdm.workers.dev`. The custom
+domains are attached through the Cloudflare API, not in `wrangler.jsonc`: the
+workflow's repo secret `CLOUDFLARE_API_TOKEN` (an account-owned token, Workers
+Scripts: Edit on the KRDM account) has no zone permissions.
+`.github/workflows/daily-rebuild.yml` dispatches the deploy workflow on main every
+morning, because events move from upcoming to past only when the site is rebuilt.
+`HUGO_VERSION` in `deploy.yml` (kept equal in `netlify.toml`) is the only pinned
+version; bump it only after a local build at that exact version. Response headers
+live in `static/_headers` (read by Netlify and Cloudflare alike), including browser
+caching: a year for the fingerprinted CSS/JS and the fonts, a day for `/media/`, the
+host default (revalidate) for pages.
+
+**Leaving Netlify (2026-11).** Until www.krdm.si's DNS points at the Worker, Netlify
+still serves it; afterwards the Netlify site stays untouched for a week as the
+rollback (re-point the DNS). Until it is removed every push to main deploys on both
+platforms, so keep changes working on both. `bin/workers-redirects.sh` adapts the
+Netlify `_redirects` after the build (`301!` → `301`, drops the `404` rules;
+`404-page` handling serves `/en/404.html` instead) — keep new redirects in plain
+`from to 301` form. A follow-up removes `netlify.toml` and that script (rewriting
+`_redirects` in Cloudflare's syntax). The repo lives in the `krdmplc` GitHub org
+(since 2026-11-23), whose Netlify and Decap Turbo GitHub Apps are installed there.
 
 Decap CMS loads unpinned from a CDN in `static/admin/index.html` (`^3.0.0`, i.e. the
 latest 3.x; the Turbo backend needs 3.17.0 or newer); an `/admin/` breakage with no
@@ -257,9 +260,8 @@ SSO) — see `docs/cms-plc-sso-plan.md`.
 The site sets **no cookies**, so there is no consent banner. Visits are counted by
 **Cloudflare Web Analytics** (cookieless, nothing stored in the browser):
 `partials/head/analytics.html` adds the beacon on production builds only, when
-`cloudflareAnalyticsToken` in `hugo.toml` is set — on Netlify now, on Workers after the
-cutover. Keep Cloudflare's automatic injection off for the zone, or visits count twice.
-The cookies page describes it. YouTube embeds use
+`cloudflareAnalyticsToken` in `hugo.toml` is set. Keep Cloudflare's automatic injection
+off for the zone, or visits count twice. The cookies page describes it. YouTube embeds use
 privacy-enhanced mode (`[privacy.youtube]` in `hugo.toml`). If you add analytics or
 third-party embeds, update `content/cookies.*.md` and reconsider a consent banner.
 The contact and order forms store submissions with Netlify Forms, and the cart sits in
