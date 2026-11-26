@@ -2,7 +2,7 @@
 title: "Majica Skull-Head (siva)"
 date: 2026-06-09T00:00:00+02:00
 weight: 130
-thumbnail: /media/uploads/merch-gmb-skull-head-shirt-gray.jpg
+thumbnail: /media/uploads/merch-gmb-skull-head-shirt-gray-2026.jpg
 category: apparel
 price: 20
 sizes:
