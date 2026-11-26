@@ -3,6 +3,7 @@ title: "Kratke hlače GMB"
 date: 2026-11-26T00:00:00+01:00
 thumbnail: /media/uploads/merch-gmb-shorts.jpg
 category: apparel
+price: 25
 sizes:
   - size: S
     stock: 0
