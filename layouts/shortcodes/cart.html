@@ -1,20 +1,16 @@
 {{- /*
-  The cart and the order form. There is no checkout: the order is a Netlify
-  Forms submission ("order", both languages; cart.js sends it with fetch and then
-  opens this language's thank-you page, see there) that Netlify emails to us; set up
-  its notification in the Netlify UI (Forms → Form notifications). We reply to
-  confirm stock, payment and pick-up or shipping.
+  The cart and the order form. There is no payment: the order goes to KRDM band
+  (the app at band.krdm.si, params.bandApi, POST /api/public/orders), which
+  checks prices and stock, reserves the pieces, assigns the order number
+  (KRDM-YYMM-XXXX) and emails the order to us; cart.js then opens this
+  language's thank-you page. We reply to confirm payment and pick-up or shipping.
 
   The cart itself lives in the visitor's browser (localStorage, see
-  assets/scripts/cart.js) as item + size + quantity. Titles, prices, photos and
-  which sizes are still in stock come from the JSON below, built from the merch
-  section, so a stale cart can't order something at an old price or a sold-out
-  size. Before sending, cart.js writes the hidden `order-number` (KRDM-YYMM-XXXX),
-  `items` (one line per item) and `total` fields; they come first in the form so
-  the email opens with the order. Netlify emails every field, so nothing goes in
-  the form that we don't want to read. Delivery values are Slovenian in both
-  languages: the email is for us. `bot-field` is a honeypot. Stock counts are
-  never put in the page.
+  assets/scripts/cart.js) as item + size + quantity. Titles, prices and photos
+  come from the JSON below, built from the merch pages (the app's catalog);
+  which sizes are in stock is asked again on load (merch-availability.js), and
+  the app refuses what has sold out since, which cart.js then marks. `bot-field`
+  is a honeypot. Stock counts are never put in the page.
 
   Usage: {{< cart >}}
 */ -}}
@@ -24,7 +20,7 @@
   {{- range partial "func/merch-bands" . }}{{ $bands = $bands | append .title }}{{ end -}}
   {{- $thumb := "" -}}
   {{- with partial "func/image" .Params.thumbnail }}{{ $thumb = (.Fill "160x160 Center webp q80").RelPermalink }}{{ end -}}
-  {{- $items = merge $items (dict .File.ContentBaseName (dict
+  {{- $items = merge $items (dict .Params.productId (dict
     "title" .Title
     "url" .RelPermalink
     "thumb" $thumb
@@ -44,7 +40,7 @@
 {{- /* Minimum order and free postage: site.Params.merch (hugo.toml). cart.js
   shows the notes under the total and keeps the form from being sent below the
   minimum. */}}
-<div class="cart" data-cart data-size-label="{{ T "cartSize" }}" data-qty-label="{{ T "cartQuantity" }}" data-remove-label="{{ T "cartRemove" }}" data-min-order="{{ site.Params.merch.minOrder | default 0 }}" data-free-shipping="{{ site.Params.merch.freeShipping | default 0 }}" hidden>
+<div class="cart" data-cart data-band-api="{{ site.Params.bandApi }}" data-thanks="{{ $thanks }}" data-size-label="{{ T "cartSize" }}" data-qty-label="{{ T "cartQuantity" }}" data-remove-label="{{ T "cartRemove" }}" data-min-order="{{ site.Params.merch.minOrder | default 0 }}" data-free-shipping="{{ site.Params.merch.freeShipping | default 0 }}" hidden>
   <script type="application/json" data-cart-data>{{ $items | jsonify | safeJS }}</script>
 
   <div class="cart__empty" data-cart-empty hidden>
@@ -61,16 +57,10 @@
       {{ T "cartHowTo" }}
     </p>
 
-    <form class="form cart__form" name="order" method="POST" action="{{ $thanks }}" data-netlify="true" netlify-honeypot="bot-field" data-cart-form>
-      <input type="hidden" name="form-name" value="order">
+    <form class="form cart__form" data-cart-form>
       <p class="visually-hidden" aria-hidden="true">
         <label>Ne izpolnjuj / Don't fill this in: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
       </p>
-
-      {{- /* Filled in by cart.js on submit. */}}
-      <input type="hidden" name="order-number" data-cart-field="number">
-      <textarea name="items" hidden readonly data-cart-field="items"></textarea>
-      <input type="hidden" name="total" data-cart-field="total">
 
       <h2>{{ T "orderDetails" }}</h2>
 
@@ -91,13 +81,29 @@
 
       <fieldset class="form__row form__choices">
         <legend>{{ T "orderDelivery" }}</legend>
-        <label><input type="radio" name="delivery" value="Osebni prevzem" checked data-cart-delivery> {{ T "orderPickup" }}</label>
-        <label><input type="radio" name="delivery" value="Po pošti" data-cart-delivery="post"> {{ T "orderPost" }}</label>
+        <label><input type="radio" name="delivery" value="pickup" checked data-cart-delivery> {{ T "orderPickup" }}</label>
+        <label><input type="radio" name="delivery" value="post" data-cart-delivery="post"> {{ T "orderPost" }}</label>
       </fieldset>
 
-      <div class="form__row" data-cart-address hidden>
-        <label for="order-address">{{ T "orderAddress" }}</label>
-        <textarea id="order-address" name="address" rows="3" autocomplete="street-address"></textarea>
+      {{- /* By post: a country other than Slovenia makes it an order abroad, whose
+        postage we work out by hand (cart.js). */}}
+      <div role="group" aria-label="{{ T "orderAddress" }}" data-cart-address hidden>
+        <div class="form__row">
+          <label for="order-street">{{ T "orderStreet" }}</label>
+          <input id="order-street" name="street" type="text" autocomplete="street-address" maxlength="100" data-cart-required>
+        </div>
+        <div class="form__row">
+          <label for="order-postcode">{{ T "orderPostcode" }}</label>
+          <input id="order-postcode" name="postcode" type="text" autocomplete="postal-code" maxlength="20" data-cart-required>
+        </div>
+        <div class="form__row">
+          <label for="order-city">{{ T "orderCity" }}</label>
+          <input id="order-city" name="city" type="text" autocomplete="address-level2" maxlength="60" data-cart-required>
+        </div>
+        <div class="form__row">
+          <label for="order-country">{{ T "orderCountry" }}</label>
+          <input id="order-country" name="country" type="text" autocomplete="country-name" maxlength="60" value="{{ T "orderCountryDefault" }}" data-cart-required>
+        </div>
       </div>
 
       <div class="form__row">
@@ -105,11 +111,10 @@
         <textarea id="order-note" name="note" rows="3"></textarea>
       </div>
 
-      <input type="hidden" name="language" value="{{ site.Language.Lang }}">
-
       <p class="form__note">{{ T "orderPrivacy" | markdownify }}</p>
 
       <div class="form__error" role="alert" tabindex="-1" data-form-error hidden>{{ T "orderError" | markdownify }}</div>
+      <div class="form__error" role="alert" tabindex="-1" data-cart-stock-error hidden>{{ T "orderSoldOut" | markdownify }}</div>
 
       <button type="submit" class="button">{{ partial "icon" "mail" }} {{ T "orderSend" }}</button>
     </form>

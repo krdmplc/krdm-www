@@ -12,9 +12,12 @@
 {{- /* Full class names (not built from parts) so PurgeCSS can see them. */ -}}
 {{- $variant := cond $isEvent "card--wide" (cond $isArtist "card--square card--artist" (cond $isMerch "card--square card--product" "card--square")) -}}
 
-<a class="card {{ $variant }}" href="{{ $p.RelPermalink }}">
+<a class="card {{ $variant }}" href="{{ $p.RelPermalink }}"{{ if $isMerch }} data-merch-item="{{ $p.Params.productId }}"{{ end }}>
   <div class="card__media">
-    {{- if $soldOut }}<span class="stamp card__stamp">{{ T "soldOut" }}</span>{{ end }}
+    {{- if $isMerch }}
+      {{- /* Shown or hidden again on load by merch-availability.js. */}}
+      <span class="stamp card__stamp" data-merch-stamp{{ if not $soldOut }} hidden{{ end }}>{{ T "soldOut" }}</span>
+    {{- end }}
     {{- partial "image" (dict
       "src" ($p.Params.thumbnail | default site.Params.image)
       "alt" ""
@@ -32,10 +35,11 @@
         <p class="card__meta no-margin"><time datetime="{{ time.Format "2006-01-02" . }}">{{ time.Format ":date_medium" . }}</time>{{ with $p.Params.venue }} · {{ index (split . ",") 0 }}{{ end }}</p>
       {{- end }}
     {{- else if $isMerch }}
+      {{- $price := partial "func/price" $p.Params.price }}
       <p class="card__meta no-margin">
         {{- range $i, $b := partial "func/merch-bands" $p }}{{ if $i }}, {{ end }}{{ $b.title }}{{ end -}}
-        {{- if or $soldOut $p.Params.price }} · {{ end -}}
-        {{- if $soldOut }}{{ T "soldOut" }}{{ else }}{{ partial "func/price" $p.Params.price }}{{ end -}}
+        {{- if or $soldOut $price }} · {{ end -}}
+        <span data-merch-state data-price="{{ $price }}" data-sold-out="{{ T "soldOut" }}">{{ if $soldOut }}{{ T "soldOut" }}{{ else }}{{ $price }}{{ end }}</span>
       </p>
     {{- else if not $isArtist }}
       <p class="card__meta no-margin">

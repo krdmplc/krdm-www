@@ -3,7 +3,8 @@
 Guidance for AI coding agents (and humans) working on **krdm.si**, the bilingual
 website of Društvo KRDM, a non-profit music association from Kranj, Slovenia.
 
-Stack: **Hugo** (static site) → **Netlify** (build/host, `main` = production) →
+Stack: **Hugo** (static site) → **Cloudflare Workers** (static assets, built by
+GitHub Actions, `main` = production; Netlify still builds too, as the rollback) →
 **Decap CMS** at `/admin/` (Decap Turbo: sign-in, roles, GitHub proxy). Seeded from
 [hugo-template](https://github.com/poslovnimediji/hugo-template); compare with it
 when updating tooling, but this site deviates where noted below.
@@ -15,7 +16,7 @@ npm ci           # install (Node >= 22.13)
 npm run dev      # hugo server → http://localhost:1313 (CMS: npx decap-server, then /admin/)
                  # serves from public/ — don't build into or delete public/ while it runs
 npm run build    # hugo → public/
-npm run lint     # eslint + stylelint — the same gate Netlify runs before building
+npm run lint     # eslint + stylelint — the same gate CI runs before building
 ```
 
 There is no test suite. **`npm run lint` plus a clean build is the verification
@@ -66,7 +67,7 @@ file exists as `name.sl.md` + `name.en.md`.
 |---|---|---|
 | Events | `content/events/<name>.<lang>.md` | `/dogodki/<name>/` · `/en/events/<name>/` |
 | Releases | `content/releases/<name>.<lang>.md` | `/izdaje/<name>/` · `/en/releases/<name>/` |
-| Merch | `content/merch/<name>.<lang>.md` | `/merch/<name>/` · `/en/merch/<name>/` |
+| Merch | from KRDM band's API (`content/merch/_content.gotmpl`) | `/merch/<id>/` · `/en/merch/<id>/` |
 | Artists | `content/artists/<ref>/_index.<lang>.md` | `/ustvarjalci/<slug>/` · `/en/artists/<ref>/` |
 | Pages | `content/{about,join,play,cookies}.<lang>.md` | Slovenian `slug` in front matter |
 | Home | `content/_index.<lang>.md` | `/` · `/en/` |
@@ -86,48 +87,61 @@ file exists as `name.sl.md` + `name.en.md`.
   home page shows only active, non-hidden artists, ordered by latest release/event.
   The artists page splits them into "active" (that same set) and "other"; the
   individual status is not shown publicly.
-- **Merch** has a cart but no checkout: item pages have an add-to-cart form, the cart
-  (`content/cart.*.md`, `{{</* cart */>}}`, `assets/scripts/cart.js`) lives in
-  localStorage as item + size + quantity, and the order goes out as the Netlify
-  Forms form `order` (`order-number` KRDM-YYMM-XXXX, readable `items` and `total`
-  first), emailed to us like the contact form — Netlify emails every field, so keep
-  the form to what we want to read; `{{</* order-done */>}}` on the thank-you page
-  repeats the number and the order and empties the cart. The minimum order and the
-  free-postage threshold are `[params.merch]` in `hugo.toml` (the cart shows them and
-  won't send below the minimum; the merch page intro states them in words, so
-  change both). Titles, prices and stock state come from JSON built into the cart
-  page, never from the browser. Item pages also link to the contact form with
-  `?item=<name>` (pre-filled by `assets/scripts/contact-prefill.js`; the only action
-  without JS) and to `link` (Bandcamp) if set. The list filters by `category` and by band
-  (`partials/func/merch-bands.html`: an item's one or two bands, or "KRDM" when it
-  lists more or none — the KRDM shirt). Items are listed by popularity —
-  `weight`, ranked by hand by how good the item looks, in steps of 10; unranked
-  items follow, newest first; sold out always last (`partials/func/merch-sorted.html`)
-  — and the list can be re-sorted A–Z, by price or by `date` (recently added) in
-  the browser (`assets/scripts/list-sort.js`). Fields: `category` (`apparel`, `music`, `other`),
-  `price` (a **number** in euros, formatted by `partials/func/price.html`, kept
-  numeric for a future checkout), `sizes` (a list of `{size, stock}`), `available`
-  (`false` = listed as sold out, last), `release` (a release's file name; the
-  release page then lists the item), `images` (extra photos). `sizes` and `images`
-  live **only in the Slovenian file**: Decap can't copy a list to the other language
-  (list widgets take only `i18n: true`; `i18n: duplicate` on one fails config
-  validation and the whole CMS won't load), so both languages read them through
-  `partials/func/merch-source.html`. Stock counts —
-  `stock` per size, `quantity` for items without sizes — are internal and must
-  never be rendered: a size with `stock: 0` is only struck through, and an item
-  whose sizes are all at 0, or one without sizes at `quantity: 0`, is sold out
-  (`partials/func/merch-sold-out.html`; use it, never `.Params.available`
-  directly). A size without `stock`, or an item without `quantity`, is untracked
-  and counts as in stock. Sold-out items and sizes can't be added to the cart,
-  and a cart line that sold out since stays listed but is left out of the order
-  and the total. JSON-LD: `Product` with an `Offer`.
+- **Merch lives in KRDM band** (https://band.krdm.si, repo `krdmplc/krdm-band`), the
+  app that holds the items, photos, prices and stock and takes the orders; there are
+  no merch files here and no merch collection in the CMS (items are edited in the
+  app, Products). `content/merch/_content.gotmpl`, a Hugo content adapter, fetches
+  the app's public catalog (`/api/public/catalog?lang=…`) on every build, once per
+  language, and adds one page per item at its product id; a failed fetch fails the
+  build. The API's address is `params.bandApi` in `hugo.toml`; previews
+  (`bin/build.sh`) and `npm run dev` (`config/development/`) use the app's preview,
+  on preview data, so orders sent from them are test orders
+  (`HUGO_PARAMS_BANDAPI=http://localhost:5173 npm run dev` for the app running
+  locally). The photos are downloaded at build time (`partials/func/image.html`
+  copies them to `/media/merch/`) and resized like any image. The app calls the
+  site's build hook when the catalog changes (within 10 minutes), and the daily
+  rebuild catches the rest. Page params (see the adapter): `productId`, `price` (a
+  number in euros, absent when not for sale, formatted by `partials/func/price.html`),
+  `category` (`apparel`, `music`, `other`), `sizes` (`[{size, available}]`),
+  `available` (`false` = sold out: every size out of stock, or no price), `artists`
+  (the band, or the bands an item names, like the KRDM shirt; the app's owner ids
+  must equal artist refs), `release` (a release's file name; the release page then
+  lists the item), `link` (Bandcamp), `thumbnail` + `images`, and `weight` (the order
+  set by hand in the app, "Order on the website": lowest first, in steps of 10;
+  unranked items follow, newest first; sold out always last,
+  `partials/func/merch-sorted.html`). Stock counts never reach the website, only
+  available or not per size; use `partials/func/merch-sold-out.html` and
+  `merch-sizes.html`. What the build says is in stock is checked again when item
+  pages, merch cards and the cart load (`assets/scripts/merch-availability.js`,
+  `/api/public/availability`, the `data-merch-*` hooks); if the app can't be
+  reached the built state stays.
+  The list filters by `category` and by band (`partials/func/merch-bands.html`: an
+  item's one or two bands, or "KRDM" when it lists more or none) and can be
+  re-sorted A–Z, by price or by date added in the browser
+  (`assets/scripts/list-sort.js`). JSON-LD: `Product` with an `Offer`.
+- **The cart** (`content/cart.*.md`, `{{</* cart */>}}`, `assets/scripts/cart.js`)
+  lives in localStorage as product id + size + quantity; titles, prices and photos
+  come from JSON built into the cart page, never from the browser. The order is
+  posted as JSON to the app (`/api/public/orders`), which prices it again, checks
+  stock, reserves the pieces, assigns the order number (KRDM-YYMM-XXXX) and emails
+  the order to us; `{{</* order-done */>}}` on the thank-you page repeats the number
+  and the order and empties the cart. A line the app refuses as sold out is marked
+  and left out, as is one that sold out before. Delivery: pick-up, or by post with
+  street, postcode, city and country (any country but Slovenia makes it an order
+  abroad, postage quoted by hand). The minimum order and the free-postage threshold
+  are `[params.merch]` in `hugo.toml` (the cart shows them and won't send below the
+  minimum), the app's `web_orders` setting (it enforces them), and the merch page
+  intro (in words): change all three. Item pages also link to the contact form with
+  `?item=<name>` (pre-filled by `assets/scripts/contact-prefill.js`).
 - There is **no public email address** (info@krdm.si is dead): contact goes through
-  the Netlify Forms form on `content/contact.*.md` (`{{</* contact-form */>}}`), whose
-  notifications are configured in the Netlify UI (so are the `order` form's). Both forms
-  are sent with fetch by `assets/scripts/netlify-form.js`: each form name is shared by
-  both languages and Netlify keeps one success page per form, so a plain POST could
-  land on the other language's thank-you page. Event prices appear only on event pages,
-  never in listings; merch prices do show on cards.
+  the form on `content/contact.*.md` (`{{</* contact-form */>}}`), which posts to the
+  app (`/api/public/contact`); the app stores the message (app: Messages) and emails
+  it to the people subscribed to it. With JS, `assets/scripts/band-form.js` sends it
+  as JSON and opens this language's thank-you page; without JS (the site's only
+  action that works without it) the browser posts the form and the app redirects to
+  its `thanks` field, which must be a krdm.si, preview or localhost page. Both forms
+  have a honeypot (`bot-field`) and the app rate-limits them per IP. Event prices
+  appear only on event pages, never in listings; merch prices do show on cards.
 - **Stats** (`content/stats.*.md`, `layout: stats` → `layouts/stats.html`, `/statistika/` ·
   `/en/stats/`) counts past events and releases. `partials/func/stats-data.html` builds
   the data (JSON in the page for `assets/scripts/stats.js`, which draws the charts and
@@ -208,36 +222,38 @@ Keep these working when you touch templates:
 
 ## Deployment
 
-`bin/build.sh` branches on Netlify's `CONTEXT`: production builds with `--minify -b
-$URL`, previews with `-b $DEPLOY_PRIME_URL`. Both `sed` the branch into
-`static/admin/config.yml`'s `__BRANCH__` placeholder — **never commit a real branch
-name there**. Only `HUGO_*` and `CONTEXT` env vars are readable from templates.
-`.github/workflows/daily-rebuild.yml` triggers a production build every morning
-through a Netlify build hook (repo secret `NETLIFY_BUILD_HOOK`), because events move
-from upcoming to past only when the site is rebuilt.
-`HUGO_VERSION` in `netlify.toml` is the only pinned version; bump it only after a
-local build at that exact version. Node is not pinned (Netlify's image supplies it).
-Response headers live in `static/_headers` (read by Netlify and Cloudflare alike),
-including browser caching: a year for the fingerprinted CSS/JS and the fonts, a day
-for `/media/`, the host default (revalidate) for pages.
+`bin/build.sh` branches on `CONTEXT` (Netlify's variable, which the deploy workflow
+sets too): production builds with `--minify -b $URL`, previews with `-b
+$DEPLOY_PRIME_URL`. Both `sed` the branch into `static/admin/config.yml`'s
+`__BRANCH__` placeholder — **never commit a real branch name there**. Only `HUGO_*`
+and `CONTEXT` env vars are readable from templates.
 
-**Moving to Cloudflare Workers (in progress, 2026-11).** The site is also deployed,
-as a static-assets-only Worker `krdm-www` in the shared "KRDM" Cloudflare account
-(`wrangler.jsonc`), by `.github/workflows/deploy.yml`: main to
-https://krdm-www.krdm.workers.dev, other branches to
-`https://<branch>-krdm-www.krdm.workers.dev`. Until krdm.si's DNS moves to
-Cloudflare, Netlify stays production and every Workers build is a preview (noindex).
-`bin/workers-redirects.sh` adapts the Netlify `_redirects` after the build (`301!` →
-`301`, drops the `404` rules; `404-page` handling serves `/en/404.html` instead) —
-keep new redirects in plain `from to 301` form. Before the cutover: the contact and
-order forms need a replacement for Netlify Forms (they don't work on Workers), the
-Turbo admin URLs need the workers.dev addresses, then main switches to
-`CONTEXT=production`, `daily-rebuild.yml` dispatches the deploy workflow, and Netlify
-is retired. Until then every push to main deploys on both platforms, so keep changes
-working on both. The repo lives in the `krdmplc` GitHub org (since 2026-11-23), whose
-Netlify and Decap Turbo GitHub Apps are installed there. The workflow needs the repo
-secret `CLOUDFLARE_API_TOKEN` (an account-owned token, Workers Scripts: Edit on the
-KRDM account).
+**Production is the static-assets-only Worker `krdm-www`** in the shared "KRDM"
+Cloudflare account (`wrangler.jsonc`), deployed by `.github/workflows/deploy.yml`:
+main builds with `CONTEXT=production URL=https://www.krdm.si/` and is served at
+www.krdm.si (Workers Custom Domain; krdm.si is another custom domain, redirected to
+www by a zone redirect rule) and at https://krdm-www.krdm.workers.dev. Other branches
+are previews (noindex) at `https://<branch>-krdm-www.krdm.workers.dev`. The custom
+domains are attached through the Cloudflare API, not in `wrangler.jsonc`: the
+workflow's repo secret `CLOUDFLARE_API_TOKEN` (an account-owned token, Workers
+Scripts: Edit on the KRDM account) has no zone permissions.
+`.github/workflows/daily-rebuild.yml` dispatches the deploy workflow on main every
+morning, because events move from upcoming to past only when the site is rebuilt.
+`HUGO_VERSION` in `deploy.yml` (kept equal in `netlify.toml`) is the only pinned
+version; bump it only after a local build at that exact version. Response headers
+live in `static/_headers` (read by Netlify and Cloudflare alike), including browser
+caching: a year for the fingerprinted CSS/JS and the fonts, a day for `/media/`, the
+host default (revalidate) for pages.
+
+**Leaving Netlify (2026-11).** Until www.krdm.si's DNS points at the Worker, Netlify
+still serves it; afterwards the Netlify site stays untouched for a week as the
+rollback (re-point the DNS). Until it is removed every push to main deploys on both
+platforms, so keep changes working on both. `bin/workers-redirects.sh` adapts the
+Netlify `_redirects` after the build (`301!` → `301`, drops the `404` rules;
+`404-page` handling serves `/en/404.html` instead) — keep new redirects in plain
+`from to 301` form. A follow-up removes `netlify.toml` and that script (rewriting
+`_redirects` in Cloudflare's syntax). The repo lives in the `krdmplc` GitHub org
+(since 2026-11-23), whose Netlify and Decap Turbo GitHub Apps are installed there.
 
 Decap CMS loads unpinned from a CDN in `static/admin/index.html` (`^3.0.0`, i.e. the
 latest 3.x; the Turbo backend needs 3.17.0 or newer); an `/admin/` breakage with no
@@ -257,12 +273,13 @@ SSO) — see `docs/cms-plc-sso-plan.md`.
 The site sets **no cookies**, so there is no consent banner. Visits are counted by
 **Cloudflare Web Analytics** (cookieless, nothing stored in the browser):
 `partials/head/analytics.html` adds the beacon on production builds only, when
-`cloudflareAnalyticsToken` in `hugo.toml` is set — on Netlify now, on Workers after the
-cutover. Keep Cloudflare's automatic injection off for the zone, or visits count twice.
-The cookies page describes it. YouTube embeds use
+`cloudflareAnalyticsToken` in `hugo.toml` is set. Keep Cloudflare's automatic injection
+off for the zone, or visits count twice. The cookies page describes it. YouTube embeds use
 privacy-enhanced mode (`[privacy.youtube]` in `hugo.toml`). If you add analytics or
 third-party embeds, update `content/cookies.*.md` and reconsider a consent banner.
-The contact and order forms store submissions with Netlify Forms, and the cart sits in
+The contact and order forms store submissions in KRDM band (band.krdm.si, on
+Cloudflare: D1 in Western Europe, notification emails through Cloudflare Email
+Service), merch pages and the cart ask it what's in stock, and the cart sits in
 localStorage; the privacy page says so.
 
 ## Housekeeping

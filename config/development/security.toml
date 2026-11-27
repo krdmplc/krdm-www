@@ -1,0 +1,5 @@
+# Development only: let the build fetch the merch from KRDM band running on this
+# machine (HUGO_PARAMS_BANDAPI=http://localhost:5173). Production builds keep
+# Hugo's default, which refuses localhost and IP addresses.
+[http]
+urls = ['(?i)^https?://[a-z0-9]', '! (?i)^https?://[^/?#]*@']

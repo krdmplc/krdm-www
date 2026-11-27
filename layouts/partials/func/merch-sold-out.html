@@ -1,16 +1,5 @@
-{{- /* Whether a merch item is sold out: `available: false`; or it has sizes and
-  every one of them is sold out (has a stock count of 0); or it has no sizes
-  and a `quantity` of 0. Untracked sizes, or no `quantity`, keep the item
-  available. Counts are read from the Slovenian file (func/merch-source), like
-  sizes. Takes a page, returns a bool. */ -}}
-{{- $out := eq .Params.available false -}}
-{{- if not $out -}}
-  {{- with partial "func/merch-sizes" . -}}
-    {{- $out = true -}}
-    {{- range . }}{{ if not .soldOut }}{{ $out = false }}{{ end }}{{ end -}}
-  {{- else -}}
-    {{- $quantity := (partial "func/merch-source" .).Params.quantity -}}
-    {{- $out = and (ne (string $quantity) "") (le (int $quantity) 0) -}}
-  {{- end -}}
-{{- end -}}
-{{- return $out -}}
+{{- /* Whether a merch item is sold out, as of the build: the app's catalog says
+  `available: false` when every size is out of stock or the item has no price
+  (content/merch/_content.gotmpl). Pages update it when they load
+  (assets/scripts/merch-availability.js). Takes a page, returns a bool. */ -}}
+{{- return (not .Params.available) -}}

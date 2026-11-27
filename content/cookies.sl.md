@@ -3,7 +3,7 @@ pageType: page
 title: "Piškotki in zasebnost"
 description: "Spletna stran krdm.si ne uporablja piškotkov za analitiko ali oglaševanje in ne zbira osebnih podatkov obiskovalcev."
 date: 2019-10-28T20:43:17+01:00
-lastmod: 2026-11-23
+lastmod: 2026-11-27
 slug: "piskotki"
 ---
 
@@ -19,11 +19,13 @@ Nekatere strani vsebujejo vgrajene videe s storitve YouTube. Video se naloži š
 
 ## Kontaktni obrazec
 
-Če nam pišete prek [kontaktnega obrazca](/kontakt/), vaše ime, e-poštni naslov in sporočilo shrani storitev Netlify Forms in nam jih posreduje po e-pošti. Uporabimo jih samo za odgovor na vaše sporočilo in jih ne delimo z nikomer. Če želite, da vaše sporočilo izbrišemo, nam to sporočite.
+Če nam pišete prek [kontaktnega obrazca](/kontakt/), se vaše ime, e-poštni naslov in sporočilo shranijo v KRDM band (band.krdm.si), našo aplikacijo za merch in sporočila, ki teče pri ponudniku Cloudflare (podatkovna baza je v zahodni Evropi). Aplikacija nam sporočilo pošlje tudi po e-pošti, prek storitve Cloudflare Email Service. Da preprečimo zlorabe, shranimo tudi nepovratno zgoščeno obliko vašega IP-naslova, iz katere naslova ni mogoče razbrati. Podatke uporabimo samo za odgovor na vaše sporočilo in jih ne delimo z nikomer. Če želite, da vaše sporočilo izbrišemo, nam to sporočite.
 
 ## Košarica in naročila
 
-Košarica za merch se do oddaje naročila hrani v lokalni shrambi vašega brskalnika (localStorage); to ni piškotek in se sama po sebi ne pošilja na strežnik. Ko naročilo pošljete, vaše ime, e-poštni naslov, telefonsko številko (če jo navedete), naslov za pošiljanje (če izberete pošiljanje po pošti), opombo in naročene izdelke shrani storitev Netlify Forms in nam jih posreduje po e-pošti. Uporabimo jih samo za izvedbo naročila in jih ne delimo z nikomer. Če želite, da podatke o naročilu izbrišemo, nam to sporočite.
+Košarica za merch se do oddaje naročila hrani v lokalni shrambi vašega brskalnika (localStorage); to ni piškotek in se sama po sebi ne pošilja na strežnik. Na straneh merča in v košarici brskalnik pri aplikaciji KRDM band (band.krdm.si) preveri, kaj je še na zalogi; Cloudflare pri tem kot pri vsakem obisku prejme vaš IP-naslov, piškotkov pa to ne uporablja.
+
+Ko naročilo pošljete, se vaše ime, e-poštni naslov, telefonska številka (če jo navedete), naslov za pošiljanje (če izberete pošiljanje po pošti), opomba in naročeni izdelki shranijo v aplikacijo KRDM band pri ponudniku Cloudflare (podatkovna baza je v zahodni Evropi), ki nam naročilo pošlje tudi po e-pošti, prek storitve Cloudflare Email Service. Da preprečimo zlorabe, shranimo tudi nepovratno zgoščeno obliko vašega IP-naslova, iz katere naslova ni mogoče razbrati. Podatke uporabimo samo za izvedbo naročila in jih ne delimo z nikomer. Če želite, da podatke o naročilu izbrišemo, nam to sporočite.
 
 ## Barvna tema
 

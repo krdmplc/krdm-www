@@ -1,17 +1,9 @@
-{{- /* The sizes of a merch item, in the order listed. `sizes` in front matter is
-  a list of `{size, stock}`; `stock` is the internal count for that size and is
-  never rendered. A size without a count is untracked (treated as in stock);
-  a count of 0 marks the size sold out. Plain strings (`- M`) are accepted too.
-  The list is read from the Slovenian file (func/merch-source) on every language.
+{{- /* The sizes of a merch item, in order, from the app's catalog (`sizes`:
+  [{size, available}], see content/merch/_content.gotmpl); one-size items have
+  none. Stock counts never reach the website, only whether a size is available.
   Takes a page, returns a slice of dicts: `name`, `soldOut` (bool). */ -}}
 {{- $out := slice -}}
-{{- range (partial "func/merch-source" .).Params.sizes -}}
-  {{- if reflect.IsMap . -}}
-    {{- $stock := index . "stock" -}}
-    {{- $tracked := ne (string $stock) "" -}}
-    {{- $out = $out | append (dict "name" (index . "size") "soldOut" (and $tracked (le (int $stock) 0))) -}}
-  {{- else -}}
-    {{- $out = $out | append (dict "name" . "soldOut" false) -}}
-  {{- end -}}
+{{- range .Params.sizes -}}
+  {{- $out = $out | append (dict "name" .size "soldOut" (not .available)) -}}
 {{- end -}}
 {{- return $out -}}

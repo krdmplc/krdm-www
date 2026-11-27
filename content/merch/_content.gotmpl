@@ -1,0 +1,74 @@
+{{- /*
+  Merch items come from KRDM band (band.krdm.si), where stock, prices and
+  photos are kept; there are no merch files here. This content adapter fetches
+  the app's public catalog, once per language, on every build, and adds one page
+  per item at /merch/<id>/ (sl) and /en/merch/<id>/ (en), with the params the
+  merch templates read:
+
+    productId  the app's product id (the cart and the order use it)
+    price      euros, a number; absent when not for sale (listed as sold out)
+    category   apparel | music | other
+    sizes      [{size, available}], in order; [] for one-size items
+    available  false = sold out (every size, or no price)
+    artists    artist refs: its band, or the bands it names (the KRDM shirt)
+    release    a release's file name, link (Bandcamp), thumbnail + images (photo URLs)
+    weight     the hand-made order (lowest first; 0 = unranked, newest first)
+
+  Availability here is the build's; item pages, the list and the cart ask the
+  app again when they load (assets/scripts/merch-availability.js). The app calls
+  the site's build hook when the catalog changes (krdm-band lib/site.ts), and the
+  daily rebuild catches the rest.
+
+  The API is params.bandApi (hugo.toml); previews build against the preview
+  app (bin/build.sh). If the catalog can't be fetched the build fails, so a
+  broken API never publishes an empty merch section.
+*/ -}}
+{{- .EnableAllLanguages -}}
+{{- $lang := .Site.Language.Lang -}}
+{{- $url := printf "%s/api/public/catalog?lang=%s" .Site.Params.bandApi $lang -}}
+{{- /* A new cache key per build: the catalog is always fresh, the photos are cached. */ -}}
+{{- $opts := dict "key" (printf "merch-catalog-%s-%d" $lang now.UnixNano) -}}
+{{- $items := slice -}}
+{{- with try (resources.GetRemote $url $opts) -}}
+  {{- with .Err -}}
+    {{- errorf "merch: can't fetch %s: %s" $url . -}}
+  {{- else with .Value -}}
+    {{- $items = . | transform.Unmarshal -}}
+  {{- else -}}
+    {{- errorf "merch: %s returned nothing" $url -}}
+  {{- end -}}
+{{- end -}}
+{{- /* An app from before the website switch-over lacks these: stop rather than
+  publish merch without its bands, order and dates. */ -}}
+{{- range first 1 $items -}}
+  {{- if not (and (isset . "artists") (isset . "sort") (isset . "createdAt")) -}}
+    {{- errorf "merch: the catalog at %s has no artists/sort/createdAt; deploy KRDM band's website switch-over first" $url -}}
+  {{- end -}}
+{{- end -}}
+
+{{- range $items -}}
+  {{- $images := slice -}}
+  {{- range .images }}{{ $images = $images | append .url }}{{ end -}}
+  {{- $params := dict
+    "productId" .id
+    "category" .category
+    "sizes" (cond (and (eq (len .sizes) 1) (eq (index .sizes 0).size "")) slice .sizes)
+    "available" .available
+    "artists" .artists
+    "release" .release
+    "link" .link
+  -}}
+  {{- with .priceCents }}{{ $params = merge $params (dict "price" (div . 100.0)) }}{{ end -}}
+  {{- with $images -}}
+    {{- $params = merge $params (dict "thumbnail" (index . 0) "images" (after 1 .)) -}}
+  {{- end -}}
+  {{- $.AddPage (dict
+    "kind" "page"
+    "path" .id
+    "title" .title
+    "weight" .sort
+    "dates" (dict "date" (time.AsTime .createdAt) "lastmod" (time.AsTime .updatedAt))
+    "content" (dict "mediaType" "text/markdown" "value" .description)
+    "params" $params
+  ) -}}
+{{- end -}}

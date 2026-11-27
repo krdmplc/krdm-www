@@ -1,13 +1,13 @@
 name: Deploy to Cloudflare
 
 # Builds the site with Hugo and deploys it to the Worker `krdm-www` in the KRDM
-# Cloudflare account (wrangler.jsonc): main to https://krdm-www.krdm.workers.dev,
-# every other branch to https://<branch>-krdm-www.krdm.workers.dev.
+# Cloudflare account (wrangler.jsonc). main is the production site: it builds with
+# CONTEXT=production for https://www.krdm.si/ (indexable, analytics beacon on) and
+# is served there by the Worker's custom domains; it also answers at
+# https://krdm-www.krdm.workers.dev. Every other branch is a preview (noindex,
+# robots.txt disallows all) at https://<branch>-krdm-www.krdm.workers.dev.
 #
-# Netlify still serves www.krdm.si until krdm.si's DNS moves to Cloudflare, so for
-# now every build here is a preview (noindex, robots.txt disallows all). At the
-# cutover, main builds with CONTEXT=production and URL=https://www.krdm.si/, and
-# daily-rebuild.yml dispatches this workflow instead of pinging Netlify.
+# daily-rebuild.yml dispatches this workflow on main every morning.
 
 on:
   push:
@@ -70,8 +70,9 @@ jobs:
 
       - name: Build
         env:
-          CONTEXT: deploy-preview # main becomes "production" at the cutover
-          DEPLOY_PRIME_URL: ${{ steps.target.outputs.url }}
+          CONTEXT: ${{ github.ref_name == 'main' && 'production' || 'deploy-preview' }}
+          URL: https://www.krdm.si/ # production base URL
+          DEPLOY_PRIME_URL: ${{ steps.target.outputs.url }} # preview base URL
           HEAD: ${{ github.ref_name }}
           HUGO_ENV: production
           HUGO_ENABLEGITINFO: 'true'

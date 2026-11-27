@@ -1,11 +1,12 @@
-/* global sendNetlifyForm */
+/* global sendToBand, merchAvailability */
 
-// Merch cart. There is no checkout: the cart lives in this browser
-// (localStorage) as [{ id, size, qty }] and is sent to us as a Netlify Forms
-// order from the cart page (layouts/shortcodes/cart.html), which also holds the
-// titles, prices and stock state as JSON. Item pages add to it
-// ([data-cart-add]), the header shows the count ([data-cart-link]), and the
-// order thank-you page ([data-cart-done]) shows what was sent and empties it.
+// Merch cart. There is no payment: the cart lives in this browser
+// (localStorage) as [{ id, size, qty }] (id: the app's product id) and is sent
+// as an order to KRDM band (sendToBand, band-form.js) from the cart page
+// (layouts/shortcodes/cart.html), which also holds the titles, prices and stock
+// state as JSON. Item pages add to it ([data-cart-add]), the header shows the
+// count ([data-cart-link]), and the order thank-you page ([data-cart-done])
+// shows what was sent and empties it.
 // Names are prefixed: the scripts share one bundle (theme-toggle.js has its own
 // STORAGE_KEY).
 
@@ -44,14 +45,10 @@ function writeCart (cart) {
   updateCartLink(cart)
 }
 
-// KRDM-YYMM-XXXX: short enough to quote in an email, random enough not to clash.
-// 32 symbols (no 0/O, 1/I) divide 256 evenly, so every symbol is equally likely.
-function orderNumber () {
-  const symbols = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'
-  const now = new Date()
-  const month = `${String(now.getFullYear()).slice(2)}${String(now.getMonth() + 1).padStart(2, '0')}`
-  const random = Array.from(window.crypto.getRandomValues(new Uint8Array(4)), n => symbols[n % symbols.length]).join('')
-  return `KRDM-${month}-${random}`
+// Within Slovenia an order goes by post; elsewhere it's an order abroad, whose
+// postage we work out by hand.
+function cartIsSlovenia (country) {
+  return /^\s*(slovenija|slovenia|si|slo)\s*$/i.test(country || '')
 }
 
 function formatPrice (amount, locale) {
@@ -77,7 +74,8 @@ function cartAdd () {
   document.querySelectorAll('form[data-cart-add]').forEach((form) => {
     const status = form.querySelector('[data-cart-status]')
 
-    form.hidden = false
+    // Sold out (as built, or as merch-availability.js found): stays hidden.
+    form.hidden = 'soldOut' in form.dataset
     form.addEventListener('submit', (event) => {
       event.preventDefault()
 
@@ -120,7 +118,6 @@ function cartPage () {
   const form = root.querySelector('[data-cart-form]')
   const submit = form.querySelector('button[type="submit"]')
   const totalOut = root.querySelector('[data-cart-total]')
-  const field = name => form.querySelector(`[data-cart-field="${name}"]`)
   const minOrder = Number(labels.minOrder) || 0
   const freeShipping = Number(labels.freeShipping) || 0
   const nudgeOut = root.querySelector('[data-cart-nudge]')
@@ -261,18 +258,50 @@ function cartPage () {
     const post = form.querySelector('[data-cart-delivery="post"]').checked
     const address = root.querySelector('[data-cart-address]')
     address.hidden = !post
-    address.querySelector('textarea').required = post
+    address.querySelectorAll('[data-cart-required]').forEach((input) => {
+      input.required = post
+    })
+  }
+
+  // The app's live stock state: lines that sold out since the build can't be
+  // ordered (items[id].soldOut, sizes[].soldOut), as if the page said so.
+  function applyAvailability (availability) {
+    Object.entries(items).forEach(([id, item]) => {
+      const state = availability[id] || { available: false, sizes: {} }
+      item.soldOut = !state.available
+      ;(item.sizes || []).forEach((size) => {
+        size.soldOut = state.sizes[size.name] === false
+      })
+    })
+  }
+
+  // The app refused lines that sold out in the meantime: mark them.
+  function markSoldOut (lines) {
+    lines.forEach(({ productId, size }) => {
+      const item = items[productId]
+      if (!item) {
+        return
+      }
+      const entry = (item.sizes || []).find(s => s.name === size)
+      if (entry) {
+        entry.soldOut = true
+      }
+      else {
+        item.soldOut = true
+      }
+    })
   }
 
   form.querySelectorAll('[data-cart-delivery]').forEach((radio) => {
     radio.addEventListener('change', updateDelivery)
   })
 
-  // Write the order into the hidden fields Netlify emails to us and send it
-  // with fetch (sendNetlifyForm, netlify-form.js), then open this language's
-  // thank-you page ourselves. A failed send keeps the visitor here, cart
-  // intact, with an error message.
+  // Send the order to the app (sendToBand, band-form.js), which prices it
+  // again, checks stock and answers with the order number; then open this
+  // language's thank-you page. A failed send keeps the visitor here, cart
+  // intact, with an error message; lines that sold out meanwhile get marked.
   const error = form.querySelector('[data-form-error]')
+  const stockError = form.querySelector('[data-cart-stock-error]')
   let sending = false
 
   form.addEventListener('submit', async (event) => {
@@ -297,24 +326,44 @@ function cartPage () {
       return parts.join(' — ')
     }).join('\n')
     const sum = formatPrice(total(), locale)
-    const number = orderNumber()
-
-    const post = form.querySelector('[data-cart-delivery="post"]').checked
-
-    field('number').value = number
-    field('items').value = text
-    // The email is for us, so the note is in Slovenian in both languages.
-    field('total').value = post && freePostage() ? `${sum} (brezplačna poštnina)` : sum
+    const data = new FormData(form)
+    const value = name => (data.get(name) || '').trim() || null
+    const post = data.get('delivery') === 'post'
+    const country = value('country')
 
     sending = true
     submit.disabled = true
     error.hidden = true
+    stockError.hidden = true
 
+    let result
     try {
-      await sendNetlifyForm(form)
+      result = await sendToBand(`${labels.bandApi}/api/public/orders`, {
+        items: order.map(line => ({ productId: line.id, size: line.size, qty: line.qty })),
+        shipping: post ? (cartIsSlovenia(country) ? 'post' : 'abroad') : 'pickup',
+        lang: locale === 'en' ? 'en' : 'sl',
+        customer: {
+          name: value('name'),
+          email: value('email'),
+          phone: value('phone'),
+          street: post ? value('street') : null,
+          postcode: post ? value('postcode') : null,
+          city: post ? value('city') : null,
+          country: post ? country : null,
+          note: value('note'),
+        },
+        website: data.get('bot-field') || '',
+      })
     }
-    catch {
+    catch (err) {
       sending = false
+      if (err.status === 409 && err.body && Array.isArray(err.body.detail)) {
+        markSoldOut(err.body.detail)
+        render()
+        stockError.hidden = false
+        stockError.focus()
+        return
+      }
       submit.disabled = false
       error.hidden = false
       error.focus()
@@ -322,17 +371,23 @@ function cartPage () {
     }
 
     try {
-      window.sessionStorage.setItem(CART_LAST_ORDER_KEY, JSON.stringify({ number, items: text, total: sum }))
+      window.sessionStorage.setItem(CART_LAST_ORDER_KEY, JSON.stringify({ number: result.number, items: text, total: sum }))
     }
     catch {
       // Not essential: the thank-you page just won't repeat the order.
     }
-    window.location.assign(form.getAttribute('action'))
+    window.location.assign(labels.thanks)
   })
 
   root.hidden = false
   render()
   updateDelivery()
+  merchAvailability().then((availability) => {
+    if (availability && !sending) {
+      applyAvailability(availability)
+      render()
+    }
+  })
 
   // Another tab changed the cart, or the page came back from the back/forward cache.
   window.addEventListener('storage', (event) => {
