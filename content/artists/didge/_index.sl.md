@@ -1,7 +1,7 @@
 ---
 title: Didge
 date: 2019-10-23T12:36:22.775Z
-thumbnail: /media/uploads/didge.jpg
+thumbnail: https://media.krdm.si/www/didge.jpg
 ref: didge
 weight: 40
 status: hiatus

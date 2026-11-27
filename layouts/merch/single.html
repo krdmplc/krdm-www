@@ -18,7 +18,7 @@
         {{- with (partial "func/merch-source" .).Params.images }}
           <ul class="gallery" role="list">
             {{- range . }}
-              <li><a href="{{ . }}">{{ partial "image" (dict "src" . "alt" $.Title "widths" (slice 240 480) "sizes" "(min-width: 992px) 13vw, 33vw") }}</a></li>
+              <li><a href="{{ with partial "func/image" . }}{{ .RelPermalink }}{{ end }}">{{ partial "image" (dict "src" . "alt" $.Title "widths" (slice 240 480) "sizes" "(min-width: 992px) 13vw, 33vw") }}</a></li>
             {{- end }}
           </ul>
         {{- end }}

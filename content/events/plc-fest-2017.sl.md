@@ -4,7 +4,7 @@ date: 2017-02-25T00:00:00+01:00
 startDate: 2017-02-25T19:00:00+01:00
 venue: "Trainstation Subart, Kranj"
 price: "5 €"
-thumbnail: /media/uploads/plc-fest-2017-fb.jpg
+thumbnail: https://media.krdm.si/www/plc-fest-2017-fb.jpg
 series: plc-fest
 artists:
   - armaroth

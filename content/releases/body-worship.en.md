@@ -2,7 +2,7 @@
 title: "Body Worship"
 date: 2024-10-24T00:00:00+02:00
 releaseDate: 2024-10-24T00:00:00+02:00
-thumbnail: /media/uploads/body-worship.jpg
+thumbnail: https://media.krdm.si/www/body-worship.jpg
 format: album
 artists:
   - douchean

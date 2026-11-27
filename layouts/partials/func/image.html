@@ -1,13 +1,33 @@
 {{- /*
-  Resolves a site path such as "/media/uploads/x.jpg" (as stored by Decap CMS)
-  to a Hugo image resource. Works because hugo.toml mounts static/media/* into
-  assets/ as well. Returns nil for remote URLs or files that don't exist.
+  Resolves an image reference to a Hugo image resource:
+
+  - "https://media.krdm.si/…" (site.Params.mediaURL; what Decap CMS stores): fetched
+    from KRDM's media bucket at build time (cached in resources/, see hugo.toml).
+  - "/media/brand/…": a file in the repo, mounted into assets/.
+
+  A media or local /media/ file that doesn't exist fails the build, so a deleted or
+  mistyped image never ships as a broken <img>. Other remote URLs return nil and
+  are linked as they are.
 */ -}}
 
 {{- $res := "" -}}
 {{- with . -}}
-  {{- if not (strings.HasPrefix . "http") -}}
+  {{- if strings.HasPrefix . site.Params.mediaURL -}}
+    {{- with try (resources.GetRemote .) -}}
+      {{- with .Err -}}
+        {{- errorf "Could not fetch image %q: %s" $ . -}}
+      {{- else with .Value -}}
+        {{- /* Publish it (and its resized copies) under /media/<key>, not at the root. */ -}}
+        {{- $res = resources.Copy (printf "media/%s" (strings.TrimPrefix site.Params.mediaURL $)) . -}}
+      {{- else -}}
+        {{- errorf "Image %q is not in the media bucket (404)" $ -}}
+      {{- end -}}
+    {{- end -}}
+  {{- else if not (strings.HasPrefix . "http") -}}
     {{- $res = resources.Get (strings.TrimPrefix "/" .) -}}
+    {{- if and (not $res) (strings.HasPrefix . "/media/") -}}
+      {{- errorf "Image %q does not exist (uploaded media now lives at %s)" . site.Params.mediaURL -}}
+    {{- end -}}
   {{- end -}}
 {{- end -}}
 {{- return $res -}}

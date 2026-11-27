@@ -2,7 +2,7 @@
 title: "Orbital Strike"
 date: 2026-07-16T00:00:00+02:00
 releaseDate: 2026-07-16T00:00:00+02:00
-thumbnail: /media/uploads/orbital-strike.jpg
+thumbnail: https://media.krdm.si/www/orbital-strike.jpg
 format: single
 artists:
   - pesa

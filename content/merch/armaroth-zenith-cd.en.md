@@ -2,7 +2,7 @@
 title: "Zenith (CD digipak)"
 date: 2016-12-01T00:00:00+01:00
 weight: 100
-thumbnail: /media/uploads/merch-armaroth-zenith-cd.jpg
+thumbnail: https://media.krdm.si/www/merch-armaroth-zenith-cd.jpg
 category: music
 price: 10
 available: true

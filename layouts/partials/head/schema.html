@@ -32,7 +32,7 @@
   "alternateName" "KRDM"
   "url" site.BaseURL
   "logo" (site.Params.logo | absURL)
-  "image" (site.Params.image | absURL)
+  "image" (partial "func/image" site.Params.image).Permalink
   "foundingDate" site.Params.foundingDate
   "address" $address
   "areaServed" "Gorenjska, Slovenia"

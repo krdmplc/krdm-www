@@ -2,7 +2,7 @@
 title: "Majica Dogs of Hell"
 date: 2026-06-08T00:00:00+02:00
 weight: 110
-thumbnail: /media/uploads/merch-gmb-dogs-of-hell-shirt.jpg
+thumbnail: https://media.krdm.si/www/merch-gmb-dogs-of-hell-shirt.jpg
 category: apparel
 price: 20
 sizes:

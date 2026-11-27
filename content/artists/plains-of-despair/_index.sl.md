@@ -1,7 +1,7 @@
 ---
 title: "Plains of Despair"
 date: 2026-11-18T00:00:00+01:00
-thumbnail: /media/uploads/artist-plains-of-despair.jpg
+thumbnail: https://media.krdm.si/www/artist-plains-of-despair.jpg
 ref: plains-of-despair
 status: inactive
 showInAdmin: true

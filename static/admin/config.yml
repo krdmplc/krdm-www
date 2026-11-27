@@ -12,6 +12,17 @@ backend:
 
 display_url: https://www.krdm.si/
 logo_url: /media/brand/logo.png
+# Uploads go to KRDM's shared media bucket (R2 `krdm-media`) through Decap Turbo's
+# S3 media library; the credentials are the Turbo site's s3_* variables. Entries get
+# full URLs (https://media.krdm.si/www/…), which Hugo fetches and resizes at build.
+# The website's files are under www/; products/ and imported/ belong to krdm-band
+# (band.krdm.si): pick merch photos from there, but never delete or upload there.
+media_library:
+  name: s3
+  config:
+    public_url_prefix: https://media.krdm.si
+    root_path: /www/
+# Still required by Decap, unused while media_library is set.
 media_folder: static/media/uploads
 public_folder: /media/uploads
 # publish_mode: editorial_workflow

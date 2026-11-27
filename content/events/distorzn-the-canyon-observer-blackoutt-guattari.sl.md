@@ -2,7 +2,7 @@
 title: 'Distoržn :: The Canyon Observer, Blackoutt, Guattari'
 startDate: 2019-12-21T21:00:00+01:00
 endDate: 2019-12-22T02:00:00+01:00
-thumbnail: /media/uploads/distorzn-19-12-21-cover.jpg
+thumbnail: https://media.krdm.si/www/distorzn-19-12-21-cover.jpg
 venue: 'Trainstation Subart, Kranj'
 price: 8 €
 series: distorzn

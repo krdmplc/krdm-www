@@ -2,7 +2,7 @@
 title: Those In Seek Of Essence
 date: 2021-01-21T11:28:17.358Z
 releaseDate: 2021-01-21T11:28:17.376Z
-thumbnail: /media/uploads/in_seek_of_essence.jpg
+thumbnail: https://media.krdm.si/www/in_seek_of_essence.jpg
 format: single
 showInAdmin: true
 artists:

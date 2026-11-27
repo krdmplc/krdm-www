@@ -2,7 +2,7 @@
 title: "Ofni mi peso hoodie"
 date: 2026-11-25T00:00:00+01:00
 weight: 25
-thumbnail: /media/uploads/merch-pesa-ofni-mi-peso-hoodie.jpg
+thumbnail: https://media.krdm.si/www/merch-pesa-ofni-mi-peso-hoodie.jpg
 category: apparel
 price: 40
 available: true

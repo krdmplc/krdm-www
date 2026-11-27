@@ -1,7 +1,7 @@
 ---
 title: Nature
 date: 2019-10-28T12:02:27.675Z
-thumbnail: /media/uploads/nature-2026.jpg
+thumbnail: https://media.krdm.si/www/nature-2026.jpg
 ref: nature
 ---
 

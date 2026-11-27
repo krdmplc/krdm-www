@@ -2,7 +2,7 @@
 title: "Cepheus"
 date: 2024-10-21T00:00:00+02:00
 releaseDate: 2024-10-21T00:00:00+02:00
-thumbnail: /media/uploads/cepheus.jpg
+thumbnail: https://media.krdm.si/www/cepheus.jpg
 format: album
 artists:
   - pesa

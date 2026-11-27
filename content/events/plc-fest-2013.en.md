@@ -4,7 +4,7 @@ date: 2013-10-19T00:00:00+02:00
 startDate: 2013-10-19T21:00:00+02:00
 venue: "Trainstation Squat, Kranj"
 price: "voluntary donations"
-thumbnail: /media/uploads/plc-fest-2013.jpg
+thumbnail: https://media.krdm.si/www/plc-fest-2013.jpg
 series: plc-fest
 artists:
   - armaroth

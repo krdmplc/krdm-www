@@ -4,7 +4,7 @@ date: 2026-06-19T00:00:00+02:00
 startDate: 2026-06-19T20:00:00+02:00
 venue: "Klub Jedro, Medvode"
 price: "10 € / 15 €"
-thumbnail: /media/uploads/release-the-dead-2026-06-19.jpg
+thumbnail: https://media.krdm.si/www/release-the-dead-2026-06-19.jpg
 series: other
 artists:
   - gmb

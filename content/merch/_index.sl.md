@@ -5,7 +5,7 @@ url: "merch"
 description: "Majice, kape, pulover in plošče bendov iz Placa in društva KRDM iz Kranja. Naroči jih prek košarice ali kupi na koncertih."
 # Share image (link previews), 1200×630.
 ogTags:
-  image: /media/uploads/og-merch-sl.png
+  image: https://media.krdm.si/www/og-merch-sl.png
 menu:
   main:
     weight: 35

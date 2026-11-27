@@ -2,7 +2,7 @@
 title: "Majica Armaroth (črna)"
 date: 2026-11-24T00:00:00+01:00
 weight: 30
-thumbnail: /media/uploads/merch-armaroth-shirt-black.jpg
+thumbnail: https://media.krdm.si/www/merch-armaroth-shirt-black.jpg
 category: apparel
 price: 20
 sizes:

@@ -4,7 +4,7 @@ date: 2021-07-05T09:29:27.155Z
 startDate: 2021-07-17T19:30:00+02:00
 endDate: 2021-07-17T23:00:00+02:00
 price: 10 €
-thumbnail: /media/uploads/distorzn-21-07-17.jpg
+thumbnail: https://media.krdm.si/www/distorzn-21-07-17.jpg
 venue: Trainstation Subart, Kranj
 series: distorzn
 showInAdmin: true

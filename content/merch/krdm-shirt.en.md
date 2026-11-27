@@ -2,7 +2,7 @@
 title: "KRDM T-shirt"
 date: 2026-11-20T00:00:00+01:00
 weight: 80
-thumbnail: /media/uploads/merch-krdm-shirt.jpg
+thumbnail: https://media.krdm.si/www/merch-krdm-shirt.jpg
 category: apparel
 price: 20
 available: true

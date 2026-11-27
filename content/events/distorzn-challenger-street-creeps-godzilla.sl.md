@@ -4,7 +4,7 @@ date: 2026-01-30T00:00:00+01:00
 startDate: 2026-02-27T20:00:00+01:00
 venue: "Trainstation Subart, Kranj"
 price: "10 €"
-thumbnail: /media/uploads/distorzn-2026-02-27.jpg
+thumbnail: https://media.krdm.si/www/distorzn-2026-02-27.jpg
 series: distorzn
 showInAdmin: true
 ---

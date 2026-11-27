@@ -2,7 +2,7 @@
 title: "Hardwired (MiniDisc)"
 date: 2023-09-15T00:00:03+02:00
 weight: 180
-thumbnail: /media/uploads/merch-neuromancer-hardwired-minidisc.jpg
+thumbnail: https://media.krdm.si/www/merch-neuromancer-hardwired-minidisc.jpg
 category: music
 available: false
 release: hardwired

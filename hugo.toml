@@ -11,9 +11,13 @@ artist = "artists"
 
 [params]
 # Default share image (og:image) and home hero background.
-image = "/media/uploads/og-image.jpg"
-heroImage = "/media/uploads/plcfest-2018.jpg"
+image = "https://media.krdm.si/www/og-image.jpg"
+heroImage = "https://media.krdm.si/www/plcfest-2018.jpg"
 logo = "/media/brand/logo.png"
+# KRDM's shared media bucket (R2 `krdm-media`, served by workers/media). The CMS
+# uploads under www/; krdm-band's merch photos are under products/ and imported/.
+# Images there are fetched at build time and resized like local ones.
+mediaURL = "https://media.krdm.si/"
 foundingDate = "2016-11"
 # Cloudflare Web Analytics site token (KRDM account → Analytics & Logs → Web Analytics).
 # Public by design: it is in every page. Empty = no analytics. Production builds only.
@@ -90,15 +94,11 @@ home = ["html", "llms"]
 [sitemap]
 changeFreq = "monthly"
 
-# Images are uploaded by Decap CMS to static/media/uploads (so their original URLs
-# keep working), and mounted into assets too so templates can resize them.
+# The brand images are mounted into assets too, so templates can resize them.
+# Uploaded media lives in R2 (params.mediaURL), not here.
 [[module.mounts]]
 source = "assets"
 target = "assets"
-
-[[module.mounts]]
-source = "static/media/uploads"
-target = "assets/media/uploads"
 
 [[module.mounts]]
 source = "static/media/brand"
@@ -107,6 +107,13 @@ target = "assets/media/brand"
 [[module.mounts]]
 source = "static"
 target = "static"
+
+# Originals fetched from params.mediaURL are kept in resources/ (cached by the
+# deploy workflow) and fetched again once a day, so a file replaced under the same
+# name shows up by the next day's build.
+[caches.getresource]
+dir = ":resourceDir/_gen"
+maxAge = "24h"
 
 [markup]
 [markup.goldmark]

@@ -1,7 +1,7 @@
 ---
 title: Neuromancer
 date: 2019-10-27T13:36:22.775Z
-thumbnail: /media/uploads/neuromancer.jpg
+thumbnail: https://media.krdm.si/www/neuromancer.jpg
 ref: neuromancer
 weight: 20
 showInAdmin: true

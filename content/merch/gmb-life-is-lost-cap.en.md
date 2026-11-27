@@ -2,7 +2,7 @@
 title: "Life is Lost cap"
 date: 2026-06-07T00:00:00+02:00
 weight: 40
-thumbnail: /media/uploads/merch-gmb-life-is-lost-hat.jpg
+thumbnail: https://media.krdm.si/www/merch-gmb-life-is-lost-hat.jpg
 category: other
 price: 20
 available: true

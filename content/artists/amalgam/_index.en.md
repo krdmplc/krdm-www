@@ -1,7 +1,7 @@
 ---
 title: Amalgam
 date: 2019-10-22T07:21:43.000Z
-thumbnail: /media/uploads/amalgam.jpg
+thumbnail: https://media.krdm.si/www/amalgam.jpg
 ref: amalgam
 status: inactive
 ---

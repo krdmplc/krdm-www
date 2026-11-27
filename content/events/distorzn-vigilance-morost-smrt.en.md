@@ -5,7 +5,7 @@ startDate: 2018-10-13T21:00:00+02:00
 endDate: 2018-10-14T03:00:00+02:00
 venue: "Trainstation Subart, Kranj"
 price: "6 €"
-thumbnail: /media/uploads/distorzn-2018-10-13.jpg
+thumbnail: https://media.krdm.si/www/distorzn-2018-10-13.jpg
 series: distorzn
 ---
 

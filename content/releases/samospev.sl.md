@@ -2,7 +2,7 @@
 title: "Samospev"
 date: 2026-11-10T00:00:00+01:00
 releaseDate: 2026-11-10T00:00:00+01:00
-thumbnail: /media/uploads/samospev.jpg
+thumbnail: https://media.krdm.si/www/samospev.jpg
 format: album
 artists:
   - oti

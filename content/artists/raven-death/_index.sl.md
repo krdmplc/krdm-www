@@ -1,7 +1,7 @@
 ---
 title: "Raven Death"
 date: 2026-11-18T00:00:00+01:00
-thumbnail: /media/uploads/artist-raven-death-live-2009.jpg
+thumbnail: https://media.krdm.si/www/artist-raven-death-live-2009.jpg
 ref: raven-death
 status: inactive
 showInAdmin: true

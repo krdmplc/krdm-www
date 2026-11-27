@@ -76,7 +76,7 @@ file exists as `name.sl.md` + `name.en.md`.
   `.GetTerms "artists"`. An artist's `ref` **must equal its folder name**, otherwise
   Hugo creates an empty term page. `static/admin/index.js` keeps them in sync on save.
 - Front matter fields: `title`, `description` (meta description — optional, a good
-  one is generated otherwise), `thumbnail` (`/media/uploads/…`), events: `startDate`,
+  one is generated otherwise), `thumbnail` (`https://media.krdm.si/www/…`), events: `startDate`,
   `endDate`, `venue` (`"Venue, Town"`; the part after the comma becomes the
   locality in JSON-LD), `price` (`"8 €"`); releases: `releaseDate`.
 - Releases have `format` (`album` — LPs and EPs — or `single`) for the filter on the
@@ -148,12 +148,18 @@ file exists as `name.sl.md` + `name.en.md`.
 
 ## Build pipeline (non-obvious parts)
 
-- **Images**: Decap uploads to `static/media/uploads/`, and `hugo.toml` mounts that
-  folder (and `static/media/brand/`) into `assets/` too. `layouts/partials/image.html`
-  resizes to WebP with `srcset` and intrinsic dimensions; Markdown images go through
-  the same partial via `layouts/_default/_markup/render-image.html`. Always render
-  images through it rather than writing `<img>` by hand. Images are plain git blobs —
-  the site used Netlify Large Media (Git LFS) until 2026, which Netlify retired.
+- **Images** live in KRDM's shared R2 bucket `krdm-media`, not in git (see Media
+  below); content stores full URLs (`https://media.krdm.si/www/…`).
+  `partials/func/image.html` fetches them with `resources.GetRemote` at build time,
+  published under `/media/<key>`, and **fails the build** when one is missing — so a
+  build needs network access to media.krdm.si. The originals are cached in
+  `resources/_gen/getresource` for a day (`[caches.getresource]` in `hugo.toml`; the
+  deploy workflow caches `resources/`). `static/media/brand/` stays in git, mounted
+  into `assets/`. `layouts/partials/image.html` resizes to WebP with `srcset` and
+  intrinsic dimensions; Markdown images go through the same partial via
+  `layouts/_default/_markup/render-image.html`. Always render images through it
+  rather than writing `<img>` by hand, and never link a media.krdm.si URL in a page:
+  visitors get the copies Hugo publishes, never the bucket.
 - **SCSS** is compiled by Hugo (`layouts/partials/base/styles.html`) with Dart Sass.
   `assets/styles/style.scss` is run through Hugo's template engine (that is how
   breakpoints from `[params.breakpoints]` reach Sass); no other partial is. Use the
@@ -168,7 +174,7 @@ file exists as `name.sl.md` + `name.en.md`.
   (`partials/base/theme-init.html` applies it before first paint — inline, keep it ES5).
   Components use only the semantic tokens in `_colors.scss` (`--bg`, `--fg`, `--accent`, …),
   never raw brand colours, so both themes keep working.
-- **YouTube**: use `{{</* youtube-lite id="…" title="…" poster="/media/uploads/…" */>}}`,
+- **YouTube**: use `{{</* youtube-lite id="…" title="…" poster="https://media.krdm.si/www/…" */>}}`,
   which loads nothing from YouTube until play is pressed (the cookies page says so).
 - **Template lookup** (Hugo ≥ 0.146): the artist page template must live at
   `layouts/artists/term.html`; in `_default/` it loses to `_default/list.html`.
@@ -220,6 +226,26 @@ local build at that exact version. Node is not pinned (Netlify's image supplies 
 Response headers live in `static/_headers` (read by Netlify and Cloudflare alike),
 including browser caching: a year for the fingerprinted CSS/JS and the fonts, a day
 for `/media/`, the host default (revalidate) for pages.
+
+**Media** (since 2026-11): uploads live in the R2 bucket `krdm-media` (KRDM account),
+shared with krdm-band (band.krdm.si). The website's files are under `www/`;
+krdm-band writes `products/` and `imported/` (merch photos; the CMS can insert them,
+as `https://media.krdm.si/products/…`). Editors upload through Decap Turbo's S3
+media library (`media_library` in `static/admin/config.yml`): the credentials are the
+Turbo site's `s3_*` variables (an R2 API token with Object Read & Write on
+`krdm-media` only). The library doesn't confine editors to `www/` — they could
+delete krdm-band's photos — so don't, and a re-upload under an existing name
+replaces the file. Public reads go through the read-only Worker `krdm-media`
+(`workers/media/`, deployed by `.github/workflows/deploy-media.yml` from main) at
+**https://media.krdm.si** (a Workers Custom Domain attached through the API, as the
+CI token has no zone permissions). Never make the bucket public (r2.dev or a custom
+domain on the bucket): R2 can't be capped at $0, while the Worker runs on Workers
+Free, which stops at 100 000 requests a day (shared with krdm-band), so reads can't
+pass ~3.1M a month (the free tier is 10M). Two zone rules belong to it: a Cache Rule
+letting browsers keep the Worker's `cache-control` (1 h for `www/`, a year for
+krdm-band's immutable keys), and a rate-limiting rule (300 requests per 10 s per
+address) so one client can't drain the shared daily quota. Builds and the CMS are
+its only regular readers.
 
 **Moving to Cloudflare Workers (in progress, 2026-11).** The site is also deployed,
 as a static-assets-only Worker `krdm-www` in the shared "KRDM" Cloudflare account

@@ -5,7 +5,7 @@ startDate: 2018-05-05T21:00:00+02:00
 endDate: 2018-05-06T03:00:00+02:00
 venue: "Trainstation Subart, Kranj"
 price: "5 €"
-thumbnail: /media/uploads/plcfest-2018.jpg
+thumbnail: https://media.krdm.si/www/plcfest-2018.jpg
 series: plc-fest
 artists:
   - didge

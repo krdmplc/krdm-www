@@ -1,7 +1,7 @@
 ---
 title: Selgor
 date: 2019-10-22T07:49:44.000Z
-thumbnail: /media/uploads/selgor.jpg
+thumbnail: https://media.krdm.si/www/selgor.jpg
 hideOnHome: true
 showInAdmin: true
 ref: selgor
