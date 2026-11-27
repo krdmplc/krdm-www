@@ -4,7 +4,7 @@ date: 2022-08-20T00:00:00+02:00
 startDate: 2022-08-20T19:30:00+02:00
 endDate: 2022-08-21T00:00:00+02:00
 venue: "Trainstation Subart, Kranj"
-thumbnail: /media/uploads/distorzn-2022-08-20.jpg
+thumbnail: https://media.krdm.si/www/distorzn-2022-08-20.jpg
 series: distorzn
 showInAdmin: true
 ---

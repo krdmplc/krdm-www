@@ -2,10 +2,10 @@
 title: "Pulover Ofni mi peso"
 date: 2026-11-25T00:00:00+01:00
 weight: 25
-thumbnail: /media/uploads/merch-pesa-ofni-mi-peso-hoodie.jpg
+thumbnail: https://media.krdm.si/www/merch-pesa-ofni-mi-peso-hoodie.jpg
 images:
-  - /media/uploads/merch-pesa-ofni-mi-peso-hoodie-2.jpg
-  - /media/uploads/merch-pesa-ofni-mi-peso-hoodie-3.jpg
+  - https://media.krdm.si/www/merch-pesa-ofni-mi-peso-hoodie-2.jpg
+  - https://media.krdm.si/www/merch-pesa-ofni-mi-peso-hoodie-3.jpg
 category: apparel
 price: 40
 sizes:

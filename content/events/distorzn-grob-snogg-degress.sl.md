@@ -2,7 +2,7 @@
 title: 'Distoržn :: Grob, Snogg, Degress'
 startDate: 2020-01-25T21:00:00+01:00
 endDate: 2020-01-26T02:00:00+01:00
-thumbnail: /media/uploads/80900691_583277155829169_5199934085136384_o.jpg
+thumbnail: https://media.krdm.si/www/80900691_583277155829169_5199934085136384_o.jpg
 venue: 'Trainstation Subart, Kranj'
 price: 6 €
 series: distorzn

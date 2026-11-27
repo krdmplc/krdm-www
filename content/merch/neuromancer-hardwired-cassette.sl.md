@@ -2,7 +2,7 @@
 title: "Hardwired (kaseta)"
 date: 2023-09-15T00:00:01+02:00
 weight: 170
-thumbnail: /media/uploads/hardwired.jpg
+thumbnail: https://media.krdm.si/www/hardwired.jpg
 category: music
 available: false
 release: hardwired

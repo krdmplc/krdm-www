@@ -2,7 +2,7 @@
 title: "Pressure"
 date: 2022-02-22T00:00:00+01:00
 releaseDate: 2022-02-22T00:00:00+01:00
-thumbnail: /media/uploads/pressure.jpg
+thumbnail: https://media.krdm.si/www/pressure.jpg
 format: single
 artists:
   - armaroth

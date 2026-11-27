@@ -2,7 +2,7 @@
 title: "LISA"
 date: 2021-10-28T00:00:00+02:00
 releaseDate: 2021-10-28T00:00:00+02:00
-thumbnail: /media/uploads/lisa-ofnana-pesa.jpg
+thumbnail: https://media.krdm.si/www/lisa-ofnana-pesa.jpg
 format: single
 artists:
   - pesa

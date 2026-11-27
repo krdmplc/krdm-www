@@ -2,12 +2,12 @@
 title: Dread
 date: 2020-10-30T15:21:56.763Z
 releaseDate: 2020-10-30T15:21:56.780Z
-thumbnail: /media/uploads/dread.jpg
+thumbnail: https://media.krdm.si/www/dread.jpg
 format: single
 artists:
   - pesa
 ---
-![Dread cover art](/media/uploads/dread-bc.jpg)
+![Dread cover art](https://media.krdm.si/www/dread-bc.jpg)
 
 Single by ofnana_pesa.
 

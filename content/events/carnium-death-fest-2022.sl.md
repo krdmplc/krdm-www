@@ -4,7 +4,7 @@ date: 2022-07-22T00:00:00+02:00
 startDate: 2022-07-22T18:00:00+02:00
 venue: "Trainstation Subart, Kranj"
 price: "17 € / 20 €"
-thumbnail: /media/uploads/carnium-death-fest-2022.jpg
+thumbnail: https://media.krdm.si/www/carnium-death-fest-2022.jpg
 series: other
 showInAdmin: true
 ---

@@ -2,7 +2,7 @@
 title: "Poslednje rogoviljenje"
 date: 2021-01-30T00:00:00+01:00
 releaseDate: 2021-01-30T00:00:00+01:00
-thumbnail: /media/uploads/poslednje-rogoviljenje.jpg
+thumbnail: https://media.krdm.si/www/poslednje-rogoviljenje.jpg
 format: album
 artists:
   - grund

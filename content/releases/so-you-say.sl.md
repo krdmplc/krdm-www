@@ -2,7 +2,7 @@
 title: "So You Say"
 date: 2023-02-23T00:00:00+01:00
 releaseDate: 2023-02-23T00:00:00+01:00
-thumbnail: /media/uploads/so-you-say.jpg
+thumbnail: https://media.krdm.si/www/so-you-say.jpg
 format: single
 artists:
   - oti

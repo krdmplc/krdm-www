@@ -4,7 +4,7 @@ date: 2026-10-13T00:00:00+02:00
 startDate: 2026-11-27T19:00:00+01:00
 venue: "Trainstation Subart, Kranj"
 price: "12 €"
-thumbnail: /media/uploads/plc-fest-2026.jpg
+thumbnail: https://media.krdm.si/www/plc-fest-2026.jpg
 series: plc-fest
 artists:
   - armaroth

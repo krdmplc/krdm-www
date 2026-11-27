@@ -1,7 +1,7 @@
 ---
 title: Armaroth
 date: 2019-10-22T07:20:55.000Z
-thumbnail: /media/uploads/armaroth-2026.jpg
+thumbnail: https://media.krdm.si/www/armaroth-2026.jpg
 ref: armaroth
 weight: 10
 showInAdmin: true

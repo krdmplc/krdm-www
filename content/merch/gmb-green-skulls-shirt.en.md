@@ -2,7 +2,7 @@
 title: "Green Skulls T-shirt"
 date: 2026-06-08T00:00:00+02:00
 weight: 120
-thumbnail: /media/uploads/merch-gmb-green-skulls-shirt.jpg
+thumbnail: https://media.krdm.si/www/merch-gmb-green-skulls-shirt.jpg
 category: apparel
 price: 20
 available: true

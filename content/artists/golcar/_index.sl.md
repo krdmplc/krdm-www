@@ -1,7 +1,7 @@
 ---
 title: "Golcar"
 date: 2026-11-18T00:00:00+01:00
-thumbnail: /media/uploads/golcar.jpg
+thumbnail: https://media.krdm.si/www/golcar.jpg
 ref: golcar
 showInAdmin: true
 ---

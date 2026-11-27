@@ -1,7 +1,7 @@
 ---
 title: p€dri
 date: 2021-01-02T12:20:35.916Z
-thumbnail: /media/uploads/spizdimi.jpg
+thumbnail: https://media.krdm.si/www/spizdimi.jpg
 ref: pedri
 ---
 

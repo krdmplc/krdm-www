@@ -2,7 +2,7 @@
 title: "Zenith"
 date: 2016-12-01T00:00:00+01:00
 releaseDate: 2016-12-01T00:00:00+01:00
-thumbnail: /media/uploads/zenith.jpg
+thumbnail: https://media.krdm.si/www/zenith.jpg
 format: album
 artists:
   - armaroth

@@ -2,7 +2,7 @@
 title: "Cybercop"
 date: 2018-12-09T00:00:00+01:00
 releaseDate: 2018-12-09T00:00:00+01:00
-thumbnail: /media/uploads/cybercop.jpg
+thumbnail: https://media.krdm.si/www/cybercop.jpg
 format: single
 artists:
   - neuromancer

@@ -2,7 +2,7 @@
 title: "Gore Obsessed Violent Exhibition"
 date: 2013-12-13T00:00:00+01:00
 releaseDate: 2013-12-13T00:00:00+01:00
-thumbnail: /media/uploads/gore-obsessed-violent-exhibition.jpg
+thumbnail: https://media.krdm.si/www/gore-obsessed-violent-exhibition.jpg
 format: album
 artists:
   - gmb

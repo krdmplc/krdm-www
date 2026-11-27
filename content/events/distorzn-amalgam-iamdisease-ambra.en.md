@@ -5,7 +5,7 @@ startDate: 2019-01-12T20:00:00+01:00
 endDate: 2019-01-13T03:00:00+01:00
 venue: "Trainstation Subart, Kranj"
 price: "6 €"
-thumbnail: /media/uploads/distorzn-2019-01-12.jpg
+thumbnail: https://media.krdm.si/www/distorzn-2019-01-12.jpg
 series: distorzn
 artists:
   - amalgam

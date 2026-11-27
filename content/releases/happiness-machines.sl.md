@@ -2,7 +2,7 @@
 title: "Happiness Machines"
 date: 2024-09-30T00:00:00+02:00
 releaseDate: 2024-09-30T00:00:00+02:00
-thumbnail: /media/uploads/happiness-machines.jpg
+thumbnail: https://media.krdm.si/www/happiness-machines.jpg
 format: single
 artists:
   - armaroth

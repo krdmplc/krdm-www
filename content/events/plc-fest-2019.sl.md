@@ -1,7 +1,7 @@
 ---
 title: "Plc Fest 2019"
 draft: false
-thumbnail: "/media/uploads/plc-fest-2019.jpg"
+thumbnail: "https://media.krdm.si/www/plc-fest-2019.jpg"
 date: 2019-10-22T07:21:43.000Z
 startDate: 2019-11-16T20:00:00+01:00
 endDate: 2019-11-17T05:00:00+01:00

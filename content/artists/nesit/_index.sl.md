@@ -1,7 +1,7 @@
 ---
 title: "Nesit"
 date: 2026-11-18T00:00:00+01:00
-thumbnail: /media/uploads/nesit.jpg
+thumbnail: https://media.krdm.si/www/nesit.jpg
 ref: nesit
 status: inactive
 showInAdmin: true

@@ -1,7 +1,7 @@
 ---
 title: Douchean
 date: 2019-11-06T10:16:30.358Z
-thumbnail: /media/uploads/douchean.jpg
+thumbnail: https://media.krdm.si/www/douchean.jpg
 ref: douchean
 showInAdmin: true
 ---

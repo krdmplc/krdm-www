@@ -4,7 +4,7 @@ description: "Društvo KRDM iz Kranja spodbuja neodvisno glasbo in umetnost na G
 hero:
   title: KRDM
   desc: Društvo za promocijo neodvisne glasbe
-  image: /media/uploads/hero-plc-collage.jpg
+  image: https://media.krdm.si/www/hero-plc-collage.jpg
 events:
   title: Prihajajoči dogodki
   all:
@@ -30,4 +30,4 @@ about:
     href: /o-nas/
     text: Več o nas
 ---
-{{< youtube-lite id="-qliNZNUs8A" title="Plc – kratki dokumentarni film" poster="/media/uploads/nature-2026.jpg" >}}
+{{< youtube-lite id="-qliNZNUs8A" title="Plc – kratki dokumentarni film" poster="https://media.krdm.si/www/nature-2026.jpg" >}}

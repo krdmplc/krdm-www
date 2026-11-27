@@ -2,7 +2,7 @@
 title: "Majica Skull-Head (bela)"
 date: 2026-06-09T00:00:00+02:00
 weight: 140
-thumbnail: /media/uploads/merch-gmb-skull-head-shirt-white.jpg
+thumbnail: https://media.krdm.si/www/merch-gmb-skull-head-shirt-white.jpg
 category: apparel
 price: 20
 sizes:

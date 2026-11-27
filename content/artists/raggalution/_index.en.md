@@ -1,7 +1,7 @@
 ---
 title: "Raggalution"
 date: 2026-11-18T00:00:00+01:00
-thumbnail: /media/uploads/artist-raggalution.jpg
+thumbnail: https://media.krdm.si/www/artist-raggalution.jpg
 ref: raggalution
 hideOnHome: true
 ---

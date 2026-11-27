@@ -2,7 +2,7 @@
 title: "It Was Obviously Colonel Mustard With the Candlestick in the Library"
 date: 2022-09-14T00:00:00+02:00
 releaseDate: 2022-09-14T00:00:00+02:00
-thumbnail: /media/uploads/colonel-mustard.jpg
+thumbnail: https://media.krdm.si/www/colonel-mustard.jpg
 format: single
 artists:
   - douchean

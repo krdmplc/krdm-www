@@ -4,7 +4,7 @@ date: 2025-10-20T00:00:00+02:00
 startDate: 2025-11-21T20:00:00+01:00
 venue: "Trainstation Subart, Kranj"
 price: "10 €"
-thumbnail: /media/uploads/distorzn-2025-11-21.jpg
+thumbnail: https://media.krdm.si/www/distorzn-2025-11-21.jpg
 series: distorzn
 artists:
   - gmb

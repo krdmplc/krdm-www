@@ -2,7 +2,7 @@
 title: "GMB"
 date: 2026-06-10T00:00:00+02:00
 releaseDate: 2026-06-10T00:00:00+02:00
-thumbnail: /media/uploads/gmb-album.jpg
+thumbnail: https://media.krdm.si/www/gmb-album.jpg
 format: album
 artists:
   - gmb

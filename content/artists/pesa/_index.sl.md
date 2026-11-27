@@ -1,7 +1,7 @@
 ---
 title: PESA
 date: 2019-11-06T10:20:59.576Z
-thumbnail: /media/uploads/103950808_711865109625799_8047344184785284169_o.jpg
+thumbnail: https://media.krdm.si/www/103950808_711865109625799_8047344184785284169_o.jpg
 weight: 30
 ref: pesa
 showInAdmin: true

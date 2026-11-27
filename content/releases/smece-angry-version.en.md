@@ -2,7 +2,7 @@
 title: "Smeće (angry version)"
 date: 2026-11-20T00:00:00+01:00
 releaseDate: 2026-11-20T00:00:00+01:00
-thumbnail: /media/uploads/smece-angry-version.jpg
+thumbnail: https://media.krdm.si/www/smece-angry-version.jpg
 format: single
 artists:
   - pedri

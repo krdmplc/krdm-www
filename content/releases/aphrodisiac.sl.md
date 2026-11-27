@@ -2,7 +2,7 @@
 title: "Aphrodisiac"
 date: 2024-02-20T00:00:00+01:00
 releaseDate: 2024-02-20T00:00:00+01:00
-thumbnail: /media/uploads/aphrodisiac.jpg
+thumbnail: https://media.krdm.si/www/aphrodisiac.jpg
 format: album
 artists:
   - douchean

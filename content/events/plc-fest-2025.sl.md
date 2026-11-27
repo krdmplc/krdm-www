@@ -4,7 +4,7 @@ date: 2025-02-12T00:00:00+01:00
 startDate: 2025-03-22T19:00:00+01:00
 venue: "Trainstation Subart, Kranj"
 price: "10 €"
-thumbnail: /media/uploads/plc-fest-2025.jpg
+thumbnail: https://media.krdm.si/www/plc-fest-2025.jpg
 series: plc-fest
 artists:
   - armaroth

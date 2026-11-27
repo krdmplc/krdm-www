@@ -2,7 +2,7 @@
 title: "Pilgrims Exile"
 date: 2022-06-29T00:00:00+02:00
 releaseDate: 2022-06-29T00:00:00+02:00
-thumbnail: /media/uploads/pilgrims-exile.jpg
+thumbnail: https://media.krdm.si/www/pilgrims-exile.jpg
 format: album
 artists:
   - pesa

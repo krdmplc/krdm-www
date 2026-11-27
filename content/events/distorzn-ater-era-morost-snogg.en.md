@@ -4,7 +4,7 @@ date: 2022-06-25T00:00:00+02:00
 startDate: 2022-06-25T20:00:00+02:00
 venue: "Trainstation Subart, Kranj"
 price: "10 €"
-thumbnail: /media/uploads/distorzn-2022-06-25.jpg
+thumbnail: https://media.krdm.si/www/distorzn-2022-06-25.jpg
 series: distorzn
 ---
 

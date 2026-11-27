@@ -1,7 +1,7 @@
 ---
 title: "Ensanguinate"
 date: 2026-11-18T00:00:00+01:00
-thumbnail: /media/uploads/artist-ensanguinate.jpg
+thumbnail: https://media.krdm.si/www/artist-ensanguinate.jpg
 ref: ensanguinate
 hideOnHome: true
 ---
