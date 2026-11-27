@@ -30,8 +30,9 @@ install the recommended extensions from [.vscode/extensions.json](.vscode/extens
 - CSS class names follow [BEM](https://getbem.com/); JavaScript follows the standard style.
 - `npm run lint` runs ESLint and Stylelint (Netlify runs it before every build). A
   pre-commit hook (Husky + lint-staged) fixes what it can on staged files.
-- Images uploaded through the CMS go to `static/media/uploads/` and are resized to
-  WebP at build time — upload the original, not a pre-shrunk copy.
+- Images uploaded through the CMS go to KRDM's media bucket (https://media.krdm.si/www/…)
+  and are fetched and resized to WebP at build time — upload the original, not a
+  pre-shrunk copy. A build needs network access to media.krdm.si.
 
 ## Deployment
 

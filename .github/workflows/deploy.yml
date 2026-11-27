@@ -48,11 +48,14 @@ jobs:
             | tar -xz -C "$RUNNER_TEMP" hugo
           echo "$RUNNER_TEMP" >> "$GITHUB_PATH"
 
-      # Resized images; without this cache every build processes them all again.
+      # Originals fetched from media.krdm.si and the resized images; without this cache
+      # every build downloads and processes them all again. The media isn't in the
+      # repo, so no file hash says when it changed: each run restores the latest cache
+      # and saves its own (hugo --gc drops what is no longer used).
       - uses: actions/cache@v4
         with:
           path: resources
-          key: hugo-resources-${{ hashFiles('static/media/**', 'assets/**', 'hugo.toml') }}
+          key: hugo-resources-${{ github.run_id }}
           restore-keys: hugo-resources-
 
       - name: Work out the address

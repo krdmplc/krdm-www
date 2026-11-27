@@ -1,0 +1,18 @@
+{
+  // KRDM's shared media bucket, read-only, at https://media.krdm.si (index.js says
+  // why it goes through a Worker). Deployed by .github/workflows/deploy-media.yml when
+  // this folder changes on main.
+  "name": "krdm-media",
+  "account_id": "2264e0f180a5de9805616b23d0d3b6d0",
+  "main": "index.js",
+  "compatibility_date": "2026-11-01",
+  // The bucket is shared with krdm-band (band.krdm.si), which writes under
+  // products/ and imported/; the website's CMS writes under www/.
+  "r2_buckets": [{ "binding": "MEDIA", "bucket_name": "krdm-media" }],
+  // media.krdm.si is a Workers Custom Domain attached in the dashboard/API, not in
+  // `routes` here: the CI token has no zone permissions, and `wrangler deploy`
+  // leaves a domain it doesn't list alone. workers.dev stays off, so every request
+  // passes the zone's rate-limiting rule and the Cache API works.
+  "workers_dev": false,
+  "preview_urls": false,
+}
