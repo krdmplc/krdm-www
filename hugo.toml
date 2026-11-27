@@ -19,8 +19,15 @@ foundingDate = "2016-11"
 # Public by design: it is in every page. Empty = no analytics. Production builds only.
 cloudflareAnalyticsToken = "cc0dfb88a6114b07bdadd6eb2a13f6fd"
 
+# KRDM band, the app that holds the merch and takes the orders and contact
+# messages (https://band.krdm.si). The merch pages are built from its catalog
+# (content/merch/_content.gotmpl), the forms post to it. Previews use the preview
+# app (bin/build.sh sets HUGO_PARAMS_BANDAPI).
+bandApi = "https://band.krdm.si"
+
 # Merch orders (the cart, layouts/shortcodes/cart.html), in euros: the cart
-# can't be sent below minOrder, and postage is free from freeShipping up.
+# can't be sent below minOrder, and postage is free from freeShipping up. The
+# app enforces the same rules (its `web_orders` setting); change both.
 [params.merch]
 minOrder = 20
 freeShipping = 100
@@ -115,6 +122,11 @@ unsafe = true
 
 [security.funcs]
 getenv = ["^HUGO_", "CONTEXT"]
+
+# Remote resources: the merch catalog (fetched with a new key on every build) and
+# the merch photos (their URLs never change). Expired entries are pruned.
+[caches.getresource]
+maxAge = "720h"
 
 # Embed YouTube videos from youtube-nocookie.com (see the cookies page).
 [privacy.youtube]

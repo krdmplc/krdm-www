@@ -1,0 +1,4 @@
+# `npm run dev` (hugo server, environment "development") reads the merch from,
+# and sends the forms to, KRDM band's preview (preview data), not the real app.
+# For the app running locally: HUGO_PARAMS_BANDAPI=http://localhost:5173 npm run dev
+bandApi = "https://main-krdm-band.krdm.workers.dev"

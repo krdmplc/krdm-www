@@ -1,24 +1,27 @@
-{{- /* A merch item. A catalogue entry, not a product page with a cart: the main
-  actions are an add-to-cart form (assets/scripts/cart.js reveals it; orders go
-  out from the cart page, see shortcodes/cart.html) and a contact-form link that
-  pre-fills the item name, the only action without JS. Stock counts
-  (`quantity`, and `stock` per size) are internal and never rendered: a size
-  at 0 is only struck through. */ -}}
+{{- /* A merch item, built from the app's catalog (content/merch/_content.gotmpl).
+  A catalogue entry, not a product page with a cart: the main actions are an
+  add-to-cart form (assets/scripts/cart.js reveals it; orders go out from the
+  cart page, see shortcodes/cart.html) and a contact-form link that pre-fills
+  the item name, the only action without JS. Stock counts never reach the
+  website: a sold-out size is only struck through. What is sold out is the
+  build's; assets/scripts/merch-availability.js asks the app again on load
+  ([data-merch-item] and the data-merch-* parts below). */ -}}
 {{ define "main" }}
   {{- $soldOut := partial "func/merch-sold-out" . -}}
   {{- $price := partial "func/price" .Params.price -}}
   <div class="container">
     {{ partial "breadcrumbs" . }}
 
-    <article class="profile">
+    <article class="profile" data-merch-item="{{ .Params.productId }}" data-band-api="{{ site.Params.bandApi }}" data-sold-out-text="{{ T "soldOut" | lower }}">
       <div class="profile__media">
         {{- with .Params.thumbnail }}
           {{ partial "image" (dict "src" . "alt" $.Title "widths" (slice 600 1000) "sizes" "(min-width: 992px) 40vw, 100vw" "eager" true) }}
         {{- end }}
-        {{- with (partial "func/merch-source" .).Params.images }}
+        {{- with .Params.images }}
           <ul class="gallery" role="list">
             {{- range . }}
-              <li><a href="{{ . }}">{{ partial "image" (dict "src" . "alt" $.Title "widths" (slice 240 480) "sizes" "(min-width: 992px) 13vw, 33vw") }}</a></li>
+              {{- /* The full photo, copied into the site (no request to the app). */}}
+              <li><a href="{{ with partial "func/image" . }}{{ .RelPermalink }}{{ end }}">{{ partial "image" (dict "src" . "alt" $.Title "widths" (slice 240 480) "sizes" "(min-width: 992px) 13vw, 33vw") }}</a></li>
             {{- end }}
           </ul>
         {{- end }}
@@ -29,8 +32,8 @@
           {{ with .Description }}<p class="page-header__lead">{{ . }}</p>{{ end }}
 
           <p class="price">
-            {{- if $soldOut }}<span class="stamp">{{ T "soldOut" }}</span>
-            {{- else }}{{ with $price }}<span class="visually-hidden">{{ T "price" }}: </span>{{ . }}{{ end }}{{ end -}}
+            <span class="stamp" data-merch-stamp{{ if not $soldOut }} hidden{{ end }}>{{ T "soldOut" }}</span>
+            {{- with $price }}<span data-merch-price{{ if $soldOut }} hidden{{ end }}><span class="visually-hidden">{{ T "price" }}: </span>{{ . }}</span>{{ end -}}
           </p>
 
           <div class="meta-list">
@@ -46,7 +49,8 @@
                 {{ partial "icon" "maximize-2" }}
                 <span><span class="visually-hidden">{{ T "sizes" }}: </span>
                   {{- range $i, $s := . }}{{ if $i }}, {{ end }}
-                    {{- if $s.soldOut }}<s>{{ $s.name }}<span class="visually-hidden"> ({{ T "soldOut" | lower }})</span></s>{{ else }}{{ $s.name }}{{ end }}
+                    {{- /* Kept in step with the markup merch-availability.js writes. */ -}}
+                    <span data-merch-size="{{ $s.name }}">{{ if $s.soldOut }}<s>{{ $s.name }}<span class="visually-hidden"> ({{ T "soldOut" | lower }})</span></s>{{ else }}{{ $s.name }}{{ end }}</span>
                   {{- end -}}
                 </span>
               </div>
@@ -67,9 +71,11 @@
         </div>
 
         <div class="actions">
-          {{- if not $soldOut }}
+          {{- if $.Params.price }}
             {{- with site.GetPage "/cart" }}
-              <form class="add-to-cart" data-cart-add="{{ $.File.ContentBaseName }}" data-cart-url="{{ .RelPermalink }}" hidden>
+              {{- /* Revealed by cart.js unless the item is sold out (data-sold-out,
+                kept up to date by merch-availability.js). */}}
+              <form class="add-to-cart" data-cart-add="{{ $.Params.productId }}" data-cart-url="{{ .RelPermalink }}"{{ if $soldOut }} data-sold-out{{ end }} hidden>
                 {{- with partial "func/merch-sizes" $ }}
                   <fieldset class="add-to-cart__sizes">
                     <legend>{{ T "cartSize" }}</legend>

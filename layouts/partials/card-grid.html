@@ -9,7 +9,8 @@
 {{- $filterKey := .filterKey | default "format" -}}
 {{- /* Full class names (not built from parts) so PurgeCSS can see them. */ -}}
 {{- $class := index (dict "3" "card-grid--3" "4" "card-grid--4" "6" "card-grid--6") (string (.cols | default 4)) -}}
-<ul class="card-grid {{ $class }}" role="list"{{ if .sort }} data-sort-list{{ end }}>
+{{- $merch := false }}{{ range .pages }}{{ if eq .Section "merch" }}{{ $merch = true }}{{ end }}{{ end -}}
+<ul class="card-grid {{ $class }}" role="list"{{ if .sort }} data-sort-list{{ end }}{{ if $merch }} data-band-api="{{ site.Params.bandApi }}"{{ end }}>
   {{- range $i, $page := .pages }}
     <li
       {{- if $ctx.sort }}

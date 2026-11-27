@@ -1,12 +1,21 @@
 {{- /*
-  Resolves a site path such as "/media/uploads/x.jpg" (as stored by Decap CMS)
-  to a Hugo image resource. Works because hugo.toml mounts static/media/* into
-  assets/ as well. Returns nil for remote URLs or files that don't exist.
+  Resolves an image to a Hugo image resource: a site path such as
+  "/media/uploads/x.jpg" (as stored by Decap CMS; works because hugo.toml
+  mounts static/media/* into assets/ as well), or a remote URL (the merch
+  photos, served by the KRDM band app), which is downloaded at build time so
+  the page loads it from this site. A remote photo that can't be fetched fails
+  the build. Remote photos are published under /media/merch/ (cached like the
+  other media, static/_headers). Returns nil for files that don't exist.
 */ -}}
 
 {{- $res := "" -}}
 {{- with . -}}
-  {{- if not (strings.HasPrefix . "http") -}}
+  {{- if strings.HasPrefix . "http" -}}
+    {{- with try (resources.GetRemote .) -}}
+      {{- with .Err }}{{ errorf "image: can't fetch %s: %s" $ . }}{{ end -}}
+      {{- with .Value }}{{ $res = . | resources.Copy (printf "media/merch/%s" (path.Base $)) }}{{ end -}}
+    {{- end -}}
+  {{- else -}}
     {{- $res = resources.Get (strings.TrimPrefix "/" .) -}}
   {{- end -}}
 {{- end -}}
