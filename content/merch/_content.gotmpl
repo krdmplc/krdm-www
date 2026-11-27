@@ -38,6 +38,13 @@
     {{- errorf "merch: %s returned nothing" $url -}}
   {{- end -}}
 {{- end -}}
+{{- /* An app from before the website switch-over lacks these: stop rather than
+  publish merch without its bands, order and dates. */ -}}
+{{- range first 1 $items -}}
+  {{- if not (and (isset . "artists") (isset . "sort") (isset . "createdAt")) -}}
+    {{- errorf "merch: the catalog at %s has no artists/sort/createdAt; deploy KRDM band's website switch-over first" $url -}}
+  {{- end -}}
+{{- end -}}
 
 {{- range $items -}}
   {{- $images := slice -}}
